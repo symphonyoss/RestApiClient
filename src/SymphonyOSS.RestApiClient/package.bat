@@ -1,0 +1,1 @@
+c:\work\Tools\NuGet\nuget.exe pack SymphonyOSS.RestApiClient.csproj -IncludeReferencedProjects -Prop Configuration=Release

@@ -1,0 +1,9 @@
+Symphony REST API Client Library for .NET
+Copyright 2016 The Symphony Software Foundation
+
+This product includes software developed at
+The Symphony Software Foundation (http://symphony.foundation).
+
+Some of the source files have been generated using
+swagger-codegen (https://github.com/swagger-api/swagger-codegen),
+licensed under the Apache License, Version 2.0.

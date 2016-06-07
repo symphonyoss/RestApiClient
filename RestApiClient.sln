@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymphonyOSS.RestApiClient.Generated", "src\SymphonyOSS.RestApiClient.Generated\SymphonyOSS.RestApiClient.Generated.csproj", "{67B81E11-BA65-4C3F-8075-E2C351467980}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymphonyOSS.RestApiClient", "src\SymphonyOSS.RestApiClient\SymphonyOSS.RestApiClient.csproj", "{8114BB9E-7E5D-45CD-BBCB-179E117500FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BD061D83-B187-4A98-82AD-80E914814336}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BC5B07C7-3C8C-4725-9A33-D325AB71DAC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymphonyOSS.RestApiClient.Tests", "test\SymphonyOSS.RestApiClient.Tests\SymphonyOSS.RestApiClient.Tests.csproj", "{1CE12095-5813-499C-A6B1-7A3B76BE8065}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67B81E11-BA65-4C3F-8075-E2C351467980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67B81E11-BA65-4C3F-8075-E2C351467980}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67B81E11-BA65-4C3F-8075-E2C351467980}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67B81E11-BA65-4C3F-8075-E2C351467980}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8114BB9E-7E5D-45CD-BBCB-179E117500FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8114BB9E-7E5D-45CD-BBCB-179E117500FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8114BB9E-7E5D-45CD-BBCB-179E117500FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8114BB9E-7E5D-45CD-BBCB-179E117500FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CE12095-5813-499C-A6B1-7A3B76BE8065}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CE12095-5813-499C-A6B1-7A3B76BE8065}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CE12095-5813-499C-A6B1-7A3B76BE8065}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CE12095-5813-499C-A6B1-7A3B76BE8065}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{67B81E11-BA65-4C3F-8075-E2C351467980} = {BD061D83-B187-4A98-82AD-80E914814336}
+		{8114BB9E-7E5D-45CD-BBCB-179E117500FA} = {BD061D83-B187-4A98-82AD-80E914814336}
+		{1CE12095-5813-499C-A6B1-7A3B76BE8065} = {BC5B07C7-3C8C-4725-9A33-D325AB71DAC8}
+	EndGlobalSection
+EndGlobal

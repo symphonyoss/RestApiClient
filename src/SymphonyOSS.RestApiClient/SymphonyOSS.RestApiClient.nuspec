@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>FactSet.SymphonyOSS.RestApiClient</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/symphonyoss/RestApiClient/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/symphonyoss/RestApiClient/</projectUrl>
+    <iconUrl>https://avatars2.githubusercontent.com/u/16778380?v=3&amp;s=64</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Symphony API chat bot messaging</tags>
+    <dependencies> 
+     <group targetFramework="net45">
+       <dependency id="RestSharp" version="105.2.3" />
+       <dependency id="Newtonsoft.Json" version="8.0.3" />
+     </group>
+    </dependencies>
+  </metadata>
+</package>

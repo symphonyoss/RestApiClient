@@ -1,0 +1,11 @@
+﻿{
+  "dependencies": {
+    "RestSharp": "105.2.3"
+  },
+  "frameworks": {
+    "net45": { }
+  },
+  "runtimes": {
+    "win": { }
+  }
+}
