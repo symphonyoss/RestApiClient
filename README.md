@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/symphonyoss/RestApiClient.svg)](https://travis-ci.org/symphonyoss/RestApiClient)
+
 Symphony REST API Client Library for .NET
 =========================================
 
