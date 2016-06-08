@@ -4,4 +4,3 @@ bin/
 obj/
 *.csproj.user
 StyleCop.cache
-packages.config
