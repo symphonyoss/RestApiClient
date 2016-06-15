@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Api\AgentApi\DatafeedApi.cs" />
     <Compile Include="Api\AgentApi\MessageEventArgs.cs" />
+    <Compile Include="Api\AgentApi\AttachmentsApi.cs" />
     <Compile Include="Api\AgentApi\MessagesApi.cs" />
     <Compile Include="Api\IRetryStrategy.cs" />
     <Compile Include="Api\RefreshTokensRetryStrategy.cs" />

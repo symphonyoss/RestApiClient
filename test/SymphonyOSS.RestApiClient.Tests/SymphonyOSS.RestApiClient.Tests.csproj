@@ -69,6 +69,7 @@
     <Compile Include="AuthenticatorApiFactoryTest.cs" />
     <Compile Include="DatafeedApiTest.cs" />
     <Compile Include="MessageBuilderTest.cs" />
+    <Compile Include="AttachmentsApiTest.cs" />
     <Compile Include="MessagesApiTest.cs" />
     <Compile Include="MessageSuppressionApiTest.cs" />
     <Compile Include="PresenceApiTest.cs" />
