@@ -35,6 +35,14 @@ namespace SymphonyOSS.RestApiClient.Tests
         }
 
         [Fact]
+        public void EnsureConstructs_an_AttachmentsApi_instance()
+        {
+            var agentApiFactory = new AgentApiFactory("https://agent");
+            var result = agentApiFactory.CreateAttachmentsApi(_sessionManager);
+            Assert.NotNull(result);
+        }
+
+        [Fact]
         public void EnsureConstructs_a_DatafeedApi_instance()
         {
             var agentApiFactory = new AgentApiFactory("https://agent");
