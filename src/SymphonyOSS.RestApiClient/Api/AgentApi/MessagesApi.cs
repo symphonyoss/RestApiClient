@@ -55,9 +55,9 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <param name="sid">Stream ID.</param>
         /// <param name="message">The message.</param>
         /// <returns>The posted message.</returns>
-        public Message PostMessage(string sid, MessageSubmission message)
+        public V2Message PostMessage(string sid, V2MessageSubmission message)
         {
-            return _apiExecutor.Execute(_messagesApi.V1StreamSidMessageCreatePost, sid, _authTokens.SessionToken, _authTokens.KeyManagerToken, message);
+            return _apiExecutor.Execute(_messagesApi.V2StreamSidMessageCreatePost, sid, _authTokens.SessionToken, _authTokens.KeyManagerToken, message);
         }
 
         /// <summary>

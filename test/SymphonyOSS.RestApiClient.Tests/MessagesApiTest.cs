@@ -46,9 +46,9 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsurePostMessage_uses_retry_strategy()
         {
             const string sid = "sid";
-            var message = new MessageSubmission();
+            var message = new V2MessageSubmission();
             _messagesApi.PostMessage(sid, message);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, MessageSubmission, Message>>(), sid, "sessionToken", "keyManagerToken", message));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, V2MessageSubmission, V2Message>>(), sid, "sessionToken", "keyManagerToken", message));
         }
 
         [Fact]
