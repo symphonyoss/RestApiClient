@@ -7,8 +7,8 @@
     <ProjectGuid>{1CE12095-5813-499C-A6B1-7A3B76BE8065}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SymphonyOSS.AgentApiClient.Tests</RootNamespace>
-    <AssemblyName>SymphonyOSS.AgentApiClient.Tests</AssemblyName>
+    <RootNamespace>SymphonyOSS.RestApiClient.Tests</RootNamespace>
+    <AssemblyName>SymphonyOSS.RestApiClient.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
