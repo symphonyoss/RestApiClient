@@ -43,9 +43,9 @@ var streamsApi = podApiFactory.CreateStreamsApi(sessionManager);
 var user = usersApi.GetUser("jforsell@factset.com");
 var stream = streamsApi.CreateStream(new UserIdList {user.Id});
 messagesApi.PostMessage(
-    stream.Id, new MessageSubmission()
+    stream.Id, new V2MessageSubmission()
     {
-        Format = MessageSubmission.FormatEnum.Messageml,
+        Format = V2MessageSubmission.FormatEnum.Messageml,
         Message = new MessageBuilder().Text("hello ").Bold("world").ToString()
     });
 ```
@@ -73,6 +73,10 @@ This project was initiated at [FactSet](https://www.factset.com) and has been de
 Contributions are accepted via GitHub pull requests. All contributors must be covered by contributor license agreements to comply with the [Code Contribution Process](https://symphonyoss.atlassian.net/wiki/display/FM/Code+Contribution+Process).
 
 ## Release Notes
+
+Release 0.2.0 (Month Day, 2016)
+
+ * Support for attachments.
 
 Release 0.1.0 (June 6, 2016)
 
