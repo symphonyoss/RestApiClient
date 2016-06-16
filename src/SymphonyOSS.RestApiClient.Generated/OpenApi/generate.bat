@@ -30,3 +30,5 @@ move AuthenticatorApi ..
 move PodApi ..
 cd ..
 rmdir /s /q Temp
+
+call prepend_license.bat
