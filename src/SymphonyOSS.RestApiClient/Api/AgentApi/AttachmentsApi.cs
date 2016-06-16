@@ -15,7 +15,10 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System;
 using System.IO;
+using RestSharp;
+using RestSharp.Extensions;
 
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
@@ -56,11 +59,14 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// be used on a message in that stream.
         /// </summary>
         /// <param name="sid">Stream ID.</param>
-        /// <param name="file">The file to upload as an attachment.</param>
+        /// <param name="file">The path of the file to upload as an attachment.</param>
         /// <returns>Attachment info.</returns>
-        public AttachmentInfo UploadAttachment(string sid, Stream file)
+        public AttachmentInfo UploadAttachment(string sid, string file)
         {
-            return _apiExecutor.Execute(_attachmentsApi.V1StreamSidAttachmentCreatePost, sid, _authTokens.SessionToken, _authTokens.KeyManagerToken, file);
+            using (var stream = File.OpenRead(file))
+            {
+                return _apiExecutor.Execute(UploadAttachment, sid, Path.GetFileName(file), stream);
+            }
         }
 
         /// <summary>
@@ -73,6 +79,18 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         public byte[] DownloadAttachment(string sid, string messageId, string fileId)
         {
             return _apiExecutor.Execute(_attachmentsApi.V1StreamSidAttachmentGet, sid, fileId, messageId, _authTokens.SessionToken, _authTokens.KeyManagerToken);
+        }
+
+        private AttachmentInfo UploadAttachment(string sid, string filename, Stream file)
+        {
+            var request = new RestRequest("v1/stream/" + sid + "/attachment/create", Method.POST);
+            request.AddHeader("sessionToken", _authTokens.SessionToken);
+            request.AddHeader("keyManagerToken", _authTokens.KeyManagerToken);
+            request.AddFile("file", file.ReadAsBytes(), filename, "application/octet-stream");
+
+            var apiClient = _attachmentsApi.Configuration.ApiClient;
+            var response = apiClient.RestClient.Execute(request);
+            return (AttachmentInfo)apiClient.Deserialize(response, typeof(AttachmentInfo));
         }
     }
 }

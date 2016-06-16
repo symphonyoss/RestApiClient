@@ -55,12 +55,20 @@ namespace SymphonyOSS.RestApiClient.Tests
         }
 
         [Fact]
-        public void EnsureUploadAttachment_uses_retry_strategy()
+        public void EnsureUploadAttachment_throws_FileNotFoundException()
         {
             const string sid = "sid";
-            var file = new Mock<Stream>().Object;
-            _attachmentsApi.UploadAttachment(sid, file);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, Stream, AttachmentInfo>>(), sid, "sessionToken", "keyManagerToken", file));
+            var file = "does_not_exist.png";
+            Exception exception = null;
+            try
+            {
+                _attachmentsApi.UploadAttachment(sid, file);
+            }
+            catch (Exception e)
+            {
+                exception = e;
+            }
+            Assert.IsType<FileNotFoundException>(exception);
         }
     }
 }
