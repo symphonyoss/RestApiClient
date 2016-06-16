@@ -55,10 +55,13 @@
     <Compile Include="OpenApi\PodApi\**\*.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="OpenApi\license_cs.txt" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="OpenApi\Config\*.json" />
     <None Include="OpenApi\generate.bat" />
+    <None Include="OpenApi\prepend_license.bat" />
     <None Include="OpenApi\Yaml\AgentApi\**\*.yaml" />
     <None Include="OpenApi\Yaml\AuthenticatorApi\**\*.yaml" />
     <None Include="OpenApi\Yaml\PodApi\**\*.yaml" />
