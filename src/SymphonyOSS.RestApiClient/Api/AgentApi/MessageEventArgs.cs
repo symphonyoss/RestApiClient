@@ -25,11 +25,11 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class MessageEventArgs : EventArgs
     {
-        public MessageEventArgs(Message message)
+        public MessageEventArgs(V2BaseMessage message)
         {
             Message = message;
         }
             
-        public Message Message { get; private set; }
+        public V2BaseMessage Message { get; private set; }
     }
 }

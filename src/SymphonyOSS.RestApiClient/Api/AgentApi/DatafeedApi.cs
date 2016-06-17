@@ -114,7 +114,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             _shouldStop = true;
         }
 
-        private async void NotifyAsync(EventHandler<MessageEventArgs> messageEventHandler, MessageList messageList)
+        private async void NotifyAsync(EventHandler<MessageEventArgs> messageEventHandler, V2MessageList messageList)
         {
             // Notify each handler in a separate task, maintaining the order of messages in the list, and
             // get back to reading the data feed again without waiting for listeners to process messages.
@@ -126,7 +126,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             _tasks[messageEventHandler] = Task.Run(() => Notify(messageEventHandler, messageList));
         }
 
-        private void Notify(EventHandler<MessageEventArgs> messageEventHandler, MessageList messageList)
+        private void Notify(EventHandler<MessageEventArgs> messageEventHandler, V2MessageList messageList)
         {
             foreach (var message in messageList)
             {

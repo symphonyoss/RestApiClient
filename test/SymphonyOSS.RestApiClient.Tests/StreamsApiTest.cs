@@ -52,9 +52,9 @@ namespace SymphonyOSS.RestApiClient.Tests
         [Fact]
         public void EnsureCreateRoom_uses_retry_strategy()
         {
-            var payload = new RoomCreate();
+            var payload = new V2RoomAttributes();
             _streamsApi.CreateRoom(payload);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<RoomCreate, string, RoomDetail>>(), payload, "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<V2RoomAttributes, string, RoomDetail>>(), payload, "sessionToken"));
         }
 
         [Fact]
@@ -78,9 +78,19 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureUpdateRoom_uses_retry_strategy()
         {
             const string id = "id";
-            var payload = new RoomAttributes();
+            var payload = new V2RoomAttributes();
             _streamsApi.UpdateRoom(id, payload);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, RoomAttributes, string, RoomDetail>>(), id, payload, "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, V2RoomAttributes, string, RoomDetail>>(), id, payload, "sessionToken"));
+        }
+
+        [Fact]
+        public void EnsureSearchRoom_uses_retry_strategy()
+        {
+            var searchCriteria = new RoomSearchCriteria();
+            int? skip = 0;
+            int? limit = null;
+            _streamsApi.SearchRoom(searchCriteria);
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, RoomSearchCriteria, int?, int?, RoomSearchResults>>(), "sessionToken", searchCriteria, skip, limit));
         }
 
     }
