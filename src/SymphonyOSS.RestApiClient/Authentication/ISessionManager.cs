@@ -17,11 +17,15 @@
 
 namespace SymphonyOSS.RestApiClient.Authentication
 {
+    using System.Security.Cryptography.X509Certificates;
+
     /// <summary>
     /// Adds logic for generating authentication tokens.
     /// </summary>
     public interface ISessionManager : IAuthTokens
     {
+        X509Certificate2 Certificate { get; }
+
         void GenerateTokens();
     }
 }

@@ -28,7 +28,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     /// </summary>
     public class SystemApi
     {
-        private readonly Generated.OpenApi.PodApi.Api.SystemApi _systemApi;
+        private readonly Generated.OpenApi.PodApi.Api.ISystemApi _systemApi;
 
         private readonly IAuthTokens _authTokens;
 

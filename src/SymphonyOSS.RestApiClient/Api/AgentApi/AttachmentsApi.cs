@@ -33,7 +33,9 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class AttachmentsApi
     {
-        private readonly Generated.OpenApi.AgentApi.Api.AttachmentsApi _attachmentsApi;
+        private readonly Generated.OpenApi.AgentApi.Api.IAttachmentsApi _attachmentsApi;
+
+        private readonly Configuration _configuration;
 
         private readonly IAuthTokens _authTokens;
 
@@ -50,6 +52,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         public AttachmentsApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
         {
             _attachmentsApi = new Generated.OpenApi.AgentApi.Api.AttachmentsApi(configuration);
+            _configuration = configuration;
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
         }
@@ -88,7 +91,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             request.AddHeader("keyManagerToken", _authTokens.KeyManagerToken);
             request.AddFile("file", file.ReadAsBytes(), filename, "application/octet-stream");
 
-            var apiClient = _attachmentsApi.Configuration.ApiClient;
+            var apiClient = _configuration.ApiClient;
             var response = apiClient.RestClient.Execute(request);
             return (AttachmentInfo)apiClient.Deserialize(response, typeof(AttachmentInfo));
         }

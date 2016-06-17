@@ -28,7 +28,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     /// </summary>
     public class MessageSuppressionApi
     {
-        private readonly Generated.OpenApi.PodApi.Api.MessageSuppressionApi _messageSuppressionApi;
+        private readonly Generated.OpenApi.PodApi.Api.IMessageSuppressionApi _messageSuppressionApi;
 
         private readonly IAuthTokens _authTokens;
 
