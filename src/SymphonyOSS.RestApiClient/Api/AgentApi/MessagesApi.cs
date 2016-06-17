@@ -68,9 +68,9 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <param name="offset">Number of messages to skip.</param>
         /// <param name="maxMessages">Max number of messages to return. If no value is provided, 50 is the default.</param>
         /// <returns>The list of messages.</returns>
-        public MessageList GetMessages(string sid, long? since, int? offset = null, int? maxMessages = null)
+        public V2MessageList GetMessages(string sid, long? since, int? offset = null, int? maxMessages = null)
         {
-            return _apiExecutor.Execute(_messagesApi.V1StreamSidMessageGet, sid, since, _authTokens.SessionToken, _authTokens.KeyManagerToken, offset, maxMessages);
+            return _apiExecutor.Execute(_messagesApi.V2StreamSidMessageGet, sid, since, _authTokens.SessionToken, _authTokens.KeyManagerToken, offset, maxMessages);
         }
     }
 }

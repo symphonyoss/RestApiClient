@@ -146,9 +146,9 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             return _apiExecutor.Execute(_datafeedApi.V1DatafeedCreatePost, _authTokens.SessionToken, _authTokens.KeyManagerToken);
         }
 
-        private MessageList ReadDatafeed(string id, int? maxMessages = null)
+        private V2MessageList ReadDatafeed(string id, int? maxMessages = null)
         {
-            return _apiExecutor.Execute(_datafeedApi.V1DatafeedIdReadGet, id, _authTokens.SessionToken, _authTokens.KeyManagerToken, maxMessages);
+            return _apiExecutor.Execute(_datafeedApi.V2DatafeedIdReadGet, id, _authTokens.SessionToken, _authTokens.KeyManagerToken, maxMessages);
         }
     }
 }

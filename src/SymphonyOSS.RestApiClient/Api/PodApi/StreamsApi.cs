@@ -70,9 +70,9 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// </summary>
         /// <param name="payload">Room attributes.</param>
         /// <returns>The created room.</returns>
-        public RoomDetail CreateRoom(RoomCreate payload)
+        public V2RoomDetail CreateRoom(V2RoomAttributes payload)
         {
-            return _apiExecutor.Execute(_streamsApi.V1RoomCreatePost, payload, _authTokens.SessionToken);
+            return _apiExecutor.Execute(_streamsApi.V2RoomCreatePost, payload, _authTokens.SessionToken);
         }
 
         /// <summary>
@@ -80,9 +80,9 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// </summary>
         /// <param name="id">The room ID.</param>
         /// <returns>The room details.</returns>
-        public RoomDetail GetRoomInfo(string id)
+        public V2RoomDetail GetRoomInfo(string id)
         {
-            return _apiExecutor.Execute(_streamsApi.V1RoomIdInfoGet, id, _authTokens.SessionToken);
+            return _apiExecutor.Execute(_streamsApi.V2RoomIdInfoGet, id, _authTokens.SessionToken);
         }
 
         /// <summary>
@@ -102,9 +102,21 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="id">Room ID.</param>
         /// <param name="payload">Room attributes.</param>
         /// <returns>The room.</returns>
-        public RoomDetail UpdateRoom(string id, RoomAttributes payload)
+        public V2RoomDetail UpdateRoom(string id, V2RoomAttributes payload)
         {
-            return _apiExecutor.Execute(_streamsApi.V1RoomIdUpdatePost, id, payload, _authTokens.SessionToken);
+            return _apiExecutor.Execute(_streamsApi.V2RoomIdUpdatePost, id, payload, _authTokens.SessionToken);
+        }
+
+        /// <summary>
+        /// Searches for a room based on certain search criteria given.
+        /// </summary>
+        /// <param name="query">Search criteria.</param>
+        /// <param name="skip">Number or results to skip.</param>
+        /// <param name="limit">Max number of results.</param>
+        /// <returns>The search results.</returns>
+        public RoomSearchResults SearchRoom(RoomSearchCriteria query, int? skip = null, int? limit = null)
+        {
+            return _apiExecutor.Execute(_streamsApi.V2RoomSearchPost, _authTokens.SessionToken, query, skip, limit);
         }
     }
 }
