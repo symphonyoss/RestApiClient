@@ -52,13 +52,13 @@ namespace SymphonyOSS.RestApiClient.Tests
             var semaphore = new Semaphore(0, int.MaxValue);
             var messageList = CreateMessageList(2);
             _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, Datafeed>>(), "sessionToken", "keyManagerToken")).Returns(new Datafeed("streamId"));
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, MessageList>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null))
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, V2MessageList>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null))
                 .Returns(messageList);
             var messagesReceived = 0;
             _datafeedApi.OnMessage += (_, messageEventArgs) =>
             {
                 ++messagesReceived;
-                if (messageEventArgs.Message.Id == "msg2")
+                if ((messageEventArgs.Message as V2Message)?.Id == "msg2")
                 {
                     semaphore.Release(1);
                 }
@@ -78,7 +78,7 @@ namespace SymphonyOSS.RestApiClient.Tests
             var mainSemaphore = new Semaphore(0, int.MaxValue);
             var messagesSent = 0;
             _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, Datafeed>>(), "sessionToken", "keyManagerToken")).Returns(new Datafeed("streamId"));
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, MessageList>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null))
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, V2MessageList>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null))
                 .Returns(() =>
                 {
                     if (messagesSent <= 1)
@@ -119,8 +119,8 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var semaphore = new Semaphore(0, int.MaxValue);
             _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, Datafeed>>(), "sessionToken", "keyManagerToken")).Returns(new Datafeed("streamId"));
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, MessageList>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null))
-                .Returns((MessageList)null)
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, V2MessageList>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null))
+                .Returns((V2MessageList)null)
                 .Callback(() =>
                 {
                     semaphore.Release(1);
@@ -129,15 +129,15 @@ namespace SymphonyOSS.RestApiClient.Tests
             semaphore.WaitOne();
             _datafeedApi.Stop();
             task.Wait();
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, MessageList>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, V2MessageList>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null));
         }
 
-        private MessageList CreateMessageList(int count, int startId = 1)
+        private V2MessageList CreateMessageList(int count, int startId = 1)
         {
-            var result = new MessageList();
+            var result = new V2MessageList();
             for (var i = 0; i < count; ++i)
             {
-                result.Add(new Message("msg" + (startId + i), "timestamp", "messageType", "streamId", "message", 1));
+                result.Add(new V2Message("msg" + (startId + i), "timestamp", "messageType", "streamId", "message", 1));
             };
             return result;
         }

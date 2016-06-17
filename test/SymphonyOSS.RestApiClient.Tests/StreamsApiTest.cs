@@ -54,7 +54,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var payload = new V2RoomAttributes();
             _streamsApi.CreateRoom(payload);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<V2RoomAttributes, string, RoomDetail>>(), payload, "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<V2RoomAttributes, string, V2RoomDetail>>(), payload, "sessionToken"));
         }
 
         [Fact]
@@ -62,7 +62,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             const string id = "id";
             _streamsApi.GetRoomInfo(id);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, RoomDetail>>(), id, "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, V2RoomDetail>>(), id, "sessionToken"));
         }
 
         [Fact]
@@ -80,16 +80,16 @@ namespace SymphonyOSS.RestApiClient.Tests
             const string id = "id";
             var payload = new V2RoomAttributes();
             _streamsApi.UpdateRoom(id, payload);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, V2RoomAttributes, string, RoomDetail>>(), id, payload, "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, V2RoomAttributes, string, V2RoomDetail>>(), id, payload, "sessionToken"));
         }
 
         [Fact]
         public void EnsureSearchRoom_uses_retry_strategy()
         {
-            var searchCriteria = new RoomSearchCriteria();
+            var searchCriteria = new RoomSearchCriteria(Query: "some_room");
             int? skip = 0;
-            int? limit = null;
-            _streamsApi.SearchRoom(searchCriteria);
+            int? limit = 1;
+            _streamsApi.SearchRoom(searchCriteria, skip, limit);
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, RoomSearchCriteria, int?, int?, RoomSearchResults>>(), "sessionToken", searchCriteria, skip, limit));
         }
 

@@ -17,7 +17,6 @@
 
 namespace SymphonyOSS.RestApiClient.Tests
 {
-    using Api.AgentApi;
     using Authentication;
     using Factories;
     using System.Security.Cryptography.X509Certificates;
