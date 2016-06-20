@@ -1,10 +1,6 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace SymphonyOSS.RestApiClient.Tests
+﻿namespace SymphonyOSS.RestApiClient.Tests
 {
+    using System;
     using Api;
     using Api.AgentApi;
     using Authentication;
