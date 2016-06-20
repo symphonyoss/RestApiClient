@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using SymphonyOSS.RestApiClient.Generated.Json;
+
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System;
@@ -42,6 +44,11 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         private readonly Dictionary<EventHandler<MessageEventArgs>, Task> _tasks = new Dictionary<EventHandler<MessageEventArgs>, Task>();
 
         private volatile bool _shouldStop;
+
+        static DatafeedApi()
+        {
+            JsonSubtypeConverter.Register(typeof(V2Message));
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DatafeedApi" /> class.
