@@ -75,6 +75,14 @@ namespace SymphonyOSS.RestApiClient.Factories
             return Create<MessagesApi>(sessionManager, apiExecutor);
         }
 
+        /// <summary>
+        /// Constructs a UtilApi instance using the provided session manager
+        /// for authentication.
+        /// </summary>
+        /// <param name="sessionManager">Session manager used for authentication.</param>
+        /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
+        /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
+        /// <returns>The UtilApi instance.</returns>
         public UtilApi CreateUtilApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             return Create<UtilApi>(sessionManager, apiExecutor);

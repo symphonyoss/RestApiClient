@@ -34,6 +34,14 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 
         private readonly IApiExecutor _apiExecutor;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UtilApi" /> class.
+        /// See <see cref="Factories.PodApiFactory"/> for conveniently constructing
+        /// an instance.
+        /// </summary>
+        /// <param name="authTokens">Authentication tokens.</param>
+        /// <param name="configuration">Api configuration.</param>
+        /// <param name="apiExecutor">Execution strategy.</param>
         public UtilApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
         {
             _datafeedApi = new Generated.OpenApi.AgentApi.Api.UtilApi(configuration);

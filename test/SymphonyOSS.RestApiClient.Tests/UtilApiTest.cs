@@ -36,7 +36,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             const string msg = "Hello!";
             _utilApi.Echo(msg);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, SimpleMessage>>(), msg));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, SimpleMessage>>(), "sessionToken", "keyManagerToken", msg));
         }
 
         [Fact]
@@ -44,7 +44,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             const string msg = "Obsolete!";
             _utilApi.Obsolete(msg);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, SimpleMessage>>(), msg));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, SimpleMessage>>(), "sessionToken", "keyManagerToken", msg));
         }
     }
 }

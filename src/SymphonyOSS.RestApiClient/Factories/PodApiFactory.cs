@@ -114,6 +114,18 @@ namespace SymphonyOSS.RestApiClient.Factories
             return Create<UsersApi>(sessionManager, apiExecutor);
         }
 
+        /// <summary>
+        /// Construcs a RoomMembershipApi using the procided session manager for authentication.
+        /// </summary>
+        /// <param name="sessionManager">Session manager used for authentication.</param>
+        /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
+        /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
+        /// <returns>The RoomMembershipApi instance.</returns>
+        public RoomMembershipApi CreateRoomMembershipApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
+        {
+            return Create<RoomMembershipApi>(sessionManager, apiExecutor);
+        }
+
         private T Create<T>(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             var apiClient = new ApiClient(_baseUrl)

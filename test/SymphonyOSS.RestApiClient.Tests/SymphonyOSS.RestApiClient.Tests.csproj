@@ -98,6 +98,7 @@
     <Compile Include="StreamsApiTest.cs" />
     <Compile Include="SystemApiTest.cs" />
     <Compile Include="UsersApiTest.cs" />
+    <Compile Include="UtilApiTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\SymphonyOSS.RestApiClient.Generated\SymphonyOSS.RestApiClient.Generated.csproj">
