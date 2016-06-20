@@ -264,7 +264,7 @@ namespace SymphonyOSS.RestApiClient.Generated.Json
             }
             var tagValue = attr.TagValue;
             Type oldType;
-            if (implementationMap.TryGetValue(tagValue, out oldType))
+            if (implementationMap.TryGetValue(tagValue, out oldType) && oldType != newType)
             {
                 throw new SubtypeAlreadyRegisteredException(root, tagValue, oldType, newType);
             }
