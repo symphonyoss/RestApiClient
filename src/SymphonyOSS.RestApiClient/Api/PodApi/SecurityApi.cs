@@ -98,7 +98,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// List all trusted certs.
         /// </summary>
         /// <returns>List of certificates.</returns>
-        public CompanyCertInfoList Get(int? skip = null, int? limit = null)
+        public CompanyCertInfoList GetAllTrusted(int? skip = null, int? limit = null)
         {
             return _apiExecutor.Execute(_securityApi.V1CompanycertListGet, _authTokens.SessionToken, skip, limit);
         }
@@ -116,7 +116,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// List all certs of the given types.
         /// </summary>
         /// <returns>List of certificates.</returns>
-        public CompanyCertInfoList Get(CompanyCertTypeList typeIdList, int? skip = null, int? limit = null)
+        public CompanyCertInfoList GetByTypes(CompanyCertTypeList typeIdList, int? skip = null, int? limit = null)
         {
             return _apiExecutor.Execute(_securityApi.V1CompanycertTypeListPost, typeIdList, _authTokens.SessionToken, skip, limit);
         }
