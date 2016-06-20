@@ -17,6 +17,7 @@
 
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
+    using System;
     using Authentication;
     using Generated.OpenApi.AgentApi.Client;
     using Generated.OpenApi.AgentApi.Model;
@@ -79,7 +80,9 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns>The contents of the attached file.</returns>
         public byte[] DownloadAttachment(string sid, string messageId, string fileId)
         {
-            return _apiExecutor.Execute(_attachmentsApi.V1StreamSidAttachmentGet, sid, fileId, messageId, _authTokens.SessionToken, _authTokens.KeyManagerToken);
+            var base64Bytes = _apiExecutor.Execute(_attachmentsApi.V1StreamSidAttachmentGet, sid, fileId, messageId, _authTokens.SessionToken, _authTokens.KeyManagerToken);
+            var base64String = System.Text.Encoding.UTF8.GetString(base64Bytes);
+            return Convert.FromBase64String(base64String);
         }
 
         private AttachmentInfo UploadAttachment(string sid, string filename, Stream file)

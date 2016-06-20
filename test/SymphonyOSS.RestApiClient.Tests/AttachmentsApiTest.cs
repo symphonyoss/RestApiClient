@@ -24,7 +24,6 @@ namespace SymphonyOSS.RestApiClient.Tests
     using Api.AgentApi;
     using Authentication;
     using Generated.OpenApi.AgentApi.Client;
-    using Generated.OpenApi.AgentApi.Model;
     using Moq;
     using Xunit;
 
@@ -52,6 +51,21 @@ namespace SymphonyOSS.RestApiClient.Tests
             const string fileId = "file";
             _attachmentsApi.DownloadAttachment(sid, messageId, fileId);
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, string, string, byte[]>>(), sid, fileId, messageId, "sessionToken", "keyManagerToken"));
+        }
+
+        [Fact]
+        public void EnsureDownloadAttachment_decodes_base64_encoded_data()
+        {
+            const string sid = "sid";
+            const string messageId = "message";
+            const string fileId = "file";
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes("hello");
+            var base64String = System.Convert.ToBase64String(plainTextBytes);
+            var base64Bytes = System.Text.Encoding.UTF8.GetBytes(base64String);
+
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, string, string, byte[]>>(), sid, fileId, messageId, "sessionToken", "keyManagerToken")).Returns(base64Bytes);
+            var result = _attachmentsApi.DownloadAttachment(sid, messageId, fileId);
+            Assert.Equal(plainTextBytes, result);
         }
 
         [Fact]
