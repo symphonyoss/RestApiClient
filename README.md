@@ -29,7 +29,15 @@ var agentApiFactory = new AgentApiFactory("https://agentapi:8446/agent");
 var datafeedApi = agentApiFactory.CreateDatafeedApi(sessionManager);
 datafeedApi.OnMessage += (sender, event) =>
 {
-    Console.WriteLine(event.Message._Message);
+    var message = e.Message as V2Message;
+    Console.WriteLine(message.Message);
+    
+    // Write any attachments to disk.
+    foreach (var attachmentInfo in message.Attachments)
+    {
+        var bytes = attachmentsApi.DownloadAttachment(message.StreamId, message.Id, attachmentInfo.Id);
+        File.WriteAllBytes(attachmentInfo.Name, bytes);
+    }
 };
 datafeedApi.Listen();
 ```
