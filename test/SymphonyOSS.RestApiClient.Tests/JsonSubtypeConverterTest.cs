@@ -23,7 +23,7 @@ namespace SymphonyOSS.RestApiClient.Tests
 {
     using Xunit;
 
-    public class JsonSubtypesTest
+    public class JsonSubtypeConverterTest
     {
         [Fact]
         public void EnsureV2Message_can_be_deserialized()
