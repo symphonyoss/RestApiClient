@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Json\JsonSubtypeConverter.cs" />
+    <Compile Include="Json\AgentApiModelExtensions.cs" />
     <Compile Include="OpenApi\AgentApi\**\*.cs" />
     <Compile Include="OpenApi\AuthenticatorApi\**\*.cs" />
     <Compile Include="OpenApi\PodApi\**\*.cs" />
@@ -67,6 +69,7 @@
     <None Include="OpenApi\Yaml\PodApi\**\*.yaml" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -54,6 +54,7 @@
     <Compile Include="Api\AgentApi\AttachmentsApi.cs" />
     <Compile Include="Api\AgentApi\MessagesApi.cs" />
     <Compile Include="Api\IRetryStrategy.cs" />
+    <Compile Include="Api\PodApi\SecurityApi.cs" />
     <Compile Include="Api\RefreshTokensRetryStrategy.cs" />
     <Compile Include="Api\PodApi\MessageSuppressionApi.cs" />
     <Compile Include="Api\PodApi\SessionApi.cs" />
@@ -76,7 +77,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SymphonyOSS.RestApiClient.Generated\SymphonyOSS.RestApiClient.Generated.csproj">
       <Project>{67b81e11-ba65-4c3f-8075-e2c351467980}</Project>
-      <Name>SymphonyOSS.RestClient.Generated</Name>
+      <Name>SymphonyOSS.RestApiClient.Generated</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

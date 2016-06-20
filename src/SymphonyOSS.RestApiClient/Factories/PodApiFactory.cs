@@ -63,6 +63,19 @@ namespace SymphonyOSS.RestApiClient.Factories
         }
 
         /// <summary>
+        /// Constructs a SecurityApi instance using the provided session manager
+        /// for authentication.
+        /// </summary>
+        /// <param name="sessionManager">Session manager used for authentication.</param>
+        /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
+        /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
+        /// <returns>The SecurityApi instance.</returns>
+        public SecurityApi CreateSecurityApi(SessionManager sessionManager, IApiExecutor apiExecutor = null)
+        {
+            return Create<SecurityApi>(sessionManager, apiExecutor);
+        }
+
+        /// <summary>
         /// Constructs a SessionApi instance using the provided session manager
         /// for authentication.
         /// </summary>
