@@ -55,6 +55,7 @@
     <Compile Include="Api\AgentApi\MessagesApi.cs" />
     <Compile Include="Api\AgentApi\UtilApi.cs" />
     <Compile Include="Api\IRetryStrategy.cs" />
+    <Compile Include="Api\PodApi\RoomMembershipApi.cs" />
     <Compile Include="Api\PodApi\SecurityApi.cs" />
     <Compile Include="Api\RefreshTokensRetryStrategy.cs" />
     <Compile Include="Api\PodApi\MessageSuppressionApi.cs" />
