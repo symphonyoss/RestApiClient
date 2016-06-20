@@ -44,7 +44,7 @@ namespace SymphonyOSS.RestApiClient.Factories
         /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
         /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
         /// <returns>The AttachmentsApi instance.</returns>
-        public AttachmentsApi CreateAttachmentsApi(SessionManager sessionManager, IApiExecutor apiExecutor = null)
+        public AttachmentsApi CreateAttachmentsApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             return Create<AttachmentsApi>(sessionManager, apiExecutor);
         }
@@ -57,7 +57,7 @@ namespace SymphonyOSS.RestApiClient.Factories
         /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
         /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
         /// <returns>The DatafeedApi instance.</returns>
-        public DatafeedApi CreateDatafeedApi(SessionManager sessionManager, IApiExecutor apiExecutor = null)
+        public DatafeedApi CreateDatafeedApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             return Create<DatafeedApi>(sessionManager, apiExecutor);
         }
@@ -70,12 +70,12 @@ namespace SymphonyOSS.RestApiClient.Factories
         /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
         /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
         /// <returns>The MessagesApi instance.</returns>
-        public MessagesApi CreateMessagesApi(SessionManager sessionManager, IApiExecutor apiExecutor = null)
+        public MessagesApi CreateMessagesApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             return Create<MessagesApi>(sessionManager, apiExecutor);
         }
 
-        private T Create<T>(SessionManager sessionManager, IApiExecutor apiExecutor = null)
+        private T Create<T>(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             var apiClient = new ApiClient(_baseUrl)
             {

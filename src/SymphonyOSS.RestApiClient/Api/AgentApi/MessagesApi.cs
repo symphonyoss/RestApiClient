@@ -28,7 +28,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class MessagesApi
     {
-        private readonly Generated.OpenApi.AgentApi.Api.MessagesApi _messagesApi;
+        private readonly Generated.OpenApi.AgentApi.Api.IMessagesApi _messagesApi;
 
         private readonly IAuthTokens _authTokens;
 

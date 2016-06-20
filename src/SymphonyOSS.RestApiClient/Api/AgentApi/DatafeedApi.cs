@@ -33,7 +33,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class DatafeedApi
     {
-        private readonly Generated.OpenApi.AgentApi.Api.DatafeedApi _datafeedApi;
+        private readonly Generated.OpenApi.AgentApi.Api.IDatafeedApi _datafeedApi;
 
         private readonly IAuthTokens _authTokens;
 

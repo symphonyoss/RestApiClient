@@ -28,7 +28,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     /// </summary>
     public class PresenceApi
     {
-        private readonly Generated.OpenApi.PodApi.Api.PresenceApi _presenceApi;
+        private readonly Generated.OpenApi.PodApi.Api.IPresenceApi _presenceApi;
 
         private readonly IAuthTokens _authTokens;
 
