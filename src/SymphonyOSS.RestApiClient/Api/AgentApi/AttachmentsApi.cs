@@ -15,16 +15,14 @@
 // specific language governing permissions and limitations
 // under the License.
 
-using System;
-using System.IO;
-using RestSharp;
-using RestSharp.Extensions;
-
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using Authentication;
     using Generated.OpenApi.AgentApi.Client;
     using Generated.OpenApi.AgentApi.Model;
+    using System.IO;
+    using RestSharp;
+    using RestSharp.Extensions;
 
     /// <summary>
     /// Provides methods for getting attachments from messages and uploading attachments to streams, by
