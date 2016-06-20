@@ -23,7 +23,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 
     /// <summary>
     /// Provides methods for testing endpoint, or use an example of an obsolete endpoint.
-    /// Encapsulates <see cref="Generated.OpenApi.AgentApi.Api.DatafeedApi"/>,
+    /// Encapsulates <see cref="Generated.OpenApi.AgentApi.Api.UtilApi"/>,
     /// adding authentication token management and a custom execution strategy.
     /// </summary>
     public class UtilApi
