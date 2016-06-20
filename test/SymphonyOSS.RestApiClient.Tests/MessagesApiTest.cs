@@ -56,7 +56,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             const string sid = "sid";
             _messagesApi.GetMessages(sid, null);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, string, string, int?, int?, MessageList>>(), sid, (long?) null, "sessionToken", "keyManagerToken", (int?) null, (int?) null));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, string, string, int?, int?, V2MessageList>>(), sid, (long?) null, "sessionToken", "keyManagerToken", (int?) null, (int?) null));
         }
     }
 }

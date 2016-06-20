@@ -75,6 +75,11 @@ namespace SymphonyOSS.RestApiClient.Factories
             return Create<MessagesApi>(sessionManager, apiExecutor);
         }
 
+        public UtilApi CreateUtilApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
+        {
+            return Create<UtilApi>(sessionManager, apiExecutor);
+        }
+
         private T Create<T>(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             var apiClient = new ApiClient(_baseUrl)
