@@ -1,10 +1,6 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace SymphonyOSS.RestApiClient.Tests
+﻿namespace SymphonyOSS.RestApiClient.Tests
 {
+    using System;
     using Api;
     using Api.AgentApi;
     using Authentication;
@@ -36,7 +32,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             const string msg = "Hello!";
             _utilApi.Echo(msg);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, SimpleMessage>>(), msg));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, SimpleMessage>>(), "sessionToken", "keyManagerToken", msg));
         }
 
         [Fact]
@@ -44,7 +40,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             const string msg = "Obsolete!";
             _utilApi.Obsolete(msg);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, SimpleMessage>>(), msg));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, SimpleMessage>>(), "sessionToken", "keyManagerToken", msg));
         }
     }
 }

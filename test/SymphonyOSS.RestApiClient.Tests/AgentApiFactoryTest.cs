@@ -56,6 +56,14 @@ namespace SymphonyOSS.RestApiClient.Tests
             var result = agentApiFactory.CreateMessagesApi(_sessionManager);
             Assert.NotNull(result);
         }
+
+        [Fact]
+        public void EnsureConstructs_a_UtilApi_instance()
+        {
+            var agentApiFactory = new AgentApiFactory("https://agent");
+            var result = agentApiFactory.CreateUtilApi(_sessionManager);
+            Assert.NotNull(result);
+        }
     }
 
 }
