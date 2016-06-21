@@ -104,6 +104,7 @@
     <Compile Include="SessionManagerTest.cs" />
     <Compile Include="StreamsApiTest.cs" />
     <Compile Include="SystemApiTest.cs" />
+    <Compile Include="UserApiTest.cs" />
     <Compile Include="UsersApiTest.cs" />
     <Compile Include="UtilApiTest.cs" />
   </ItemGroup>
