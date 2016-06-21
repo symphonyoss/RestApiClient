@@ -33,7 +33,7 @@
             var roomId = "some_room";
             var userId = 123456789;
             _roomMembershipApi.AddMemberToRoom(roomId, userId);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, string, SuccessResponse>>(), roomId, userId, "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserId, string, SuccessResponse>>(), roomId, new UserId(userId), "sessionToken"));
         }
 
         [Fact]
@@ -42,7 +42,7 @@
             var roomId = "some_room";
             var userId = 123456789;
             _roomMembershipApi.RemoveMemberFromRoom(roomId, userId);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, string, SuccessResponse>>(), roomId, userId, "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserId, string, SuccessResponse>>(), roomId, new UserId(userId), "sessionToken"));
         }
 
         [Fact]
@@ -51,7 +51,7 @@
             var roomId = "some_room";
             var userId = 123456789;
             _roomMembershipApi.PromoteUserToRoomOwner(roomId, userId);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, string, SuccessResponse>>(), roomId, userId, "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserId, string, SuccessResponse>>(), roomId, new UserId(userId), "sessionToken"));
         }
 
         [Fact]
@@ -60,7 +60,7 @@
             var roomId = "some_room";
             var userId = 123456789;
             _roomMembershipApi.DemoteRoomOwner(roomId, userId);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, string, SuccessResponse>>(), roomId, userId, "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserId, string, SuccessResponse>>(), roomId, new UserId(userId), "sessionToken"));
         }
 
         [Fact]
@@ -68,7 +68,7 @@
         {
             var roomId = "some_room";
             _roomMembershipApi.GetRoomMembers(roomId);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, SuccessResponse>>(), roomId, "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, MembershipList>>(), roomId, "sessionToken"));
         }
     }
 }

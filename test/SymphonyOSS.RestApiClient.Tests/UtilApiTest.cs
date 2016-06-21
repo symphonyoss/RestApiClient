@@ -22,6 +22,7 @@
         {
             var sessionManagerMock = new Mock<IAuthTokens>();
             sessionManagerMock.Setup(obj => obj.SessionToken).Returns("sessionToken");
+            sessionManagerMock.Setup(obj => obj.KeyManagerToken).Returns("keyManagerToken");
             var configuration = new Configuration();
             _apiExecutorMock = new Mock<IApiExecutor>();
             _utilApi = new UtilApi(sessionManagerMock.Object, configuration, _apiExecutorMock.Object);
@@ -32,7 +33,7 @@
         {
             const string msg = "Hello!";
             _utilApi.Echo(msg);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, SimpleMessage>>(), "sessionToken", "keyManagerToken", msg));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, SimpleMessage, SimpleMessage>>(), "sessionToken", "keyManagerToken", new SimpleMessage(msg)));
         }
 
         [Fact]
@@ -40,7 +41,7 @@
         {
             const string msg = "Obsolete!";
             _utilApi.Obsolete(msg);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, SimpleMessage>>(), "sessionToken", "keyManagerToken", msg));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, SimpleMessage, SimpleMessage>>(), "sessionToken", "keyManagerToken", new SimpleMessage(msg)));
         }
     }
 }
