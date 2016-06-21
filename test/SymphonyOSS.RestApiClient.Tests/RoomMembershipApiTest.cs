@@ -31,7 +31,7 @@
         public void EnsureAddMemberToRoom_uses_retry_strategy()
         {
             var roomId = "some_room";
-            long? userId = 123456789;
+            long userId = 123456789;
             _roomMembershipApi.AddMemberToRoom(roomId, userId);
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, string, SuccessResponse>>(), roomId, userId, "sessionToken"));
         }
@@ -40,7 +40,7 @@
         public void EnsureRemoveMemberFromRoom_uses_retry_strategy()
         {
             var roomId = "some_room";
-            long? userId = 123456789;
+            long userId = 123456789;
             _roomMembershipApi.RemoveMemberFromRoom(roomId, userId);
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, string, SuccessResponse>>(), roomId, userId, "sessionToken"));
         }
@@ -49,7 +49,7 @@
         public void EnsurePromoteUserToRoomOwner_uses_retry_strategy()
         {
             var roomId = "some_room";
-            long? userId = 123456789;
+            long userId = 123456789;
             _roomMembershipApi.PromoteUserToRoomOwner(roomId, userId);
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, string, SuccessResponse>>(), roomId, userId, "sessionToken"));
         }
@@ -58,7 +58,7 @@
         public void EnsureDemoteRoomOwner_uses_retry_strategy()
         {
             var roomId = "some_room";
-            long? userId = 123456789;
+            long userId = 123456789;
             _roomMembershipApi.DemoteRoomOwner(roomId, userId);
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, string, SuccessResponse>>(), roomId, userId, "sessionToken"));
         }

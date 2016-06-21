@@ -55,7 +55,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="roomId">The id of the room.</param>
         /// <param name="userId">The id of the user to add to the room.</param>
         /// <returns></returns>
-        public SuccessResponse AddMemberToRoom(string roomId, long? userId)
+        public SuccessResponse AddMemberToRoom(string roomId, long userId)
         {
             return _apiExecutor.Execute(_roomMembershipApi.V1RoomIdMembershipAddPost, roomId, new UserId(userId), _authTokens.SessionToken);
         }
@@ -66,7 +66,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="roomId">The id of the room.</param>
         /// <param name="userId">The id of the user to add to the room.</param>
         /// <returns></returns>
-        public SuccessResponse RemoveMemberFromRoom(string roomId, long? userId)
+        public SuccessResponse RemoveMemberFromRoom(string roomId, long userId)
         {
             return _apiExecutor.Execute(_roomMembershipApi.V1RoomIdMembershipRemovePost, roomId, new UserId(userId), _authTokens.SessionToken);
         }
@@ -77,7 +77,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="roomId">The id of the room.</param>
         /// <param name="userId">The id of the user to add to the room.</param>
         /// <returns></returns>
-        public SuccessResponse PromoteUserToRoomOwner(string roomId, long? userId)
+        public SuccessResponse PromoteUserToRoomOwner(string roomId, long userId)
         {
             return _apiExecutor.Execute(_roomMembershipApi.V1RoomIdMembershipPromoteOwnerPost, roomId, new UserId(userId), _authTokens.SessionToken);
         }
@@ -88,7 +88,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="roomId">The id of the room.</param>
         /// <param name="userId">The id of the user to add to the room.</param>
         /// <returns></returns>
-        public SuccessResponse DemoteRoomOwner(string roomId, long? userId)
+        public SuccessResponse DemoteRoomOwner(string roomId, long userId)
         {
             return _apiExecutor.Execute(_roomMembershipApi.V1RoomIdMembershipDemoteOwnerPost, roomId, new UserId(userId), _authTokens.SessionToken);
         }
