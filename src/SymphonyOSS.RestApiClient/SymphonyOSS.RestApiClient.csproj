@@ -69,7 +69,14 @@
     <Compile Include="Factories\AuthenticatorApiFactory.cs" />
     <Compile Include="Factories\PodApiFactory.cs" />
     <Compile Include="Api\IApiExecutor.cs" />
+    <Compile Include="MessageML\DefaultNewLineRenderer.cs" />
+    <Compile Include="MessageML\DefaultMentionRenderer.cs" />
+    <Compile Include="MessageML\DefaultLinkRenderer.cs" />
+    <Compile Include="MessageML\DefaultHashTagRenderer.cs" />
+    <Compile Include="MessageML\DefaultCashTagRenderer.cs" />
+    <Compile Include="MessageML\IXmlRenderer.cs" />
     <Compile Include="MessageML\MessageBuilder.cs" />
+    <Compile Include="MessageML\MessageParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Api\RetryStrategyApiExecutor.cs" />
     <Compile Include="Api\PodApi\PresenceApi.cs" />
