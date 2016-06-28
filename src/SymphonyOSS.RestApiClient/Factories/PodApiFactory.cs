@@ -44,7 +44,7 @@ namespace SymphonyOSS.RestApiClient.Factories
         /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
         /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
         /// <returns>The MessageSuppressionApi instance.</returns>
-        public MessageSuppressionApi CreateMessageSuppressionApi(SessionManager sessionManager, IApiExecutor apiExecutor = null)
+        public MessageSuppressionApi CreateMessageSuppressionApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             return Create<MessageSuppressionApi>(sessionManager, apiExecutor);
         }
@@ -57,9 +57,22 @@ namespace SymphonyOSS.RestApiClient.Factories
         /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
         /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
         /// <returns>The PresenceApi instance.</returns>
-        public PresenceApi CreatePresenceApi(SessionManager sessionManager, IApiExecutor apiExecutor = null)
+        public PresenceApi CreatePresenceApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             return Create<PresenceApi>(sessionManager, apiExecutor);
+        }
+
+        /// <summary>
+        /// Constructs a SecurityApi instance using the provided session manager
+        /// for authentication.
+        /// </summary>
+        /// <param name="sessionManager">Session manager used for authentication.</param>
+        /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
+        /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
+        /// <returns>The SecurityApi instance.</returns>
+        public SecurityApi CreateSecurityApi(SessionManager sessionManager, IApiExecutor apiExecutor = null)
+        {
+            return Create<SecurityApi>(sessionManager, apiExecutor);
         }
 
         /// <summary>
@@ -70,7 +83,7 @@ namespace SymphonyOSS.RestApiClient.Factories
         /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
         /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
         /// <returns>The SessionApi instance.</returns>
-        public SessionApi CreateSessionApi(SessionManager sessionManager, IApiExecutor apiExecutor = null)
+        public SessionApi CreateSessionApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             return Create<SessionApi>(sessionManager, apiExecutor);
         }
@@ -83,7 +96,7 @@ namespace SymphonyOSS.RestApiClient.Factories
         /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
         /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
         /// <returns>The StreamsApi instance.</returns>
-        public StreamsApi CreateStreamsApi(SessionManager sessionManager, IApiExecutor apiExecutor = null)
+        public StreamsApi CreateStreamsApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             return Create<StreamsApi>(sessionManager, apiExecutor);
         }
@@ -96,7 +109,7 @@ namespace SymphonyOSS.RestApiClient.Factories
         /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
         /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
         /// <returns>The SystemApi instance.</returns>
-        public SystemApi CreateSystemApi(SessionManager sessionManager, IApiExecutor apiExecutor = null)
+        public SystemApi CreateSystemApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             return Create<SystemApi>(sessionManager, apiExecutor);
         }
@@ -109,12 +122,24 @@ namespace SymphonyOSS.RestApiClient.Factories
         /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
         /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
         /// <returns>The UsersApi instance.</returns>
-        public UsersApi CreateUsersApi(SessionManager sessionManager, IApiExecutor apiExecutor = null)
+        public UsersApi CreateUsersApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             return Create<UsersApi>(sessionManager, apiExecutor);
         }
 
-        private T Create<T>(SessionManager sessionManager, IApiExecutor apiExecutor = null)
+        /// <summary>
+        /// Construcs a RoomMembershipApi using the procided session manager for authentication.
+        /// </summary>
+        /// <param name="sessionManager">Session manager used for authentication.</param>
+        /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
+        /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
+        /// <returns>The RoomMembershipApi instance.</returns>
+        public RoomMembershipApi CreateRoomMembershipApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
+        {
+            return Create<RoomMembershipApi>(sessionManager, apiExecutor);
+        }
+
+        private T Create<T>(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             var apiClient = new ApiClient(_baseUrl)
             {

@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using SymphonyOSS.RestApiClient.Generated.Json;
+
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System;
@@ -33,7 +35,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class DatafeedApi
     {
-        private readonly Generated.OpenApi.AgentApi.Api.DatafeedApi _datafeedApi;
+        private readonly Generated.OpenApi.AgentApi.Api.IDatafeedApi _datafeedApi;
 
         private readonly IAuthTokens _authTokens;
 
@@ -42,6 +44,11 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         private readonly Dictionary<EventHandler<MessageEventArgs>, Task> _tasks = new Dictionary<EventHandler<MessageEventArgs>, Task>();
 
         private volatile bool _shouldStop;
+
+        static DatafeedApi()
+        {
+            JsonSubtypeConverter.Register(typeof(V2Message));
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DatafeedApi" /> class.
@@ -114,7 +121,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             _shouldStop = true;
         }
 
-        private async void NotifyAsync(EventHandler<MessageEventArgs> messageEventHandler, MessageList messageList)
+        private async void NotifyAsync(EventHandler<MessageEventArgs> messageEventHandler, V2MessageList messageList)
         {
             // Notify each handler in a separate task, maintaining the order of messages in the list, and
             // get back to reading the data feed again without waiting for listeners to process messages.
@@ -126,7 +133,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             _tasks[messageEventHandler] = Task.Run(() => Notify(messageEventHandler, messageList));
         }
 
-        private void Notify(EventHandler<MessageEventArgs> messageEventHandler, MessageList messageList)
+        private void Notify(EventHandler<MessageEventArgs> messageEventHandler, V2MessageList messageList)
         {
             foreach (var message in messageList)
             {
@@ -146,9 +153,9 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             return _apiExecutor.Execute(_datafeedApi.V1DatafeedCreatePost, _authTokens.SessionToken, _authTokens.KeyManagerToken);
         }
 
-        private MessageList ReadDatafeed(string id, int? maxMessages = null)
+        private V2MessageList ReadDatafeed(string id, int? maxMessages = null)
         {
-            return _apiExecutor.Execute(_datafeedApi.V1DatafeedIdReadGet, id, _authTokens.SessionToken, _authTokens.KeyManagerToken, maxMessages);
+            return _apiExecutor.Execute(_datafeedApi.V2DatafeedIdReadGet, id, _authTokens.SessionToken, _authTokens.KeyManagerToken, maxMessages);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class MessagesApi
     {
-        private readonly Generated.OpenApi.AgentApi.Api.MessagesApi _messagesApi;
+        private readonly Generated.OpenApi.AgentApi.Api.IMessagesApi _messagesApi;
 
         private readonly IAuthTokens _authTokens;
 
@@ -55,9 +55,9 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <param name="sid">Stream ID.</param>
         /// <param name="message">The message.</param>
         /// <returns>The posted message.</returns>
-        public Message PostMessage(string sid, MessageSubmission message)
+        public V2Message PostMessage(string sid, V2MessageSubmission message)
         {
-            return _apiExecutor.Execute(_messagesApi.V1StreamSidMessageCreatePost, sid, _authTokens.SessionToken, _authTokens.KeyManagerToken, message);
+            return _apiExecutor.Execute(_messagesApi.V2StreamSidMessageCreatePost, sid, _authTokens.SessionToken, _authTokens.KeyManagerToken, message);
         }
 
         /// <summary>
@@ -68,9 +68,9 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <param name="offset">Number of messages to skip.</param>
         /// <param name="maxMessages">Max number of messages to return. If no value is provided, 50 is the default.</param>
         /// <returns>The list of messages.</returns>
-        public MessageList GetMessages(string sid, long? since, int? offset = null, int? maxMessages = null)
+        public V2MessageList GetMessages(string sid, long? since, int? offset = null, int? maxMessages = null)
         {
-            return _apiExecutor.Execute(_messagesApi.V1StreamSidMessageGet, sid, since, _authTokens.SessionToken, _authTokens.KeyManagerToken, offset, maxMessages);
+            return _apiExecutor.Execute(_messagesApi.V2StreamSidMessageGet, sid, since, _authTokens.SessionToken, _authTokens.KeyManagerToken, offset, maxMessages);
         }
     }
 }

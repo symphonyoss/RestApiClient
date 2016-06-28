@@ -37,6 +37,19 @@ namespace SymphonyOSS.RestApiClient.Factories
         }
 
         /// <summary>
+        /// Constructs an AttachmentsApi instance using the provided session manager
+        /// for authentication.
+        /// </summary>
+        /// <param name="sessionManager">Session manager used for authentication.</param>
+        /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
+        /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
+        /// <returns>The AttachmentsApi instance.</returns>
+        public AttachmentsApi CreateAttachmentsApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
+        {
+            return Create<AttachmentsApi>(sessionManager, apiExecutor);
+        }
+
+        /// <summary>
         /// Constructs a DatafeedApi instance using the provided session manager
         /// for authentication.
         /// </summary>
@@ -44,7 +57,7 @@ namespace SymphonyOSS.RestApiClient.Factories
         /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
         /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
         /// <returns>The DatafeedApi instance.</returns>
-        public DatafeedApi CreateDatafeedApi(SessionManager sessionManager, IApiExecutor apiExecutor = null)
+        public DatafeedApi CreateDatafeedApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             return Create<DatafeedApi>(sessionManager, apiExecutor);
         }
@@ -57,12 +70,25 @@ namespace SymphonyOSS.RestApiClient.Factories
         /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
         /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
         /// <returns>The MessagesApi instance.</returns>
-        public MessagesApi CreateMessagesApi(SessionManager sessionManager, IApiExecutor apiExecutor = null)
+        public MessagesApi CreateMessagesApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             return Create<MessagesApi>(sessionManager, apiExecutor);
         }
 
-        private T Create<T>(SessionManager sessionManager, IApiExecutor apiExecutor = null)
+        /// <summary>
+        /// Constructs a UtilApi instance using the provided session manager
+        /// for authentication.
+        /// </summary>
+        /// <param name="sessionManager">Session manager used for authentication.</param>
+        /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
+        /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
+        /// <returns>The UtilApi instance.</returns>
+        public UtilApi CreateUtilApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
+        {
+            return Create<UtilApi>(sessionManager, apiExecutor);
+        }
+
+        private T Create<T>(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             var apiClient = new ApiClient(_baseUrl)
             {

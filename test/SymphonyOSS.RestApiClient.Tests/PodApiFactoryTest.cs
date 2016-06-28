@@ -81,5 +81,13 @@ namespace SymphonyOSS.RestApiClient.Tests
             var result = podApiFactory.CreateUsersApi(_sessionManager);
             Assert.NotNull(result);
         }
+
+        [Fact]
+        public void EnsureConstructs_a_RoomMembershipApi_instance()
+        {
+            var podApiFactory = new PodApiFactory("https://pod");
+            var result = podApiFactory.CreateRoomMembershipApi(_sessionManager);
+            Assert.NotNull(result);
+        }
     }
 }

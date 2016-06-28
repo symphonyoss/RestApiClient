@@ -51,8 +51,13 @@
   <ItemGroup>
     <Compile Include="Api\AgentApi\DatafeedApi.cs" />
     <Compile Include="Api\AgentApi\MessageEventArgs.cs" />
+    <Compile Include="Api\AgentApi\AttachmentsApi.cs" />
     <Compile Include="Api\AgentApi\MessagesApi.cs" />
+    <Compile Include="Api\AgentApi\UtilApi.cs" />
     <Compile Include="Api\IRetryStrategy.cs" />
+    <Compile Include="Api\PodApi\RoomMembershipApi.cs" />
+    <Compile Include="Api\PodApi\SecurityApi.cs" />
+    <Compile Include="Api\PodApi\UserApi.cs" />
     <Compile Include="Api\RefreshTokensRetryStrategy.cs" />
     <Compile Include="Api\PodApi\MessageSuppressionApi.cs" />
     <Compile Include="Api\PodApi\SessionApi.cs" />
@@ -65,7 +70,14 @@
     <Compile Include="Factories\AuthenticatorApiFactory.cs" />
     <Compile Include="Factories\PodApiFactory.cs" />
     <Compile Include="Api\IApiExecutor.cs" />
+    <Compile Include="MessageML\DefaultNewLineRenderer.cs" />
+    <Compile Include="MessageML\DefaultMentionRenderer.cs" />
+    <Compile Include="MessageML\DefaultLinkRenderer.cs" />
+    <Compile Include="MessageML\DefaultHashTagRenderer.cs" />
+    <Compile Include="MessageML\DefaultCashTagRenderer.cs" />
+    <Compile Include="MessageML\IXmlRenderer.cs" />
     <Compile Include="MessageML\MessageBuilder.cs" />
+    <Compile Include="MessageML\MessageParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Api\RetryStrategyApiExecutor.cs" />
     <Compile Include="Api\PodApi\PresenceApi.cs" />
@@ -75,11 +87,13 @@
   <ItemGroup>
     <ProjectReference Include="..\SymphonyOSS.RestApiClient.Generated\SymphonyOSS.RestApiClient.Generated.csproj">
       <Project>{67b81e11-ba65-4c3f-8075-e2c351467980}</Project>
-      <Name>SymphonyOSS.RestClient.Generated</Name>
+      <Name>SymphonyOSS.RestApiClient.Generated</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="package.bat" />
     <None Include="packages.config" />
+    <None Include="SymphonyOSS.RestApiClient.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

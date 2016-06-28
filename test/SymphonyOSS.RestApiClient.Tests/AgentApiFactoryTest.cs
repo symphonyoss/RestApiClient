@@ -17,7 +17,6 @@
 
 namespace SymphonyOSS.RestApiClient.Tests
 {
-    using Api.AgentApi;
     using Authentication;
     using Factories;
     using System.Security.Cryptography.X509Certificates;
@@ -35,6 +34,14 @@ namespace SymphonyOSS.RestApiClient.Tests
         }
 
         [Fact]
+        public void EnsureConstructs_an_AttachmentsApi_instance()
+        {
+            var agentApiFactory = new AgentApiFactory("https://agent");
+            var result = agentApiFactory.CreateAttachmentsApi(_sessionManager);
+            Assert.NotNull(result);
+        }
+
+        [Fact]
         public void EnsureConstructs_a_DatafeedApi_instance()
         {
             var agentApiFactory = new AgentApiFactory("https://agent");
@@ -47,6 +54,14 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var agentApiFactory = new AgentApiFactory("https://agent");
             var result = agentApiFactory.CreateMessagesApi(_sessionManager);
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void EnsureConstructs_a_UtilApi_instance()
+        {
+            var agentApiFactory = new AgentApiFactory("https://agent");
+            var result = agentApiFactory.CreateUtilApi(_sessionManager);
             Assert.NotNull(result);
         }
     }
