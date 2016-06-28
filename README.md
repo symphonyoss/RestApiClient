@@ -82,9 +82,10 @@ Contributions are accepted via GitHub pull requests. All contributors must be co
 
 ## Release Notes
 
-Release 0.2.0 (Month Day, 2016)
+Release 0.2.0 (June 28, 2016)
 
- * Support for attachments.
+ * New APIs added: attachments, room membership, security, user admin, and util.
+ * Support for attachments when sending and receiving messages (breaking change).
 
 Release 0.1.0 (June 6, 2016)
 
