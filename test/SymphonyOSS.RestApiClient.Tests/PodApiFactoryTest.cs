@@ -75,6 +75,14 @@ namespace SymphonyOSS.RestApiClient.Tests
         }
 
         [Fact]
+        public void EnsureConstructs_a_UserApi_instance()
+        {
+            var podApiFactory = new PodApiFactory("https://pod");
+            var result = podApiFactory.CreateUserApi(_sessionManager);
+            Assert.NotNull(result);
+        }
+
+        [Fact]
         public void EnsureConstructs_a_UsersApi_instance()
         {
             var podApiFactory = new PodApiFactory("https://pod");
