@@ -35,6 +35,8 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class DatafeedApi
     {
+        private static readonly TraceSource _traceSource = new TraceSource("SymphonyOSS.RestApiClient");
+
         private readonly Generated.OpenApi.AgentApi.Api.IDatafeedApi _datafeedApi;
 
         private readonly IAuthTokens _authTokens;
@@ -90,9 +92,29 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         {
             _shouldStop = false;
             var datafeed = CreateDatafeed();
+            var countDatafeedErrors = 0;
             while (!_shouldStop)
             {
-                var messageList = ReadDatafeed(datafeed.Id);
+                V2MessageList messageList;
+                try
+                {
+                    messageList = ReadDatafeed(datafeed.Id);
+                    countDatafeedErrors = 0;
+                }
+                catch (ApiException e)
+                {
+                    ++countDatafeedErrors;
+                    if (countDatafeedErrors >= 2)
+                    {
+                        throw;
+                    }
+                    _traceSource.TraceEvent(
+                        TraceEventType.Error, 0,
+                        "Unhandled API exception caught when reading data feed, retrying: {0}", e);
+                    datafeed = CreateDatafeed();
+                    continue;
+                }
+
                 if (_shouldStop)
                 {
                     // Don't process messages if the user has stopped listening.
@@ -143,7 +165,10 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                 }
                 catch (Exception e)
                 {
-                    Trace.TraceError("Unhandled exception caught when notifying listener about message with ID \"{0}\".", message.Id, e);
+                    _traceSource.TraceEvent(
+                        TraceEventType.Error, 0,
+                        "Unhandled exception caught when notifying listener about message with ID \"{0}\": {1}",
+                        message.Id, e);
                 }
             }
         }
