@@ -67,5 +67,16 @@ namespace SymphonyOSS.RestApiClient.Tests
                 .ToString();
             Assert.Equal("<messageML><mention uid=\"12345\" /><mention email=\"user@symphony.foundation\" /></messageML>", emptyMessage);
         }
+
+        [Fact]
+        public void EnsureNewLine_is_inserted()
+        {
+            var emptyMessage = new MessageBuilder()
+                .Text("line 1")
+                .NewLine()
+                .Text("line 2")
+                .ToString();
+            Assert.Equal("<messageML>line 1<br />line 2</messageML>", emptyMessage);
+        }
     }
 }

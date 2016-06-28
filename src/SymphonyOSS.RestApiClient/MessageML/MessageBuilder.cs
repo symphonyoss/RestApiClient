@@ -140,6 +140,17 @@ namespace SymphonyOSS.RestApiClient.MessageML
         }
 
         /// <summary>
+        /// Appends a line break.
+        /// </summary>
+        /// <returns>Itself to allow for chaining.</returns>
+        public MessageBuilder NewLine()
+        {
+            var xmlElement = _xmlDocument.CreateElement("br");
+            _rootElement.AppendChild(xmlElement);
+            return this;
+        }
+
+        /// <summary>
         /// Constructs the string representation of this message.
         /// </summary>
         /// <returns>The message as a string.</returns>
