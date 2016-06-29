@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\AgentApi\FirehoseApi.cs" />
     <Compile Include="Api\AgentApi\DatafeedApi.cs" />
     <Compile Include="Api\AgentApi\MessageEventArgs.cs" />
     <Compile Include="Api\AgentApi\AttachmentsApi.cs" />

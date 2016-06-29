@@ -85,6 +85,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FirehoseApiTest.cs" />
     <Compile Include="MessageParserTest.cs" />
     <Compile Include="RoomMembershipApiTest.cs" />
     <Compile Include="SecurityApiTest.cs" />
