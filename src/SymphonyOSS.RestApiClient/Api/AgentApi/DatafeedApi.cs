@@ -15,18 +15,16 @@
 // specific language governing permissions and limitations
 // under the License.
 
-using SymphonyOSS.RestApiClient.Generated.Json;
-
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Threading.Tasks;
     using Authentication;
+    using Generated.Json;
     using Generated.OpenApi.AgentApi.Client;
     using Generated.OpenApi.AgentApi.Model;
-    using System.Collections.Generic;
-    using System.Threading;
 
     /// <summary>
     /// Provides an event-based data feed of a user's incoming messages.
@@ -92,35 +90,9 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         {
             _shouldStop = false;
             var datafeed = CreateDatafeed();
-            var countDatafeedErrors = 0;
             while (!_shouldStop)
             {
-                V2MessageList messageList;
-                try
-                {
-                    messageList = ReadDatafeed(datafeed.Id);
-                    if (countDatafeedErrors > 0)
-                    {
-                        _traceSource.TraceEvent(
-                            TraceEventType.Information, 0,
-                            "Data feed re-established.");
-                        countDatafeedErrors = 0;
-                    }
-                }
-                catch (ApiException e)
-                {
-                    ++countDatafeedErrors;
-                    if (countDatafeedErrors >= 2)
-                    {
-                        throw;
-                    }
-                    _traceSource.TraceEvent(
-                        TraceEventType.Error, 0,
-                        "Unhandled API exception caught when reading data feed, retrying: {0}", e);
-                    datafeed = CreateDatafeed();
-                    continue;
-                }
-
+                var messageList = ReadDatafeed(ref datafeed);
                 if (_shouldStop)
                 {
                     // Don't process messages if the user has stopped listening.
@@ -187,6 +159,37 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         private V2MessageList ReadDatafeed(string id, int? maxMessages = null)
         {
             return _apiExecutor.Execute(_datafeedApi.V2DatafeedIdReadGet, id, _authTokens.SessionToken, _authTokens.KeyManagerToken, maxMessages);
+        }
+
+        private V2MessageList ReadDatafeed(ref Datafeed datafeed, int? maxMessages = null)
+        {
+            var countDatafeedErrors = 0;
+            while (true)
+            {
+                try
+                {
+                    var messageList = ReadDatafeed(datafeed.Id, maxMessages);
+                    if (countDatafeedErrors > 0)
+                    {
+                        _traceSource.TraceEvent(
+                            TraceEventType.Information, 0,
+                            "Data feed re-established.");
+                    }
+                    return messageList;
+                }
+                catch (ApiException e)
+                {
+                    ++countDatafeedErrors;
+                    if (countDatafeedErrors >= 2)
+                    {
+                        throw;
+                    }
+                    _traceSource.TraceEvent(
+                        TraceEventType.Error, 0,
+                        "Unhandled API exception caught when reading data feed, retrying: {0}", e);
+                    datafeed = CreateDatafeed();
+                }
+            }
         }
     }
 }
