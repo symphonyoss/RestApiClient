@@ -99,7 +99,13 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                 try
                 {
                     messageList = ReadDatafeed(datafeed.Id);
-                    countDatafeedErrors = 0;
+                    if (countDatafeedErrors > 0)
+                    {
+                        _traceSource.TraceEvent(
+                            TraceEventType.Information, 0,
+                            "Data feed re-established.");
+                        countDatafeedErrors = 0;
+                    }
                 }
                 catch (ApiException e)
                 {
