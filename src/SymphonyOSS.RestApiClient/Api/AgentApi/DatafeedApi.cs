@@ -137,7 +137,10 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         {
             foreach (var message in messageList)
             {
-                TraceSource.TraceEvent(TraceEventType.Verbose, 0, "Notifying listener about message with ID \"{0}\"", message.Id);
+                TraceSource.TraceEvent(
+                    TraceEventType.Verbose, 0,
+                    "Notifying listener about message with ID \"{0}\" in stream \"{1}\"",
+                    (message as V2Message)?.Id, (message as V2Message)?.StreamId);
                 try
                 {
                     messageEventHandler.Invoke(this, new MessageEventArgs(message));
