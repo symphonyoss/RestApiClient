@@ -17,6 +17,7 @@
 
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
+    using System.Diagnostics;
     using Authentication;
     using Generated.OpenApi.AgentApi.Client;
     using Generated.OpenApi.AgentApi.Model;
@@ -28,6 +29,8 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class MessagesApi
     {
+        private static readonly TraceSource TraceSource = new TraceSource("SymphonyOSS.RestApiClient");
+
         private readonly Generated.OpenApi.AgentApi.Api.IMessagesApi _messagesApi;
 
         private readonly IAuthTokens _authTokens;
@@ -57,6 +60,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns>The posted message.</returns>
         public V2Message PostMessage(string sid, V2MessageSubmission message)
         {
+            TraceSource.TraceEvent(TraceEventType.Verbose, 0, "Posting message to stream \"{0}\"", sid);
             return _apiExecutor.Execute(_messagesApi.V2StreamSidMessageCreatePost, sid, _authTokens.SessionToken, _authTokens.KeyManagerToken, message);
         }
 

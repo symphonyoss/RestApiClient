@@ -33,7 +33,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class DatafeedApi
     {
-        private static readonly TraceSource _traceSource = new TraceSource("SymphonyOSS.RestApiClient");
+        private static readonly TraceSource TraceSource = new TraceSource("SymphonyOSS.RestApiClient");
 
         private readonly Generated.OpenApi.AgentApi.Api.IDatafeedApi _datafeedApi;
 
@@ -137,13 +137,14 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         {
             foreach (var message in messageList)
             {
+                TraceSource.TraceEvent(TraceEventType.Verbose, 0, "Notifying listener about message with ID \"{0}\"", message.Id);
                 try
                 {
                     messageEventHandler.Invoke(this, new MessageEventArgs(message));
                 }
                 catch (Exception e)
                 {
-                    _traceSource.TraceEvent(
+                    TraceSource.TraceEvent(
                         TraceEventType.Error, 0,
                         "Unhandled exception caught when notifying listener about message with ID \"{0}\": {1}",
                         message.Id, e);
@@ -171,7 +172,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                     var messageList = ReadDatafeed(datafeed.Id, maxMessages);
                     if (countDatafeedErrors > 0)
                     {
-                        _traceSource.TraceEvent(
+                        TraceSource.TraceEvent(
                             TraceEventType.Information, 0,
                             "Data feed re-established.");
                     }
@@ -184,7 +185,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                     {
                         throw;
                     }
-                    _traceSource.TraceEvent(
+                    TraceSource.TraceEvent(
                         TraceEventType.Error, 0,
                         "Unhandled API exception caught when reading data feed, retrying: {0}", e);
                     datafeed = CreateDatafeed();
