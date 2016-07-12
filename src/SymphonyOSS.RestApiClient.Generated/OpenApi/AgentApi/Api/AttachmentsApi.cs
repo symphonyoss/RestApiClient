@@ -65,7 +65,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
-        /// <param name="fileId">The attachment ID</param>
+        /// <param name="fileId">The attachment ID (Base64-encoded)</param>
         /// <param name="messageId">The ID of the message containing the attachment</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
@@ -80,7 +80,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
-        /// <param name="fileId">The attachment ID</param>
+        /// <param name="fileId">The attachment ID (Base64-encoded)</param>
         /// <param name="messageId">The ID of the message containing the attachment</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
@@ -123,7 +123,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
-        /// <param name="fileId">The attachment ID</param>
+        /// <param name="fileId">The attachment ID (Base64-encoded)</param>
         /// <param name="messageId">The ID of the message containing the attachment</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
@@ -138,7 +138,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
-        /// <param name="fileId">The attachment ID</param>
+        /// <param name="fileId">The attachment ID (Base64-encoded)</param>
         /// <param name="messageId">The ID of the message containing the attachment</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
@@ -416,7 +416,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
-        /// <param name="fileId">The attachment ID</param>
+        /// <param name="fileId">The attachment ID (Base64-encoded)</param>
         /// <param name="messageId">The ID of the message containing the attachment</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
@@ -432,7 +432,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
-        /// <param name="fileId">The attachment ID</param>
+        /// <param name="fileId">The attachment ID (Base64-encoded)</param>
         /// <param name="messageId">The ID of the message containing the attachment</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
@@ -510,7 +510,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
-        /// <param name="fileId">The attachment ID</param>
+        /// <param name="fileId">The attachment ID (Base64-encoded)</param>
         /// <param name="messageId">The ID of the message containing the attachment</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
@@ -527,7 +527,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
-        /// <param name="fileId">The attachment ID</param>
+        /// <param name="fileId">The attachment ID (Base64-encoded)</param>
         /// <param name="messageId">The ID of the message containing the attachment</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>

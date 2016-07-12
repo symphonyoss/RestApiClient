@@ -28,7 +28,7 @@ using Newtonsoft.Json.Converters;
 namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
 {
     /// <summary>
-    /// A historic message to be imported into the system.\nThe importing user must have the Content Management role.\nAlso, the importing user must be a member of the conversation it is importing into.\nThe user that the message is intended to have come from must also be present in the conversation.\nThe intended message timestamp must be a valid time from the past. It cannot be a future timestamp.\n
+    /// A historic message to be imported into the system.\nThe importing user must have the Content Management role.\nAlso, the importing user must be a member of the conversation it is importing into.\nThe user that the message is intended to have come from must also be present in the conversation.\nThe intended message timestamp must be a valid time from the past. It cannot be a future timestamp.\nBy design, imported messages do not stream to datafeed or firehose endpoints.\n
     /// </summary>
     [DataContract]
     public partial class ImportedMessage :  IEquatable<ImportedMessage>

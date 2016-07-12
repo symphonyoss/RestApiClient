@@ -153,7 +153,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Create a new chatroom.
         /// </summary>
         /// <remarks>
-        /// Create a new chatroom.\n\nIf no  attributes are specified, the room is created as a public chatroom.\n
+        /// Create a new chatroom.\n\nIf no  attributes are specified, the room is created as a private chatroom.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
@@ -165,7 +165,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Create a new chatroom.
         /// </summary>
         /// <remarks>
-        /// Create a new chatroom.\n\nIf no  attributes are specified, the room is created as a public chatroom.\n
+        /// Create a new chatroom.\n\nIf no  attributes are specified, the room is created as a private chatroom.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
@@ -372,7 +372,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Create a new chatroom.
         /// </summary>
         /// <remarks>
-        /// Create a new chatroom.\n\nIf no  attributes are specified, the room is created as a public chatroom.\n
+        /// Create a new chatroom.\n\nIf no  attributes are specified, the room is created as a private chatroom.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
@@ -384,7 +384,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Create a new chatroom.
         /// </summary>
         /// <remarks>
-        /// Create a new chatroom.\n\nIf no  attributes are specified, the room is created as a public chatroom.\n
+        /// Create a new chatroom.\n\nIf no  attributes are specified, the room is created as a private chatroom.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
@@ -1382,7 +1382,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// Create a new chatroom. Create a new chatroom.\n\nIf no  attributes are specified, the room is created as a public chatroom.\n
+        /// Create a new chatroom. Create a new chatroom.\n\nIf no  attributes are specified, the room is created as a private chatroom.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
@@ -1395,7 +1395,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// Create a new chatroom. Create a new chatroom.\n\nIf no  attributes are specified, the room is created as a public chatroom.\n
+        /// Create a new chatroom. Create a new chatroom.\n\nIf no  attributes are specified, the room is created as a private chatroom.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
@@ -1465,7 +1465,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// Create a new chatroom. Create a new chatroom.\n\nIf no  attributes are specified, the room is created as a public chatroom.\n
+        /// Create a new chatroom. Create a new chatroom.\n\nIf no  attributes are specified, the room is created as a private chatroom.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
@@ -1479,7 +1479,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// Create a new chatroom. Create a new chatroom.\n\nIf no  attributes are specified, the room is created as a public chatroom.\n
+        /// Create a new chatroom. Create a new chatroom.\n\nIf no  attributes are specified, the room is created as a private chatroom.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>

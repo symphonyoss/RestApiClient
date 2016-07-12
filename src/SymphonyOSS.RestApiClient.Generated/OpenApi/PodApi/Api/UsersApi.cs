@@ -55,6 +55,29 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// <param name="local">If true then a local DB search will be performed and only local pod users will be\nreturned. If absent or false then a directory search will be performed and users\nfrom other pods who are visible to the calling user will also be returned.\n (optional)</param>
         /// <returns>ApiResponse of User</returns>
         ApiResponse<User> V1UserGetWithHttpInfo (string email, string sessionToken, bool? local = null);
+        /// <summary>
+        /// Get user information by user (login) name.
+        /// </summary>
+        /// <remarks>
+        /// Searches for a user in the local pod with the given user name.\n
+        /// </remarks>
+        /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userName">User login name</param>
+        /// <param name="sessionToken">Session authentication token.</param>
+        /// <returns>User</returns>
+        User V1UserNameUserNameGetGet (string userName, string sessionToken);
+
+        /// <summary>
+        /// Get user information by user (login) name.
+        /// </summary>
+        /// <remarks>
+        /// Searches for a user in the local pod with the given user name.\n
+        /// </remarks>
+        /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userName">User login name</param>
+        /// <param name="sessionToken">Session authentication token.</param>
+        /// <returns>ApiResponse of User</returns>
+        ApiResponse<User> V1UserNameUserNameGetGetWithHttpInfo (string userName, string sessionToken);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -82,6 +105,29 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// <param name="local">If true then a local DB search will be performed and only local pod users will be\nreturned. If absent or false then a directory search will be performed and users\nfrom other pods who are visible to the calling user will also be returned.\n (optional)</param>
         /// <returns>Task of ApiResponse (User)</returns>
         System.Threading.Tasks.Task<ApiResponse<User>> V1UserGetAsyncWithHttpInfo (string email, string sessionToken, bool? local = null);
+        /// <summary>
+        /// Get user information by user (login) name.
+        /// </summary>
+        /// <remarks>
+        /// Searches for a user in the local pod with the given user name.\n
+        /// </remarks>
+        /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userName">User login name</param>
+        /// <param name="sessionToken">Session authentication token.</param>
+        /// <returns>Task of User</returns>
+        System.Threading.Tasks.Task<User> V1UserNameUserNameGetGetAsync (string userName, string sessionToken);
+
+        /// <summary>
+        /// Get user information by user (login) name.
+        /// </summary>
+        /// <remarks>
+        /// Searches for a user in the local pod with the given user name.\n
+        /// </remarks>
+        /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userName">User login name</param>
+        /// <param name="sessionToken">Session authentication token.</param>
+        /// <returns>Task of ApiResponse (User)</returns>
+        System.Threading.Tasks.Task<ApiResponse<User>> V1UserNameUserNameGetGetAsyncWithHttpInfo (string userName, string sessionToken);
         #endregion Asynchronous Operations
     }
 
@@ -322,6 +368,157 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
                 throw new ApiException (localVarStatusCode, "Error calling V1UserGet: " + localVarResponse.Content, localVarResponse.Content);
             else if (localVarStatusCode == 0)
                 throw new ApiException (localVarStatusCode, "Error calling V1UserGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+
+            return new ApiResponse<User>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (User) Configuration.ApiClient.Deserialize(localVarResponse, typeof(User)));
+            
+        }
+
+        /// <summary>
+        /// Get user information by user (login) name. Searches for a user in the local pod with the given user name.\n
+        /// </summary>
+        /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userName">User login name</param>
+        /// <param name="sessionToken">Session authentication token.</param>
+        /// <returns>User</returns>
+        public User V1UserNameUserNameGetGet (string userName, string sessionToken)
+        {
+             ApiResponse<User> localVarResponse = V1UserNameUserNameGetGetWithHttpInfo(userName, sessionToken);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get user information by user (login) name. Searches for a user in the local pod with the given user name.\n
+        /// </summary>
+        /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userName">User login name</param>
+        /// <param name="sessionToken">Session authentication token.</param>
+        /// <returns>ApiResponse of User</returns>
+        public ApiResponse< User > V1UserNameUserNameGetGetWithHttpInfo (string userName, string sessionToken)
+        {
+            // verify the required parameter 'userName' is set
+            if (userName == null)
+                throw new ApiException(400, "Missing required parameter 'userName' when calling UsersApi->V1UserNameUserNameGetGet");
+            // verify the required parameter 'sessionToken' is set
+            if (sessionToken == null)
+                throw new ApiException(400, "Missing required parameter 'sessionToken' when calling UsersApi->V1UserNameUserNameGetGet");
+
+            var localVarPath = "/v1/user/name/{userName}/get";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (userName != null) localVarPathParams.Add("userName", Configuration.ApiClient.ParameterToString(userName)); // path parameter
+            if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1UserNameUserNameGetGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1UserNameUserNameGetGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+
+            return new ApiResponse<User>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (User) Configuration.ApiClient.Deserialize(localVarResponse, typeof(User)));
+            
+        }
+
+        /// <summary>
+        /// Get user information by user (login) name. Searches for a user in the local pod with the given user name.\n
+        /// </summary>
+        /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userName">User login name</param>
+        /// <param name="sessionToken">Session authentication token.</param>
+        /// <returns>Task of User</returns>
+        public async System.Threading.Tasks.Task<User> V1UserNameUserNameGetGetAsync (string userName, string sessionToken)
+        {
+             ApiResponse<User> localVarResponse = await V1UserNameUserNameGetGetAsyncWithHttpInfo(userName, sessionToken);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get user information by user (login) name. Searches for a user in the local pod with the given user name.\n
+        /// </summary>
+        /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="userName">User login name</param>
+        /// <param name="sessionToken">Session authentication token.</param>
+        /// <returns>Task of ApiResponse (User)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<User>> V1UserNameUserNameGetGetAsyncWithHttpInfo (string userName, string sessionToken)
+        {
+            // verify the required parameter 'userName' is set
+            if (userName == null)
+                throw new ApiException(400, "Missing required parameter 'userName' when calling UsersApi->V1UserNameUserNameGetGet");
+            // verify the required parameter 'sessionToken' is set
+            if (sessionToken == null)
+                throw new ApiException(400, "Missing required parameter 'sessionToken' when calling UsersApi->V1UserNameUserNameGetGet");
+
+            var localVarPath = "/v1/user/name/{userName}/get";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (userName != null) localVarPathParams.Add("userName", Configuration.ApiClient.ParameterToString(userName)); // path parameter
+            if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1UserNameUserNameGetGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1UserNameUserNameGetGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<User>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
