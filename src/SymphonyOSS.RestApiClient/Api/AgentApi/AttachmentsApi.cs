@@ -72,6 +72,26 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         }
 
         /// <summary>
+        /// Uploads an attachment to an existing stream. After the attachment is uploaded it can
+        /// be used on a message in that stream.
+        /// </summary>
+        /// <param name="sid">Stream ID.</param>
+        /// <param name="filename">The filename.</param>
+        /// <param name="file">The stream of the file to upload as an attachment.</param>
+        /// <returns>Attachment info.</returns>
+        public AttachmentInfo UploadAttachment(string sid, string filename, Stream file)
+        {
+            var request = new RestRequest("v1/stream/" + sid + "/attachment/create", Method.POST);
+            request.AddHeader("sessionToken", _authTokens.SessionToken);
+            request.AddHeader("keyManagerToken", _authTokens.KeyManagerToken);
+            request.AddFile("file", file.ReadAsBytes(), filename, "application/octet-stream");
+
+            var apiClient = _configuration.ApiClient;
+            var response = apiClient.RestClient.Execute(request);
+            return (AttachmentInfo)apiClient.Deserialize(response, typeof(AttachmentInfo));
+        }
+
+        /// <summary>
         /// Downloads an attachment from a message.
         /// </summary>
         /// <param name="sid">Stream ID.</param>
@@ -83,18 +103,6 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             var base64Bytes = _apiExecutor.Execute(_attachmentsApi.V1StreamSidAttachmentGet, sid, fileId, messageId, _authTokens.SessionToken, _authTokens.KeyManagerToken);
             var base64String = System.Text.Encoding.UTF8.GetString(base64Bytes);
             return Convert.FromBase64String(base64String);
-        }
-
-        private AttachmentInfo UploadAttachment(string sid, string filename, Stream file)
-        {
-            var request = new RestRequest("v1/stream/" + sid + "/attachment/create", Method.POST);
-            request.AddHeader("sessionToken", _authTokens.SessionToken);
-            request.AddHeader("keyManagerToken", _authTokens.KeyManagerToken);
-            request.AddFile("file", file.ReadAsBytes(), filename, "application/octet-stream");
-
-            var apiClient = _configuration.ApiClient;
-            var response = apiClient.RestClient.Execute(request);
-            return (AttachmentInfo)apiClient.Deserialize(response, typeof(AttachmentInfo));
         }
     }
 }
