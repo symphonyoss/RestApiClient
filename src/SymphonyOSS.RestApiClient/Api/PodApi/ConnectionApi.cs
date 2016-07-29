@@ -15,10 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 
-using System;
-
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
+    using System;
     using System.Collections.Generic;
     using Authentication;
     using Generated.OpenApi.PodApi.Client;
