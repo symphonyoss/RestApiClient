@@ -47,7 +47,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         private readonly Dictionary<EventHandler<ConnectionRequestEventArgs>, Task> _tasks =
             new Dictionary<EventHandler<ConnectionRequestEventArgs>, Task>();
 
-        private Timer connectionPollTimer;
+        private Timer _connectionPollTimer;
         
         private event EventHandler<ConnectionRequestEventArgs> _onConnectionRequest;
 
@@ -88,7 +88,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// </summary>
         public void Listen(long timeout)
         {
-            connectionPollTimer = new Timer(
+            _connectionPollTimer = new Timer(
                 cb =>
                 {
                     try
@@ -113,8 +113,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// </summary>
         public void Stop()
         {
-            connectionPollTimer.Dispose();
-            connectionPollTimer = null;
+            _connectionPollTimer.Dispose();
+            _connectionPollTimer = null;
         }
 
         protected void ProcessConnectionList(IEnumerable<UserConnection> connectionList)
