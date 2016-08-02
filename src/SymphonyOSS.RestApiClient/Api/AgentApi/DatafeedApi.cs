@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System;
+
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System.Diagnostics;
@@ -52,18 +54,30 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// </summary>
         public void Listen()
         {
-            ShouldStop = false;
-            var datafeed = CreateDatafeed();
-            while (!ShouldStop)
+            try
             {
-                var messageList = ReadDatafeed(ref datafeed);
-                if (ShouldStop)
+                if (Listening)
                 {
-                    // Don't process messages if the user has stopped listening.
-                    break;
+                    return;
                 }
+                Listening = true;
+                ShouldStop = false;
+                var datafeed = CreateDatafeed();
+                while (!ShouldStop)
+                {
+                    var messageList = ReadDatafeed(ref datafeed);
+                    if (ShouldStop)
+                    {
+                        // Don't process messages if the user has stopped listening.
+                        break;
+                    }
 
-                ProcessMessageList(messageList);
+                    ProcessMessageList(messageList);
+                }
+            }
+            finally
+            {
+                Listening = false;
             }
         }
 

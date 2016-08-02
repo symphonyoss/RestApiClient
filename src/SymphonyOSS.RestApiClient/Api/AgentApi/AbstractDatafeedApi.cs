@@ -59,6 +59,11 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             ApiExecutor = apiExecutor;
         }
 
+        /// <summary>
+        /// True if currently listening for incoming messages, false if not.
+        /// </summary>
+        public bool Listening { get; protected set; }
+
         private event EventHandler<MessageEventArgs> _onMessage;
         public event EventHandler<MessageEventArgs> OnMessage
         {
