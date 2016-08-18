@@ -25,19 +25,19 @@ namespace SymphonyOSS.RestApiClient.Tests
 
     public class AgentApiFactoryTest
     {
-        private readonly SessionManager _sessionManager;
+        private readonly UserSessionManager _userSessionManager;
 
         public AgentApiFactoryTest()
         {
             var certificateMock = new Mock<X509Certificate2>();
-            _sessionManager = new SessionManager("https://sessionauth", "https://keyauth", certificateMock.Object);
+            _userSessionManager = new UserSessionManager("https://sessionauth", "https://keyauth", certificateMock.Object);
         }
 
         [Fact]
         public void EnsureConstructs_an_AttachmentsApi_instance()
         {
             var agentApiFactory = new AgentApiFactory("https://agent");
-            var result = agentApiFactory.CreateAttachmentsApi(_sessionManager);
+            var result = agentApiFactory.CreateAttachmentsApi(_userSessionManager);
             Assert.NotNull(result);
         }
 
@@ -45,7 +45,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureConstructs_a_DatafeedApi_instance()
         {
             var agentApiFactory = new AgentApiFactory("https://agent");
-            var result = agentApiFactory.CreateDatafeedApi(_sessionManager);
+            var result = agentApiFactory.CreateDatafeedApi(_userSessionManager);
             Assert.NotNull(result);
         }
 
@@ -53,7 +53,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureConstructs_a_MessagesApi_instance()
         {
             var agentApiFactory = new AgentApiFactory("https://agent");
-            var result = agentApiFactory.CreateMessagesApi(_sessionManager);
+            var result = agentApiFactory.CreateMessagesApi(_userSessionManager);
             Assert.NotNull(result);
         }
 
@@ -61,7 +61,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureConstructs_a_UtilApi_instance()
         {
             var agentApiFactory = new AgentApiFactory("https://agent");
-            var result = agentApiFactory.CreateUtilApi(_sessionManager);
+            var result = agentApiFactory.CreateUtilApi(_userSessionManager);
             Assert.NotNull(result);
         }
     }
