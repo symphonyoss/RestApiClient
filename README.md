@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/symphonyoss/RestApiClient.svg)](https://travis-ci.org/symphonyoss/RestApiClient)
+[![Dependencies](https://www.versioneye.com/user/projects/57b73c371dcdc900430c0b37?child=summary#dialog_dependency_badge)](https://www.versioneye.com/user/projects/57b73c371dcdc900430c0b37?child=summary)
 
 Symphony REST API Client Library for .NET
 =========================================
