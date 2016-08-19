@@ -1,2 +1,8 @@
+env:
+  global:
+   - CPROJ="src/SymphonyOSS.RestApiClient/SymphonyOSS.RestApiClient.csproj"
+   - PROPS="-Prop Configuration=Release"
+
 language: csharp
 solution: RestApiClient.sln
+after_success: curl -L https://raw.githubusercontent.com/symphonyoss/contrib-toolbox/master/scripts/release-to-nuget.sh | bash
