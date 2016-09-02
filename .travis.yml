@@ -1,6 +1,6 @@
 env:
   global:
-   - CPROJ="src/SymphonyOSS.RestApiClient/SymphonyOSS.RestApiClient.csproj"
+   - CSPROJ="src/SymphonyOSS.RestApiClient/SymphonyOSS.RestApiClient.csproj"
    - PROPS="-Prop Configuration=Release"
 
 language: csharp
