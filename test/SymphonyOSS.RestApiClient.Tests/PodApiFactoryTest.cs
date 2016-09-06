@@ -26,19 +26,19 @@ namespace SymphonyOSS.RestApiClient.Tests
 
     public class PodApiFactoryTest
     {
-        private readonly SessionManager _sessionManager;
+        private readonly UserSessionManager _userSessionManager;
 
         public PodApiFactoryTest()
         {
             var certificateMock = new Mock<X509Certificate2>();
-            _sessionManager = new SessionManager("https://sessionauth", "https://keyauth", certificateMock.Object);
+            _userSessionManager = new UserSessionManager("https://sessionauth", "https://keyauth", certificateMock.Object);
         }
 
         [Fact]
         public void EnsureConstructs_a_MessageSuppressionApi_instance()
         {
             var podApiFactory = new PodApiFactory("https://pod");
-            var result = podApiFactory.CreateMessageSuppressionApi(_sessionManager);
+            var result = podApiFactory.CreateMessageSuppressionApi(_userSessionManager);
             Assert.NotNull(result);
         }
 
@@ -46,7 +46,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureConstructs_a_PresenceApi_instance()
         {
             var podApiFactory = new PodApiFactory("https://pod");
-            var result = podApiFactory.CreatePresenceApi(_sessionManager);
+            var result = podApiFactory.CreatePresenceApi(_userSessionManager);
             Assert.NotNull(result);
         }
 
@@ -54,7 +54,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureConstructs_a_SessionApi_instance()
         {
             var podApiFactory = new PodApiFactory("https://pod");
-            var result = podApiFactory.CreateSessionApi(_sessionManager);
+            var result = podApiFactory.CreateSessionApi(_userSessionManager);
             Assert.NotNull(result);
         }
 
@@ -62,7 +62,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureConstructs_a_StreamsApi_instance()
         {
             var podApiFactory = new PodApiFactory("https://pod");
-            var result = podApiFactory.CreateStreamsApi(_sessionManager);
+            var result = podApiFactory.CreateStreamsApi(_userSessionManager);
             Assert.NotNull(result);
         }
 
@@ -70,7 +70,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureConstructs_a_SystemApi_instance()
         {
             var podApiFactory = new PodApiFactory("https://pod");
-            var result = podApiFactory.CreateSystemApi(_sessionManager);
+            var result = podApiFactory.CreateSystemApi(_userSessionManager);
             Assert.NotNull(result);
         }
 
@@ -78,7 +78,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureConstructs_a_UserApi_instance()
         {
             var podApiFactory = new PodApiFactory("https://pod");
-            var result = podApiFactory.CreateUserApi(_sessionManager);
+            var result = podApiFactory.CreateUserApi(_userSessionManager);
             Assert.NotNull(result);
         }
 
@@ -86,7 +86,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureConstructs_a_UsersApi_instance()
         {
             var podApiFactory = new PodApiFactory("https://pod");
-            var result = podApiFactory.CreateUsersApi(_sessionManager);
+            var result = podApiFactory.CreateUsersApi(_userSessionManager);
             Assert.NotNull(result);
         }
 
@@ -94,7 +94,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureConstructs_a_RoomMembershipApi_instance()
         {
             var podApiFactory = new PodApiFactory("https://pod");
-            var result = podApiFactory.CreateRoomMembershipApi(_sessionManager);
+            var result = podApiFactory.CreateRoomMembershipApi(_userSessionManager);
             Assert.NotNull(result);
         }
     }

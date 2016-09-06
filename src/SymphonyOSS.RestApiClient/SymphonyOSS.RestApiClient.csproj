@@ -49,22 +49,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\AgentApi\AbstractDatafeedApi.cs" />
+    <Compile Include="Api\AgentApi\FirehoseApi.cs" />
     <Compile Include="Api\AgentApi\DatafeedApi.cs" />
     <Compile Include="Api\AgentApi\MessageEventArgs.cs" />
     <Compile Include="Api\AgentApi\AttachmentsApi.cs" />
     <Compile Include="Api\AgentApi\MessagesApi.cs" />
     <Compile Include="Api\AgentApi\UtilApi.cs" />
     <Compile Include="Api\IRetryStrategy.cs" />
+    <Compile Include="Api\PodApi\ConnectionRequestEventArgs.cs" />
     <Compile Include="Api\PodApi\RoomMembershipApi.cs" />
     <Compile Include="Api\PodApi\SecurityApi.cs" />
     <Compile Include="Api\PodApi\UserApi.cs" />
+    <Compile Include="Api\PodApi\ConnectionApi.cs" />
     <Compile Include="Api\RefreshTokensRetryStrategy.cs" />
     <Compile Include="Api\PodApi\MessageSuppressionApi.cs" />
     <Compile Include="Api\PodApi\SessionApi.cs" />
     <Compile Include="Api\PodApi\SystemApi.cs" />
+    <Compile Include="Authentication\AppSessionManager.cs" />
     <Compile Include="Authentication\ISessionManager.cs" />
     <Compile Include="Authentication\IAuthTokens.cs" />
-    <Compile Include="Authentication\SessionManager.cs" />
+    <Compile Include="Authentication\UserSessionManager.cs" />
     <Compile Include="Factories\AgentApiFactory.cs" />
     <Compile Include="Factories\ApiFactoryUtils.cs" />
     <Compile Include="Factories\AuthenticatorApiFactory.cs" />

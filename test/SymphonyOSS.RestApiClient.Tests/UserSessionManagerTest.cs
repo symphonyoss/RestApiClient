@@ -24,7 +24,7 @@ namespace SymphonyOSS.RestApiClient.Tests
     using System.Security.Cryptography.X509Certificates;
     using Xunit;
 
-    public class SessionManagerTest
+    public class UserSessionManagerTest
     {
         private readonly X509Certificate2 _certificate;
 
@@ -32,7 +32,7 @@ namespace SymphonyOSS.RestApiClient.Tests
 
         private readonly Mock<IAuthenticationApi> _keyAuthApiMock;
 
-        public SessionManagerTest()
+        public UserSessionManagerTest()
         {
             _certificate = new Mock<X509Certificate2>().Object;
             _sessionAuthApiMock = new Mock<IAuthenticationApi>();
@@ -44,9 +44,9 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             _sessionAuthApiMock.Setup(obj => obj.V1AuthenticatePost()).Returns(new Token("sessionToken", "s1"));
             _keyAuthApiMock.Setup(obj => obj.V1AuthenticatePost()).Returns(new Token("keyManagerToken", "km1"));
-            var sessionManager = new SessionManager(_sessionAuthApiMock.Object, _keyAuthApiMock.Object, _certificate);
-            var sessionToken = sessionManager.SessionToken;
-            var keyManagerToken = sessionManager.KeyManagerToken;
+            var userSessionManager = new UserSessionManager(_sessionAuthApiMock.Object, _keyAuthApiMock.Object, _certificate);
+            var sessionToken = userSessionManager.SessionToken;
+            var keyManagerToken = userSessionManager.KeyManagerToken;
             Assert.Equal("s1", sessionToken);
             Assert.Equal("km1", keyManagerToken);
         }
@@ -66,16 +66,16 @@ namespace SymphonyOSS.RestApiClient.Tests
                 ++keyManagerTokenCounter;
                 return new Token("keyManagerToken", "km" + keyManagerTokenCounter.ToString());
             });
-            var sessionManager = new SessionManager(_sessionAuthApiMock.Object, _keyAuthApiMock.Object, _certificate);
-            Assert.Equal("s1", sessionManager.SessionToken);
-            Assert.Equal("km101", sessionManager.KeyManagerToken);
-            Assert.Equal("s1", sessionManager.SessionToken);
-            Assert.Equal("km101", sessionManager.KeyManagerToken);
+            var userSessionManager = new UserSessionManager(_sessionAuthApiMock.Object, _keyAuthApiMock.Object, _certificate);
+            Assert.Equal("s1", userSessionManager.SessionToken);
+            Assert.Equal("km101", userSessionManager.KeyManagerToken);
+            Assert.Equal("s1", userSessionManager.SessionToken);
+            Assert.Equal("km101", userSessionManager.KeyManagerToken);
 
-            sessionManager.GenerateTokens();
-            Assert.Equal("s2", sessionManager.SessionToken);
-            Assert.Equal("km102", sessionManager.KeyManagerToken);
-            Assert.Equal("km102", sessionManager.KeyManagerToken);
+            userSessionManager.GenerateTokens();
+            Assert.Equal("s2", userSessionManager.SessionToken);
+            Assert.Equal("km102", userSessionManager.KeyManagerToken);
+            Assert.Equal("km102", userSessionManager.KeyManagerToken);
         }
 
     }

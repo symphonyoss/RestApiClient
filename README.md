@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/symphonyoss/RestApiClient.svg)](https://travis-ci.org/symphonyoss/RestApiClient)
+[![Dependencies](https://www.versioneye.com/user/projects/57b73c371dcdc900430c0b37/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57b73c371dcdc900430c0b37?child=summary)
 
 Symphony REST API Client Library for .NET
 =========================================
@@ -81,6 +82,14 @@ This project was initiated at [FactSet](https://www.factset.com) and has been de
 Contributions are accepted via GitHub pull requests. All contributors must be covered by contributor license agreements to comply with the [Code Contribution Process](https://symphonyoss.atlassian.net/wiki/display/FM/Code+Contribution+Process).
 
 ## Release Notes
+
+Release 0.3.0 (September 6, 2016):
+
+ * New APIs.
+ * New session management to support app sessions (breaking change).
+ * Improved datafeed error handling.
+ * MessageML to plain text parsing.
+ * And more...
 
 Release 0.2.0 (June 28, 2016)
 

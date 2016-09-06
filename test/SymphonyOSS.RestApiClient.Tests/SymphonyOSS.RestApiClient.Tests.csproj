@@ -85,8 +85,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FirehoseApiTest.cs" />
     <Compile Include="MessageParserTest.cs" />
     <Compile Include="RoomMembershipApiTest.cs" />
+    <Compile Include="ConnectionApiTest.cs" />
     <Compile Include="SecurityApiTest.cs" />
     <Compile Include="JsonSubtypeConverterTest.cs" />
     <Compile Include="AgentApiFactoryTest.cs" />
@@ -102,7 +104,7 @@
     <Compile Include="RetryStrategyApiExecutorTest.cs" />
     <Compile Include="PodApiFactoryTest.cs" />
     <Compile Include="SessionApiTest.cs" />
-    <Compile Include="SessionManagerTest.cs" />
+    <Compile Include="UserSessionManagerTest.cs" />
     <Compile Include="StreamsApiTest.cs" />
     <Compile Include="SystemApiTest.cs" />
     <Compile Include="UserApiTest.cs" />
