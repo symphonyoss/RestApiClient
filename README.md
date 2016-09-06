@@ -83,6 +83,14 @@ Contributions are accepted via GitHub pull requests. All contributors must be co
 
 ## Release Notes
 
+Release 0.3.0 (September 6, 2016):
+
+ * New APIs.
+ * New session management to support app sessions (breaking change).
+ * Improved datafeed error handling.
+ * MessageML to plain text parsing.
+ * And more...
+
 Release 0.2.0 (June 28, 2016)
 
  * New APIs added: attachments, room membership, security, user admin, and util.
