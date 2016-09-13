@@ -49,8 +49,8 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         }
 
         /// <summary>
-        /// Starts listening, notifying event handlers about incoming messages. Blocks
-        /// until <see cref="AbstractDatafeedApi.Stop"/> is invoked.
+        /// Creates a firehose and starts listening to it, notifying event handlers about
+        /// incoming messages. Blocks until <see cref="AbstractDatafeedApi.Stop"/> is invoked.
         /// </summary>
         public void Listen()
         {
@@ -62,18 +62,8 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                 }
                 Listening = true;
                 ShouldStop = false;
-                var firehose = CreateFirehose();
-                while (!ShouldStop)
-                {
-                    var messageList = ReadFirehose(ref firehose);
-                    if (ShouldStop)
-                    {
-                        // Don't process messages if the user has stopped listening.
-                        break;
-                    }
-
-                    ProcessMessageList(messageList);
-                }
+                var firehoseId = CreateFirehose();
+                Listen(ref firehoseId, 1);
             }
             finally
             {
@@ -81,9 +71,52 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             }
         }
 
-        private Firehose CreateFirehose()
+        /// <summary>
+        /// Starts listening to a specified firehose, notifying event handlers about incoming
+        /// messages. Blocks until <see cref="AbstractDatafeedApi.Stop"/> is invoked.
+        /// </summary>
+        /// <param name="firehoseId">The ID of the firehose.</param>
+        public void Listen(string firehoseId)
         {
-            return ApiExecutor.Execute(_firehoseApi.V1FirehoseCreatePost, AuthTokens.SessionToken, AuthTokens.KeyManagerToken);
+            try
+            {
+                if (Listening)
+                {
+                    return;
+                }
+                Listening = true;
+                ShouldStop = false;
+                Listen(ref firehoseId, 0);
+            }
+            finally
+            {
+                Listening = false;
+            }
+        }
+
+        private void Listen(ref string firehoseId, int retriesAllowed)
+        {
+            while (!ShouldStop)
+            {
+                var messageList = ReadFirehose(ref firehoseId, retriesAllowed: retriesAllowed);
+                if (ShouldStop)
+                {
+                    // Don't process messages if the user has stopped listening.
+                    break;
+                }
+
+                ProcessMessageList(messageList);
+            }
+        }
+
+        /// <summary>
+        /// Creates a firehose.
+        /// </summary>
+        /// <returns>The ID of the firehose.</returns>
+        public string CreateFirehose()
+        {
+            var firehose = ApiExecutor.Execute(_firehoseApi.V1FirehoseCreatePost, AuthTokens.SessionToken, AuthTokens.KeyManagerToken);
+            return firehose.Id;
         }
 
         private V2MessageList ReadFirehose(string id, int? maxMessages = null)
@@ -91,14 +124,14 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             return ApiExecutor.Execute(_firehoseApi.V2FirehoseIdReadGet, id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken, maxMessages);
         }
 
-        private V2MessageList ReadFirehose(ref Firehose firehose, int? maxMessages = null)
+        private V2MessageList ReadFirehose(ref string id, int? maxMessages = null, int? retriesAllowed = 1)
         {
             var countFirehoseErrors = 0;
             while (true)
             {
                 try
                 {
-                    var messageList = ReadFirehose(firehose.Id, maxMessages);
+                    var messageList = ReadFirehose(id, maxMessages);
                     if (countFirehoseErrors > 0)
                     {
                         TraceSource.TraceEvent(
@@ -109,15 +142,15 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                 }
                 catch (ApiException e)
                 {
-                    ++countFirehoseErrors;
-                    if (countFirehoseErrors >= 2)
+                    if (countFirehoseErrors >= retriesAllowed)
                     {
                         throw;
                     }
+                    ++countFirehoseErrors;
                     TraceSource.TraceEvent(
                         TraceEventType.Error, 0,
                         "Unhandled API exception caught when reading firehose, retrying: {0}", e);
-                    firehose = CreateFirehose();
+                    id = CreateFirehose();
                 }
             }
         }
