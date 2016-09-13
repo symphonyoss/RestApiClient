@@ -44,27 +44,31 @@ namespace SymphonyOSS.RestApiClient.Tests
             var appSessionManager = new AppSessionManager(_sessionAuthApiMock.Object, _certificate);
             var sessionToken = appSessionManager.SessionToken;
             var keyManagerToken = appSessionManager.KeyManagerToken;
-            Assert.Equal("as1", sessionToken);
+            Assert.Equal("us1", sessionToken);
             Assert.Null(keyManagerToken);
         }
 
         [Fact]
         public void EnsureGenerateTokens_regenerate_tokens_every_call()
         {
-            var sessionTokenCounter = 0;
+            var appSessionTokenCounter = 0;
             _sessionAuthApiMock.Setup(obj => obj.V1AppAuthenticatePost()).Returns(() =>
             {
-                ++sessionTokenCounter;
-                return new Token("appSessionToken", "as" + sessionTokenCounter);
+                ++appSessionTokenCounter;
+                return new Token("appSessionToken", "as" + appSessionTokenCounter);
             });
-            _sessionAuthApiMock.Setup(obj => obj.V1AppUsernameUsernameAuthenticatePost(null, It.IsAny<string>())).Returns(new Token("userSessionToken", "us1"));
+            var userSessionTokenCounter = 0;
+            _sessionAuthApiMock.Setup(obj => obj.V1AppUsernameUsernameAuthenticatePost(It.IsAny<string>(), It.IsAny<string>())).Returns(() =>
+            {
+                ++userSessionTokenCounter;
+                return new Token("userSessionToken", "us" + userSessionTokenCounter);
+            });
             var appSessionManager = new AppSessionManager(_sessionAuthApiMock.Object, _certificate);
-            Assert.Equal("as1", appSessionManager.SessionToken);
-            Assert.Equal("as1", appSessionManager.SessionToken);
+            Assert.Equal("us1", appSessionManager.SessionToken);
             Assert.Null(appSessionManager.KeyManagerToken);
 
             appSessionManager.GenerateTokens();
-            Assert.Equal("as2", appSessionManager.SessionToken);
+            Assert.Equal("us2", appSessionManager.SessionToken);
             Assert.Null(appSessionManager.KeyManagerToken);
         }
 
