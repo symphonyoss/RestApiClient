@@ -31,7 +31,7 @@ namespace SymphonyOSS.RestApiClient.Authentication
 
         private string _appSessionToken;
         private string _userSessionToken;
-        private string _username;
+        private readonly string _username;
 
         public AppSessionManager(string sessionAuthUrl, X509Certificate2 appCertificate, string username)
         {
@@ -42,7 +42,7 @@ namespace SymphonyOSS.RestApiClient.Authentication
             _sessionAuthApi = sessionAuthApiFactory.CreateAuthenticationApi(appCertificate);
         }
 
-        public AppSessionManager(IAuthenticationApi sessionAuthApi, IAuthenticationApi keyAuthApi, X509Certificate2 certificate)
+        public AppSessionManager(IAuthenticationApi sessionAuthApi, X509Certificate2 certificate)
         {
             Certificate = certificate;
             _sessionAuthApi = sessionAuthApi;
@@ -59,17 +59,11 @@ namespace SymphonyOSS.RestApiClient.Authentication
                     GenerateTokens();
                 }
 
-                return _appSessionToken;
+                return _userSessionToken;
             }
         }
 
-        public string KeyManagerToken
-        {
-            get
-            {
-                return null;
-            }
-        }
+        public string KeyManagerToken => null;
 
         /// <summary>
         /// Generates both the session and key manager tokens.
@@ -81,8 +75,6 @@ namespace SymphonyOSS.RestApiClient.Authentication
 
             _appSessionToken = _sessionAuthApi.V1AppAuthenticatePost()._Token;
             _userSessionToken = _sessionAuthApi.V1AppUsernameUsernameAuthenticatePost(_username, _appSessionToken)._Token;
-
         }
-
     }
 }
