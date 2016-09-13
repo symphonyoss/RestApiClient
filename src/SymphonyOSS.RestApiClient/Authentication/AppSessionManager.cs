@@ -59,7 +59,7 @@ namespace SymphonyOSS.RestApiClient.Authentication
                     GenerateTokens();
                 }
 
-                return _appSessionToken;
+                return _userSessionToken;
             }
         }
 
