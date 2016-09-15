@@ -191,9 +191,9 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         {
             switch (status)
             {
-                case UserConnection.StatusEnum.Pendingincoming:
+                case UserConnection.StatusEnum.PendingIncoming:
                     return "pending_incoming";
-                case UserConnection.StatusEnum.Pendingoutgoing:
+                case UserConnection.StatusEnum.PendingOutgoing:
                     return "pending_outgoing";
                 default:
                     return status.ToString().ToLower();

@@ -90,7 +90,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
                 _userApi.V1AdminUserUidActionPasswordResetPost,
                 _authTokens.SessionToken,
                 (long?)uid,
-                new PasswordReset(PasswordReset.TypeEnum.EMAIL));
+                new PasswordReset(PasswordReset.TypeEnum.Email));
         }
 
         /// <summary>
