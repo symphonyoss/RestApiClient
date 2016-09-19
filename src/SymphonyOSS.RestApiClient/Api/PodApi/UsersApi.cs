@@ -50,7 +50,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         }
 
         /// <summary>
-        /// Get user information by email address.
+        /// Get user information by email address (requires user provisioning permission).
         /// </summary>
         /// <param name="email">Email address of user.</param>
         /// <param name="local">If true then a local DB search will be performed and only local
@@ -61,6 +61,20 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         public User GetUser(string email, bool? local = null)
         {
             return _apiExecutor.Execute(_usersApi.V1UserGet, email, _authTokens.SessionToken, local);
+        }
+
+        /// <summary>
+        /// Get user information by user ID.
+        /// </summary>
+        /// <param name="userId">ID of user.</param>
+        /// <param name="local">If true then a local DB search will be performed and only local
+        /// pod users will be returned. If absent or false then a directory search will be
+        /// performed and users from other pods who are visible to the calling user will
+        /// also be returned. Optional.</param>
+        /// <returns>The user information.</returns>
+        public UserV2 GetUser(long userId, bool? local = null)
+        {
+            return _apiExecutor.Execute(_usersApi.V2UserGet, _authTokens.SessionToken, (long?)userId, (string)null, (string)null, local);
         }
     }
 }
