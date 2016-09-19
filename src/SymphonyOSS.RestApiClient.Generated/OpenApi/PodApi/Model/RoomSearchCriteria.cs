@@ -59,12 +59,20 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             {
                 this.Query = Query;
             }
-            this.Labels = Labels;
-            this.Active = Active;
-            this._Private = _Private;
-            this.Owner = Owner;
-            this.Creator = Creator;
-            this.Member = Member;
+            
+            
+                        this.Labels = Labels;
+            
+                        this.Active = Active;
+            
+                        this._Private = _Private;
+            
+                        this.Owner = Owner;
+            
+                        this.Creator = Creator;
+            
+                        this.Member = Member;
+            
         }
         
         /// <summary>
@@ -118,12 +126,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class RoomSearchCriteria {\n");
             sb.Append("  Query: ").Append(Query).Append("\n");
-            sb.Append("  Labels: ").Append(Labels).Append("\n");
-            sb.Append("  Active: ").Append(Active).Append("\n");
-            sb.Append("  _Private: ").Append(_Private).Append("\n");
-            sb.Append("  Owner: ").Append(Owner).Append("\n");
-            sb.Append("  Creator: ").Append(Creator).Append("\n");
-            sb.Append("  Member: ").Append(Member).Append("\n");
+sb.Append("  Labels: ").Append(Labels).Append("\n");
+sb.Append("  Active: ").Append(Active).Append("\n");
+sb.Append("  _Private: ").Append(_Private).Append("\n");
+sb.Append("  Owner: ").Append(Owner).Append("\n");
+sb.Append("  Creator: ").Append(Creator).Append("\n");
+sb.Append("  Member: ").Append(Member).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

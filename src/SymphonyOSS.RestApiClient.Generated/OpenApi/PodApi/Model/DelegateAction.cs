@@ -41,16 +41,16 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         {
             
             /// <summary>
-            /// Enum ADD for "ADD"
+            /// Enum Add for "ADD"
             /// </summary>
             [EnumMember(Value = "ADD")]
-            ADD,
+            Add,
             
             /// <summary>
-            /// Enum REMOVE for "REMOVE"
+            /// Enum Remove for "REMOVE"
             /// </summary>
             [EnumMember(Value = "REMOVE")]
-            REMOVE
+            Remove
         }
 
         /// <summary>
@@ -65,8 +65,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Action">Action.</param>
         public DelegateAction(long? UserId = null, ActionEnum? Action = null)
         {
-            this.UserId = UserId;
-            this.Action = Action;
+            
+            
+                        this.UserId = UserId;
+            
+                        this.Action = Action;
+            
         }
         
         /// <summary>
@@ -83,7 +87,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class DelegateAction {\n");
             sb.Append("  UserId: ").Append(UserId).Append("\n");
-            sb.Append("  Action: ").Append(Action).Append("\n");
+sb.Append("  Action: ").Append(Action).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

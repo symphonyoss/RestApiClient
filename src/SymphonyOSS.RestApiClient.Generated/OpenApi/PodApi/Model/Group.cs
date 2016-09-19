@@ -45,13 +45,22 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="ModifiedDate">ModifiedDate.</param>
         public Group(string Id = null, string Name = null, bool? Active = null, int? MemberCount = null, List<string> Policies = null, long? CreatedDate = null, long? ModifiedDate = null)
         {
-            this.Id = Id;
-            this.Name = Name;
-            this.Active = Active;
-            this.MemberCount = MemberCount;
-            this.Policies = Policies;
-            this.CreatedDate = CreatedDate;
-            this.ModifiedDate = ModifiedDate;
+            
+            
+                        this.Id = Id;
+            
+                        this.Name = Name;
+            
+                        this.Active = Active;
+            
+                        this.MemberCount = MemberCount;
+            
+                        this.Policies = Policies;
+            
+                        this.CreatedDate = CreatedDate;
+            
+                        this.ModifiedDate = ModifiedDate;
+            
         }
         
         /// <summary>
@@ -98,12 +107,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class Group {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Active: ").Append(Active).Append("\n");
-            sb.Append("  MemberCount: ").Append(MemberCount).Append("\n");
-            sb.Append("  Policies: ").Append(Policies).Append("\n");
-            sb.Append("  CreatedDate: ").Append(CreatedDate).Append("\n");
-            sb.Append("  ModifiedDate: ").Append(ModifiedDate).Append("\n");
+sb.Append("  Name: ").Append(Name).Append("\n");
+sb.Append("  Active: ").Append(Active).Append("\n");
+sb.Append("  MemberCount: ").Append(MemberCount).Append("\n");
+sb.Append("  Policies: ").Append(Policies).Append("\n");
+sb.Append("  CreatedDate: ").Append(CreatedDate).Append("\n");
+sb.Append("  ModifiedDate: ").Append(ModifiedDate).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

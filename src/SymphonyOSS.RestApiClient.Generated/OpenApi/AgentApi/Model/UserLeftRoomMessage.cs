@@ -77,10 +77,16 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             {
                 this.StreamId = StreamId;
             }
-            this.Id = Id;
-            this.RemovedByUserId = RemovedByUserId;
-            this.MemberLeftUserId = MemberLeftUserId;
-            this.InformationBarrierRemediation = InformationBarrierRemediation;
+            
+            
+                        this.Id = Id;
+            
+                        this.RemovedByUserId = RemovedByUserId;
+            
+                        this.MemberLeftUserId = MemberLeftUserId;
+            
+                        this.InformationBarrierRemediation = InformationBarrierRemediation;
+            
         }
         
         /// <summary>
@@ -128,12 +134,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             var sb = new StringBuilder();
             sb.Append("class UserLeftRoomMessage {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  V2messageType: ").Append(V2messageType).Append("\n");
-            sb.Append("  StreamId: ").Append(StreamId).Append("\n");
-            sb.Append("  RemovedByUserId: ").Append(RemovedByUserId).Append("\n");
-            sb.Append("  MemberLeftUserId: ").Append(MemberLeftUserId).Append("\n");
-            sb.Append("  InformationBarrierRemediation: ").Append(InformationBarrierRemediation).Append("\n");
+sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
+sb.Append("  V2messageType: ").Append(V2messageType).Append("\n");
+sb.Append("  StreamId: ").Append(StreamId).Append("\n");
+sb.Append("  RemovedByUserId: ").Append(RemovedByUserId).Append("\n");
+sb.Append("  MemberLeftUserId: ").Append(MemberLeftUserId).Append("\n");
+sb.Append("  InformationBarrierRemediation: ").Append(InformationBarrierRemediation).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

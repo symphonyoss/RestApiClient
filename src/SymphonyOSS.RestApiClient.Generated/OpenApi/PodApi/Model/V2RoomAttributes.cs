@@ -46,14 +46,24 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="CopyProtected">If true, clients disable the clipboard copy for content in this stream..</param>
         public V2RoomAttributes(string Name = null, List<RoomTag> Keywords = null, string Description = null, bool? MembersCanInvite = null, bool? Discoverable = null, bool? _Public = null, bool? _ReadOnly = null, bool? CopyProtected = null)
         {
-            this.Name = Name;
-            this.Keywords = Keywords;
-            this.Description = Description;
-            this.MembersCanInvite = MembersCanInvite;
-            this.Discoverable = Discoverable;
-            this._Public = _Public;
-            this._ReadOnly = _ReadOnly;
-            this.CopyProtected = CopyProtected;
+            
+            
+                        this.Name = Name;
+            
+                        this.Keywords = Keywords;
+            
+                        this.Description = Description;
+            
+                        this.MembersCanInvite = MembersCanInvite;
+            
+                        this.Discoverable = Discoverable;
+            
+                        this._Public = _Public;
+            
+                        this._ReadOnly = _ReadOnly;
+            
+                        this.CopyProtected = CopyProtected;
+            
         }
         
         /// <summary>
@@ -113,13 +123,13 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class V2RoomAttributes {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Keywords: ").Append(Keywords).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  MembersCanInvite: ").Append(MembersCanInvite).Append("\n");
-            sb.Append("  Discoverable: ").Append(Discoverable).Append("\n");
-            sb.Append("  _Public: ").Append(_Public).Append("\n");
-            sb.Append("  _ReadOnly: ").Append(_ReadOnly).Append("\n");
-            sb.Append("  CopyProtected: ").Append(CopyProtected).Append("\n");
+sb.Append("  Keywords: ").Append(Keywords).Append("\n");
+sb.Append("  Description: ").Append(Description).Append("\n");
+sb.Append("  MembersCanInvite: ").Append(MembersCanInvite).Append("\n");
+sb.Append("  Discoverable: ").Append(Discoverable).Append("\n");
+sb.Append("  _Public: ").Append(_Public).Append("\n");
+sb.Append("  _ReadOnly: ").Append(_ReadOnly).Append("\n");
+sb.Append("  CopyProtected: ").Append(CopyProtected).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

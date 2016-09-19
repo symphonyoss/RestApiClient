@@ -84,17 +84,30 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             {
                 this.StreamId = StreamId;
             }
-            this.Id = Id;
-            this.CreationDate = CreationDate;
-            this.Name = Name;
-            this.Keywords = Keywords;
-            this.Description = Description;
-            this.CreatedByUserId = CreatedByUserId;
-            this._ReadOnly = _ReadOnly;
-            this.Discoverable = Discoverable;
-            this._Public = _Public;
-            this.MembersCanInvite = MembersCanInvite;
-            this.CopyProtected = CopyProtected;
+            
+            
+                        this.Id = Id;
+            
+                        this.CreationDate = CreationDate;
+            
+                        this.Name = Name;
+            
+                        this.Keywords = Keywords;
+            
+                        this.Description = Description;
+            
+                        this.CreatedByUserId = CreatedByUserId;
+            
+                        this._ReadOnly = _ReadOnly;
+            
+                        this.Discoverable = Discoverable;
+            
+                        this._Public = _Public;
+            
+                        this.MembersCanInvite = MembersCanInvite;
+            
+                        this.CopyProtected = CopyProtected;
+            
         }
         
         /// <summary>
@@ -178,19 +191,19 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             var sb = new StringBuilder();
             sb.Append("class RoomCreatedMessage {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  V2messageType: ").Append(V2messageType).Append("\n");
-            sb.Append("  StreamId: ").Append(StreamId).Append("\n");
-            sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Keywords: ").Append(Keywords).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  CreatedByUserId: ").Append(CreatedByUserId).Append("\n");
-            sb.Append("  _ReadOnly: ").Append(_ReadOnly).Append("\n");
-            sb.Append("  Discoverable: ").Append(Discoverable).Append("\n");
-            sb.Append("  _Public: ").Append(_Public).Append("\n");
-            sb.Append("  MembersCanInvite: ").Append(MembersCanInvite).Append("\n");
-            sb.Append("  CopyProtected: ").Append(CopyProtected).Append("\n");
+sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
+sb.Append("  V2messageType: ").Append(V2messageType).Append("\n");
+sb.Append("  StreamId: ").Append(StreamId).Append("\n");
+sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
+sb.Append("  Name: ").Append(Name).Append("\n");
+sb.Append("  Keywords: ").Append(Keywords).Append("\n");
+sb.Append("  Description: ").Append(Description).Append("\n");
+sb.Append("  CreatedByUserId: ").Append(CreatedByUserId).Append("\n");
+sb.Append("  _ReadOnly: ").Append(_ReadOnly).Append("\n");
+sb.Append("  Discoverable: ").Append(Discoverable).Append("\n");
+sb.Append("  _Public: ").Append(_Public).Append("\n");
+sb.Append("  MembersCanInvite: ").Append(MembersCanInvite).Append("\n");
+sb.Append("  CopyProtected: ").Append(CopyProtected).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

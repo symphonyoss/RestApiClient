@@ -40,8 +40,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Attributes">Attributes.</param>
         public CertInfoItem(string Name = null, List<NameValuePair> Attributes = null)
         {
-            this.Name = Name;
-            this.Attributes = Attributes;
+            
+            
+                        this.Name = Name;
+            
+                        this.Attributes = Attributes;
+            
         }
         
         /// <summary>
@@ -63,7 +67,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class CertInfoItem {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Attributes: ").Append(Attributes).Append("\n");
+sb.Append("  Attributes: ").Append(Attributes).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

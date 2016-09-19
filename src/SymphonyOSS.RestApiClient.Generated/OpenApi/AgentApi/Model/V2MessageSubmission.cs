@@ -41,16 +41,16 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
         {
             
             /// <summary>
-            /// Enum TEXT for "TEXT"
+            /// Enum Text for "TEXT"
             /// </summary>
             [EnumMember(Value = "TEXT")]
-            TEXT,
+            Text,
             
             /// <summary>
-            /// Enum MESSAGEML for "MESSAGEML"
+            /// Enum Messageml for "MESSAGEML"
             /// </summary>
             [EnumMember(Value = "MESSAGEML")]
-            MESSAGEML
+            Messageml
         }
 
         /// <summary>
@@ -66,9 +66,14 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
         /// <param name="Attachments">Attachments.</param>
         public V2MessageSubmission(FormatEnum? Format = null, string Message = null, List<AttachmentInfo> Attachments = null)
         {
-            this.Format = Format;
-            this.Message = Message;
-            this.Attachments = Attachments;
+            
+            
+                        this.Format = Format;
+            
+                        this.Message = Message;
+            
+                        this.Attachments = Attachments;
+            
         }
         
         /// <summary>
@@ -90,8 +95,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             var sb = new StringBuilder();
             sb.Append("class V2MessageSubmission {\n");
             sb.Append("  Format: ").Append(Format).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  Attachments: ").Append(Attachments).Append("\n");
+sb.Append("  Message: ").Append(Message).Append("\n");
+sb.Append("  Attachments: ").Append(Attachments).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

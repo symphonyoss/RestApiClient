@@ -41,10 +41,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         {
             
             /// <summary>
-            /// Enum EMAIL for "EMAIL"
+            /// Enum Email for "EMAIL"
             /// </summary>
             [EnumMember(Value = "EMAIL")]
-            EMAIL
+            Email
         }
 
         /// <summary>
@@ -58,7 +58,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Type">Type.</param>
         public PasswordReset(TypeEnum? Type = null)
         {
-            this.Type = Type;
+            
+            
+                        this.Type = Type;
+            
         }
         
         /// <summary>

@@ -27,7 +27,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IUserApi : IApiAccessor
+    public interface IUserApi
     {
         #region Synchronous Operations
         /// <summary>
@@ -105,7 +105,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>SuccessResponse</returns>
         SuccessResponse V1AdminUserUidActionPasswordResetPost (string sessionToken, long? uid, PasswordReset payload);
@@ -118,7 +118,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         ApiResponse<SuccessResponse> V1AdminUserUidActionPasswordResetPostWithHttpInfo (string sessionToken, long? uid, PasswordReset payload);
@@ -130,7 +130,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>AvatarList</returns>
         AvatarList V1AdminUserUidAvatarGet (string sessionToken, long? uid);
 
@@ -142,7 +142,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>ApiResponse of AvatarList</returns>
         ApiResponse<AvatarList> V1AdminUserUidAvatarGetWithHttpInfo (string sessionToken, long? uid);
         /// <summary>
@@ -153,7 +153,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>SuccessResponse</returns>
         SuccessResponse V1AdminUserUidAvatarUpdatePost (string sessionToken, long? uid, AvatarUpdate payload);
@@ -166,7 +166,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         ApiResponse<SuccessResponse> V1AdminUserUidAvatarUpdatePostWithHttpInfo (string sessionToken, long? uid, AvatarUpdate payload);
@@ -178,7 +178,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>IntegerList</returns>
         IntegerList V1AdminUserUidDelegatesGet (string sessionToken, long? uid);
 
@@ -190,7 +190,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>ApiResponse of IntegerList</returns>
         ApiResponse<IntegerList> V1AdminUserUidDelegatesGetWithHttpInfo (string sessionToken, long? uid);
         /// <summary>
@@ -201,7 +201,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>SuccessResponse</returns>
         SuccessResponse V1AdminUserUidDelegatesUpdatePost (string sessionToken, long? uid, DelegateAction payload);
@@ -214,7 +214,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         ApiResponse<SuccessResponse> V1AdminUserUidDelegatesUpdatePostWithHttpInfo (string sessionToken, long? uid, DelegateAction payload);
@@ -226,7 +226,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Disclaimer</returns>
         Disclaimer V1AdminUserUidDisclaimerGet (string sessionToken, long? uid);
 
@@ -238,7 +238,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>ApiResponse of Disclaimer</returns>
         ApiResponse<Disclaimer> V1AdminUserUidDisclaimerGetWithHttpInfo (string sessionToken, long? uid);
         /// <summary>
@@ -249,7 +249,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>SuccessResponse</returns>
         SuccessResponse V1AdminUserUidDisclaimerUpdatePost (string sessionToken, long? uid, StringId payload);
@@ -262,7 +262,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         ApiResponse<SuccessResponse> V1AdminUserUidDisclaimerUpdatePostWithHttpInfo (string sessionToken, long? uid, StringId payload);
@@ -274,7 +274,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>FeatureList</returns>
         FeatureList V1AdminUserUidFeaturesGet (string sessionToken, long? uid);
 
@@ -286,7 +286,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>ApiResponse of FeatureList</returns>
         ApiResponse<FeatureList> V1AdminUserUidFeaturesGetWithHttpInfo (string sessionToken, long? uid);
         /// <summary>
@@ -297,7 +297,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>SuccessResponse</returns>
         SuccessResponse V1AdminUserUidFeaturesUpdatePost (string sessionToken, long? uid, FeatureList payload);
@@ -310,7 +310,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         ApiResponse<SuccessResponse> V1AdminUserUidFeaturesUpdatePostWithHttpInfo (string sessionToken, long? uid, FeatureList payload);
@@ -322,7 +322,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>UserDetail</returns>
         UserDetail V1AdminUserUidGet (string sessionToken, long? uid);
 
@@ -334,7 +334,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>ApiResponse of UserDetail</returns>
         ApiResponse<UserDetail> V1AdminUserUidGetWithHttpInfo (string sessionToken, long? uid);
         /// <summary>
@@ -345,7 +345,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>RoleList</returns>
         RoleList V1AdminUserUidRolesGet (string sessionToken, long? uid);
 
@@ -357,7 +357,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>ApiResponse of RoleList</returns>
         ApiResponse<RoleList> V1AdminUserUidRolesGetWithHttpInfo (string sessionToken, long? uid);
         /// <summary>
@@ -368,7 +368,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>SuccessResponse</returns>
         SuccessResponse V1AdminUserUidRolesUpdatePost (string sessionToken, long? uid, StringList payload);
@@ -381,7 +381,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         ApiResponse<SuccessResponse> V1AdminUserUidRolesUpdatePostWithHttpInfo (string sessionToken, long? uid, StringList payload);
@@ -393,7 +393,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>UserStatus</returns>
         UserStatus V1AdminUserUidStatusGet (string sessionToken, long? uid);
 
@@ -405,7 +405,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>ApiResponse of UserStatus</returns>
         ApiResponse<UserStatus> V1AdminUserUidStatusGetWithHttpInfo (string sessionToken, long? uid);
         /// <summary>
@@ -416,7 +416,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>SuccessResponse</returns>
         SuccessResponse V1AdminUserUidStatusUpdatePost (string sessionToken, long? uid, UserStatus payload);
@@ -429,7 +429,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         ApiResponse<SuccessResponse> V1AdminUserUidStatusUpdatePostWithHttpInfo (string sessionToken, long? uid, UserStatus payload);
@@ -441,7 +441,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>UserDetail</returns>
         UserDetail V1AdminUserUidUpdatePost (string sessionToken, long? uid, UserAttributes payload);
@@ -454,7 +454,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of UserDetail</returns>
         ApiResponse<UserDetail> V1AdminUserUidUpdatePostWithHttpInfo (string sessionToken, long? uid, UserAttributes payload);
@@ -535,7 +535,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of SuccessResponse</returns>
         System.Threading.Tasks.Task<SuccessResponse> V1AdminUserUidActionPasswordResetPostAsync (string sessionToken, long? uid, PasswordReset payload);
@@ -548,7 +548,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> V1AdminUserUidActionPasswordResetPostAsyncWithHttpInfo (string sessionToken, long? uid, PasswordReset payload);
@@ -560,7 +560,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of AvatarList</returns>
         System.Threading.Tasks.Task<AvatarList> V1AdminUserUidAvatarGetAsync (string sessionToken, long? uid);
 
@@ -572,7 +572,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of ApiResponse (AvatarList)</returns>
         System.Threading.Tasks.Task<ApiResponse<AvatarList>> V1AdminUserUidAvatarGetAsyncWithHttpInfo (string sessionToken, long? uid);
         /// <summary>
@@ -583,7 +583,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of SuccessResponse</returns>
         System.Threading.Tasks.Task<SuccessResponse> V1AdminUserUidAvatarUpdatePostAsync (string sessionToken, long? uid, AvatarUpdate payload);
@@ -596,7 +596,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> V1AdminUserUidAvatarUpdatePostAsyncWithHttpInfo (string sessionToken, long? uid, AvatarUpdate payload);
@@ -608,7 +608,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of IntegerList</returns>
         System.Threading.Tasks.Task<IntegerList> V1AdminUserUidDelegatesGetAsync (string sessionToken, long? uid);
 
@@ -620,7 +620,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of ApiResponse (IntegerList)</returns>
         System.Threading.Tasks.Task<ApiResponse<IntegerList>> V1AdminUserUidDelegatesGetAsyncWithHttpInfo (string sessionToken, long? uid);
         /// <summary>
@@ -631,7 +631,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of SuccessResponse</returns>
         System.Threading.Tasks.Task<SuccessResponse> V1AdminUserUidDelegatesUpdatePostAsync (string sessionToken, long? uid, DelegateAction payload);
@@ -644,7 +644,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> V1AdminUserUidDelegatesUpdatePostAsyncWithHttpInfo (string sessionToken, long? uid, DelegateAction payload);
@@ -656,7 +656,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of Disclaimer</returns>
         System.Threading.Tasks.Task<Disclaimer> V1AdminUserUidDisclaimerGetAsync (string sessionToken, long? uid);
 
@@ -668,7 +668,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of ApiResponse (Disclaimer)</returns>
         System.Threading.Tasks.Task<ApiResponse<Disclaimer>> V1AdminUserUidDisclaimerGetAsyncWithHttpInfo (string sessionToken, long? uid);
         /// <summary>
@@ -679,7 +679,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of SuccessResponse</returns>
         System.Threading.Tasks.Task<SuccessResponse> V1AdminUserUidDisclaimerUpdatePostAsync (string sessionToken, long? uid, StringId payload);
@@ -692,7 +692,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> V1AdminUserUidDisclaimerUpdatePostAsyncWithHttpInfo (string sessionToken, long? uid, StringId payload);
@@ -704,7 +704,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of FeatureList</returns>
         System.Threading.Tasks.Task<FeatureList> V1AdminUserUidFeaturesGetAsync (string sessionToken, long? uid);
 
@@ -716,7 +716,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of ApiResponse (FeatureList)</returns>
         System.Threading.Tasks.Task<ApiResponse<FeatureList>> V1AdminUserUidFeaturesGetAsyncWithHttpInfo (string sessionToken, long? uid);
         /// <summary>
@@ -727,7 +727,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of SuccessResponse</returns>
         System.Threading.Tasks.Task<SuccessResponse> V1AdminUserUidFeaturesUpdatePostAsync (string sessionToken, long? uid, FeatureList payload);
@@ -740,7 +740,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> V1AdminUserUidFeaturesUpdatePostAsyncWithHttpInfo (string sessionToken, long? uid, FeatureList payload);
@@ -752,7 +752,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of UserDetail</returns>
         System.Threading.Tasks.Task<UserDetail> V1AdminUserUidGetAsync (string sessionToken, long? uid);
 
@@ -764,7 +764,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of ApiResponse (UserDetail)</returns>
         System.Threading.Tasks.Task<ApiResponse<UserDetail>> V1AdminUserUidGetAsyncWithHttpInfo (string sessionToken, long? uid);
         /// <summary>
@@ -775,7 +775,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of RoleList</returns>
         System.Threading.Tasks.Task<RoleList> V1AdminUserUidRolesGetAsync (string sessionToken, long? uid);
 
@@ -787,7 +787,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of ApiResponse (RoleList)</returns>
         System.Threading.Tasks.Task<ApiResponse<RoleList>> V1AdminUserUidRolesGetAsyncWithHttpInfo (string sessionToken, long? uid);
         /// <summary>
@@ -798,7 +798,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of SuccessResponse</returns>
         System.Threading.Tasks.Task<SuccessResponse> V1AdminUserUidRolesUpdatePostAsync (string sessionToken, long? uid, StringList payload);
@@ -811,7 +811,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> V1AdminUserUidRolesUpdatePostAsyncWithHttpInfo (string sessionToken, long? uid, StringList payload);
@@ -823,7 +823,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of UserStatus</returns>
         System.Threading.Tasks.Task<UserStatus> V1AdminUserUidStatusGetAsync (string sessionToken, long? uid);
 
@@ -835,7 +835,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of ApiResponse (UserStatus)</returns>
         System.Threading.Tasks.Task<ApiResponse<UserStatus>> V1AdminUserUidStatusGetAsyncWithHttpInfo (string sessionToken, long? uid);
         /// <summary>
@@ -846,7 +846,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of SuccessResponse</returns>
         System.Threading.Tasks.Task<SuccessResponse> V1AdminUserUidStatusUpdatePostAsync (string sessionToken, long? uid, UserStatus payload);
@@ -859,7 +859,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> V1AdminUserUidStatusUpdatePostAsyncWithHttpInfo (string sessionToken, long? uid, UserStatus payload);
@@ -871,7 +871,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of UserDetail</returns>
         System.Threading.Tasks.Task<UserDetail> V1AdminUserUidUpdatePostAsync (string sessionToken, long? uid, UserAttributes payload);
@@ -884,7 +884,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse (UserDetail)</returns>
         System.Threading.Tasks.Task<ApiResponse<UserDetail>> V1AdminUserUidUpdatePostAsyncWithHttpInfo (string sessionToken, long? uid, UserAttributes payload);
@@ -894,10 +894,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class UserApi : IUserApi
+    public class UserApi : IUserApi
     {
-        private SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="UserApi"/> class.
         /// </summary>
@@ -905,8 +903,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         public UserApi(String basePath)
         {
             this.Configuration = new Configuration(new ApiClient(basePath));
-
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.Configuration.DefaultExceptionFactory;
 
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
@@ -928,8 +924,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             else
                 this.Configuration = configuration;
 
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.Configuration.DefaultExceptionFactory;
-
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
             {
@@ -950,7 +944,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Sets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
+        [Obsolete("SetBasePath is deprecated, please do 'Configuraiton.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
         public void SetBasePath(String basePath)
         {
             // do nothing
@@ -961,22 +955,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <value>An instance of the Configuration</value>
         public Configuration Configuration {get; set;}
-
-        /// <summary>
-        /// Provides a factory method hook for the creation of exceptions.
-        /// </summary>
-        public SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ExceptionFactory ExceptionFactory
-        {
-            get
-            {
-                if (_exceptionFactory != null && _exceptionFactory.GetInvocationList().Length > 1)
-                {
-                    throw new InvalidOperationException("Multicast delegate for ExceptionFactory is unsupported.");
-                }
-                return _exceptionFactory;
-            }
-            set { _exceptionFactory = value; }
-        }
 
         /// <summary>
         /// Gets the default header.
@@ -1055,7 +1033,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -1072,11 +1050,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<UserDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1140,7 +1117,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -1157,11 +1134,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<UserDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1224,7 +1200,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -1241,11 +1217,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserFindPost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserFindPost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserFindPost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<UserList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1309,7 +1284,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -1326,11 +1301,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserFindPost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserFindPost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserFindPost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<UserList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1397,11 +1371,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserListGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserListGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserListGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<UserIdList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1469,11 +1442,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserListGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserListGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserListGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<UserIdList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1486,7 +1458,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse V1AdminUserUidActionPasswordResetPost (string sessionToken, long? uid, PasswordReset payload)
@@ -1500,7 +1472,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         public ApiResponse< SuccessResponse > V1AdminUserUidActionPasswordResetPostWithHttpInfo (string sessionToken, long? uid, PasswordReset payload)
@@ -1542,7 +1514,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -1559,11 +1531,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidActionPasswordResetPost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidActionPasswordResetPost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidActionPasswordResetPost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1576,7 +1547,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> V1AdminUserUidActionPasswordResetPostAsync (string sessionToken, long? uid, PasswordReset payload)
@@ -1591,7 +1562,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> V1AdminUserUidActionPasswordResetPostAsyncWithHttpInfo (string sessionToken, long? uid, PasswordReset payload)
@@ -1633,7 +1604,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -1650,11 +1621,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidActionPasswordResetPost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidActionPasswordResetPost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidActionPasswordResetPost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1667,7 +1637,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>AvatarList</returns>
         public AvatarList V1AdminUserUidAvatarGet (string sessionToken, long? uid)
         {
@@ -1680,7 +1650,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>ApiResponse of AvatarList</returns>
         public ApiResponse< AvatarList > V1AdminUserUidAvatarGetWithHttpInfo (string sessionToken, long? uid)
         {
@@ -1727,11 +1697,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidAvatarGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidAvatarGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidAvatarGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<AvatarList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1744,7 +1713,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of AvatarList</returns>
         public async System.Threading.Tasks.Task<AvatarList> V1AdminUserUidAvatarGetAsync (string sessionToken, long? uid)
         {
@@ -1758,7 +1727,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of ApiResponse (AvatarList)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<AvatarList>> V1AdminUserUidAvatarGetAsyncWithHttpInfo (string sessionToken, long? uid)
         {
@@ -1805,11 +1774,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidAvatarGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidAvatarGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidAvatarGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<AvatarList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1822,7 +1790,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse V1AdminUserUidAvatarUpdatePost (string sessionToken, long? uid, AvatarUpdate payload)
@@ -1836,7 +1804,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         public ApiResponse< SuccessResponse > V1AdminUserUidAvatarUpdatePostWithHttpInfo (string sessionToken, long? uid, AvatarUpdate payload)
@@ -1878,7 +1846,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -1895,11 +1863,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidAvatarUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidAvatarUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidAvatarUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1912,7 +1879,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> V1AdminUserUidAvatarUpdatePostAsync (string sessionToken, long? uid, AvatarUpdate payload)
@@ -1927,7 +1894,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> V1AdminUserUidAvatarUpdatePostAsyncWithHttpInfo (string sessionToken, long? uid, AvatarUpdate payload)
@@ -1969,7 +1936,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -1986,11 +1953,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidAvatarUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidAvatarUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidAvatarUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2003,7 +1969,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>IntegerList</returns>
         public IntegerList V1AdminUserUidDelegatesGet (string sessionToken, long? uid)
         {
@@ -2016,7 +1982,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>ApiResponse of IntegerList</returns>
         public ApiResponse< IntegerList > V1AdminUserUidDelegatesGetWithHttpInfo (string sessionToken, long? uid)
         {
@@ -2063,11 +2029,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidDelegatesGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidDelegatesGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidDelegatesGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<IntegerList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2080,7 +2045,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of IntegerList</returns>
         public async System.Threading.Tasks.Task<IntegerList> V1AdminUserUidDelegatesGetAsync (string sessionToken, long? uid)
         {
@@ -2094,7 +2059,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of ApiResponse (IntegerList)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<IntegerList>> V1AdminUserUidDelegatesGetAsyncWithHttpInfo (string sessionToken, long? uid)
         {
@@ -2141,11 +2106,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidDelegatesGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidDelegatesGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidDelegatesGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<IntegerList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2158,7 +2122,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse V1AdminUserUidDelegatesUpdatePost (string sessionToken, long? uid, DelegateAction payload)
@@ -2172,7 +2136,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         public ApiResponse< SuccessResponse > V1AdminUserUidDelegatesUpdatePostWithHttpInfo (string sessionToken, long? uid, DelegateAction payload)
@@ -2214,7 +2178,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -2231,11 +2195,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidDelegatesUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidDelegatesUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidDelegatesUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2248,7 +2211,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> V1AdminUserUidDelegatesUpdatePostAsync (string sessionToken, long? uid, DelegateAction payload)
@@ -2263,7 +2226,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> V1AdminUserUidDelegatesUpdatePostAsyncWithHttpInfo (string sessionToken, long? uid, DelegateAction payload)
@@ -2305,7 +2268,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -2322,11 +2285,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidDelegatesUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidDelegatesUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidDelegatesUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2339,7 +2301,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Disclaimer</returns>
         public Disclaimer V1AdminUserUidDisclaimerGet (string sessionToken, long? uid)
         {
@@ -2352,7 +2314,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>ApiResponse of Disclaimer</returns>
         public ApiResponse< Disclaimer > V1AdminUserUidDisclaimerGetWithHttpInfo (string sessionToken, long? uid)
         {
@@ -2399,11 +2361,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidDisclaimerGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidDisclaimerGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidDisclaimerGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<Disclaimer>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2416,7 +2377,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of Disclaimer</returns>
         public async System.Threading.Tasks.Task<Disclaimer> V1AdminUserUidDisclaimerGetAsync (string sessionToken, long? uid)
         {
@@ -2430,7 +2391,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of ApiResponse (Disclaimer)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<Disclaimer>> V1AdminUserUidDisclaimerGetAsyncWithHttpInfo (string sessionToken, long? uid)
         {
@@ -2477,11 +2438,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidDisclaimerGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidDisclaimerGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidDisclaimerGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<Disclaimer>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2494,7 +2454,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse V1AdminUserUidDisclaimerUpdatePost (string sessionToken, long? uid, StringId payload)
@@ -2508,7 +2468,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         public ApiResponse< SuccessResponse > V1AdminUserUidDisclaimerUpdatePostWithHttpInfo (string sessionToken, long? uid, StringId payload)
@@ -2550,7 +2510,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -2567,11 +2527,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidDisclaimerUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidDisclaimerUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidDisclaimerUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2584,7 +2543,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> V1AdminUserUidDisclaimerUpdatePostAsync (string sessionToken, long? uid, StringId payload)
@@ -2599,7 +2558,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> V1AdminUserUidDisclaimerUpdatePostAsyncWithHttpInfo (string sessionToken, long? uid, StringId payload)
@@ -2641,7 +2600,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -2658,11 +2617,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidDisclaimerUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidDisclaimerUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidDisclaimerUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2675,7 +2633,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>FeatureList</returns>
         public FeatureList V1AdminUserUidFeaturesGet (string sessionToken, long? uid)
         {
@@ -2688,7 +2646,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>ApiResponse of FeatureList</returns>
         public ApiResponse< FeatureList > V1AdminUserUidFeaturesGetWithHttpInfo (string sessionToken, long? uid)
         {
@@ -2735,11 +2693,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidFeaturesGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidFeaturesGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidFeaturesGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<FeatureList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2752,7 +2709,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of FeatureList</returns>
         public async System.Threading.Tasks.Task<FeatureList> V1AdminUserUidFeaturesGetAsync (string sessionToken, long? uid)
         {
@@ -2766,7 +2723,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of ApiResponse (FeatureList)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<FeatureList>> V1AdminUserUidFeaturesGetAsyncWithHttpInfo (string sessionToken, long? uid)
         {
@@ -2813,11 +2770,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidFeaturesGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidFeaturesGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidFeaturesGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<FeatureList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2830,7 +2786,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse V1AdminUserUidFeaturesUpdatePost (string sessionToken, long? uid, FeatureList payload)
@@ -2844,7 +2800,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         public ApiResponse< SuccessResponse > V1AdminUserUidFeaturesUpdatePostWithHttpInfo (string sessionToken, long? uid, FeatureList payload)
@@ -2886,7 +2842,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -2903,11 +2859,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidFeaturesUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidFeaturesUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidFeaturesUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2920,7 +2875,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> V1AdminUserUidFeaturesUpdatePostAsync (string sessionToken, long? uid, FeatureList payload)
@@ -2935,7 +2890,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> V1AdminUserUidFeaturesUpdatePostAsyncWithHttpInfo (string sessionToken, long? uid, FeatureList payload)
@@ -2977,7 +2932,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -2994,11 +2949,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidFeaturesUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidFeaturesUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidFeaturesUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -3011,7 +2965,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>UserDetail</returns>
         public UserDetail V1AdminUserUidGet (string sessionToken, long? uid)
         {
@@ -3024,7 +2978,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>ApiResponse of UserDetail</returns>
         public ApiResponse< UserDetail > V1AdminUserUidGetWithHttpInfo (string sessionToken, long? uid)
         {
@@ -3071,11 +3025,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<UserDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -3088,7 +3041,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of UserDetail</returns>
         public async System.Threading.Tasks.Task<UserDetail> V1AdminUserUidGetAsync (string sessionToken, long? uid)
         {
@@ -3102,7 +3055,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of ApiResponse (UserDetail)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<UserDetail>> V1AdminUserUidGetAsyncWithHttpInfo (string sessionToken, long? uid)
         {
@@ -3149,11 +3102,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<UserDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -3166,7 +3118,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>RoleList</returns>
         public RoleList V1AdminUserUidRolesGet (string sessionToken, long? uid)
         {
@@ -3179,7 +3131,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>ApiResponse of RoleList</returns>
         public ApiResponse< RoleList > V1AdminUserUidRolesGetWithHttpInfo (string sessionToken, long? uid)
         {
@@ -3226,11 +3178,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidRolesGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidRolesGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidRolesGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<RoleList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -3243,7 +3194,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of RoleList</returns>
         public async System.Threading.Tasks.Task<RoleList> V1AdminUserUidRolesGetAsync (string sessionToken, long? uid)
         {
@@ -3257,7 +3208,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of ApiResponse (RoleList)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<RoleList>> V1AdminUserUidRolesGetAsyncWithHttpInfo (string sessionToken, long? uid)
         {
@@ -3304,11 +3255,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidRolesGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidRolesGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidRolesGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<RoleList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -3321,7 +3271,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse V1AdminUserUidRolesUpdatePost (string sessionToken, long? uid, StringList payload)
@@ -3335,7 +3285,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         public ApiResponse< SuccessResponse > V1AdminUserUidRolesUpdatePostWithHttpInfo (string sessionToken, long? uid, StringList payload)
@@ -3377,7 +3327,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -3394,11 +3344,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidRolesUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidRolesUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidRolesUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -3411,7 +3360,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> V1AdminUserUidRolesUpdatePostAsync (string sessionToken, long? uid, StringList payload)
@@ -3426,7 +3375,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> V1AdminUserUidRolesUpdatePostAsyncWithHttpInfo (string sessionToken, long? uid, StringList payload)
@@ -3468,7 +3417,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -3485,11 +3434,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidRolesUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidRolesUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidRolesUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -3502,7 +3450,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>UserStatus</returns>
         public UserStatus V1AdminUserUidStatusGet (string sessionToken, long? uid)
         {
@@ -3515,7 +3463,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>ApiResponse of UserStatus</returns>
         public ApiResponse< UserStatus > V1AdminUserUidStatusGetWithHttpInfo (string sessionToken, long? uid)
         {
@@ -3562,11 +3510,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidStatusGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidStatusGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidStatusGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<UserStatus>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -3579,7 +3526,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of UserStatus</returns>
         public async System.Threading.Tasks.Task<UserStatus> V1AdminUserUidStatusGetAsync (string sessionToken, long? uid)
         {
@@ -3593,7 +3540,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <returns>Task of ApiResponse (UserStatus)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<UserStatus>> V1AdminUserUidStatusGetAsyncWithHttpInfo (string sessionToken, long? uid)
         {
@@ -3640,11 +3587,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidStatusGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidStatusGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidStatusGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<UserStatus>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -3657,7 +3603,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse V1AdminUserUidStatusUpdatePost (string sessionToken, long? uid, UserStatus payload)
@@ -3671,7 +3617,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         public ApiResponse< SuccessResponse > V1AdminUserUidStatusUpdatePostWithHttpInfo (string sessionToken, long? uid, UserStatus payload)
@@ -3713,7 +3659,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -3730,11 +3676,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidStatusUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidStatusUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidStatusUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -3747,7 +3692,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> V1AdminUserUidStatusUpdatePostAsync (string sessionToken, long? uid, UserStatus payload)
@@ -3762,7 +3707,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> V1AdminUserUidStatusUpdatePostAsyncWithHttpInfo (string sessionToken, long? uid, UserStatus payload)
@@ -3804,7 +3749,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -3821,11 +3766,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidStatusUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidStatusUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidStatusUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -3838,7 +3782,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>UserDetail</returns>
         public UserDetail V1AdminUserUidUpdatePost (string sessionToken, long? uid, UserAttributes payload)
@@ -3852,7 +3796,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>ApiResponse of UserDetail</returns>
         public ApiResponse< UserDetail > V1AdminUserUidUpdatePostWithHttpInfo (string sessionToken, long? uid, UserAttributes payload)
@@ -3894,7 +3838,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -3911,11 +3855,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<UserDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -3928,7 +3871,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of UserDetail</returns>
         public async System.Threading.Tasks.Task<UserDetail> V1AdminUserUidUpdatePostAsync (string sessionToken, long? uid, UserAttributes payload)
@@ -3943,7 +3886,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="payload"></param>
         /// <returns>Task of ApiResponse (UserDetail)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<UserDetail>> V1AdminUserUidUpdatePostAsyncWithHttpInfo (string sessionToken, long? uid, UserAttributes payload)
@@ -3985,7 +3928,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -4002,11 +3945,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<UserDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),

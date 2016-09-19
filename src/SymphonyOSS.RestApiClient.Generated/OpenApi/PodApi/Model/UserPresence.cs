@@ -41,52 +41,52 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         {
             
             /// <summary>
-            /// Enum UNDEFINED for "UNDEFINED"
+            /// Enum Undefined for "UNDEFINED"
             /// </summary>
             [EnumMember(Value = "UNDEFINED")]
-            UNDEFINED,
+            Undefined,
             
             /// <summary>
-            /// Enum AVAILABLE for "AVAILABLE"
+            /// Enum Available for "AVAILABLE"
             /// </summary>
             [EnumMember(Value = "AVAILABLE")]
-            AVAILABLE,
+            Available,
             
             /// <summary>
-            /// Enum BUSY for "BUSY"
+            /// Enum Busy for "BUSY"
             /// </summary>
             [EnumMember(Value = "BUSY")]
-            BUSY,
+            Busy,
             
             /// <summary>
-            /// Enum DONOTDISTURB for "DO_NOT_DISTURB"
+            /// Enum DoNotDisturb for "DO_NOT_DISTURB"
             /// </summary>
             [EnumMember(Value = "DO_NOT_DISTURB")]
-            DONOTDISTURB,
+            DoNotDisturb,
             
             /// <summary>
-            /// Enum ONTHEPHONE for "ON_THE_PHONE"
+            /// Enum OnThePhone for "ON_THE_PHONE"
             /// </summary>
             [EnumMember(Value = "ON_THE_PHONE")]
-            ONTHEPHONE,
+            OnThePhone,
             
             /// <summary>
-            /// Enum BERIGHTBACK for "BE_RIGHT_BACK"
+            /// Enum BeRightBack for "BE_RIGHT_BACK"
             /// </summary>
             [EnumMember(Value = "BE_RIGHT_BACK")]
-            BERIGHTBACK,
+            BeRightBack,
             
             /// <summary>
-            /// Enum AWAY for "AWAY"
+            /// Enum Away for "AWAY"
             /// </summary>
             [EnumMember(Value = "AWAY")]
-            AWAY,
+            Away,
             
             /// <summary>
-            /// Enum OFFLINE for "OFFLINE"
+            /// Enum Offline for "OFFLINE"
             /// </summary>
             [EnumMember(Value = "OFFLINE")]
-            OFFLINE
+            Offline
         }
 
         /// <summary>
@@ -101,8 +101,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Category">Category.</param>
         public UserPresence(long? Uid = null, CategoryEnum? Category = null)
         {
-            this.Uid = Uid;
-            this.Category = Category;
+            
+            
+                        this.Uid = Uid;
+            
+                        this.Category = Category;
+            
         }
         
         /// <summary>
@@ -119,7 +123,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class UserPresence {\n");
             sb.Append("  Uid: ").Append(Uid).Append("\n");
-            sb.Append("  Category: ").Append(Category).Append("\n");
+sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

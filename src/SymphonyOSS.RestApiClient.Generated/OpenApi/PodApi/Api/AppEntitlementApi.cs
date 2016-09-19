@@ -27,7 +27,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IAppEntitlementApi : IApiAccessor
+    public interface IAppEntitlementApi
     {
         #region Synchronous Operations
         /// <summary>
@@ -222,10 +222,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class AppEntitlementApi : IAppEntitlementApi
+    public class AppEntitlementApi : IAppEntitlementApi
     {
-        private SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AppEntitlementApi"/> class.
         /// </summary>
@@ -233,8 +231,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         public AppEntitlementApi(String basePath)
         {
             this.Configuration = new Configuration(new ApiClient(basePath));
-
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.Configuration.DefaultExceptionFactory;
 
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
@@ -256,8 +252,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             else
                 this.Configuration = configuration;
 
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.Configuration.DefaultExceptionFactory;
-
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
             {
@@ -278,7 +272,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Sets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
+        [Obsolete("SetBasePath is deprecated, please do 'Configuraiton.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
         public void SetBasePath(String basePath)
         {
             // do nothing
@@ -289,22 +283,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <value>An instance of the Configuration</value>
         public Configuration Configuration {get; set;}
-
-        /// <summary>
-        /// Provides a factory method hook for the creation of exceptions.
-        /// </summary>
-        public SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ExceptionFactory ExceptionFactory
-        {
-            get
-            {
-                if (_exceptionFactory != null && _exceptionFactory.GetInvocationList().Length > 1)
-                {
-                    throw new InvalidOperationException("Multicast delegate for ExceptionFactory is unsupported.");
-                }
-                return _exceptionFactory;
-            }
-            set { _exceptionFactory = value; }
-        }
 
         /// <summary>
         /// Gets the default header.
@@ -387,11 +365,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminAppEntitlementListGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminAppEntitlementListGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminAppEntitlementListGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<PodAppEntitlementList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -459,11 +436,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminAppEntitlementListGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminAppEntitlementListGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminAppEntitlementListGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<PodAppEntitlementList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -526,7 +502,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -543,11 +519,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminAppEntitlementListPost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminAppEntitlementListPost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminAppEntitlementListPost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<PodAppEntitlementList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -611,7 +586,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -628,11 +603,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminAppEntitlementListPost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminAppEntitlementListPost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminAppEntitlementListPost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<PodAppEntitlementList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -705,11 +679,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidAppEntitlementListGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidAppEntitlementListGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidAppEntitlementListGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<UserAppEntitlementList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -783,11 +756,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidAppEntitlementListGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidAppEntitlementListGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidAppEntitlementListGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<UserAppEntitlementList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -856,7 +828,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -873,11 +845,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidAppEntitlementListPost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidAppEntitlementListPost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidAppEntitlementListPost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<UserAppEntitlementList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -947,7 +918,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -964,11 +935,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AdminUserUidAppEntitlementListPost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidAppEntitlementListPost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AdminUserUidAppEntitlementListPost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<UserAppEntitlementList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),

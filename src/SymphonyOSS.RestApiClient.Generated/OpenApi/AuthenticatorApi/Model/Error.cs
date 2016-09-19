@@ -40,8 +40,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Model
         /// <param name="Message">Message.</param>
         public Error(int? Code = null, string Message = null)
         {
-            this.Code = Code;
-            this.Message = Message;
+            
+            
+                        this.Code = Code;
+            
+                        this.Message = Message;
+            
         }
         
         /// <summary>
@@ -63,7 +67,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Model
             var sb = new StringBuilder();
             sb.Append("class Error {\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
+sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

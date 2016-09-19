@@ -36,9 +36,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CompanyCertTypeList" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
         public CompanyCertTypeList()
         {
+            
+            
         }
         
         /// <summary>
@@ -49,7 +50,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         {
             var sb = new StringBuilder();
             sb.Append("class CompanyCertTypeList {\n");
-            sb.Append("}\n");
+                        sb.Append("}\n");
             return sb.ToString();
         }
   

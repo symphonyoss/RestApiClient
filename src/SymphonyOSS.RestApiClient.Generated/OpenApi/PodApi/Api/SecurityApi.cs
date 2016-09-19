@@ -27,7 +27,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface ISecurityApi : IApiAccessor
+    public interface ISecurityApi
     {
         #region Synchronous Operations
         /// <summary>
@@ -100,7 +100,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// <returns>ApiResponse of CompanyCertDetail</returns>
         ApiResponse<CompanyCertDetail> V1CompanycertFingerPrintGetGetWithHttpInfo (string fingerPrint, string sessionToken);
         /// <summary>
-        /// Return a list of all certificates which were verified to the cert whose fingerprint is passed. 
+        /// Return a list of all certificates which were verified to the cert whose\nfingerprint is passed.\n
         /// </summary>
         /// <remarks>
         /// 
@@ -112,7 +112,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         CompanyCertInfoList V1CompanycertFingerPrintIssuedByGet (string fingerPrint, string sessionToken);
 
         /// <summary>
-        /// Return a list of all certificates which were verified to the cert whose fingerprint is passed. 
+        /// Return a list of all certificates which were verified to the cert whose\nfingerprint is passed.\n
         /// </summary>
         /// <remarks>
         /// 
@@ -296,7 +296,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// <returns>Task of ApiResponse (CompanyCertDetail)</returns>
         System.Threading.Tasks.Task<ApiResponse<CompanyCertDetail>> V1CompanycertFingerPrintGetGetAsyncWithHttpInfo (string fingerPrint, string sessionToken);
         /// <summary>
-        /// Return a list of all certificates which were verified to the cert whose fingerprint is passed. 
+        /// Return a list of all certificates which were verified to the cert whose\nfingerprint is passed.\n
         /// </summary>
         /// <remarks>
         /// 
@@ -308,7 +308,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         System.Threading.Tasks.Task<CompanyCertInfoList> V1CompanycertFingerPrintIssuedByGetAsync (string fingerPrint, string sessionToken);
 
         /// <summary>
-        /// Return a list of all certificates which were verified to the cert whose fingerprint is passed. 
+        /// Return a list of all certificates which were verified to the cert whose\nfingerprint is passed.\n
         /// </summary>
         /// <remarks>
         /// 
@@ -426,10 +426,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class SecurityApi : ISecurityApi
+    public class SecurityApi : ISecurityApi
     {
-        private SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="SecurityApi"/> class.
         /// </summary>
@@ -437,8 +435,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         public SecurityApi(String basePath)
         {
             this.Configuration = new Configuration(new ApiClient(basePath));
-
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.Configuration.DefaultExceptionFactory;
 
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
@@ -460,8 +456,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             else
                 this.Configuration = configuration;
 
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.Configuration.DefaultExceptionFactory;
-
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
             {
@@ -482,7 +476,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Sets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
+        [Obsolete("SetBasePath is deprecated, please do 'Configuraiton.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
         public void SetBasePath(String basePath)
         {
             // do nothing
@@ -493,22 +487,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <value>An instance of the Configuration</value>
         public Configuration Configuration {get; set;}
-
-        /// <summary>
-        /// Provides a factory method hook for the creation of exceptions.
-        /// </summary>
-        public SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ExceptionFactory ExceptionFactory
-        {
-            get
-            {
-                if (_exceptionFactory != null && _exceptionFactory.GetInvocationList().Length > 1)
-                {
-                    throw new InvalidOperationException("Multicast delegate for ExceptionFactory is unsupported.");
-                }
-                return _exceptionFactory;
-            }
-            set { _exceptionFactory = value; }
-        }
 
         /// <summary>
         /// Gets the default header.
@@ -587,7 +565,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (cert != null && cert.GetType() != typeof(byte[]))
+            if (cert.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(cert); // http body (model) parameter
             }
@@ -604,11 +582,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1CompanycertCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -672,7 +649,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (cert != null && cert.GetType() != typeof(byte[]))
+            if (cert.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(cert); // http body (model) parameter
             }
@@ -689,11 +666,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1CompanycertCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -756,7 +732,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (fingerPrint != null && fingerPrint.GetType() != typeof(byte[]))
+            if (fingerPrint.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(fingerPrint); // http body (model) parameter
             }
@@ -773,11 +749,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1CompanycertDeletePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertDeletePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertDeletePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -841,7 +816,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (fingerPrint != null && fingerPrint.GetType() != typeof(byte[]))
+            if (fingerPrint.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(fingerPrint); // http body (model) parameter
             }
@@ -858,11 +833,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1CompanycertDeletePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertDeletePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertDeletePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -935,11 +909,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1CompanycertFingerPrintGetGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertFingerPrintGetGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertFingerPrintGetGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<CompanyCertDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1013,11 +986,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1CompanycertFingerPrintGetGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertFingerPrintGetGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertFingerPrintGetGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<CompanyCertDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1026,7 +998,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// Return a list of all certificates which were verified to the cert whose fingerprint is passed.  
+        /// Return a list of all certificates which were verified to the cert whose\nfingerprint is passed.\n 
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fingerPrint">Certificate fingerPrint (ID)</param>
@@ -1039,7 +1011,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// Return a list of all certificates which were verified to the cert whose fingerprint is passed.  
+        /// Return a list of all certificates which were verified to the cert whose\nfingerprint is passed.\n 
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fingerPrint">Certificate fingerPrint (ID)</param>
@@ -1090,11 +1062,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1CompanycertFingerPrintIssuedByGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertFingerPrintIssuedByGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertFingerPrintIssuedByGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<CompanyCertInfoList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1103,7 +1074,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// Return a list of all certificates which were verified to the cert whose fingerprint is passed.  
+        /// Return a list of all certificates which were verified to the cert whose\nfingerprint is passed.\n 
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fingerPrint">Certificate fingerPrint (ID)</param>
@@ -1117,7 +1088,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// Return a list of all certificates which were verified to the cert whose fingerprint is passed.  
+        /// Return a list of all certificates which were verified to the cert whose\nfingerprint is passed.\n 
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fingerPrint">Certificate fingerPrint (ID)</param>
@@ -1168,11 +1139,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1CompanycertFingerPrintIssuedByGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertFingerPrintIssuedByGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertFingerPrintIssuedByGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<CompanyCertInfoList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1241,7 +1211,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (fingerPrint != null) localVarPathParams.Add("fingerPrint", Configuration.ApiClient.ParameterToString(fingerPrint)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (certAttributes != null && certAttributes.GetType() != typeof(byte[]))
+            if (certAttributes.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(certAttributes); // http body (model) parameter
             }
@@ -1258,11 +1228,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1CompanycertFingerPrintUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertFingerPrintUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertFingerPrintUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1332,7 +1301,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (fingerPrint != null) localVarPathParams.Add("fingerPrint", Configuration.ApiClient.ParameterToString(fingerPrint)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (certAttributes != null && certAttributes.GetType() != typeof(byte[]))
+            if (certAttributes.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(certAttributes); // http body (model) parameter
             }
@@ -1349,11 +1318,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1CompanycertFingerPrintUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertFingerPrintUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertFingerPrintUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<SuccessResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1426,11 +1394,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1CompanycertListGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertListGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertListGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<CompanyCertInfoList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1504,11 +1471,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1CompanycertListGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertListGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertListGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<CompanyCertInfoList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1581,11 +1547,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1CompanycertPodmanagedListGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertPodmanagedListGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertPodmanagedListGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<CompanyCertInfoList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1659,11 +1624,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1CompanycertPodmanagedListGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertPodmanagedListGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertPodmanagedListGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<CompanyCertInfoList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1732,7 +1696,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             if (skip != null) localVarQueryParams.Add("skip", Configuration.ApiClient.ParameterToString(skip)); // query parameter
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (typeIdList != null && typeIdList.GetType() != typeof(byte[]))
+            if (typeIdList.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(typeIdList); // http body (model) parameter
             }
@@ -1749,11 +1713,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1CompanycertTypeListPost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertTypeListPost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertTypeListPost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<CompanyCertInfoList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1823,7 +1786,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             if (skip != null) localVarQueryParams.Add("skip", Configuration.ApiClient.ParameterToString(skip)); // query parameter
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (typeIdList != null && typeIdList.GetType() != typeof(byte[]))
+            if (typeIdList.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(typeIdList); // http body (model) parameter
             }
@@ -1840,11 +1803,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1CompanycertTypeListPost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertTypeListPost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1CompanycertTypeListPost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<CompanyCertInfoList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),

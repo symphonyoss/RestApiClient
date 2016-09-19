@@ -28,7 +28,7 @@ using Newtonsoft.Json.Converters;
 namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
 {
     /// <summary>
-    /// The results of list based bulk action. The list contains the result messages in the same order as submitted. The message will be an empty string if the action was successful for item in that index. 
+    /// The results of list based bulk action. The list contains the result messages\nin the same order as submitted. The message will be an empty string if the action\nwas successful for item in that index.\n
     /// </summary>
     [DataContract]
     public partial class BulkActionResult :  IEquatable<BulkActionResult>
@@ -41,16 +41,16 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         {
             
             /// <summary>
-            /// Enum SUCCESS for "SUCCESS"
+            /// Enum Success for "SUCCESS"
             /// </summary>
             [EnumMember(Value = "SUCCESS")]
-            SUCCESS,
+            Success,
             
             /// <summary>
-            /// Enum FAIL for "FAIL"
+            /// Enum Fail for "FAIL"
             /// </summary>
             [EnumMember(Value = "FAIL")]
-            FAIL
+            Fail
         }
 
         /// <summary>
@@ -65,8 +65,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Results">Results.</param>
         public BulkActionResult(OverallResultEnum? OverallResult = null, List<string> Results = null)
         {
-            this.OverallResult = OverallResult;
-            this.Results = Results;
+            
+            
+                        this.OverallResult = OverallResult;
+            
+                        this.Results = Results;
+            
         }
         
         /// <summary>
@@ -83,7 +87,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class BulkActionResult {\n");
             sb.Append("  OverallResult: ").Append(OverallResult).Append("\n");
-            sb.Append("  Results: ").Append(Results).Append("\n");
+sb.Append("  Results: ").Append(Results).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

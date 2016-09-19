@@ -42,10 +42,16 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="KhPassword">Key Manager password derived with PBKDF2..</param>
         public Password(string HSalt = null, string HPassword = null, string KhSalt = null, string KhPassword = null)
         {
-            this.HSalt = HSalt;
-            this.HPassword = HPassword;
-            this.KhSalt = KhSalt;
-            this.KhPassword = KhPassword;
+            
+            
+                        this.HSalt = HSalt;
+            
+                        this.HPassword = HPassword;
+            
+                        this.KhSalt = KhSalt;
+            
+                        this.KhPassword = KhPassword;
+            
         }
         
         /// <summary>
@@ -81,9 +87,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class Password {\n");
             sb.Append("  HSalt: ").Append(HSalt).Append("\n");
-            sb.Append("  HPassword: ").Append(HPassword).Append("\n");
-            sb.Append("  KhSalt: ").Append(KhSalt).Append("\n");
-            sb.Append("  KhPassword: ").Append(KhPassword).Append("\n");
+sb.Append("  HPassword: ").Append(HPassword).Append("\n");
+sb.Append("  KhSalt: ").Append(KhSalt).Append("\n");
+sb.Append("  KhPassword: ").Append(KhPassword).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

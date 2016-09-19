@@ -39,7 +39,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
         /// <param name="Message">Message.</param>
         public SimpleMessage(string Message = null)
         {
-            this.Message = Message;
+            
+            
+                        this.Message = Message;
+            
         }
         
         /// <summary>

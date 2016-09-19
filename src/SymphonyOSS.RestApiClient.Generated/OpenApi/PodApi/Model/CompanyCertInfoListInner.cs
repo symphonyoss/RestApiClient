@@ -40,8 +40,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="CompanyCertInfo">CompanyCertInfo.</param>
         public CompanyCertInfoListInner(CompanyCertAttributes CompanyCertAttributes = null, CompanyCertInfo CompanyCertInfo = null)
         {
-            this.CompanyCertAttributes = CompanyCertAttributes;
-            this.CompanyCertInfo = CompanyCertInfo;
+            
+            
+                        this.CompanyCertAttributes = CompanyCertAttributes;
+            
+                        this.CompanyCertInfo = CompanyCertInfo;
+            
         }
         
         /// <summary>
@@ -63,7 +67,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class CompanyCertInfoListInner {\n");
             sb.Append("  CompanyCertAttributes: ").Append(CompanyCertAttributes).Append("\n");
-            sb.Append("  CompanyCertInfo: ").Append(CompanyCertInfo).Append("\n");
+sb.Append("  CompanyCertInfo: ").Append(CompanyCertInfo).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

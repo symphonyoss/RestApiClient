@@ -76,9 +76,14 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             {
                 this.StreamId = StreamId;
             }
-            this.Id = Id;
-            this.DemotedByUserId = DemotedByUserId;
-            this.DemotedUserId = DemotedUserId;
+            
+            
+                        this.Id = Id;
+            
+                        this.DemotedByUserId = DemotedByUserId;
+            
+                        this.DemotedUserId = DemotedUserId;
+            
         }
         
         /// <summary>
@@ -121,11 +126,11 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             var sb = new StringBuilder();
             sb.Append("class RoomMemberDemotedFromOwnerMessage {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  V2messageType: ").Append(V2messageType).Append("\n");
-            sb.Append("  StreamId: ").Append(StreamId).Append("\n");
-            sb.Append("  DemotedByUserId: ").Append(DemotedByUserId).Append("\n");
-            sb.Append("  DemotedUserId: ").Append(DemotedUserId).Append("\n");
+sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
+sb.Append("  V2messageType: ").Append(V2messageType).Append("\n");
+sb.Append("  StreamId: ").Append(StreamId).Append("\n");
+sb.Append("  DemotedByUserId: ").Append(DemotedByUserId).Append("\n");
+sb.Append("  DemotedUserId: ").Append(DemotedUserId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

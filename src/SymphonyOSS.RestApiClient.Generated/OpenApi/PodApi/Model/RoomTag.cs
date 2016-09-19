@@ -63,6 +63,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             {
                 this.Value = Value;
             }
+            
+            
         }
         
         /// <summary>
@@ -86,7 +88,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class RoomTag {\n");
             sb.Append("  Key: ").Append(Key).Append("\n");
-            sb.Append("  Value: ").Append(Value).Append("\n");
+sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

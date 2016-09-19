@@ -41,16 +41,16 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
         {
             
             /// <summary>
-            /// Enum TEXT for "TEXT"
+            /// Enum Text for "TEXT"
             /// </summary>
             [EnumMember(Value = "TEXT")]
-            TEXT,
+            Text,
             
             /// <summary>
-            /// Enum MESSAGEML for "MESSAGEML"
+            /// Enum Messageml for "MESSAGEML"
             /// </summary>
             [EnumMember(Value = "MESSAGEML")]
-            MESSAGEML
+            Messageml
         }
 
         /// <summary>
@@ -65,8 +65,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
         /// <param name="Message">Message.</param>
         public MessageSubmission(FormatEnum? Format = null, string Message = null)
         {
-            this.Format = Format;
-            this.Message = Message;
+            
+            
+                        this.Format = Format;
+            
+                        this.Message = Message;
+            
         }
         
         /// <summary>
@@ -83,7 +87,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             var sb = new StringBuilder();
             sb.Append("class MessageSubmission {\n");
             sb.Append("  Format: ").Append(Format).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
+sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

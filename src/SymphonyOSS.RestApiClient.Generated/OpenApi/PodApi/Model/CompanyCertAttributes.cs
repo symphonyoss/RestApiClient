@@ -41,9 +41,14 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Status">Status.</param>
         public CompanyCertAttributes(string Name = null, CompanyCertType Type = null, CompanyCertStatus Status = null)
         {
-            this.Name = Name;
-            this.Type = Type;
-            this.Status = Status;
+            
+            
+                        this.Name = Name;
+            
+                        this.Type = Type;
+            
+                        this.Status = Status;
+            
         }
         
         /// <summary>
@@ -71,8 +76,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class CompanyCertAttributes {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
+sb.Append("  Type: ").Append(Type).Append("\n");
+sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

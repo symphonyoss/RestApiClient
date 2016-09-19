@@ -41,16 +41,16 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         {
             
             /// <summary>
-            /// Enum TEXT for "TEXT"
+            /// Enum Text for "TEXT"
             /// </summary>
             [EnumMember(Value = "TEXT")]
-            TEXT,
+            Text,
             
             /// <summary>
-            /// Enum XML for "XML"
+            /// Enum Xml for "XML"
             /// </summary>
             [EnumMember(Value = "XML")]
-            XML
+            Xml
         }
 
         /// <summary>
@@ -65,8 +65,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Message">Message.</param>
         public SuccessResponse(FormatEnum? Format = null, string Message = null)
         {
-            this.Format = Format;
-            this.Message = Message;
+            
+            
+                        this.Format = Format;
+            
+                        this.Message = Message;
+            
         }
         
         /// <summary>
@@ -83,7 +87,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class SuccessResponse {\n");
             sb.Append("  Format: ").Append(Format).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
+sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

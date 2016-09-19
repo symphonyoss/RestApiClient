@@ -36,24 +36,28 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ImportResponse" /> class.
         /// </summary>
-        /// <param name="MessageId">If the message was successfully imported then the message ID in the system of the newly created message. .</param>
-        /// <param name="Diagnostic">A diagnostic message containing an error message in the event that the message import failed. May also be present in the case of a successful call if there is useful narrative to return. .</param>
+        /// <param name="MessageId">If the message was successfully imported then the message ID in the system\nof the newly created message.\n.</param>
+        /// <param name="Diagnostic">A diagnostic message containing an error message in the event that the\nmessage import failed. May also be present in the case of a successful\ncall if there is useful narrative to return.\n.</param>
         public ImportResponse(string MessageId = null, string Diagnostic = null)
         {
-            this.MessageId = MessageId;
-            this.Diagnostic = Diagnostic;
+            
+            
+                        this.MessageId = MessageId;
+            
+                        this.Diagnostic = Diagnostic;
+            
         }
         
         /// <summary>
-        /// If the message was successfully imported then the message ID in the system of the newly created message. 
+        /// If the message was successfully imported then the message ID in the system\nof the newly created message.\n
         /// </summary>
-        /// <value>If the message was successfully imported then the message ID in the system of the newly created message. </value>
+        /// <value>If the message was successfully imported then the message ID in the system\nof the newly created message.\n</value>
         [DataMember(Name="messageId", EmitDefaultValue=false)]
         public string MessageId { get; set; }
         /// <summary>
-        /// A diagnostic message containing an error message in the event that the message import failed. May also be present in the case of a successful call if there is useful narrative to return. 
+        /// A diagnostic message containing an error message in the event that the\nmessage import failed. May also be present in the case of a successful\ncall if there is useful narrative to return.\n
         /// </summary>
-        /// <value>A diagnostic message containing an error message in the event that the message import failed. May also be present in the case of a successful call if there is useful narrative to return. </value>
+        /// <value>A diagnostic message containing an error message in the event that the\nmessage import failed. May also be present in the case of a successful\ncall if there is useful narrative to return.\n</value>
         [DataMember(Name="diagnostic", EmitDefaultValue=false)]
         public string Diagnostic { get; set; }
         /// <summary>
@@ -65,7 +69,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             var sb = new StringBuilder();
             sb.Append("class ImportResponse {\n");
             sb.Append("  MessageId: ").Append(MessageId).Append("\n");
-            sb.Append("  Diagnostic: ").Append(Diagnostic).Append("\n");
+sb.Append("  Diagnostic: ").Append(Diagnostic).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

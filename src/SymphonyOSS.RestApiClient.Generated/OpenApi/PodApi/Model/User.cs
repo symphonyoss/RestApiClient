@@ -40,8 +40,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="EmailAddress">EmailAddress.</param>
         public User(long? Id = null, string EmailAddress = null)
         {
-            this.Id = Id;
-            this.EmailAddress = EmailAddress;
+            
+            
+                        this.Id = Id;
+            
+                        this.EmailAddress = EmailAddress;
+            
         }
         
         /// <summary>
@@ -63,7 +67,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class User {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  EmailAddress: ").Append(EmailAddress).Append("\n");
+sb.Append("  EmailAddress: ").Append(EmailAddress).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

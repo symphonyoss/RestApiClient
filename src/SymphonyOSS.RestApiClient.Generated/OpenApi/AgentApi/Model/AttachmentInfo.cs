@@ -73,6 +73,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             {
                 this.Size = Size;
             }
+            
+            
         }
         
         /// <summary>
@@ -102,8 +104,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             var sb = new StringBuilder();
             sb.Append("class AttachmentInfo {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Size: ").Append(Size).Append("\n");
+sb.Append("  Name: ").Append(Name).Append("\n");
+sb.Append("  Size: ").Append(Size).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

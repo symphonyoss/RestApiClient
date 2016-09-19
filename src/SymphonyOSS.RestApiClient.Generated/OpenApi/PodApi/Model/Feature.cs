@@ -40,8 +40,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Enabled">Whether this entitlement is enabled for the user..</param>
         public Feature(string Entitlment = null, bool? Enabled = null)
         {
-            this.Entitlment = Entitlment;
-            this.Enabled = Enabled;
+            
+            
+                        this.Entitlment = Entitlment;
+            
+                        this.Enabled = Enabled;
+            
         }
         
         /// <summary>
@@ -64,7 +68,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class Feature {\n");
             sb.Append("  Entitlment: ").Append(Entitlment).Append("\n");
-            sb.Append("  Enabled: ").Append(Enabled).Append("\n");
+sb.Append("  Enabled: ").Append(Enabled).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

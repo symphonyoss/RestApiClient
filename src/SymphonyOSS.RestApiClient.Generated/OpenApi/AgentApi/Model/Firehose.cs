@@ -39,7 +39,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
         /// <param name="Id">Id.</param>
         public Firehose(string Id = null)
         {
-            this.Id = Id;
+            
+            
+                        this.Id = Id;
+            
         }
         
         /// <summary>

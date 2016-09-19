@@ -95,8 +95,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             {
                 this.FromUserId = FromUserId;
             }
-            this.Id = Id;
-            this.Attachments = Attachments;
+            
+            
+                        this.Id = Id;
+            
+                        this.Attachments = Attachments;
+            
         }
         
         /// <summary>
@@ -146,12 +150,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             var sb = new StringBuilder();
             sb.Append("class V2Message {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  V2messageType: ").Append(V2messageType).Append("\n");
-            sb.Append("  StreamId: ").Append(StreamId).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  FromUserId: ").Append(FromUserId).Append("\n");
-            sb.Append("  Attachments: ").Append(Attachments).Append("\n");
+sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
+sb.Append("  V2messageType: ").Append(V2messageType).Append("\n");
+sb.Append("  StreamId: ").Append(StreamId).Append("\n");
+sb.Append("  Message: ").Append(Message).Append("\n");
+sb.Append("  FromUserId: ").Append(FromUserId).Append("\n");
+sb.Append("  Attachments: ").Append(Attachments).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -84,7 +84,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             {
                 this.Type = Type;
             }
-            this.AppId = AppId;
+            
+            
+                        this.AppId = AppId;
+            
         }
         
         /// <summary>
@@ -126,10 +129,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class Product {\n");
             sb.Append("  AppId: ").Append(AppId).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Sku: ").Append(Sku).Append("\n");
-            sb.Append("  Subscribed: ").Append(Subscribed).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
+sb.Append("  Name: ").Append(Name).Append("\n");
+sb.Append("  Sku: ").Append(Sku).Append("\n");
+sb.Append("  Subscribed: ").Append(Subscribed).Append("\n");
+sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

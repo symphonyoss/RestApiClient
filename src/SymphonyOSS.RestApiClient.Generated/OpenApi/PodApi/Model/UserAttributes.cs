@@ -41,16 +41,16 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         {
             
             /// <summary>
-            /// Enum NORMAL for "NORMAL"
+            /// Enum Normal for "NORMAL"
             /// </summary>
             [EnumMember(Value = "NORMAL")]
-            NORMAL,
+            Normal,
             
             /// <summary>
-            /// Enum SYSTEM for "SYSTEM"
+            /// Enum System for "SYSTEM"
             /// </summary>
             [EnumMember(Value = "SYSTEM")]
-            SYSTEM
+            System
         }
 
         /// <summary>
@@ -79,22 +79,40 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Industries">Industries.</param>
         public UserAttributes(string EmailAddress = null, string FirstName = null, string LastName = null, string UserName = null, string DisplayName = null, string Department = null, string Division = null, string Title = null, string WorkPhoneNumber = null, string MobilePhoneNumber = null, string SmsNumber = null, AccountTypeEnum? AccountType = null, string Location = null, string JobFunction = null, List<string> AssetClasses = null, List<string> Industries = null)
         {
-            this.EmailAddress = EmailAddress;
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.UserName = UserName;
-            this.DisplayName = DisplayName;
-            this.Department = Department;
-            this.Division = Division;
-            this.Title = Title;
-            this.WorkPhoneNumber = WorkPhoneNumber;
-            this.MobilePhoneNumber = MobilePhoneNumber;
-            this.SmsNumber = SmsNumber;
-            this.AccountType = AccountType;
-            this.Location = Location;
-            this.JobFunction = JobFunction;
-            this.AssetClasses = AssetClasses;
-            this.Industries = Industries;
+            
+            
+                        this.EmailAddress = EmailAddress;
+            
+                        this.FirstName = FirstName;
+            
+                        this.LastName = LastName;
+            
+                        this.UserName = UserName;
+            
+                        this.DisplayName = DisplayName;
+            
+                        this.Department = Department;
+            
+                        this.Division = Division;
+            
+                        this.Title = Title;
+            
+                        this.WorkPhoneNumber = WorkPhoneNumber;
+            
+                        this.MobilePhoneNumber = MobilePhoneNumber;
+            
+                        this.SmsNumber = SmsNumber;
+            
+                        this.AccountType = AccountType;
+            
+                        this.Location = Location;
+            
+                        this.JobFunction = JobFunction;
+            
+                        this.AssetClasses = AssetClasses;
+            
+                        this.Industries = Industries;
+            
         }
         
         /// <summary>
@@ -181,21 +199,21 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class UserAttributes {\n");
             sb.Append("  EmailAddress: ").Append(EmailAddress).Append("\n");
-            sb.Append("  FirstName: ").Append(FirstName).Append("\n");
-            sb.Append("  LastName: ").Append(LastName).Append("\n");
-            sb.Append("  UserName: ").Append(UserName).Append("\n");
-            sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
-            sb.Append("  Department: ").Append(Department).Append("\n");
-            sb.Append("  Division: ").Append(Division).Append("\n");
-            sb.Append("  Title: ").Append(Title).Append("\n");
-            sb.Append("  WorkPhoneNumber: ").Append(WorkPhoneNumber).Append("\n");
-            sb.Append("  MobilePhoneNumber: ").Append(MobilePhoneNumber).Append("\n");
-            sb.Append("  SmsNumber: ").Append(SmsNumber).Append("\n");
-            sb.Append("  AccountType: ").Append(AccountType).Append("\n");
-            sb.Append("  Location: ").Append(Location).Append("\n");
-            sb.Append("  JobFunction: ").Append(JobFunction).Append("\n");
-            sb.Append("  AssetClasses: ").Append(AssetClasses).Append("\n");
-            sb.Append("  Industries: ").Append(Industries).Append("\n");
+sb.Append("  FirstName: ").Append(FirstName).Append("\n");
+sb.Append("  LastName: ").Append(LastName).Append("\n");
+sb.Append("  UserName: ").Append(UserName).Append("\n");
+sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
+sb.Append("  Department: ").Append(Department).Append("\n");
+sb.Append("  Division: ").Append(Division).Append("\n");
+sb.Append("  Title: ").Append(Title).Append("\n");
+sb.Append("  WorkPhoneNumber: ").Append(WorkPhoneNumber).Append("\n");
+sb.Append("  MobilePhoneNumber: ").Append(MobilePhoneNumber).Append("\n");
+sb.Append("  SmsNumber: ").Append(SmsNumber).Append("\n");
+sb.Append("  AccountType: ").Append(AccountType).Append("\n");
+sb.Append("  Location: ").Append(Location).Append("\n");
+sb.Append("  JobFunction: ").Append(JobFunction).Append("\n");
+sb.Append("  AssetClasses: ").Append(AssetClasses).Append("\n");
+sb.Append("  Industries: ").Append(Industries).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

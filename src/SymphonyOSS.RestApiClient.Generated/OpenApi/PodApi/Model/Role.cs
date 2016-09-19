@@ -41,9 +41,14 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Description">Description.</param>
         public Role(string Id = null, string Name = null, string Description = null)
         {
-            this.Id = Id;
-            this.Name = Name;
-            this.Description = Description;
+            
+            
+                        this.Id = Id;
+            
+                        this.Name = Name;
+            
+                        this.Description = Description;
+            
         }
         
         /// <summary>
@@ -70,8 +75,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class Role {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
+sb.Append("  Name: ").Append(Name).Append("\n");
+sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

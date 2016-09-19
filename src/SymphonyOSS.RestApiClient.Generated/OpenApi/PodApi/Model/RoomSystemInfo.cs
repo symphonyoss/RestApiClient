@@ -42,10 +42,16 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Active">If false, no messages can be sent in this stream, and membership is locked..</param>
         public RoomSystemInfo(string Id = null, long? CreationDate = null, long? CreatedByUserId = null, bool? Active = null)
         {
-            this.Id = Id;
-            this.CreationDate = CreationDate;
-            this.CreatedByUserId = CreatedByUserId;
-            this.Active = Active;
+            
+            
+                        this.Id = Id;
+            
+                        this.CreationDate = CreationDate;
+            
+                        this.CreatedByUserId = CreatedByUserId;
+            
+                        this.Active = Active;
+            
         }
         
         /// <summary>
@@ -79,9 +85,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class RoomSystemInfo {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
-            sb.Append("  CreatedByUserId: ").Append(CreatedByUserId).Append("\n");
-            sb.Append("  Active: ").Append(Active).Append("\n");
+sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
+sb.Append("  CreatedByUserId: ").Append(CreatedByUserId).Append("\n");
+sb.Append("  Active: ").Append(Active).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

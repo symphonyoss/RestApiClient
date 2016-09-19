@@ -41,16 +41,16 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         {
             
             /// <summary>
-            /// Enum ENABLED for "ENABLED"
+            /// Enum Enabled for "ENABLED"
             /// </summary>
             [EnumMember(Value = "ENABLED")]
-            ENABLED,
+            Enabled,
             
             /// <summary>
-            /// Enum DISABLED for "DISABLED"
+            /// Enum Disabled for "DISABLED"
             /// </summary>
             [EnumMember(Value = "DISABLED")]
-            DISABLED
+            Disabled
         }
 
         /// <summary>
@@ -70,13 +70,22 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="LastPasswordReset">LastPasswordReset.</param>
         public UserSystemInfo(long? Id = null, StatusEnum? Status = null, long? CreatedDate = null, string CreatedBy = null, long? LastUpdatedDate = null, long? LastLoginDate = null, long? LastPasswordReset = null)
         {
-            this.Id = Id;
-            this.Status = Status;
-            this.CreatedDate = CreatedDate;
-            this.CreatedBy = CreatedBy;
-            this.LastUpdatedDate = LastUpdatedDate;
-            this.LastLoginDate = LastLoginDate;
-            this.LastPasswordReset = LastPasswordReset;
+            
+            
+                        this.Id = Id;
+            
+                        this.Status = Status;
+            
+                        this.CreatedDate = CreatedDate;
+            
+                        this.CreatedBy = CreatedBy;
+            
+                        this.LastUpdatedDate = LastUpdatedDate;
+            
+                        this.LastLoginDate = LastLoginDate;
+            
+                        this.LastPasswordReset = LastPasswordReset;
+            
         }
         
         /// <summary>
@@ -118,12 +127,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class UserSystemInfo {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  CreatedDate: ").Append(CreatedDate).Append("\n");
-            sb.Append("  CreatedBy: ").Append(CreatedBy).Append("\n");
-            sb.Append("  LastUpdatedDate: ").Append(LastUpdatedDate).Append("\n");
-            sb.Append("  LastLoginDate: ").Append(LastLoginDate).Append("\n");
-            sb.Append("  LastPasswordReset: ").Append(LastPasswordReset).Append("\n");
+sb.Append("  Status: ").Append(Status).Append("\n");
+sb.Append("  CreatedDate: ").Append(CreatedDate).Append("\n");
+sb.Append("  CreatedBy: ").Append(CreatedBy).Append("\n");
+sb.Append("  LastUpdatedDate: ").Append(LastUpdatedDate).Append("\n");
+sb.Append("  LastLoginDate: ").Append(LastLoginDate).Append("\n");
+sb.Append("  LastPasswordReset: ").Append(LastPasswordReset).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

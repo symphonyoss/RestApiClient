@@ -94,7 +94,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             {
                 this.FromUserId = FromUserId;
             }
-            this.Id = Id;
+            
+            
+                        this.Id = Id;
+            
         }
         
         /// <summary>
@@ -139,11 +142,11 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             var sb = new StringBuilder();
             sb.Append("class Message {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  MessageType: ").Append(MessageType).Append("\n");
-            sb.Append("  StreamId: ").Append(StreamId).Append("\n");
-            sb.Append("  _Message: ").Append(_Message).Append("\n");
-            sb.Append("  FromUserId: ").Append(FromUserId).Append("\n");
+sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
+sb.Append("  MessageType: ").Append(MessageType).Append("\n");
+sb.Append("  StreamId: ").Append(StreamId).Append("\n");
+sb.Append("  _Message: ").Append(_Message).Append("\n");
+sb.Append("  FromUserId: ").Append(FromUserId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

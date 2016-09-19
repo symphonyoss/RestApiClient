@@ -41,9 +41,14 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Roles">Roles.</param>
         public UserCreate(UserAttributes UserAttributes = null, Password Password = null, List<string> Roles = null)
         {
-            this.UserAttributes = UserAttributes;
-            this.Password = Password;
-            this.Roles = Roles;
+            
+            
+                        this.UserAttributes = UserAttributes;
+            
+                        this.Password = Password;
+            
+                        this.Roles = Roles;
+            
         }
         
         /// <summary>
@@ -70,8 +75,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class UserCreate {\n");
             sb.Append("  UserAttributes: ").Append(UserAttributes).Append("\n");
-            sb.Append("  Password: ").Append(Password).Append("\n");
-            sb.Append("  Roles: ").Append(Roles).Append("\n");
+sb.Append("  Password: ").Append(Password).Append("\n");
+sb.Append("  Roles: ").Append(Roles).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

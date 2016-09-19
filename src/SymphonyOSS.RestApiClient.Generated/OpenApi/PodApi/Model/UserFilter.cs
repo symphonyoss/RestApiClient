@@ -41,16 +41,16 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         {
             
             /// <summary>
-            /// Enum ENABLED for "ENABLED"
+            /// Enum Enabled for "ENABLED"
             /// </summary>
             [EnumMember(Value = "ENABLED")]
-            ENABLED,
+            Enabled,
             
             /// <summary>
-            /// Enum DISABLED for "DISABLED"
+            /// Enum Disabled for "DISABLED"
             /// </summary>
             [EnumMember(Value = "DISABLED")]
-            DISABLED
+            Disabled
         }
 
         /// <summary>
@@ -61,22 +61,22 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         {
             
             /// <summary>
-            /// Enum NORMAL for "NORMAL"
+            /// Enum Normal for "NORMAL"
             /// </summary>
             [EnumMember(Value = "NORMAL")]
-            NORMAL,
+            Normal,
             
             /// <summary>
-            /// Enum SYSTEM for "SYSTEM"
+            /// Enum System for "SYSTEM"
             /// </summary>
             [EnumMember(Value = "SYSTEM")]
-            SYSTEM,
+            System,
             
             /// <summary>
-            /// Enum TW for "TW"
+            /// Enum Tw for "TW"
             /// </summary>
             [EnumMember(Value = "TW")]
-            TW
+            Tw
         }
 
         /// <summary>
@@ -102,14 +102,24 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Location">Location.</param>
         public UserFilter(string Email = null, string Name = null, string Department = null, string Title = null, string Role = null, StatusEnum? Status = null, UsertypeEnum? Usertype = null, string Location = null)
         {
-            this.Email = Email;
-            this.Name = Name;
-            this.Department = Department;
-            this.Title = Title;
-            this.Role = Role;
-            this.Status = Status;
-            this.Usertype = Usertype;
-            this.Location = Location;
+            
+            
+                        this.Email = Email;
+            
+                        this.Name = Name;
+            
+                        this.Department = Department;
+            
+                        this.Title = Title;
+            
+                        this.Role = Role;
+            
+                        this.Status = Status;
+            
+                        this.Usertype = Usertype;
+            
+                        this.Location = Location;
+            
         }
         
         /// <summary>
@@ -151,13 +161,13 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class UserFilter {\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Department: ").Append(Department).Append("\n");
-            sb.Append("  Title: ").Append(Title).Append("\n");
-            sb.Append("  Role: ").Append(Role).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  Usertype: ").Append(Usertype).Append("\n");
-            sb.Append("  Location: ").Append(Location).Append("\n");
+sb.Append("  Name: ").Append(Name).Append("\n");
+sb.Append("  Department: ").Append(Department).Append("\n");
+sb.Append("  Title: ").Append(Title).Append("\n");
+sb.Append("  Role: ").Append(Role).Append("\n");
+sb.Append("  Status: ").Append(Status).Append("\n");
+sb.Append("  Usertype: ").Append(Usertype).Append("\n");
+sb.Append("  Location: ").Append(Location).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

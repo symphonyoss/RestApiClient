@@ -39,7 +39,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="UserId">UserId.</param>
         public SessionInfo(long? UserId = null)
         {
-            this.UserId = UserId;
+            
+            
+                        this.UserId = UserId;
+            
         }
         
         /// <summary>

@@ -41,16 +41,16 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         {
             
             /// <summary>
-            /// Enum TEXT for "TEXT"
+            /// Enum Text for "TEXT"
             /// </summary>
             [EnumMember(Value = "TEXT")]
-            TEXT,
+            Text,
             
             /// <summary>
-            /// Enum XML for "XML"
+            /// Enum Xml for "XML"
             /// </summary>
             [EnumMember(Value = "XML")]
-            XML
+            Xml
         }
 
         /// <summary>
@@ -72,15 +72,26 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Format">Format.</param>
         public Disclaimer(string Id = null, string Name = null, string Content = null, int? FrequencyInHours = null, bool? IsDefault = null, bool? IsActive = null, long? CreatedDate = null, long? ModifiedDate = null, FormatEnum? Format = null)
         {
-            this.Id = Id;
-            this.Name = Name;
-            this.Content = Content;
-            this.FrequencyInHours = FrequencyInHours;
-            this.IsDefault = IsDefault;
-            this.IsActive = IsActive;
-            this.CreatedDate = CreatedDate;
-            this.ModifiedDate = ModifiedDate;
-            this.Format = Format;
+            
+            
+                        this.Id = Id;
+            
+                        this.Name = Name;
+            
+                        this.Content = Content;
+            
+                        this.FrequencyInHours = FrequencyInHours;
+            
+                        this.IsDefault = IsDefault;
+            
+                        this.IsActive = IsActive;
+            
+                        this.CreatedDate = CreatedDate;
+            
+                        this.ModifiedDate = ModifiedDate;
+            
+                        this.Format = Format;
+            
         }
         
         /// <summary>
@@ -132,14 +143,14 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class Disclaimer {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Content: ").Append(Content).Append("\n");
-            sb.Append("  FrequencyInHours: ").Append(FrequencyInHours).Append("\n");
-            sb.Append("  IsDefault: ").Append(IsDefault).Append("\n");
-            sb.Append("  IsActive: ").Append(IsActive).Append("\n");
-            sb.Append("  CreatedDate: ").Append(CreatedDate).Append("\n");
-            sb.Append("  ModifiedDate: ").Append(ModifiedDate).Append("\n");
-            sb.Append("  Format: ").Append(Format).Append("\n");
+sb.Append("  Name: ").Append(Name).Append("\n");
+sb.Append("  Content: ").Append(Content).Append("\n");
+sb.Append("  FrequencyInHours: ").Append(FrequencyInHours).Append("\n");
+sb.Append("  IsDefault: ").Append(IsDefault).Append("\n");
+sb.Append("  IsActive: ").Append(IsActive).Append("\n");
+sb.Append("  CreatedDate: ").Append(CreatedDate).Append("\n");
+sb.Append("  ModifiedDate: ").Append(ModifiedDate).Append("\n");
+sb.Append("  Format: ").Append(Format).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

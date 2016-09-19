@@ -41,16 +41,16 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         {
             
             /// <summary>
-            /// Enum BLOCK for "BLOCK"
+            /// Enum Block for "BLOCK"
             /// </summary>
             [EnumMember(Value = "BLOCK")]
-            BLOCK,
+            Block,
             
             /// <summary>
-            /// Enum ALLOW for "ALLOW"
+            /// Enum Allow for "ALLOW"
             /// </summary>
             [EnumMember(Value = "ALLOW")]
-            ALLOW
+            Allow
         }
 
         /// <summary>
@@ -70,13 +70,22 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="ModifiedDate">ModifiedDate.</param>
         public Policy(string Id = null, PolicyTypeEnum? PolicyType = null, bool? Active = null, int? MemberCount = null, List<string> Groups = null, long? CreatedDate = null, long? ModifiedDate = null)
         {
-            this.Id = Id;
-            this.PolicyType = PolicyType;
-            this.Active = Active;
-            this.MemberCount = MemberCount;
-            this.Groups = Groups;
-            this.CreatedDate = CreatedDate;
-            this.ModifiedDate = ModifiedDate;
+            
+            
+                        this.Id = Id;
+            
+                        this.PolicyType = PolicyType;
+            
+                        this.Active = Active;
+            
+                        this.MemberCount = MemberCount;
+            
+                        this.Groups = Groups;
+            
+                        this.CreatedDate = CreatedDate;
+            
+                        this.ModifiedDate = ModifiedDate;
+            
         }
         
         /// <summary>
@@ -118,12 +127,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class Policy {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  PolicyType: ").Append(PolicyType).Append("\n");
-            sb.Append("  Active: ").Append(Active).Append("\n");
-            sb.Append("  MemberCount: ").Append(MemberCount).Append("\n");
-            sb.Append("  Groups: ").Append(Groups).Append("\n");
-            sb.Append("  CreatedDate: ").Append(CreatedDate).Append("\n");
-            sb.Append("  ModifiedDate: ").Append(ModifiedDate).Append("\n");
+sb.Append("  PolicyType: ").Append(PolicyType).Append("\n");
+sb.Append("  Active: ").Append(Active).Append("\n");
+sb.Append("  MemberCount: ").Append(MemberCount).Append("\n");
+sb.Append("  Groups: ").Append(Groups).Append("\n");
+sb.Append("  CreatedDate: ").Append(CreatedDate).Append("\n");
+sb.Append("  ModifiedDate: ").Append(ModifiedDate).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

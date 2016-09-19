@@ -27,14 +27,14 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IPresenceApi : IApiAccessor
+    public interface IPresenceApi
     {
         #region Synchronous Operations
         /// <summary>
         /// Get presence information about all company (pod) users.
         /// </summary>
         /// <remarks>
-        /// The returned data is taken from the in-memory cache for performance reasons which means inactive users may be omitted from the response.  All non-inactive users WILL be returned and some inactive users MAY be included. Any omitted user IS inactive. 
+        /// The returned data is taken from the in-memory cache for performance\nreasons which means inactive users may be omitted from the response.\n\nAll non-inactive users WILL be returned and some inactive users MAY\nbe included. Any omitted user IS inactive.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -45,7 +45,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Get presence information about all company (pod) users.
         /// </summary>
         /// <remarks>
-        /// The returned data is taken from the in-memory cache for performance reasons which means inactive users may be omitted from the response.  All non-inactive users WILL be returned and some inactive users MAY be included. Any omitted user IS inactive. 
+        /// The returned data is taken from the in-memory cache for performance\nreasons which means inactive users may be omitted from the response.\n\nAll non-inactive users WILL be returned and some inactive users MAY\nbe included. Any omitted user IS inactive.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -58,7 +58,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// 
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <returns>Presence</returns>
         Presence V1UserUidPresenceGet (long? uid, string sessionToken);
@@ -70,7 +70,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// 
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <returns>ApiResponse of Presence</returns>
         ApiResponse<Presence> V1UserUidPresenceGetWithHttpInfo (long? uid, string sessionToken);
@@ -78,10 +78,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// LIMITED RELEASE Set presence information for a particular user.
         /// </summary>
         /// <remarks>
-        /// Only the following states can be set AVAILABLE BUSY ON_THE_PHONE AWAY  Attempts to set other states will result in a 403 FORBIDDEN response.  The UNDEFINED value is an error case used to represent the case if the value stored in the system cannot be represented by the values known to the API.  The other states are reserved for future use. 
+        /// Only the following states can be set\nAVAILABLE\nBUSY\nON_THE_PHONE\nAWAY\n\nAttempts to set other states will result in a 403 FORBIDDEN response.\n\nThe UNDEFINED value is an error case used to represent the case if the value stored in the\nsystem cannot be represented by the values known to the API.\n\nThe other states are reserved for future use.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="presence"></param>
         /// <returns>Presence</returns>
@@ -91,10 +91,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// LIMITED RELEASE Set presence information for a particular user.
         /// </summary>
         /// <remarks>
-        /// Only the following states can be set AVAILABLE BUSY ON_THE_PHONE AWAY  Attempts to set other states will result in a 403 FORBIDDEN response.  The UNDEFINED value is an error case used to represent the case if the value stored in the system cannot be represented by the values known to the API.  The other states are reserved for future use. 
+        /// Only the following states can be set\nAVAILABLE\nBUSY\nON_THE_PHONE\nAWAY\n\nAttempts to set other states will result in a 403 FORBIDDEN response.\n\nThe UNDEFINED value is an error case used to represent the case if the value stored in the\nsystem cannot be represented by the values known to the API.\n\nThe other states are reserved for future use.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="presence"></param>
         /// <returns>ApiResponse of Presence</returns>
@@ -105,7 +105,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Get presence information about all company (pod) users.
         /// </summary>
         /// <remarks>
-        /// The returned data is taken from the in-memory cache for performance reasons which means inactive users may be omitted from the response.  All non-inactive users WILL be returned and some inactive users MAY be included. Any omitted user IS inactive. 
+        /// The returned data is taken from the in-memory cache for performance\nreasons which means inactive users may be omitted from the response.\n\nAll non-inactive users WILL be returned and some inactive users MAY\nbe included. Any omitted user IS inactive.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -116,7 +116,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Get presence information about all company (pod) users.
         /// </summary>
         /// <remarks>
-        /// The returned data is taken from the in-memory cache for performance reasons which means inactive users may be omitted from the response.  All non-inactive users WILL be returned and some inactive users MAY be included. Any omitted user IS inactive. 
+        /// The returned data is taken from the in-memory cache for performance\nreasons which means inactive users may be omitted from the response.\n\nAll non-inactive users WILL be returned and some inactive users MAY\nbe included. Any omitted user IS inactive.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -129,7 +129,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// 
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <returns>Task of Presence</returns>
         System.Threading.Tasks.Task<Presence> V1UserUidPresenceGetAsync (long? uid, string sessionToken);
@@ -141,7 +141,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// 
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <returns>Task of ApiResponse (Presence)</returns>
         System.Threading.Tasks.Task<ApiResponse<Presence>> V1UserUidPresenceGetAsyncWithHttpInfo (long? uid, string sessionToken);
@@ -149,10 +149,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// LIMITED RELEASE Set presence information for a particular user.
         /// </summary>
         /// <remarks>
-        /// Only the following states can be set AVAILABLE BUSY ON_THE_PHONE AWAY  Attempts to set other states will result in a 403 FORBIDDEN response.  The UNDEFINED value is an error case used to represent the case if the value stored in the system cannot be represented by the values known to the API.  The other states are reserved for future use. 
+        /// Only the following states can be set\nAVAILABLE\nBUSY\nON_THE_PHONE\nAWAY\n\nAttempts to set other states will result in a 403 FORBIDDEN response.\n\nThe UNDEFINED value is an error case used to represent the case if the value stored in the\nsystem cannot be represented by the values known to the API.\n\nThe other states are reserved for future use.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="presence"></param>
         /// <returns>Task of Presence</returns>
@@ -162,10 +162,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// LIMITED RELEASE Set presence information for a particular user.
         /// </summary>
         /// <remarks>
-        /// Only the following states can be set AVAILABLE BUSY ON_THE_PHONE AWAY  Attempts to set other states will result in a 403 FORBIDDEN response.  The UNDEFINED value is an error case used to represent the case if the value stored in the system cannot be represented by the values known to the API.  The other states are reserved for future use. 
+        /// Only the following states can be set\nAVAILABLE\nBUSY\nON_THE_PHONE\nAWAY\n\nAttempts to set other states will result in a 403 FORBIDDEN response.\n\nThe UNDEFINED value is an error case used to represent the case if the value stored in the\nsystem cannot be represented by the values known to the API.\n\nThe other states are reserved for future use.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="presence"></param>
         /// <returns>Task of ApiResponse (Presence)</returns>
@@ -176,10 +176,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class PresenceApi : IPresenceApi
+    public class PresenceApi : IPresenceApi
     {
-        private SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="PresenceApi"/> class.
         /// </summary>
@@ -187,8 +185,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         public PresenceApi(String basePath)
         {
             this.Configuration = new Configuration(new ApiClient(basePath));
-
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.Configuration.DefaultExceptionFactory;
 
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
@@ -210,8 +206,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             else
                 this.Configuration = configuration;
 
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.Configuration.DefaultExceptionFactory;
-
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
             {
@@ -232,7 +226,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Sets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
+        [Obsolete("SetBasePath is deprecated, please do 'Configuraiton.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
         public void SetBasePath(String basePath)
         {
             // do nothing
@@ -243,22 +237,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <value>An instance of the Configuration</value>
         public Configuration Configuration {get; set;}
-
-        /// <summary>
-        /// Provides a factory method hook for the creation of exceptions.
-        /// </summary>
-        public SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ExceptionFactory ExceptionFactory
-        {
-            get
-            {
-                if (_exceptionFactory != null && _exceptionFactory.GetInvocationList().Length > 1)
-                {
-                    throw new InvalidOperationException("Multicast delegate for ExceptionFactory is unsupported.");
-                }
-                return _exceptionFactory;
-            }
-            set { _exceptionFactory = value; }
-        }
 
         /// <summary>
         /// Gets the default header.
@@ -283,7 +261,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// Get presence information about all company (pod) users. The returned data is taken from the in-memory cache for performance reasons which means inactive users may be omitted from the response.  All non-inactive users WILL be returned and some inactive users MAY be included. Any omitted user IS inactive. 
+        /// Get presence information about all company (pod) users. The returned data is taken from the in-memory cache for performance\nreasons which means inactive users may be omitted from the response.\n\nAll non-inactive users WILL be returned and some inactive users MAY\nbe included. Any omitted user IS inactive.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -295,7 +273,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// Get presence information about all company (pod) users. The returned data is taken from the in-memory cache for performance reasons which means inactive users may be omitted from the response.  All non-inactive users WILL be returned and some inactive users MAY be included. Any omitted user IS inactive. 
+        /// Get presence information about all company (pod) users. The returned data is taken from the in-memory cache for performance\nreasons which means inactive users may be omitted from the response.\n\nAll non-inactive users WILL be returned and some inactive users MAY\nbe included. Any omitted user IS inactive.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -340,11 +318,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1PresenceGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1PresenceGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1PresenceGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<PresenceList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -353,7 +330,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// Get presence information about all company (pod) users. The returned data is taken from the in-memory cache for performance reasons which means inactive users may be omitted from the response.  All non-inactive users WILL be returned and some inactive users MAY be included. Any omitted user IS inactive. 
+        /// Get presence information about all company (pod) users. The returned data is taken from the in-memory cache for performance\nreasons which means inactive users may be omitted from the response.\n\nAll non-inactive users WILL be returned and some inactive users MAY\nbe included. Any omitted user IS inactive.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -366,7 +343,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// Get presence information about all company (pod) users. The returned data is taken from the in-memory cache for performance reasons which means inactive users may be omitted from the response.  All non-inactive users WILL be returned and some inactive users MAY be included. Any omitted user IS inactive. 
+        /// Get presence information about all company (pod) users. The returned data is taken from the in-memory cache for performance\nreasons which means inactive users may be omitted from the response.\n\nAll non-inactive users WILL be returned and some inactive users MAY\nbe included. Any omitted user IS inactive.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -411,11 +388,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1PresenceGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1PresenceGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1PresenceGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<PresenceList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -427,7 +403,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Get presence information about a particular user. 
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <returns>Presence</returns>
         public Presence V1UserUidPresenceGet (long? uid, string sessionToken)
@@ -440,7 +416,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Get presence information about a particular user. 
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <returns>ApiResponse of Presence</returns>
         public ApiResponse< Presence > V1UserUidPresenceGetWithHttpInfo (long? uid, string sessionToken)
@@ -487,11 +463,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1UserUidPresenceGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1UserUidPresenceGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1UserUidPresenceGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<Presence>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -503,7 +478,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Get presence information about a particular user. 
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <returns>Task of Presence</returns>
         public async System.Threading.Tasks.Task<Presence> V1UserUidPresenceGetAsync (long? uid, string sessionToken)
@@ -517,7 +492,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Get presence information about a particular user. 
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <returns>Task of ApiResponse (Presence)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<Presence>> V1UserUidPresenceGetAsyncWithHttpInfo (long? uid, string sessionToken)
@@ -564,11 +539,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1UserUidPresenceGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1UserUidPresenceGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1UserUidPresenceGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<Presence>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -577,10 +551,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// LIMITED RELEASE Set presence information for a particular user. Only the following states can be set AVAILABLE BUSY ON_THE_PHONE AWAY  Attempts to set other states will result in a 403 FORBIDDEN response.  The UNDEFINED value is an error case used to represent the case if the value stored in the system cannot be represented by the values known to the API.  The other states are reserved for future use. 
+        /// LIMITED RELEASE Set presence information for a particular user. Only the following states can be set\nAVAILABLE\nBUSY\nON_THE_PHONE\nAWAY\n\nAttempts to set other states will result in a 403 FORBIDDEN response.\n\nThe UNDEFINED value is an error case used to represent the case if the value stored in the\nsystem cannot be represented by the values known to the API.\n\nThe other states are reserved for future use.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="presence"></param>
         /// <returns>Presence</returns>
@@ -591,10 +565,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// LIMITED RELEASE Set presence information for a particular user. Only the following states can be set AVAILABLE BUSY ON_THE_PHONE AWAY  Attempts to set other states will result in a 403 FORBIDDEN response.  The UNDEFINED value is an error case used to represent the case if the value stored in the system cannot be represented by the values known to the API.  The other states are reserved for future use. 
+        /// LIMITED RELEASE Set presence information for a particular user. Only the following states can be set\nAVAILABLE\nBUSY\nON_THE_PHONE\nAWAY\n\nAttempts to set other states will result in a 403 FORBIDDEN response.\n\nThe UNDEFINED value is an error case used to represent the case if the value stored in the\nsystem cannot be represented by the values known to the API.\n\nThe other states are reserved for future use.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="presence"></param>
         /// <returns>ApiResponse of Presence</returns>
@@ -636,7 +610,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (presence != null && presence.GetType() != typeof(byte[]))
+            if (presence.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(presence); // http body (model) parameter
             }
@@ -653,11 +627,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1UserUidPresencePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1UserUidPresencePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1UserUidPresencePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<Presence>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -666,10 +639,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// LIMITED RELEASE Set presence information for a particular user. Only the following states can be set AVAILABLE BUSY ON_THE_PHONE AWAY  Attempts to set other states will result in a 403 FORBIDDEN response.  The UNDEFINED value is an error case used to represent the case if the value stored in the system cannot be represented by the values known to the API.  The other states are reserved for future use. 
+        /// LIMITED RELEASE Set presence information for a particular user. Only the following states can be set\nAVAILABLE\nBUSY\nON_THE_PHONE\nAWAY\n\nAttempts to set other states will result in a 403 FORBIDDEN response.\n\nThe UNDEFINED value is an error case used to represent the case if the value stored in the\nsystem cannot be represented by the values known to the API.\n\nThe other states are reserved for future use.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="presence"></param>
         /// <returns>Task of Presence</returns>
@@ -681,10 +654,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// LIMITED RELEASE Set presence information for a particular user. Only the following states can be set AVAILABLE BUSY ON_THE_PHONE AWAY  Attempts to set other states will result in a 403 FORBIDDEN response.  The UNDEFINED value is an error case used to represent the case if the value stored in the system cannot be represented by the values known to the API.  The other states are reserved for future use. 
+        /// LIMITED RELEASE Set presence information for a particular user. Only the following states can be set\nAVAILABLE\nBUSY\nON_THE_PHONE\nAWAY\n\nAttempts to set other states will result in a 403 FORBIDDEN response.\n\nThe UNDEFINED value is an error case used to represent the case if the value stored in the\nsystem cannot be represented by the values known to the API.\n\nThe other states are reserved for future use.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid">User ID as a decimal integer </param>
+        /// <param name="uid">User ID as a decimal integer\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="presence"></param>
         /// <returns>Task of ApiResponse (Presence)</returns>
@@ -726,7 +699,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (presence != null && presence.GetType() != typeof(byte[]))
+            if (presence.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(presence); // http body (model) parameter
             }
@@ -743,11 +716,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1UserUidPresencePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1UserUidPresencePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1UserUidPresencePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<Presence>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),

@@ -40,8 +40,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Url">Url of the image.</param>
         public Avatar(string Size = null, string Url = null)
         {
-            this.Size = Size;
-            this.Url = Url;
+            
+            
+                        this.Size = Size;
+            
+                        this.Url = Url;
+            
         }
         
         /// <summary>
@@ -65,7 +69,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class Avatar {\n");
             sb.Append("  Size: ").Append(Size).Append("\n");
-            sb.Append("  Url: ").Append(Url).Append("\n");
+sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

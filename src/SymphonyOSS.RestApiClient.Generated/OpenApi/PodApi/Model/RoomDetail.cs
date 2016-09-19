@@ -41,9 +41,14 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="ImmutableRoomAttributes">ImmutableRoomAttributes.</param>
         public RoomDetail(RoomAttributes RoomAttributes = null, RoomSystemInfo RoomSystemInfo = null, ImmutableRoomAttributes ImmutableRoomAttributes = null)
         {
-            this.RoomAttributes = RoomAttributes;
-            this.RoomSystemInfo = RoomSystemInfo;
-            this.ImmutableRoomAttributes = ImmutableRoomAttributes;
+            
+            
+                        this.RoomAttributes = RoomAttributes;
+            
+                        this.RoomSystemInfo = RoomSystemInfo;
+            
+                        this.ImmutableRoomAttributes = ImmutableRoomAttributes;
+            
         }
         
         /// <summary>
@@ -70,8 +75,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class RoomDetail {\n");
             sb.Append("  RoomAttributes: ").Append(RoomAttributes).Append("\n");
-            sb.Append("  RoomSystemInfo: ").Append(RoomSystemInfo).Append("\n");
-            sb.Append("  ImmutableRoomAttributes: ").Append(ImmutableRoomAttributes).Append("\n");
+sb.Append("  RoomSystemInfo: ").Append(RoomSystemInfo).Append("\n");
+sb.Append("  ImmutableRoomAttributes: ").Append(ImmutableRoomAttributes).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

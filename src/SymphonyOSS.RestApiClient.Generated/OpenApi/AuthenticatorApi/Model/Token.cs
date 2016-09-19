@@ -36,24 +36,28 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Token" /> class.
         /// </summary>
-        /// <param name="Name">The name of the header in which the token should be presented on subsequent API calls. .</param>
-        /// <param name="_Token">The token which should be passed. This should be considered opaque data by the client. It is not intended to conatain any data interpretable by the client. The format is secret and subject to change without notice. .</param>
+        /// <param name="Name">The name of the header in which the token should be presented on subsequent\nAPI calls.\n.</param>
+        /// <param name="_Token">The token which should be passed. This should be considered opaque data by\nthe client. It is not intended to conatain any data interpretable by the\nclient. The format is secret and subject to change without notice.\n.</param>
         public Token(string Name = null, string _Token = null)
         {
-            this.Name = Name;
-            this._Token = _Token;
+            
+            
+                        this.Name = Name;
+            
+                        this._Token = _Token;
+            
         }
         
         /// <summary>
-        /// The name of the header in which the token should be presented on subsequent API calls. 
+        /// The name of the header in which the token should be presented on subsequent\nAPI calls.\n
         /// </summary>
-        /// <value>The name of the header in which the token should be presented on subsequent API calls. </value>
+        /// <value>The name of the header in which the token should be presented on subsequent\nAPI calls.\n</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
-        /// The token which should be passed. This should be considered opaque data by the client. It is not intended to conatain any data interpretable by the client. The format is secret and subject to change without notice. 
+        /// The token which should be passed. This should be considered opaque data by\nthe client. It is not intended to conatain any data interpretable by the\nclient. The format is secret and subject to change without notice.\n
         /// </summary>
-        /// <value>The token which should be passed. This should be considered opaque data by the client. It is not intended to conatain any data interpretable by the client. The format is secret and subject to change without notice. </value>
+        /// <value>The token which should be passed. This should be considered opaque data by\nthe client. It is not intended to conatain any data interpretable by the\nclient. The format is secret and subject to change without notice.\n</value>
         [DataMember(Name="token", EmitDefaultValue=false)]
         public string _Token { get; set; }
         /// <summary>
@@ -65,7 +69,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Model
             var sb = new StringBuilder();
             sb.Append("class Token {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  _Token: ").Append(_Token).Append("\n");
+sb.Append("  _Token: ").Append(_Token).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

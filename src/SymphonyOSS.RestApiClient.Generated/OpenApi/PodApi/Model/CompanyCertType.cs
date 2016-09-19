@@ -41,28 +41,28 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         {
             
             /// <summary>
-            /// Enum USERSIGNING for "USERSIGNING"
+            /// Enum Usersigning for "USERSIGNING"
             /// </summary>
             [EnumMember(Value = "USERSIGNING")]
-            USERSIGNING,
+            Usersigning,
             
             /// <summary>
-            /// Enum USER for "USER"
+            /// Enum User for "USER"
             /// </summary>
             [EnumMember(Value = "USER")]
-            USER,
+            User,
             
             /// <summary>
-            /// Enum OPERATIONSSIGNING for "OPERATIONSSIGNING"
+            /// Enum Operationssigning for "OPERATIONSSIGNING"
             /// </summary>
             [EnumMember(Value = "OPERATIONSSIGNING")]
-            OPERATIONSSIGNING,
+            Operationssigning,
             
             /// <summary>
-            /// Enum OPERATIONSUSER for "OPERATIONSUSER"
+            /// Enum Operationsuser for "OPERATIONSUSER"
             /// </summary>
             [EnumMember(Value = "OPERATIONSUSER")]
-            OPERATIONSUSER
+            Operationsuser
         }
 
         /// <summary>
@@ -76,7 +76,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Type">Type.</param>
         public CompanyCertType(TypeEnum? Type = null)
         {
-            this.Type = Type;
+            
+            
+                        this.Type = Type;
+            
         }
         
         /// <summary>

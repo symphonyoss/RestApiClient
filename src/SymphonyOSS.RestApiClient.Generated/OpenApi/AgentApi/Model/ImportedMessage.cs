@@ -41,16 +41,16 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
         {
             
             /// <summary>
-            /// Enum TEXT for "TEXT"
+            /// Enum Text for "TEXT"
             /// </summary>
             [EnumMember(Value = "TEXT")]
-            TEXT,
+            Text,
             
             /// <summary>
-            /// Enum MESSAGEML for "MESSAGEML"
+            /// Enum Messageml for "MESSAGEML"
             /// </summary>
             [EnumMember(Value = "MESSAGEML")]
-            MESSAGEML
+            Messageml
         }
 
         /// <summary>
@@ -68,9 +68,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
         /// </summary>
         /// <param name="Message">Message text in MessageML (required).</param>
         /// <param name="Format">Format.</param>
-        /// <param name="IntendedMessageTimestamp">The timestamp representing the time when the message was sent in the original system in milliseconds since Jan 1st 1970.  (required).</param>
-        /// <param name="IntendedMessageFromUserId">The long integer userid of the Symphony user who you intend to show sent the message.  (required).</param>
-        /// <param name="OriginatingSystemId">The ID of the system through which the message was originally sent.  (required).</param>
+        /// <param name="IntendedMessageTimestamp">The timestamp representing the time when the message was sent in the original system\nin milliseconds since Jan 1st 1970.\n (required).</param>
+        /// <param name="IntendedMessageFromUserId">The long integer userid of the Symphony user who you intend to show sent the message.\n (required).</param>
+        /// <param name="OriginatingSystemId">The ID of the system through which the message was originally sent.\n (required).</param>
         /// <param name="StreamId">StreamId (required).</param>
         public ImportedMessage(string Message = null, FormatEnum? Format = null, long? IntendedMessageTimestamp = null, long? IntendedMessageFromUserId = null, string OriginatingSystemId = null, string StreamId = null)
         {
@@ -119,7 +119,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             {
                 this.StreamId = StreamId;
             }
-            this.Format = Format;
+            
+            
+                        this.Format = Format;
+            
         }
         
         /// <summary>
@@ -129,21 +132,21 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
         [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
         /// <summary>
-        /// The timestamp representing the time when the message was sent in the original system in milliseconds since Jan 1st 1970. 
+        /// The timestamp representing the time when the message was sent in the original system\nin milliseconds since Jan 1st 1970.\n
         /// </summary>
-        /// <value>The timestamp representing the time when the message was sent in the original system in milliseconds since Jan 1st 1970. </value>
+        /// <value>The timestamp representing the time when the message was sent in the original system\nin milliseconds since Jan 1st 1970.\n</value>
         [DataMember(Name="intendedMessageTimestamp", EmitDefaultValue=false)]
         public long? IntendedMessageTimestamp { get; set; }
         /// <summary>
-        /// The long integer userid of the Symphony user who you intend to show sent the message. 
+        /// The long integer userid of the Symphony user who you intend to show sent the message.\n
         /// </summary>
-        /// <value>The long integer userid of the Symphony user who you intend to show sent the message. </value>
+        /// <value>The long integer userid of the Symphony user who you intend to show sent the message.\n</value>
         [DataMember(Name="intendedMessageFromUserId", EmitDefaultValue=false)]
         public long? IntendedMessageFromUserId { get; set; }
         /// <summary>
-        /// The ID of the system through which the message was originally sent. 
+        /// The ID of the system through which the message was originally sent.\n
         /// </summary>
-        /// <value>The ID of the system through which the message was originally sent. </value>
+        /// <value>The ID of the system through which the message was originally sent.\n</value>
         [DataMember(Name="originatingSystemId", EmitDefaultValue=false)]
         public string OriginatingSystemId { get; set; }
         /// <summary>
@@ -160,11 +163,11 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             var sb = new StringBuilder();
             sb.Append("class ImportedMessage {\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  Format: ").Append(Format).Append("\n");
-            sb.Append("  IntendedMessageTimestamp: ").Append(IntendedMessageTimestamp).Append("\n");
-            sb.Append("  IntendedMessageFromUserId: ").Append(IntendedMessageFromUserId).Append("\n");
-            sb.Append("  OriginatingSystemId: ").Append(OriginatingSystemId).Append("\n");
-            sb.Append("  StreamId: ").Append(StreamId).Append("\n");
+sb.Append("  Format: ").Append(Format).Append("\n");
+sb.Append("  IntendedMessageTimestamp: ").Append(IntendedMessageTimestamp).Append("\n");
+sb.Append("  IntendedMessageFromUserId: ").Append(IntendedMessageFromUserId).Append("\n");
+sb.Append("  OriginatingSystemId: ").Append(OriginatingSystemId).Append("\n");
+sb.Append("  StreamId: ").Append(StreamId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

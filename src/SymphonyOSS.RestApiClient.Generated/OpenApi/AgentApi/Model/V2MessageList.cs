@@ -36,9 +36,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="V2MessageList" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
         public V2MessageList()
         {
+            
+            
         }
         
         /// <summary>
@@ -49,7 +50,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
         {
             var sb = new StringBuilder();
             sb.Append("class V2MessageList {\n");
-            sb.Append("}\n");
+                        sb.Append("}\n");
             return sb.ToString();
         }
   

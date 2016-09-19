@@ -27,7 +27,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IStreamsApi : IApiAccessor
+    public interface IStreamsApi
     {
         #region Synchronous Operations
         /// <summary>
@@ -69,7 +69,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Create a new single or multi party instant message conversation between the caller and specified users.
         /// </summary>
         /// <remarks>
-        /// At least one user ID must be provided or an error response will be sent.  The caller is implicitly included in the members of the created chat.  Duplicate users will be included in the membership of the chat but the duplication will be silently ignored.  If there is an existing IM conversation with the same set of participants then the id of that existing stream will be returned.  This method was incorrectly specified to take a query parameter in version 1.0 of this specification but now expects a JSON array of user IDs in the body of the request. 
+        /// At least one user ID must be provided or\nan error response will be sent.\n\nThe caller is implicitly included in the members of the\ncreated chat.\n\nDuplicate users will be included in the membership of the chat but\nthe duplication will be silently ignored.\n\nIf there is an existing IM conversation with the same set of participants then\nthe id of that existing stream will be returned.\n\nThis method was incorrectly specified to take a query parameter in\nversion 1.0 of this specification but now expects a JSON array of\nuser IDs in the body of the request.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uidList">List of (integer) User IDs of participants</param>
@@ -80,7 +80,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Create a new chatroom.
         /// </summary>
         /// <remarks>
-        /// Create a new chatroom.  If no attributes are specified, the room is created as a private chatroom. 
+        /// Create a new chatroom.\n\nIf no attributes are specified, the room is created as a private chatroom.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
@@ -92,7 +92,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Create a new chatroom.
         /// </summary>
         /// <remarks>
-        /// Create a new chatroom.  If no attributes are specified, the room is created as a private chatroom. 
+        /// Create a new chatroom.\n\nIf no attributes are specified, the room is created as a private chatroom.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
@@ -302,8 +302,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="query">The search query object.</param>
-        /// <param name="skip">No. of results to skip.  (optional)</param>
-        /// <param name="limit">Max no. of results to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="skip">No. of results to skip.\n (optional)</param>
+        /// <param name="limit">Max no. of results to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>RoomSearchResults</returns>
         RoomSearchResults V2RoomSearchPost (string sessionToken, RoomSearchCriteria query, int? skip = null, int? limit = null);
 
@@ -316,8 +316,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="query">The search query object.</param>
-        /// <param name="skip">No. of results to skip.  (optional)</param>
-        /// <param name="limit">Max no. of results to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="skip">No. of results to skip.\n (optional)</param>
+        /// <param name="limit">Max no. of results to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>ApiResponse of RoomSearchResults</returns>
         ApiResponse<RoomSearchResults> V2RoomSearchPostWithHttpInfo (string sessionToken, RoomSearchCriteria query, int? skip = null, int? limit = null);
         #endregion Synchronous Operations
@@ -361,7 +361,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Create a new single or multi party instant message conversation between the caller and specified users.
         /// </summary>
         /// <remarks>
-        /// At least one user ID must be provided or an error response will be sent.  The caller is implicitly included in the members of the created chat.  Duplicate users will be included in the membership of the chat but the duplication will be silently ignored.  If there is an existing IM conversation with the same set of participants then the id of that existing stream will be returned.  This method was incorrectly specified to take a query parameter in version 1.0 of this specification but now expects a JSON array of user IDs in the body of the request. 
+        /// At least one user ID must be provided or\nan error response will be sent.\n\nThe caller is implicitly included in the members of the\ncreated chat.\n\nDuplicate users will be included in the membership of the chat but\nthe duplication will be silently ignored.\n\nIf there is an existing IM conversation with the same set of participants then\nthe id of that existing stream will be returned.\n\nThis method was incorrectly specified to take a query parameter in\nversion 1.0 of this specification but now expects a JSON array of\nuser IDs in the body of the request.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uidList">List of (integer) User IDs of participants</param>
@@ -372,7 +372,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Create a new chatroom.
         /// </summary>
         /// <remarks>
-        /// Create a new chatroom.  If no attributes are specified, the room is created as a private chatroom. 
+        /// Create a new chatroom.\n\nIf no attributes are specified, the room is created as a private chatroom.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
@@ -384,7 +384,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Create a new chatroom.
         /// </summary>
         /// <remarks>
-        /// Create a new chatroom.  If no attributes are specified, the room is created as a private chatroom. 
+        /// Create a new chatroom.\n\nIf no attributes are specified, the room is created as a private chatroom.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
@@ -594,8 +594,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="query">The search query object.</param>
-        /// <param name="skip">No. of results to skip.  (optional)</param>
-        /// <param name="limit">Max no. of results to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="skip">No. of results to skip.\n (optional)</param>
+        /// <param name="limit">Max no. of results to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>Task of RoomSearchResults</returns>
         System.Threading.Tasks.Task<RoomSearchResults> V2RoomSearchPostAsync (string sessionToken, RoomSearchCriteria query, int? skip = null, int? limit = null);
 
@@ -608,8 +608,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="query">The search query object.</param>
-        /// <param name="skip">No. of results to skip.  (optional)</param>
-        /// <param name="limit">Max no. of results to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="skip">No. of results to skip.\n (optional)</param>
+        /// <param name="limit">Max no. of results to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>Task of ApiResponse (RoomSearchResults)</returns>
         System.Threading.Tasks.Task<ApiResponse<RoomSearchResults>> V2RoomSearchPostAsyncWithHttpInfo (string sessionToken, RoomSearchCriteria query, int? skip = null, int? limit = null);
         #endregion Asynchronous Operations
@@ -618,10 +618,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class StreamsApi : IStreamsApi
+    public class StreamsApi : IStreamsApi
     {
-        private SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="StreamsApi"/> class.
         /// </summary>
@@ -629,8 +627,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         public StreamsApi(String basePath)
         {
             this.Configuration = new Configuration(new ApiClient(basePath));
-
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.Configuration.DefaultExceptionFactory;
 
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
@@ -652,8 +648,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             else
                 this.Configuration = configuration;
 
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.Configuration.DefaultExceptionFactory;
-
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
             {
@@ -674,7 +668,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// Sets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
+        [Obsolete("SetBasePath is deprecated, please do 'Configuraiton.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
         public void SetBasePath(String basePath)
         {
             // do nothing
@@ -685,22 +679,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// </summary>
         /// <value>An instance of the Configuration</value>
         public Configuration Configuration {get; set;}
-
-        /// <summary>
-        /// Provides a factory method hook for the creation of exceptions.
-        /// </summary>
-        public SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ExceptionFactory ExceptionFactory
-        {
-            get
-            {
-                if (_exceptionFactory != null && _exceptionFactory.GetInvocationList().Length > 1)
-                {
-                    throw new InvalidOperationException("Multicast delegate for ExceptionFactory is unsupported.");
-                }
-                return _exceptionFactory;
-            }
-            set { _exceptionFactory = value; }
-        }
 
         /// <summary>
         /// Gets the default header.
@@ -946,7 +924,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (uidList != null && uidList.GetType() != typeof(byte[]))
+            if (uidList.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(uidList); // http body (model) parameter
             }
@@ -963,11 +941,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1ImCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1ImCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1ImCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<Stream>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1031,7 +1008,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (uidList != null && uidList.GetType() != typeof(byte[]))
+            if (uidList.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(uidList); // http body (model) parameter
             }
@@ -1048,11 +1025,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1ImCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1ImCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1ImCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<Stream>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1061,7 +1037,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// Create a new chatroom. Create a new chatroom.  If no attributes are specified, the room is created as a private chatroom. 
+        /// Create a new chatroom. Create a new chatroom.\n\nIf no attributes are specified, the room is created as a private chatroom.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
@@ -1074,7 +1050,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// Create a new chatroom. Create a new chatroom.  If no attributes are specified, the room is created as a private chatroom. 
+        /// Create a new chatroom. Create a new chatroom.\n\nIf no attributes are specified, the room is created as a private chatroom.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
@@ -1115,7 +1091,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -1132,11 +1108,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1RoomCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1RoomCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1RoomCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<RoomDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1145,7 +1120,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// Create a new chatroom. Create a new chatroom.  If no attributes are specified, the room is created as a private chatroom. 
+        /// Create a new chatroom. Create a new chatroom.\n\nIf no attributes are specified, the room is created as a private chatroom.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
@@ -1159,7 +1134,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         }
 
         /// <summary>
-        /// Create a new chatroom. Create a new chatroom.  If no attributes are specified, the room is created as a private chatroom. 
+        /// Create a new chatroom. Create a new chatroom.\n\nIf no attributes are specified, the room is created as a private chatroom.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="payload"></param>
@@ -1200,7 +1175,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -1217,11 +1192,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1RoomCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1RoomCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1RoomCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<RoomDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1293,11 +1267,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1RoomIdInfoGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1RoomIdInfoGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1RoomIdInfoGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<RoomDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1370,11 +1343,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1RoomIdInfoGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1RoomIdInfoGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1RoomIdInfoGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<RoomDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1452,11 +1424,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1RoomIdSetActivePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1RoomIdSetActivePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1RoomIdSetActivePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<RoomDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1535,11 +1506,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1RoomIdSetActivePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1RoomIdSetActivePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1RoomIdSetActivePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<RoomDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1607,7 +1577,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -1624,11 +1594,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1RoomIdUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1RoomIdUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1RoomIdUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<RoomDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1697,7 +1666,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -1714,11 +1683,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1RoomIdUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1RoomIdUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1RoomIdUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<RoomDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2103,7 +2071,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -2120,11 +2088,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2RoomCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V2RoomCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V2RoomCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<V2RoomDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2188,7 +2155,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -2205,11 +2172,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2RoomCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V2RoomCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V2RoomCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<V2RoomDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2281,11 +2247,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2RoomIdInfoGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V2RoomIdInfoGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V2RoomIdInfoGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<V2RoomDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2358,11 +2323,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2RoomIdInfoGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V2RoomIdInfoGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V2RoomIdInfoGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<V2RoomDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2430,7 +2394,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -2447,11 +2411,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2RoomIdUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V2RoomIdUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V2RoomIdUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<V2RoomDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2520,7 +2483,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             localVarPathParams.Add("format", "json");
             if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (payload != null && payload.GetType() != typeof(byte[]))
+            if (payload.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(payload); // http body (model) parameter
             }
@@ -2537,11 +2500,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2RoomIdUpdatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V2RoomIdUpdatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V2RoomIdUpdatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<V2RoomDetail>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2555,8 +2517,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="query">The search query object.</param>
-        /// <param name="skip">No. of results to skip.  (optional)</param>
-        /// <param name="limit">Max no. of results to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="skip">No. of results to skip.\n (optional)</param>
+        /// <param name="limit">Max no. of results to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>RoomSearchResults</returns>
         public RoomSearchResults V2RoomSearchPost (string sessionToken, RoomSearchCriteria query, int? skip = null, int? limit = null)
         {
@@ -2570,8 +2532,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="query">The search query object.</param>
-        /// <param name="skip">No. of results to skip.  (optional)</param>
-        /// <param name="limit">Max no. of results to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="skip">No. of results to skip.\n (optional)</param>
+        /// <param name="limit">Max no. of results to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>ApiResponse of RoomSearchResults</returns>
         public ApiResponse< RoomSearchResults > V2RoomSearchPostWithHttpInfo (string sessionToken, RoomSearchCriteria query, int? skip = null, int? limit = null)
         {
@@ -2610,7 +2572,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             if (skip != null) localVarQueryParams.Add("skip", Configuration.ApiClient.ParameterToString(skip)); // query parameter
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (query != null && query.GetType() != typeof(byte[]))
+            if (query.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(query); // http body (model) parameter
             }
@@ -2627,11 +2589,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2RoomSearchPost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V2RoomSearchPost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V2RoomSearchPost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<RoomSearchResults>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -2645,8 +2606,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="query">The search query object.</param>
-        /// <param name="skip">No. of results to skip.  (optional)</param>
-        /// <param name="limit">Max no. of results to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="skip">No. of results to skip.\n (optional)</param>
+        /// <param name="limit">Max no. of results to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>Task of RoomSearchResults</returns>
         public async System.Threading.Tasks.Task<RoomSearchResults> V2RoomSearchPostAsync (string sessionToken, RoomSearchCriteria query, int? skip = null, int? limit = null)
         {
@@ -2661,8 +2622,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="query">The search query object.</param>
-        /// <param name="skip">No. of results to skip.  (optional)</param>
-        /// <param name="limit">Max no. of results to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="skip">No. of results to skip.\n (optional)</param>
+        /// <param name="limit">Max no. of results to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>Task of ApiResponse (RoomSearchResults)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<RoomSearchResults>> V2RoomSearchPostAsyncWithHttpInfo (string sessionToken, RoomSearchCriteria query, int? skip = null, int? limit = null)
         {
@@ -2701,7 +2662,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             if (skip != null) localVarQueryParams.Add("skip", Configuration.ApiClient.ParameterToString(skip)); // query parameter
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (query != null && query.GetType() != typeof(byte[]))
+            if (query.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(query); // http body (model) parameter
             }
@@ -2718,11 +2679,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2RoomSearchPost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V2RoomSearchPost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V2RoomSearchPost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<RoomSearchResults>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),

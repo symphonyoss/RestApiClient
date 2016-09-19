@@ -27,7 +27,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IAuthenticationApi : IApiAccessor
+    public interface IAuthenticationApi
     {
         #region Synchronous Operations
         /// <summary>
@@ -76,7 +76,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// Authenticate.
         /// </summary>
         /// <remarks>
-        /// Based on the SSL client certificate presented by the TLS layer, authenticate the API caller and return a session token. 
+        /// Based on the SSL client certificate presented by the TLS layer, authenticate\nthe API caller and return a session token.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Token</returns>
@@ -86,7 +86,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// Authenticate.
         /// </summary>
         /// <remarks>
-        /// Based on the SSL client certificate presented by the TLS layer, authenticate the API caller and return a session token. 
+        /// Based on the SSL client certificate presented by the TLS layer, authenticate\nthe API caller and return a session token.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Token</returns>
@@ -139,7 +139,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// Authenticate.
         /// </summary>
         /// <remarks>
-        /// Based on the SSL client certificate presented by the TLS layer, authenticate the API caller and return a session token. 
+        /// Based on the SSL client certificate presented by the TLS layer, authenticate\nthe API caller and return a session token.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of Token</returns>
@@ -149,7 +149,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// Authenticate.
         /// </summary>
         /// <remarks>
-        /// Based on the SSL client certificate presented by the TLS layer, authenticate the API caller and return a session token. 
+        /// Based on the SSL client certificate presented by the TLS layer, authenticate\nthe API caller and return a session token.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse (Token)</returns>
@@ -160,10 +160,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class AuthenticationApi : IAuthenticationApi
+    public class AuthenticationApi : IAuthenticationApi
     {
-        private SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationApi"/> class.
         /// </summary>
@@ -171,8 +169,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         public AuthenticationApi(String basePath)
         {
             this.Configuration = new Configuration(new ApiClient(basePath));
-
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.Configuration.DefaultExceptionFactory;
 
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
@@ -194,8 +190,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
             else
                 this.Configuration = configuration;
 
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.Configuration.DefaultExceptionFactory;
-
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
             {
@@ -216,7 +210,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// Sets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
+        [Obsolete("SetBasePath is deprecated, please do 'Configuraiton.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
         public void SetBasePath(String basePath)
         {
             // do nothing
@@ -227,22 +221,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// </summary>
         /// <value>An instance of the Configuration</value>
         public Configuration Configuration {get; set;}
-
-        /// <summary>
-        /// Provides a factory method hook for the creation of exceptions.
-        /// </summary>
-        public SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ExceptionFactory ExceptionFactory
-        {
-            get
-            {
-                if (_exceptionFactory != null && _exceptionFactory.GetInvocationList().Length > 1)
-                {
-                    throw new InvalidOperationException("Multicast delegate for ExceptionFactory is unsupported.");
-                }
-                return _exceptionFactory;
-            }
-            set { _exceptionFactory = value; }
-        }
 
         /// <summary>
         /// Gets the default header.
@@ -556,7 +534,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         }
 
         /// <summary>
-        /// Authenticate. Based on the SSL client certificate presented by the TLS layer, authenticate the API caller and return a session token. 
+        /// Authenticate. Based on the SSL client certificate presented by the TLS layer, authenticate\nthe API caller and return a session token.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Token</returns>
@@ -596,11 +574,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AuthenticatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AuthenticatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AuthenticatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<Token>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -609,7 +586,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         }
 
         /// <summary>
-        /// Authenticate. Based on the SSL client certificate presented by the TLS layer, authenticate the API caller and return a session token. 
+        /// Authenticate. Based on the SSL client certificate presented by the TLS layer, authenticate\nthe API caller and return a session token.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of Token</returns>
@@ -621,7 +598,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         }
 
         /// <summary>
-        /// Authenticate. Based on the SSL client certificate presented by the TLS layer, authenticate the API caller and return a session token. 
+        /// Authenticate. Based on the SSL client certificate presented by the TLS layer, authenticate\nthe API caller and return a session token.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse (Token)</returns>
@@ -661,11 +638,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1AuthenticatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1AuthenticatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1AuthenticatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<Token>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),

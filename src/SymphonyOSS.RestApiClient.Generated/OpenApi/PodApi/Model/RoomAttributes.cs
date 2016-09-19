@@ -42,10 +42,16 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Discoverable">If true, this chatroom (name, description and messages) can be searched and listed by non-participants. If false, only participants can search this room..</param>
         public RoomAttributes(string Name = null, string Description = null, bool? MembersCanInvite = null, bool? Discoverable = null)
         {
-            this.Name = Name;
-            this.Description = Description;
-            this.MembersCanInvite = MembersCanInvite;
-            this.Discoverable = Discoverable;
+            
+            
+                        this.Name = Name;
+            
+                        this.Description = Description;
+            
+                        this.MembersCanInvite = MembersCanInvite;
+            
+                        this.Discoverable = Discoverable;
+            
         }
         
         /// <summary>
@@ -81,9 +87,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class RoomAttributes {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  MembersCanInvite: ").Append(MembersCanInvite).Append("\n");
-            sb.Append("  Discoverable: ").Append(Discoverable).Append("\n");
+sb.Append("  Description: ").Append(Description).Append("\n");
+sb.Append("  MembersCanInvite: ").Append(MembersCanInvite).Append("\n");
+sb.Append("  Discoverable: ").Append(Discoverable).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

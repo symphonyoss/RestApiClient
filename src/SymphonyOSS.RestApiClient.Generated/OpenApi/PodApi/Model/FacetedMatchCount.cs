@@ -40,8 +40,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Count">The result count..</param>
         public FacetedMatchCount(string Facet = null, int? Count = null)
         {
-            this.Facet = Facet;
-            this.Count = Count;
+            
+            
+                        this.Facet = Facet;
+            
+                        this.Count = Count;
+            
         }
         
         /// <summary>
@@ -65,7 +69,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class FacetedMatchCount {\n");
             sb.Append("  Facet: ").Append(Facet).Append("\n");
-            sb.Append("  Count: ").Append(Count).Append("\n");
+sb.Append("  Count: ").Append(Count).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

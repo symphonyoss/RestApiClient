@@ -41,9 +41,14 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="SuppressionDate">The date when this message was suppressed..</param>
         public MessageSuppressionResponse(string MessageId = null, bool? Suppressed = null, long? SuppressionDate = null)
         {
-            this.MessageId = MessageId;
-            this.Suppressed = Suppressed;
-            this.SuppressionDate = SuppressionDate;
+            
+            
+                        this.MessageId = MessageId;
+            
+                        this.Suppressed = Suppressed;
+            
+                        this.SuppressionDate = SuppressionDate;
+            
         }
         
         /// <summary>
@@ -71,8 +76,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class MessageSuppressionResponse {\n");
             sb.Append("  MessageId: ").Append(MessageId).Append("\n");
-            sb.Append("  Suppressed: ").Append(Suppressed).Append("\n");
-            sb.Append("  SuppressionDate: ").Append(SuppressionDate).Append("\n");
+sb.Append("  Suppressed: ").Append(Suppressed).Append("\n");
+sb.Append("  SuppressionDate: ").Append(SuppressionDate).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

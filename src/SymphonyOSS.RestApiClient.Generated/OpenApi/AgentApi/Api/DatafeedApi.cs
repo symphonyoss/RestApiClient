@@ -27,14 +27,14 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IDatafeedApi : IApiAccessor
+    public interface IDatafeedApi
     {
         #region Synchronous Operations
         /// <summary>
         /// Create a new real time message event stream.
         /// </summary>
         /// <remarks>
-        /// A datafeed provides the messages in all conversations that a user is in. System messages like new users joining a chatroom are not part of the datafeed.  A datafeed will expire after if it isn&#39;t read before its capacity is reached. 
+        /// A datafeed provides the messages in all conversations that a user is in.\nSystem messages like new users joining a chatroom are not part of the datafeed.\n\nA datafeed will expire after if it isn&#39;t read before its capacity is reached.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -46,7 +46,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Create a new real time message event stream.
         /// </summary>
         /// <remarks>
-        /// A datafeed provides the messages in all conversations that a user is in. System messages like new users joining a chatroom are not part of the datafeed.  A datafeed will expire after if it isn&#39;t read before its capacity is reached. 
+        /// A datafeed provides the messages in all conversations that a user is in.\nSystem messages like new users joining a chatroom are not part of the datafeed.\n\nA datafeed will expire after if it isn&#39;t read before its capacity is reached.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -57,13 +57,13 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Read a given datafeed.
         /// </summary>
         /// <remarks>
-        /// Read messages from the given datafeed. If no more messages are available then this method will block. It is intended that the client should re-call this method as soon as it has processed the messages received in the previous call. If the client is able to consume messages more quickly than they become available then each call will initially block, there is no need to delay before re-calling this method.  A datafeed will expire if its unread capacity is reached. A datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order. 
+        /// Read messages from the given datafeed. If no more messages are available then this method will block.\nIt is intended that the client should re-call this method as soon as it has processed the messages\nreceived in the previous call. If the client is able to consume messages more quickly than they become\navailable then each call will initially block, there is no need to delay before re-calling this method.\n\nA datafeed will expire if its unread capacity is reached.\nA datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Datafeed ID </param>
+        /// <param name="id">Datafeed ID\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="maxMessages">Max No. of messages to return.  (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return.\n (optional)</param>
         /// <returns>MessageList</returns>
         MessageList V1DatafeedIdReadGet (string id, string sessionToken, string keyManagerToken, int? maxMessages = null);
 
@@ -71,26 +71,26 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Read a given datafeed.
         /// </summary>
         /// <remarks>
-        /// Read messages from the given datafeed. If no more messages are available then this method will block. It is intended that the client should re-call this method as soon as it has processed the messages received in the previous call. If the client is able to consume messages more quickly than they become available then each call will initially block, there is no need to delay before re-calling this method.  A datafeed will expire if its unread capacity is reached. A datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order. 
+        /// Read messages from the given datafeed. If no more messages are available then this method will block.\nIt is intended that the client should re-call this method as soon as it has processed the messages\nreceived in the previous call. If the client is able to consume messages more quickly than they become\navailable then each call will initially block, there is no need to delay before re-calling this method.\n\nA datafeed will expire if its unread capacity is reached.\nA datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Datafeed ID </param>
+        /// <param name="id">Datafeed ID\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="maxMessages">Max No. of messages to return.  (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return.\n (optional)</param>
         /// <returns>ApiResponse of MessageList</returns>
         ApiResponse<MessageList> V1DatafeedIdReadGetWithHttpInfo (string id, string sessionToken, string keyManagerToken, int? maxMessages = null);
         /// <summary>
         /// Read a given datafeed.
         /// </summary>
         /// <remarks>
-        /// Read messages from the given datafeed. If no more messages are available then this method will block. It is intended that the client should re-call this method as soon as it has processed the messages received in the previous call. If the client is able to consume messages more quickly than they become available then each call will initially block, there is no need to delay before re-calling this method.  A datafeed will expire if its unread capacity is reached. A datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order. 
+        /// Read messages from the given datafeed. If no more messages are available then this method will block.\nIt is intended that the client should re-call this method as soon as it has processed the messages\nreceived in the previous call. If the client is able to consume messages more quickly than they become\navailable then each call will initially block, there is no need to delay before re-calling this method.\n\nA datafeed will expire if its unread capacity is reached.\nA datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Datafeed ID </param>
+        /// <param name="id">Datafeed ID\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="maxMessages">Max No. of messages to return.  (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return.\n (optional)</param>
         /// <returns>V2MessageList</returns>
         V2MessageList V2DatafeedIdReadGet (string id, string sessionToken, string keyManagerToken, int? maxMessages = null);
 
@@ -98,13 +98,13 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Read a given datafeed.
         /// </summary>
         /// <remarks>
-        /// Read messages from the given datafeed. If no more messages are available then this method will block. It is intended that the client should re-call this method as soon as it has processed the messages received in the previous call. If the client is able to consume messages more quickly than they become available then each call will initially block, there is no need to delay before re-calling this method.  A datafeed will expire if its unread capacity is reached. A datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order. 
+        /// Read messages from the given datafeed. If no more messages are available then this method will block.\nIt is intended that the client should re-call this method as soon as it has processed the messages\nreceived in the previous call. If the client is able to consume messages more quickly than they become\navailable then each call will initially block, there is no need to delay before re-calling this method.\n\nA datafeed will expire if its unread capacity is reached.\nA datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Datafeed ID </param>
+        /// <param name="id">Datafeed ID\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="maxMessages">Max No. of messages to return.  (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return.\n (optional)</param>
         /// <returns>ApiResponse of V2MessageList</returns>
         ApiResponse<V2MessageList> V2DatafeedIdReadGetWithHttpInfo (string id, string sessionToken, string keyManagerToken, int? maxMessages = null);
         #endregion Synchronous Operations
@@ -113,7 +113,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Create a new real time message event stream.
         /// </summary>
         /// <remarks>
-        /// A datafeed provides the messages in all conversations that a user is in. System messages like new users joining a chatroom are not part of the datafeed.  A datafeed will expire after if it isn&#39;t read before its capacity is reached. 
+        /// A datafeed provides the messages in all conversations that a user is in.\nSystem messages like new users joining a chatroom are not part of the datafeed.\n\nA datafeed will expire after if it isn&#39;t read before its capacity is reached.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -125,7 +125,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Create a new real time message event stream.
         /// </summary>
         /// <remarks>
-        /// A datafeed provides the messages in all conversations that a user is in. System messages like new users joining a chatroom are not part of the datafeed.  A datafeed will expire after if it isn&#39;t read before its capacity is reached. 
+        /// A datafeed provides the messages in all conversations that a user is in.\nSystem messages like new users joining a chatroom are not part of the datafeed.\n\nA datafeed will expire after if it isn&#39;t read before its capacity is reached.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -136,13 +136,13 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Read a given datafeed.
         /// </summary>
         /// <remarks>
-        /// Read messages from the given datafeed. If no more messages are available then this method will block. It is intended that the client should re-call this method as soon as it has processed the messages received in the previous call. If the client is able to consume messages more quickly than they become available then each call will initially block, there is no need to delay before re-calling this method.  A datafeed will expire if its unread capacity is reached. A datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order. 
+        /// Read messages from the given datafeed. If no more messages are available then this method will block.\nIt is intended that the client should re-call this method as soon as it has processed the messages\nreceived in the previous call. If the client is able to consume messages more quickly than they become\navailable then each call will initially block, there is no need to delay before re-calling this method.\n\nA datafeed will expire if its unread capacity is reached.\nA datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Datafeed ID </param>
+        /// <param name="id">Datafeed ID\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="maxMessages">Max No. of messages to return.  (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return.\n (optional)</param>
         /// <returns>Task of MessageList</returns>
         System.Threading.Tasks.Task<MessageList> V1DatafeedIdReadGetAsync (string id, string sessionToken, string keyManagerToken, int? maxMessages = null);
 
@@ -150,26 +150,26 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Read a given datafeed.
         /// </summary>
         /// <remarks>
-        /// Read messages from the given datafeed. If no more messages are available then this method will block. It is intended that the client should re-call this method as soon as it has processed the messages received in the previous call. If the client is able to consume messages more quickly than they become available then each call will initially block, there is no need to delay before re-calling this method.  A datafeed will expire if its unread capacity is reached. A datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order. 
+        /// Read messages from the given datafeed. If no more messages are available then this method will block.\nIt is intended that the client should re-call this method as soon as it has processed the messages\nreceived in the previous call. If the client is able to consume messages more quickly than they become\navailable then each call will initially block, there is no need to delay before re-calling this method.\n\nA datafeed will expire if its unread capacity is reached.\nA datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Datafeed ID </param>
+        /// <param name="id">Datafeed ID\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="maxMessages">Max No. of messages to return.  (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return.\n (optional)</param>
         /// <returns>Task of ApiResponse (MessageList)</returns>
         System.Threading.Tasks.Task<ApiResponse<MessageList>> V1DatafeedIdReadGetAsyncWithHttpInfo (string id, string sessionToken, string keyManagerToken, int? maxMessages = null);
         /// <summary>
         /// Read a given datafeed.
         /// </summary>
         /// <remarks>
-        /// Read messages from the given datafeed. If no more messages are available then this method will block. It is intended that the client should re-call this method as soon as it has processed the messages received in the previous call. If the client is able to consume messages more quickly than they become available then each call will initially block, there is no need to delay before re-calling this method.  A datafeed will expire if its unread capacity is reached. A datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order. 
+        /// Read messages from the given datafeed. If no more messages are available then this method will block.\nIt is intended that the client should re-call this method as soon as it has processed the messages\nreceived in the previous call. If the client is able to consume messages more quickly than they become\navailable then each call will initially block, there is no need to delay before re-calling this method.\n\nA datafeed will expire if its unread capacity is reached.\nA datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Datafeed ID </param>
+        /// <param name="id">Datafeed ID\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="maxMessages">Max No. of messages to return.  (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return.\n (optional)</param>
         /// <returns>Task of V2MessageList</returns>
         System.Threading.Tasks.Task<V2MessageList> V2DatafeedIdReadGetAsync (string id, string sessionToken, string keyManagerToken, int? maxMessages = null);
 
@@ -177,13 +177,13 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Read a given datafeed.
         /// </summary>
         /// <remarks>
-        /// Read messages from the given datafeed. If no more messages are available then this method will block. It is intended that the client should re-call this method as soon as it has processed the messages received in the previous call. If the client is able to consume messages more quickly than they become available then each call will initially block, there is no need to delay before re-calling this method.  A datafeed will expire if its unread capacity is reached. A datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order. 
+        /// Read messages from the given datafeed. If no more messages are available then this method will block.\nIt is intended that the client should re-call this method as soon as it has processed the messages\nreceived in the previous call. If the client is able to consume messages more quickly than they become\navailable then each call will initially block, there is no need to delay before re-calling this method.\n\nA datafeed will expire if its unread capacity is reached.\nA datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Datafeed ID </param>
+        /// <param name="id">Datafeed ID\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="maxMessages">Max No. of messages to return.  (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return.\n (optional)</param>
         /// <returns>Task of ApiResponse (V2MessageList)</returns>
         System.Threading.Tasks.Task<ApiResponse<V2MessageList>> V2DatafeedIdReadGetAsyncWithHttpInfo (string id, string sessionToken, string keyManagerToken, int? maxMessages = null);
         #endregion Asynchronous Operations
@@ -192,10 +192,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class DatafeedApi : IDatafeedApi
+    public class DatafeedApi : IDatafeedApi
     {
-        private SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="DatafeedApi"/> class.
         /// </summary>
@@ -203,8 +201,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         public DatafeedApi(String basePath)
         {
             this.Configuration = new Configuration(new ApiClient(basePath));
-
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.Configuration.DefaultExceptionFactory;
 
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
@@ -226,8 +222,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
             else
                 this.Configuration = configuration;
 
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.Configuration.DefaultExceptionFactory;
-
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
             {
@@ -248,7 +242,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Sets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
+        [Obsolete("SetBasePath is deprecated, please do 'Configuraiton.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
         public void SetBasePath(String basePath)
         {
             // do nothing
@@ -259,22 +253,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// </summary>
         /// <value>An instance of the Configuration</value>
         public Configuration Configuration {get; set;}
-
-        /// <summary>
-        /// Provides a factory method hook for the creation of exceptions.
-        /// </summary>
-        public SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ExceptionFactory ExceptionFactory
-        {
-            get
-            {
-                if (_exceptionFactory != null && _exceptionFactory.GetInvocationList().Length > 1)
-                {
-                    throw new InvalidOperationException("Multicast delegate for ExceptionFactory is unsupported.");
-                }
-                return _exceptionFactory;
-            }
-            set { _exceptionFactory = value; }
-        }
 
         /// <summary>
         /// Gets the default header.
@@ -299,7 +277,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Create a new real time message event stream. A datafeed provides the messages in all conversations that a user is in. System messages like new users joining a chatroom are not part of the datafeed.  A datafeed will expire after if it isn&#39;t read before its capacity is reached. 
+        /// Create a new real time message event stream. A datafeed provides the messages in all conversations that a user is in.\nSystem messages like new users joining a chatroom are not part of the datafeed.\n\nA datafeed will expire after if it isn&#39;t read before its capacity is reached.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -312,7 +290,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Create a new real time message event stream. A datafeed provides the messages in all conversations that a user is in. System messages like new users joining a chatroom are not part of the datafeed.  A datafeed will expire after if it isn&#39;t read before its capacity is reached. 
+        /// Create a new real time message event stream. A datafeed provides the messages in all conversations that a user is in.\nSystem messages like new users joining a chatroom are not part of the datafeed.\n\nA datafeed will expire after if it isn&#39;t read before its capacity is reached.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -363,11 +341,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1DatafeedCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1DatafeedCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1DatafeedCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<Datafeed>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -376,7 +353,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Create a new real time message event stream. A datafeed provides the messages in all conversations that a user is in. System messages like new users joining a chatroom are not part of the datafeed.  A datafeed will expire after if it isn&#39;t read before its capacity is reached. 
+        /// Create a new real time message event stream. A datafeed provides the messages in all conversations that a user is in.\nSystem messages like new users joining a chatroom are not part of the datafeed.\n\nA datafeed will expire after if it isn&#39;t read before its capacity is reached.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -390,7 +367,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Create a new real time message event stream. A datafeed provides the messages in all conversations that a user is in. System messages like new users joining a chatroom are not part of the datafeed.  A datafeed will expire after if it isn&#39;t read before its capacity is reached. 
+        /// Create a new real time message event stream. A datafeed provides the messages in all conversations that a user is in.\nSystem messages like new users joining a chatroom are not part of the datafeed.\n\nA datafeed will expire after if it isn&#39;t read before its capacity is reached.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -441,11 +418,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1DatafeedCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1DatafeedCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1DatafeedCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<Datafeed>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -454,13 +430,13 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Read a given datafeed. Read messages from the given datafeed. If no more messages are available then this method will block. It is intended that the client should re-call this method as soon as it has processed the messages received in the previous call. If the client is able to consume messages more quickly than they become available then each call will initially block, there is no need to delay before re-calling this method.  A datafeed will expire if its unread capacity is reached. A datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order. 
+        /// Read a given datafeed. Read messages from the given datafeed. If no more messages are available then this method will block.\nIt is intended that the client should re-call this method as soon as it has processed the messages\nreceived in the previous call. If the client is able to consume messages more quickly than they become\navailable then each call will initially block, there is no need to delay before re-calling this method.\n\nA datafeed will expire if its unread capacity is reached.\nA datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Datafeed ID </param>
+        /// <param name="id">Datafeed ID\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="maxMessages">Max No. of messages to return.  (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return.\n (optional)</param>
         /// <returns>MessageList</returns>
         public MessageList V1DatafeedIdReadGet (string id, string sessionToken, string keyManagerToken, int? maxMessages = null)
         {
@@ -469,13 +445,13 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Read a given datafeed. Read messages from the given datafeed. If no more messages are available then this method will block. It is intended that the client should re-call this method as soon as it has processed the messages received in the previous call. If the client is able to consume messages more quickly than they become available then each call will initially block, there is no need to delay before re-calling this method.  A datafeed will expire if its unread capacity is reached. A datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order. 
+        /// Read a given datafeed. Read messages from the given datafeed. If no more messages are available then this method will block.\nIt is intended that the client should re-call this method as soon as it has processed the messages\nreceived in the previous call. If the client is able to consume messages more quickly than they become\navailable then each call will initially block, there is no need to delay before re-calling this method.\n\nA datafeed will expire if its unread capacity is reached.\nA datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Datafeed ID </param>
+        /// <param name="id">Datafeed ID\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="maxMessages">Max No. of messages to return.  (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return.\n (optional)</param>
         /// <returns>ApiResponse of MessageList</returns>
         public ApiResponse< MessageList > V1DatafeedIdReadGetWithHttpInfo (string id, string sessionToken, string keyManagerToken, int? maxMessages = null)
         {
@@ -527,11 +503,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1DatafeedIdReadGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1DatafeedIdReadGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1DatafeedIdReadGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<MessageList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -540,13 +515,13 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Read a given datafeed. Read messages from the given datafeed. If no more messages are available then this method will block. It is intended that the client should re-call this method as soon as it has processed the messages received in the previous call. If the client is able to consume messages more quickly than they become available then each call will initially block, there is no need to delay before re-calling this method.  A datafeed will expire if its unread capacity is reached. A datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order. 
+        /// Read a given datafeed. Read messages from the given datafeed. If no more messages are available then this method will block.\nIt is intended that the client should re-call this method as soon as it has processed the messages\nreceived in the previous call. If the client is able to consume messages more quickly than they become\navailable then each call will initially block, there is no need to delay before re-calling this method.\n\nA datafeed will expire if its unread capacity is reached.\nA datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Datafeed ID </param>
+        /// <param name="id">Datafeed ID\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="maxMessages">Max No. of messages to return.  (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return.\n (optional)</param>
         /// <returns>Task of MessageList</returns>
         public async System.Threading.Tasks.Task<MessageList> V1DatafeedIdReadGetAsync (string id, string sessionToken, string keyManagerToken, int? maxMessages = null)
         {
@@ -556,13 +531,13 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Read a given datafeed. Read messages from the given datafeed. If no more messages are available then this method will block. It is intended that the client should re-call this method as soon as it has processed the messages received in the previous call. If the client is able to consume messages more quickly than they become available then each call will initially block, there is no need to delay before re-calling this method.  A datafeed will expire if its unread capacity is reached. A datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order. 
+        /// Read a given datafeed. Read messages from the given datafeed. If no more messages are available then this method will block.\nIt is intended that the client should re-call this method as soon as it has processed the messages\nreceived in the previous call. If the client is able to consume messages more quickly than they become\navailable then each call will initially block, there is no need to delay before re-calling this method.\n\nA datafeed will expire if its unread capacity is reached.\nA datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Datafeed ID </param>
+        /// <param name="id">Datafeed ID\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="maxMessages">Max No. of messages to return.  (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return.\n (optional)</param>
         /// <returns>Task of ApiResponse (MessageList)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<MessageList>> V1DatafeedIdReadGetAsyncWithHttpInfo (string id, string sessionToken, string keyManagerToken, int? maxMessages = null)
         {
@@ -614,11 +589,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1DatafeedIdReadGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1DatafeedIdReadGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1DatafeedIdReadGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<MessageList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -627,13 +601,13 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Read a given datafeed. Read messages from the given datafeed. If no more messages are available then this method will block. It is intended that the client should re-call this method as soon as it has processed the messages received in the previous call. If the client is able to consume messages more quickly than they become available then each call will initially block, there is no need to delay before re-calling this method.  A datafeed will expire if its unread capacity is reached. A datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order. 
+        /// Read a given datafeed. Read messages from the given datafeed. If no more messages are available then this method will block.\nIt is intended that the client should re-call this method as soon as it has processed the messages\nreceived in the previous call. If the client is able to consume messages more quickly than they become\navailable then each call will initially block, there is no need to delay before re-calling this method.\n\nA datafeed will expire if its unread capacity is reached.\nA datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Datafeed ID </param>
+        /// <param name="id">Datafeed ID\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="maxMessages">Max No. of messages to return.  (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return.\n (optional)</param>
         /// <returns>V2MessageList</returns>
         public V2MessageList V2DatafeedIdReadGet (string id, string sessionToken, string keyManagerToken, int? maxMessages = null)
         {
@@ -642,13 +616,13 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Read a given datafeed. Read messages from the given datafeed. If no more messages are available then this method will block. It is intended that the client should re-call this method as soon as it has processed the messages received in the previous call. If the client is able to consume messages more quickly than they become available then each call will initially block, there is no need to delay before re-calling this method.  A datafeed will expire if its unread capacity is reached. A datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order. 
+        /// Read a given datafeed. Read messages from the given datafeed. If no more messages are available then this method will block.\nIt is intended that the client should re-call this method as soon as it has processed the messages\nreceived in the previous call. If the client is able to consume messages more quickly than they become\navailable then each call will initially block, there is no need to delay before re-calling this method.\n\nA datafeed will expire if its unread capacity is reached.\nA datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Datafeed ID </param>
+        /// <param name="id">Datafeed ID\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="maxMessages">Max No. of messages to return.  (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return.\n (optional)</param>
         /// <returns>ApiResponse of V2MessageList</returns>
         public ApiResponse< V2MessageList > V2DatafeedIdReadGetWithHttpInfo (string id, string sessionToken, string keyManagerToken, int? maxMessages = null)
         {
@@ -700,11 +674,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2DatafeedIdReadGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V2DatafeedIdReadGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V2DatafeedIdReadGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<V2MessageList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -713,13 +686,13 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Read a given datafeed. Read messages from the given datafeed. If no more messages are available then this method will block. It is intended that the client should re-call this method as soon as it has processed the messages received in the previous call. If the client is able to consume messages more quickly than they become available then each call will initially block, there is no need to delay before re-calling this method.  A datafeed will expire if its unread capacity is reached. A datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order. 
+        /// Read a given datafeed. Read messages from the given datafeed. If no more messages are available then this method will block.\nIt is intended that the client should re-call this method as soon as it has processed the messages\nreceived in the previous call. If the client is able to consume messages more quickly than they become\navailable then each call will initially block, there is no need to delay before re-calling this method.\n\nA datafeed will expire if its unread capacity is reached.\nA datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Datafeed ID </param>
+        /// <param name="id">Datafeed ID\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="maxMessages">Max No. of messages to return.  (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return.\n (optional)</param>
         /// <returns>Task of V2MessageList</returns>
         public async System.Threading.Tasks.Task<V2MessageList> V2DatafeedIdReadGetAsync (string id, string sessionToken, string keyManagerToken, int? maxMessages = null)
         {
@@ -729,13 +702,13 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Read a given datafeed. Read messages from the given datafeed. If no more messages are available then this method will block. It is intended that the client should re-call this method as soon as it has processed the messages received in the previous call. If the client is able to consume messages more quickly than they become available then each call will initially block, there is no need to delay before re-calling this method.  A datafeed will expire if its unread capacity is reached. A datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order. 
+        /// Read a given datafeed. Read messages from the given datafeed. If no more messages are available then this method will block.\nIt is intended that the client should re-call this method as soon as it has processed the messages\nreceived in the previous call. If the client is able to consume messages more quickly than they become\navailable then each call will initially block, there is no need to delay before re-calling this method.\n\nA datafeed will expire if its unread capacity is reached.\nA datafeed can only be consumed by one client thread at a time. E.g. polling the datafeed by two threads may lead to messages being delivered out of order.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Datafeed ID </param>
+        /// <param name="id">Datafeed ID\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="maxMessages">Max No. of messages to return.  (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return.\n (optional)</param>
         /// <returns>Task of ApiResponse (V2MessageList)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<V2MessageList>> V2DatafeedIdReadGetAsyncWithHttpInfo (string id, string sessionToken, string keyManagerToken, int? maxMessages = null)
         {
@@ -787,11 +760,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2DatafeedIdReadGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V2DatafeedIdReadGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V2DatafeedIdReadGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<V2MessageList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),

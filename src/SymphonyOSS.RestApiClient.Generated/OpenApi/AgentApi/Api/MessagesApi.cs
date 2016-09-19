@@ -27,14 +27,14 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IMessagesApi : IApiAccessor
+    public interface IMessagesApi
     {
         #region Synchronous Operations
         /// <summary>
         /// Import messages from other systems into Symphony.
         /// </summary>
         /// <remarks>
-        /// Sends a message to be imported into the system. Allows you to override the timestamp and author of the message with your desired values. The requesting user must have the Content Management role. Also, the requesting user must be a member of the conversation it is importing into. The user that the message is intended to have come from must also be present in the conversation. The intended message timestamp must be a valid time from the past. It cannot be a future timestamp. 
+        /// Sends a message to be imported into the system.\nAllows you to override the timestamp and author of the message with your desired values.\nThe requesting user must have the Content Management role.\nAlso, the requesting user must be a member of the conversation it is importing into.\nThe user that the message is intended to have come from must also be present in the conversation.\nThe intended message timestamp must be a valid time from the past. It cannot be a future timestamp.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -47,7 +47,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Import messages from other systems into Symphony.
         /// </summary>
         /// <remarks>
-        /// Sends a message to be imported into the system. Allows you to override the timestamp and author of the message with your desired values. The requesting user must have the Content Management role. Also, the requesting user must be a member of the conversation it is importing into. The user that the message is intended to have come from must also be present in the conversation. The intended message timestamp must be a valid time from the past. It cannot be a future timestamp. 
+        /// Sends a message to be imported into the system.\nAllows you to override the timestamp and author of the message with your desired values.\nThe requesting user must have the Content Management role.\nAlso, the requesting user must be a member of the conversation it is importing into.\nThe user that the message is intended to have come from must also be present in the conversation.\nThe intended message timestamp must be a valid time from the past. It cannot be a future timestamp.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -59,7 +59,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Post a message to one existing stream.
         /// </summary>
         /// <remarks>
-        /// Post a new message to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  If the message parameter type is TEXT then the message contains plain text and cannot include formating, hash tags, mentions etc.  If the message parameter type is MessageML then the message contains MessageML which allows for these entities.  If the message is in MessageML and fails schema validation a client error results  If the message is sent then 200 is returned. 
+        /// Post a new message to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nIf the message parameter type is TEXT then the message contains plain\ntext and cannot include formating, hash tags, mentions etc.\n\nIf the message parameter type is MessageML then the message contains\nMessageML which allows for these entities.\n\nIf the message is in MessageML and fails schema validation\na client error results\n\nIf the message is sent then 200 is returned.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -73,7 +73,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Post a message to one existing stream.
         /// </summary>
         /// <remarks>
-        /// Post a new message to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  If the message parameter type is TEXT then the message contains plain text and cannot include formating, hash tags, mentions etc.  If the message parameter type is MessageML then the message contains MessageML which allows for these entities.  If the message is in MessageML and fails schema validation a client error results  If the message is sent then 200 is returned. 
+        /// Post a new message to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nIf the message parameter type is TEXT then the message contains plain\ntext and cannot include formating, hash tags, mentions etc.\n\nIf the message parameter type is MessageML then the message contains\nMessageML which allows for these entities.\n\nIf the message is in MessageML and fails schema validation\na client error results\n\nIf the message is sent then 200 is returned.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -86,15 +86,15 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Get messages from an existing stream.
         /// </summary>
         /// <remarks>
-        /// A caller can fetch all unseen messages by passing the timestamp of the last message seen as the since parameter and the number of messages with the same timestamp value already seen as the skip parameter. This means that every message will be seen exactly once even in the case that an additional message is processed with the same timestamp as the last message returned by the previous call, and the case where there are more than maxMessages with the same timestamp value.  This method is intended for historic queries and is generally reliable but if guaranteed delivery of every message in real time is required then the equivilent firehose method should be called. 
+        /// A caller can fetch all unseen messages by passing the timestamp of\nthe last message seen as the since parameter and the number of messages\nwith the same timestamp value already seen as the skip parameter. This\nmeans that every message will be seen exactly once even in the case that\nan additional message is processed with the same timestamp as the last\nmessage returned by the previous call, and the case where there are\nmore than maxMessages with the same timestamp value.\n\nThis method is intended for historic queries and is generally reliable\nbut if guaranteed delivery of every message in real time is required\nthen the equivilent firehose method should be called.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sid">Stream ID </param>
-        /// <param name="since">Timestamp of first required message.  This is a long integer value representing milliseconds since Jan 1 1970 </param>
+        /// <param name="sid">Stream ID\n</param>
+        /// <param name="since">Timestamp of first required message.\n\nThis is a long integer value representing milliseconds since\nJan 1 1970\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="offset">No. of messages to skip.  (optional)</param>
-        /// <param name="maxMessages">Max No. of messages to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="offset">No. of messages to skip.\n (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>MessageList</returns>
         MessageList V1StreamSidMessageGet (string sid, long? since, string sessionToken, string keyManagerToken, int? offset = null, int? maxMessages = null);
 
@@ -102,22 +102,22 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Get messages from an existing stream.
         /// </summary>
         /// <remarks>
-        /// A caller can fetch all unseen messages by passing the timestamp of the last message seen as the since parameter and the number of messages with the same timestamp value already seen as the skip parameter. This means that every message will be seen exactly once even in the case that an additional message is processed with the same timestamp as the last message returned by the previous call, and the case where there are more than maxMessages with the same timestamp value.  This method is intended for historic queries and is generally reliable but if guaranteed delivery of every message in real time is required then the equivilent firehose method should be called. 
+        /// A caller can fetch all unseen messages by passing the timestamp of\nthe last message seen as the since parameter and the number of messages\nwith the same timestamp value already seen as the skip parameter. This\nmeans that every message will be seen exactly once even in the case that\nan additional message is processed with the same timestamp as the last\nmessage returned by the previous call, and the case where there are\nmore than maxMessages with the same timestamp value.\n\nThis method is intended for historic queries and is generally reliable\nbut if guaranteed delivery of every message in real time is required\nthen the equivilent firehose method should be called.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sid">Stream ID </param>
-        /// <param name="since">Timestamp of first required message.  This is a long integer value representing milliseconds since Jan 1 1970 </param>
+        /// <param name="sid">Stream ID\n</param>
+        /// <param name="since">Timestamp of first required message.\n\nThis is a long integer value representing milliseconds since\nJan 1 1970\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="offset">No. of messages to skip.  (optional)</param>
-        /// <param name="maxMessages">Max No. of messages to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="offset">No. of messages to skip.\n (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>ApiResponse of MessageList</returns>
         ApiResponse<MessageList> V1StreamSidMessageGetWithHttpInfo (string sid, long? since, string sessionToken, string keyManagerToken, int? offset = null, int? maxMessages = null);
         /// <summary>
         /// Post a message to one existing stream.
         /// </summary>
         /// <remarks>
-        /// Post a new message to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  You may include an attachment on the message (see the V2MessageSubmission parameter).  If the message parameter type is TEXT then the message contains plain text and cannot include formating, hash tags, mentions etc.  If the message parameter type is MessageML then the message contains MessageML which allows for these entities.  If the message is in MessageML and fails schema validation a client error results  If the message is sent then 200 is returned. 
+        /// Post a new message to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nYou may include an attachment on the message (see the V2MessageSubmission parameter).\n\nIf the message parameter type is TEXT then the message contains plain\ntext and cannot include formating, hash tags, mentions etc.\n\nIf the message parameter type is MessageML then the message contains\nMessageML which allows for these entities.\n\nIf the message is in MessageML and fails schema validation\na client error results\n\nIf the message is sent then 200 is returned.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -131,7 +131,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Post a message to one existing stream.
         /// </summary>
         /// <remarks>
-        /// Post a new message to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  You may include an attachment on the message (see the V2MessageSubmission parameter).  If the message parameter type is TEXT then the message contains plain text and cannot include formating, hash tags, mentions etc.  If the message parameter type is MessageML then the message contains MessageML which allows for these entities.  If the message is in MessageML and fails schema validation a client error results  If the message is sent then 200 is returned. 
+        /// Post a new message to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nYou may include an attachment on the message (see the V2MessageSubmission parameter).\n\nIf the message parameter type is TEXT then the message contains plain\ntext and cannot include formating, hash tags, mentions etc.\n\nIf the message parameter type is MessageML then the message contains\nMessageML which allows for these entities.\n\nIf the message is in MessageML and fails schema validation\na client error results\n\nIf the message is sent then 200 is returned.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -144,15 +144,15 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Get messages from an existing stream.
         /// </summary>
         /// <remarks>
-        /// A caller can fetch all unseen messages by passing the timestamp of the last message seen as the since parameter and the number of messages with the same timestamp value already seen as the skip parameter. This means that every message will be seen exactly once even in the case that an additional message is processed with the same timestamp as the last message returned by the previous call, and the case where there are more than maxMessages with the same timestamp value.  This method is intended for historic queries and is generally reliable but if guaranteed delivery of every message in real time is required then the equivilent firehose method should be called. 
+        /// A caller can fetch all unseen messages by passing the timestamp of\nthe last message seen as the since parameter and the number of messages\nwith the same timestamp value already seen as the skip parameter. This\nmeans that every message will be seen exactly once even in the case that\nan additional message is processed with the same timestamp as the last\nmessage returned by the previous call, and the case where there are\nmore than maxMessages with the same timestamp value.\n\nThis method is intended for historic queries and is generally reliable\nbut if guaranteed delivery of every message in real time is required\nthen the equivilent firehose method should be called.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sid">Stream ID </param>
-        /// <param name="since">Timestamp of first required message.  This is a long integer value representing milliseconds since Jan 1 1970 </param>
+        /// <param name="sid">Stream ID\n</param>
+        /// <param name="since">Timestamp of first required message.\n\nThis is a long integer value representing milliseconds since\nJan 1 1970\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="offset">No. of messages to skip.  (optional)</param>
-        /// <param name="limit">Max No. of messages to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="offset">No. of messages to skip.\n (optional)</param>
+        /// <param name="limit">Max No. of messages to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>V2MessageList</returns>
         V2MessageList V2StreamSidMessageGet (string sid, long? since, string sessionToken, string keyManagerToken, int? offset = null, int? limit = null);
 
@@ -160,15 +160,15 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Get messages from an existing stream.
         /// </summary>
         /// <remarks>
-        /// A caller can fetch all unseen messages by passing the timestamp of the last message seen as the since parameter and the number of messages with the same timestamp value already seen as the skip parameter. This means that every message will be seen exactly once even in the case that an additional message is processed with the same timestamp as the last message returned by the previous call, and the case where there are more than maxMessages with the same timestamp value.  This method is intended for historic queries and is generally reliable but if guaranteed delivery of every message in real time is required then the equivilent firehose method should be called. 
+        /// A caller can fetch all unseen messages by passing the timestamp of\nthe last message seen as the since parameter and the number of messages\nwith the same timestamp value already seen as the skip parameter. This\nmeans that every message will be seen exactly once even in the case that\nan additional message is processed with the same timestamp as the last\nmessage returned by the previous call, and the case where there are\nmore than maxMessages with the same timestamp value.\n\nThis method is intended for historic queries and is generally reliable\nbut if guaranteed delivery of every message in real time is required\nthen the equivilent firehose method should be called.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sid">Stream ID </param>
-        /// <param name="since">Timestamp of first required message.  This is a long integer value representing milliseconds since Jan 1 1970 </param>
+        /// <param name="sid">Stream ID\n</param>
+        /// <param name="since">Timestamp of first required message.\n\nThis is a long integer value representing milliseconds since\nJan 1 1970\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="offset">No. of messages to skip.  (optional)</param>
-        /// <param name="limit">Max No. of messages to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="offset">No. of messages to skip.\n (optional)</param>
+        /// <param name="limit">Max No. of messages to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>ApiResponse of V2MessageList</returns>
         ApiResponse<V2MessageList> V2StreamSidMessageGetWithHttpInfo (string sid, long? since, string sessionToken, string keyManagerToken, int? offset = null, int? limit = null);
         /// <summary>
@@ -204,7 +204,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Import messages from other systems into Symphony.
         /// </summary>
         /// <remarks>
-        /// Sends a message to be imported into the system. Allows you to override the timestamp and author of the message with your desired values. The requesting user must have the Content Management role. Also, the requesting user must be a member of the conversation it is importing into. The user that the message is intended to have come from must also be present in the conversation. The intended message timestamp must be a valid time from the past. It cannot be a future timestamp. 
+        /// Sends a message to be imported into the system.\nAllows you to override the timestamp and author of the message with your desired values.\nThe requesting user must have the Content Management role.\nAlso, the requesting user must be a member of the conversation it is importing into.\nThe user that the message is intended to have come from must also be present in the conversation.\nThe intended message timestamp must be a valid time from the past. It cannot be a future timestamp.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -217,7 +217,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Import messages from other systems into Symphony.
         /// </summary>
         /// <remarks>
-        /// Sends a message to be imported into the system. Allows you to override the timestamp and author of the message with your desired values. The requesting user must have the Content Management role. Also, the requesting user must be a member of the conversation it is importing into. The user that the message is intended to have come from must also be present in the conversation. The intended message timestamp must be a valid time from the past. It cannot be a future timestamp. 
+        /// Sends a message to be imported into the system.\nAllows you to override the timestamp and author of the message with your desired values.\nThe requesting user must have the Content Management role.\nAlso, the requesting user must be a member of the conversation it is importing into.\nThe user that the message is intended to have come from must also be present in the conversation.\nThe intended message timestamp must be a valid time from the past. It cannot be a future timestamp.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -229,7 +229,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Post a message to one existing stream.
         /// </summary>
         /// <remarks>
-        /// Post a new message to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  If the message parameter type is TEXT then the message contains plain text and cannot include formating, hash tags, mentions etc.  If the message parameter type is MessageML then the message contains MessageML which allows for these entities.  If the message is in MessageML and fails schema validation a client error results  If the message is sent then 200 is returned. 
+        /// Post a new message to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nIf the message parameter type is TEXT then the message contains plain\ntext and cannot include formating, hash tags, mentions etc.\n\nIf the message parameter type is MessageML then the message contains\nMessageML which allows for these entities.\n\nIf the message is in MessageML and fails schema validation\na client error results\n\nIf the message is sent then 200 is returned.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -243,7 +243,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Post a message to one existing stream.
         /// </summary>
         /// <remarks>
-        /// Post a new message to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  If the message parameter type is TEXT then the message contains plain text and cannot include formating, hash tags, mentions etc.  If the message parameter type is MessageML then the message contains MessageML which allows for these entities.  If the message is in MessageML and fails schema validation a client error results  If the message is sent then 200 is returned. 
+        /// Post a new message to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nIf the message parameter type is TEXT then the message contains plain\ntext and cannot include formating, hash tags, mentions etc.\n\nIf the message parameter type is MessageML then the message contains\nMessageML which allows for these entities.\n\nIf the message is in MessageML and fails schema validation\na client error results\n\nIf the message is sent then 200 is returned.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -256,15 +256,15 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Get messages from an existing stream.
         /// </summary>
         /// <remarks>
-        /// A caller can fetch all unseen messages by passing the timestamp of the last message seen as the since parameter and the number of messages with the same timestamp value already seen as the skip parameter. This means that every message will be seen exactly once even in the case that an additional message is processed with the same timestamp as the last message returned by the previous call, and the case where there are more than maxMessages with the same timestamp value.  This method is intended for historic queries and is generally reliable but if guaranteed delivery of every message in real time is required then the equivilent firehose method should be called. 
+        /// A caller can fetch all unseen messages by passing the timestamp of\nthe last message seen as the since parameter and the number of messages\nwith the same timestamp value already seen as the skip parameter. This\nmeans that every message will be seen exactly once even in the case that\nan additional message is processed with the same timestamp as the last\nmessage returned by the previous call, and the case where there are\nmore than maxMessages with the same timestamp value.\n\nThis method is intended for historic queries and is generally reliable\nbut if guaranteed delivery of every message in real time is required\nthen the equivilent firehose method should be called.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sid">Stream ID </param>
-        /// <param name="since">Timestamp of first required message.  This is a long integer value representing milliseconds since Jan 1 1970 </param>
+        /// <param name="sid">Stream ID\n</param>
+        /// <param name="since">Timestamp of first required message.\n\nThis is a long integer value representing milliseconds since\nJan 1 1970\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="offset">No. of messages to skip.  (optional)</param>
-        /// <param name="maxMessages">Max No. of messages to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="offset">No. of messages to skip.\n (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>Task of MessageList</returns>
         System.Threading.Tasks.Task<MessageList> V1StreamSidMessageGetAsync (string sid, long? since, string sessionToken, string keyManagerToken, int? offset = null, int? maxMessages = null);
 
@@ -272,22 +272,22 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Get messages from an existing stream.
         /// </summary>
         /// <remarks>
-        /// A caller can fetch all unseen messages by passing the timestamp of the last message seen as the since parameter and the number of messages with the same timestamp value already seen as the skip parameter. This means that every message will be seen exactly once even in the case that an additional message is processed with the same timestamp as the last message returned by the previous call, and the case where there are more than maxMessages with the same timestamp value.  This method is intended for historic queries and is generally reliable but if guaranteed delivery of every message in real time is required then the equivilent firehose method should be called. 
+        /// A caller can fetch all unseen messages by passing the timestamp of\nthe last message seen as the since parameter and the number of messages\nwith the same timestamp value already seen as the skip parameter. This\nmeans that every message will be seen exactly once even in the case that\nan additional message is processed with the same timestamp as the last\nmessage returned by the previous call, and the case where there are\nmore than maxMessages with the same timestamp value.\n\nThis method is intended for historic queries and is generally reliable\nbut if guaranteed delivery of every message in real time is required\nthen the equivilent firehose method should be called.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sid">Stream ID </param>
-        /// <param name="since">Timestamp of first required message.  This is a long integer value representing milliseconds since Jan 1 1970 </param>
+        /// <param name="sid">Stream ID\n</param>
+        /// <param name="since">Timestamp of first required message.\n\nThis is a long integer value representing milliseconds since\nJan 1 1970\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="offset">No. of messages to skip.  (optional)</param>
-        /// <param name="maxMessages">Max No. of messages to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="offset">No. of messages to skip.\n (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>Task of ApiResponse (MessageList)</returns>
         System.Threading.Tasks.Task<ApiResponse<MessageList>> V1StreamSidMessageGetAsyncWithHttpInfo (string sid, long? since, string sessionToken, string keyManagerToken, int? offset = null, int? maxMessages = null);
         /// <summary>
         /// Post a message to one existing stream.
         /// </summary>
         /// <remarks>
-        /// Post a new message to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  You may include an attachment on the message (see the V2MessageSubmission parameter).  If the message parameter type is TEXT then the message contains plain text and cannot include formating, hash tags, mentions etc.  If the message parameter type is MessageML then the message contains MessageML which allows for these entities.  If the message is in MessageML and fails schema validation a client error results  If the message is sent then 200 is returned. 
+        /// Post a new message to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nYou may include an attachment on the message (see the V2MessageSubmission parameter).\n\nIf the message parameter type is TEXT then the message contains plain\ntext and cannot include formating, hash tags, mentions etc.\n\nIf the message parameter type is MessageML then the message contains\nMessageML which allows for these entities.\n\nIf the message is in MessageML and fails schema validation\na client error results\n\nIf the message is sent then 200 is returned.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -301,7 +301,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Post a message to one existing stream.
         /// </summary>
         /// <remarks>
-        /// Post a new message to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  You may include an attachment on the message (see the V2MessageSubmission parameter).  If the message parameter type is TEXT then the message contains plain text and cannot include formating, hash tags, mentions etc.  If the message parameter type is MessageML then the message contains MessageML which allows for these entities.  If the message is in MessageML and fails schema validation a client error results  If the message is sent then 200 is returned. 
+        /// Post a new message to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nYou may include an attachment on the message (see the V2MessageSubmission parameter).\n\nIf the message parameter type is TEXT then the message contains plain\ntext and cannot include formating, hash tags, mentions etc.\n\nIf the message parameter type is MessageML then the message contains\nMessageML which allows for these entities.\n\nIf the message is in MessageML and fails schema validation\na client error results\n\nIf the message is sent then 200 is returned.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -314,15 +314,15 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Get messages from an existing stream.
         /// </summary>
         /// <remarks>
-        /// A caller can fetch all unseen messages by passing the timestamp of the last message seen as the since parameter and the number of messages with the same timestamp value already seen as the skip parameter. This means that every message will be seen exactly once even in the case that an additional message is processed with the same timestamp as the last message returned by the previous call, and the case where there are more than maxMessages with the same timestamp value.  This method is intended for historic queries and is generally reliable but if guaranteed delivery of every message in real time is required then the equivilent firehose method should be called. 
+        /// A caller can fetch all unseen messages by passing the timestamp of\nthe last message seen as the since parameter and the number of messages\nwith the same timestamp value already seen as the skip parameter. This\nmeans that every message will be seen exactly once even in the case that\nan additional message is processed with the same timestamp as the last\nmessage returned by the previous call, and the case where there are\nmore than maxMessages with the same timestamp value.\n\nThis method is intended for historic queries and is generally reliable\nbut if guaranteed delivery of every message in real time is required\nthen the equivilent firehose method should be called.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sid">Stream ID </param>
-        /// <param name="since">Timestamp of first required message.  This is a long integer value representing milliseconds since Jan 1 1970 </param>
+        /// <param name="sid">Stream ID\n</param>
+        /// <param name="since">Timestamp of first required message.\n\nThis is a long integer value representing milliseconds since\nJan 1 1970\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="offset">No. of messages to skip.  (optional)</param>
-        /// <param name="limit">Max No. of messages to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="offset">No. of messages to skip.\n (optional)</param>
+        /// <param name="limit">Max No. of messages to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>Task of V2MessageList</returns>
         System.Threading.Tasks.Task<V2MessageList> V2StreamSidMessageGetAsync (string sid, long? since, string sessionToken, string keyManagerToken, int? offset = null, int? limit = null);
 
@@ -330,15 +330,15 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Get messages from an existing stream.
         /// </summary>
         /// <remarks>
-        /// A caller can fetch all unseen messages by passing the timestamp of the last message seen as the since parameter and the number of messages with the same timestamp value already seen as the skip parameter. This means that every message will be seen exactly once even in the case that an additional message is processed with the same timestamp as the last message returned by the previous call, and the case where there are more than maxMessages with the same timestamp value.  This method is intended for historic queries and is generally reliable but if guaranteed delivery of every message in real time is required then the equivilent firehose method should be called. 
+        /// A caller can fetch all unseen messages by passing the timestamp of\nthe last message seen as the since parameter and the number of messages\nwith the same timestamp value already seen as the skip parameter. This\nmeans that every message will be seen exactly once even in the case that\nan additional message is processed with the same timestamp as the last\nmessage returned by the previous call, and the case where there are\nmore than maxMessages with the same timestamp value.\n\nThis method is intended for historic queries and is generally reliable\nbut if guaranteed delivery of every message in real time is required\nthen the equivilent firehose method should be called.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sid">Stream ID </param>
-        /// <param name="since">Timestamp of first required message.  This is a long integer value representing milliseconds since Jan 1 1970 </param>
+        /// <param name="sid">Stream ID\n</param>
+        /// <param name="since">Timestamp of first required message.\n\nThis is a long integer value representing milliseconds since\nJan 1 1970\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="offset">No. of messages to skip.  (optional)</param>
-        /// <param name="limit">Max No. of messages to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="offset">No. of messages to skip.\n (optional)</param>
+        /// <param name="limit">Max No. of messages to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>Task of ApiResponse (V2MessageList)</returns>
         System.Threading.Tasks.Task<ApiResponse<V2MessageList>> V2StreamSidMessageGetAsyncWithHttpInfo (string sid, long? since, string sessionToken, string keyManagerToken, int? offset = null, int? limit = null);
         /// <summary>
@@ -374,10 +374,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class MessagesApi : IMessagesApi
+    public class MessagesApi : IMessagesApi
     {
-        private SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MessagesApi"/> class.
         /// </summary>
@@ -385,8 +383,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         public MessagesApi(String basePath)
         {
             this.Configuration = new Configuration(new ApiClient(basePath));
-
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.Configuration.DefaultExceptionFactory;
 
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
@@ -408,8 +404,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
             else
                 this.Configuration = configuration;
 
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.Configuration.DefaultExceptionFactory;
-
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
             {
@@ -430,7 +424,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Sets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
+        [Obsolete("SetBasePath is deprecated, please do 'Configuraiton.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
         public void SetBasePath(String basePath)
         {
             // do nothing
@@ -441,22 +435,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// </summary>
         /// <value>An instance of the Configuration</value>
         public Configuration Configuration {get; set;}
-
-        /// <summary>
-        /// Provides a factory method hook for the creation of exceptions.
-        /// </summary>
-        public SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ExceptionFactory ExceptionFactory
-        {
-            get
-            {
-                if (_exceptionFactory != null && _exceptionFactory.GetInvocationList().Length > 1)
-                {
-                    throw new InvalidOperationException("Multicast delegate for ExceptionFactory is unsupported.");
-                }
-                return _exceptionFactory;
-            }
-            set { _exceptionFactory = value; }
-        }
 
         /// <summary>
         /// Gets the default header.
@@ -481,7 +459,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Import messages from other systems into Symphony. Sends a message to be imported into the system. Allows you to override the timestamp and author of the message with your desired values. The requesting user must have the Content Management role. Also, the requesting user must be a member of the conversation it is importing into. The user that the message is intended to have come from must also be present in the conversation. The intended message timestamp must be a valid time from the past. It cannot be a future timestamp. 
+        /// Import messages from other systems into Symphony. Sends a message to be imported into the system.\nAllows you to override the timestamp and author of the message with your desired values.\nThe requesting user must have the Content Management role.\nAlso, the requesting user must be a member of the conversation it is importing into.\nThe user that the message is intended to have come from must also be present in the conversation.\nThe intended message timestamp must be a valid time from the past. It cannot be a future timestamp.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -495,7 +473,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Import messages from other systems into Symphony. Sends a message to be imported into the system. Allows you to override the timestamp and author of the message with your desired values. The requesting user must have the Content Management role. Also, the requesting user must be a member of the conversation it is importing into. The user that the message is intended to have come from must also be present in the conversation. The intended message timestamp must be a valid time from the past. It cannot be a future timestamp. 
+        /// Import messages from other systems into Symphony. Sends a message to be imported into the system.\nAllows you to override the timestamp and author of the message with your desired values.\nThe requesting user must have the Content Management role.\nAlso, the requesting user must be a member of the conversation it is importing into.\nThe user that the message is intended to have come from must also be present in the conversation.\nThe intended message timestamp must be a valid time from the past. It cannot be a future timestamp.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -541,7 +519,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
             if (keyManagerToken != null) localVarHeaderParams.Add("keyManagerToken", Configuration.ApiClient.ParameterToString(keyManagerToken)); // header parameter
-            if (messageList != null && messageList.GetType() != typeof(byte[]))
+            if (messageList.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(messageList); // http body (model) parameter
             }
@@ -558,11 +536,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1MessageImportPost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1MessageImportPost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1MessageImportPost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<ImportResponseList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -571,7 +548,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Import messages from other systems into Symphony. Sends a message to be imported into the system. Allows you to override the timestamp and author of the message with your desired values. The requesting user must have the Content Management role. Also, the requesting user must be a member of the conversation it is importing into. The user that the message is intended to have come from must also be present in the conversation. The intended message timestamp must be a valid time from the past. It cannot be a future timestamp. 
+        /// Import messages from other systems into Symphony. Sends a message to be imported into the system.\nAllows you to override the timestamp and author of the message with your desired values.\nThe requesting user must have the Content Management role.\nAlso, the requesting user must be a member of the conversation it is importing into.\nThe user that the message is intended to have come from must also be present in the conversation.\nThe intended message timestamp must be a valid time from the past. It cannot be a future timestamp.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -586,7 +563,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Import messages from other systems into Symphony. Sends a message to be imported into the system. Allows you to override the timestamp and author of the message with your desired values. The requesting user must have the Content Management role. Also, the requesting user must be a member of the conversation it is importing into. The user that the message is intended to have come from must also be present in the conversation. The intended message timestamp must be a valid time from the past. It cannot be a future timestamp. 
+        /// Import messages from other systems into Symphony. Sends a message to be imported into the system.\nAllows you to override the timestamp and author of the message with your desired values.\nThe requesting user must have the Content Management role.\nAlso, the requesting user must be a member of the conversation it is importing into.\nThe user that the message is intended to have come from must also be present in the conversation.\nThe intended message timestamp must be a valid time from the past. It cannot be a future timestamp.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionToken">Session authentication token.</param>
@@ -632,7 +609,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
             localVarPathParams.Add("format", "json");
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
             if (keyManagerToken != null) localVarHeaderParams.Add("keyManagerToken", Configuration.ApiClient.ParameterToString(keyManagerToken)); // header parameter
-            if (messageList != null && messageList.GetType() != typeof(byte[]))
+            if (messageList.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(messageList); // http body (model) parameter
             }
@@ -649,11 +626,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1MessageImportPost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1MessageImportPost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1MessageImportPost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<ImportResponseList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -662,7 +638,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Post a message to one existing stream. Post a new message to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  If the message parameter type is TEXT then the message contains plain text and cannot include formating, hash tags, mentions etc.  If the message parameter type is MessageML then the message contains MessageML which allows for these entities.  If the message is in MessageML and fails schema validation a client error results  If the message is sent then 200 is returned. 
+        /// Post a message to one existing stream. Post a new message to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nIf the message parameter type is TEXT then the message contains plain\ntext and cannot include formating, hash tags, mentions etc.\n\nIf the message parameter type is MessageML then the message contains\nMessageML which allows for these entities.\n\nIf the message is in MessageML and fails schema validation\na client error results\n\nIf the message is sent then 200 is returned.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -677,7 +653,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Post a message to one existing stream. Post a new message to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  If the message parameter type is TEXT then the message contains plain text and cannot include formating, hash tags, mentions etc.  If the message parameter type is MessageML then the message contains MessageML which allows for these entities.  If the message is in MessageML and fails schema validation a client error results  If the message is sent then 200 is returned. 
+        /// Post a message to one existing stream. Post a new message to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nIf the message parameter type is TEXT then the message contains plain\ntext and cannot include formating, hash tags, mentions etc.\n\nIf the message parameter type is MessageML then the message contains\nMessageML which allows for these entities.\n\nIf the message is in MessageML and fails schema validation\na client error results\n\nIf the message is sent then 200 is returned.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -728,7 +704,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
             if (sid != null) localVarPathParams.Add("sid", Configuration.ApiClient.ParameterToString(sid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
             if (keyManagerToken != null) localVarHeaderParams.Add("keyManagerToken", Configuration.ApiClient.ParameterToString(keyManagerToken)); // header parameter
-            if (message != null && message.GetType() != typeof(byte[]))
+            if (message.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(message); // http body (model) parameter
             }
@@ -745,11 +721,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1StreamSidMessageCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1StreamSidMessageCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1StreamSidMessageCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<Message>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -758,7 +733,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Post a message to one existing stream. Post a new message to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  If the message parameter type is TEXT then the message contains plain text and cannot include formating, hash tags, mentions etc.  If the message parameter type is MessageML then the message contains MessageML which allows for these entities.  If the message is in MessageML and fails schema validation a client error results  If the message is sent then 200 is returned. 
+        /// Post a message to one existing stream. Post a new message to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nIf the message parameter type is TEXT then the message contains plain\ntext and cannot include formating, hash tags, mentions etc.\n\nIf the message parameter type is MessageML then the message contains\nMessageML which allows for these entities.\n\nIf the message is in MessageML and fails schema validation\na client error results\n\nIf the message is sent then 200 is returned.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -774,7 +749,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Post a message to one existing stream. Post a new message to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  If the message parameter type is TEXT then the message contains plain text and cannot include formating, hash tags, mentions etc.  If the message parameter type is MessageML then the message contains MessageML which allows for these entities.  If the message is in MessageML and fails schema validation a client error results  If the message is sent then 200 is returned. 
+        /// Post a message to one existing stream. Post a new message to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nIf the message parameter type is TEXT then the message contains plain\ntext and cannot include formating, hash tags, mentions etc.\n\nIf the message parameter type is MessageML then the message contains\nMessageML which allows for these entities.\n\nIf the message is in MessageML and fails schema validation\na client error results\n\nIf the message is sent then 200 is returned.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -825,7 +800,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
             if (sid != null) localVarPathParams.Add("sid", Configuration.ApiClient.ParameterToString(sid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
             if (keyManagerToken != null) localVarHeaderParams.Add("keyManagerToken", Configuration.ApiClient.ParameterToString(keyManagerToken)); // header parameter
-            if (message != null && message.GetType() != typeof(byte[]))
+            if (message.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(message); // http body (model) parameter
             }
@@ -842,11 +817,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1StreamSidMessageCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1StreamSidMessageCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1StreamSidMessageCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<Message>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -855,15 +829,15 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Get messages from an existing stream. A caller can fetch all unseen messages by passing the timestamp of the last message seen as the since parameter and the number of messages with the same timestamp value already seen as the skip parameter. This means that every message will be seen exactly once even in the case that an additional message is processed with the same timestamp as the last message returned by the previous call, and the case where there are more than maxMessages with the same timestamp value.  This method is intended for historic queries and is generally reliable but if guaranteed delivery of every message in real time is required then the equivilent firehose method should be called. 
+        /// Get messages from an existing stream. A caller can fetch all unseen messages by passing the timestamp of\nthe last message seen as the since parameter and the number of messages\nwith the same timestamp value already seen as the skip parameter. This\nmeans that every message will be seen exactly once even in the case that\nan additional message is processed with the same timestamp as the last\nmessage returned by the previous call, and the case where there are\nmore than maxMessages with the same timestamp value.\n\nThis method is intended for historic queries and is generally reliable\nbut if guaranteed delivery of every message in real time is required\nthen the equivilent firehose method should be called.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sid">Stream ID </param>
-        /// <param name="since">Timestamp of first required message.  This is a long integer value representing milliseconds since Jan 1 1970 </param>
+        /// <param name="sid">Stream ID\n</param>
+        /// <param name="since">Timestamp of first required message.\n\nThis is a long integer value representing milliseconds since\nJan 1 1970\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="offset">No. of messages to skip.  (optional)</param>
-        /// <param name="maxMessages">Max No. of messages to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="offset">No. of messages to skip.\n (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>MessageList</returns>
         public MessageList V1StreamSidMessageGet (string sid, long? since, string sessionToken, string keyManagerToken, int? offset = null, int? maxMessages = null)
         {
@@ -872,15 +846,15 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Get messages from an existing stream. A caller can fetch all unseen messages by passing the timestamp of the last message seen as the since parameter and the number of messages with the same timestamp value already seen as the skip parameter. This means that every message will be seen exactly once even in the case that an additional message is processed with the same timestamp as the last message returned by the previous call, and the case where there are more than maxMessages with the same timestamp value.  This method is intended for historic queries and is generally reliable but if guaranteed delivery of every message in real time is required then the equivilent firehose method should be called. 
+        /// Get messages from an existing stream. A caller can fetch all unseen messages by passing the timestamp of\nthe last message seen as the since parameter and the number of messages\nwith the same timestamp value already seen as the skip parameter. This\nmeans that every message will be seen exactly once even in the case that\nan additional message is processed with the same timestamp as the last\nmessage returned by the previous call, and the case where there are\nmore than maxMessages with the same timestamp value.\n\nThis method is intended for historic queries and is generally reliable\nbut if guaranteed delivery of every message in real time is required\nthen the equivilent firehose method should be called.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sid">Stream ID </param>
-        /// <param name="since">Timestamp of first required message.  This is a long integer value representing milliseconds since Jan 1 1970 </param>
+        /// <param name="sid">Stream ID\n</param>
+        /// <param name="since">Timestamp of first required message.\n\nThis is a long integer value representing milliseconds since\nJan 1 1970\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="offset">No. of messages to skip.  (optional)</param>
-        /// <param name="maxMessages">Max No. of messages to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="offset">No. of messages to skip.\n (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>ApiResponse of MessageList</returns>
         public ApiResponse< MessageList > V1StreamSidMessageGetWithHttpInfo (string sid, long? since, string sessionToken, string keyManagerToken, int? offset = null, int? maxMessages = null)
         {
@@ -936,11 +910,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1StreamSidMessageGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1StreamSidMessageGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1StreamSidMessageGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<MessageList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -949,15 +922,15 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Get messages from an existing stream. A caller can fetch all unseen messages by passing the timestamp of the last message seen as the since parameter and the number of messages with the same timestamp value already seen as the skip parameter. This means that every message will be seen exactly once even in the case that an additional message is processed with the same timestamp as the last message returned by the previous call, and the case where there are more than maxMessages with the same timestamp value.  This method is intended for historic queries and is generally reliable but if guaranteed delivery of every message in real time is required then the equivilent firehose method should be called. 
+        /// Get messages from an existing stream. A caller can fetch all unseen messages by passing the timestamp of\nthe last message seen as the since parameter and the number of messages\nwith the same timestamp value already seen as the skip parameter. This\nmeans that every message will be seen exactly once even in the case that\nan additional message is processed with the same timestamp as the last\nmessage returned by the previous call, and the case where there are\nmore than maxMessages with the same timestamp value.\n\nThis method is intended for historic queries and is generally reliable\nbut if guaranteed delivery of every message in real time is required\nthen the equivilent firehose method should be called.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sid">Stream ID </param>
-        /// <param name="since">Timestamp of first required message.  This is a long integer value representing milliseconds since Jan 1 1970 </param>
+        /// <param name="sid">Stream ID\n</param>
+        /// <param name="since">Timestamp of first required message.\n\nThis is a long integer value representing milliseconds since\nJan 1 1970\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="offset">No. of messages to skip.  (optional)</param>
-        /// <param name="maxMessages">Max No. of messages to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="offset">No. of messages to skip.\n (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>Task of MessageList</returns>
         public async System.Threading.Tasks.Task<MessageList> V1StreamSidMessageGetAsync (string sid, long? since, string sessionToken, string keyManagerToken, int? offset = null, int? maxMessages = null)
         {
@@ -967,15 +940,15 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Get messages from an existing stream. A caller can fetch all unseen messages by passing the timestamp of the last message seen as the since parameter and the number of messages with the same timestamp value already seen as the skip parameter. This means that every message will be seen exactly once even in the case that an additional message is processed with the same timestamp as the last message returned by the previous call, and the case where there are more than maxMessages with the same timestamp value.  This method is intended for historic queries and is generally reliable but if guaranteed delivery of every message in real time is required then the equivilent firehose method should be called. 
+        /// Get messages from an existing stream. A caller can fetch all unseen messages by passing the timestamp of\nthe last message seen as the since parameter and the number of messages\nwith the same timestamp value already seen as the skip parameter. This\nmeans that every message will be seen exactly once even in the case that\nan additional message is processed with the same timestamp as the last\nmessage returned by the previous call, and the case where there are\nmore than maxMessages with the same timestamp value.\n\nThis method is intended for historic queries and is generally reliable\nbut if guaranteed delivery of every message in real time is required\nthen the equivilent firehose method should be called.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sid">Stream ID </param>
-        /// <param name="since">Timestamp of first required message.  This is a long integer value representing milliseconds since Jan 1 1970 </param>
+        /// <param name="sid">Stream ID\n</param>
+        /// <param name="since">Timestamp of first required message.\n\nThis is a long integer value representing milliseconds since\nJan 1 1970\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="offset">No. of messages to skip.  (optional)</param>
-        /// <param name="maxMessages">Max No. of messages to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="offset">No. of messages to skip.\n (optional)</param>
+        /// <param name="maxMessages">Max No. of messages to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>Task of ApiResponse (MessageList)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<MessageList>> V1StreamSidMessageGetAsyncWithHttpInfo (string sid, long? since, string sessionToken, string keyManagerToken, int? offset = null, int? maxMessages = null)
         {
@@ -1031,11 +1004,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1StreamSidMessageGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1StreamSidMessageGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1StreamSidMessageGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<MessageList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1044,7 +1016,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Post a message to one existing stream. Post a new message to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  You may include an attachment on the message (see the V2MessageSubmission parameter).  If the message parameter type is TEXT then the message contains plain text and cannot include formating, hash tags, mentions etc.  If the message parameter type is MessageML then the message contains MessageML which allows for these entities.  If the message is in MessageML and fails schema validation a client error results  If the message is sent then 200 is returned. 
+        /// Post a message to one existing stream. Post a new message to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nYou may include an attachment on the message (see the V2MessageSubmission parameter).\n\nIf the message parameter type is TEXT then the message contains plain\ntext and cannot include formating, hash tags, mentions etc.\n\nIf the message parameter type is MessageML then the message contains\nMessageML which allows for these entities.\n\nIf the message is in MessageML and fails schema validation\na client error results\n\nIf the message is sent then 200 is returned.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -1059,7 +1031,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Post a message to one existing stream. Post a new message to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  You may include an attachment on the message (see the V2MessageSubmission parameter).  If the message parameter type is TEXT then the message contains plain text and cannot include formating, hash tags, mentions etc.  If the message parameter type is MessageML then the message contains MessageML which allows for these entities.  If the message is in MessageML and fails schema validation a client error results  If the message is sent then 200 is returned. 
+        /// Post a message to one existing stream. Post a new message to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nYou may include an attachment on the message (see the V2MessageSubmission parameter).\n\nIf the message parameter type is TEXT then the message contains plain\ntext and cannot include formating, hash tags, mentions etc.\n\nIf the message parameter type is MessageML then the message contains\nMessageML which allows for these entities.\n\nIf the message is in MessageML and fails schema validation\na client error results\n\nIf the message is sent then 200 is returned.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -1110,7 +1082,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
             if (sid != null) localVarPathParams.Add("sid", Configuration.ApiClient.ParameterToString(sid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
             if (keyManagerToken != null) localVarHeaderParams.Add("keyManagerToken", Configuration.ApiClient.ParameterToString(keyManagerToken)); // header parameter
-            if (message != null && message.GetType() != typeof(byte[]))
+            if (message.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(message); // http body (model) parameter
             }
@@ -1127,11 +1099,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2StreamSidMessageCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V2StreamSidMessageCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V2StreamSidMessageCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<V2Message>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1140,7 +1111,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Post a message to one existing stream. Post a new message to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  You may include an attachment on the message (see the V2MessageSubmission parameter).  If the message parameter type is TEXT then the message contains plain text and cannot include formating, hash tags, mentions etc.  If the message parameter type is MessageML then the message contains MessageML which allows for these entities.  If the message is in MessageML and fails schema validation a client error results  If the message is sent then 200 is returned. 
+        /// Post a message to one existing stream. Post a new message to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nYou may include an attachment on the message (see the V2MessageSubmission parameter).\n\nIf the message parameter type is TEXT then the message contains plain\ntext and cannot include formating, hash tags, mentions etc.\n\nIf the message parameter type is MessageML then the message contains\nMessageML which allows for these entities.\n\nIf the message is in MessageML and fails schema validation\na client error results\n\nIf the message is sent then 200 is returned.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -1156,7 +1127,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Post a message to one existing stream. Post a new message to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  You may include an attachment on the message (see the V2MessageSubmission parameter).  If the message parameter type is TEXT then the message contains plain text and cannot include formating, hash tags, mentions etc.  If the message parameter type is MessageML then the message contains MessageML which allows for these entities.  If the message is in MessageML and fails schema validation a client error results  If the message is sent then 200 is returned. 
+        /// Post a message to one existing stream. Post a new message to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nYou may include an attachment on the message (see the V2MessageSubmission parameter).\n\nIf the message parameter type is TEXT then the message contains plain\ntext and cannot include formating, hash tags, mentions etc.\n\nIf the message parameter type is MessageML then the message contains\nMessageML which allows for these entities.\n\nIf the message is in MessageML and fails schema validation\na client error results\n\nIf the message is sent then 200 is returned.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -1207,7 +1178,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
             if (sid != null) localVarPathParams.Add("sid", Configuration.ApiClient.ParameterToString(sid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
             if (keyManagerToken != null) localVarHeaderParams.Add("keyManagerToken", Configuration.ApiClient.ParameterToString(keyManagerToken)); // header parameter
-            if (message != null && message.GetType() != typeof(byte[]))
+            if (message.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(message); // http body (model) parameter
             }
@@ -1224,11 +1195,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2StreamSidMessageCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V2StreamSidMessageCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V2StreamSidMessageCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<V2Message>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1237,15 +1207,15 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Get messages from an existing stream. A caller can fetch all unseen messages by passing the timestamp of the last message seen as the since parameter and the number of messages with the same timestamp value already seen as the skip parameter. This means that every message will be seen exactly once even in the case that an additional message is processed with the same timestamp as the last message returned by the previous call, and the case where there are more than maxMessages with the same timestamp value.  This method is intended for historic queries and is generally reliable but if guaranteed delivery of every message in real time is required then the equivilent firehose method should be called. 
+        /// Get messages from an existing stream. A caller can fetch all unseen messages by passing the timestamp of\nthe last message seen as the since parameter and the number of messages\nwith the same timestamp value already seen as the skip parameter. This\nmeans that every message will be seen exactly once even in the case that\nan additional message is processed with the same timestamp as the last\nmessage returned by the previous call, and the case where there are\nmore than maxMessages with the same timestamp value.\n\nThis method is intended for historic queries and is generally reliable\nbut if guaranteed delivery of every message in real time is required\nthen the equivilent firehose method should be called.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sid">Stream ID </param>
-        /// <param name="since">Timestamp of first required message.  This is a long integer value representing milliseconds since Jan 1 1970 </param>
+        /// <param name="sid">Stream ID\n</param>
+        /// <param name="since">Timestamp of first required message.\n\nThis is a long integer value representing milliseconds since\nJan 1 1970\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="offset">No. of messages to skip.  (optional)</param>
-        /// <param name="limit">Max No. of messages to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="offset">No. of messages to skip.\n (optional)</param>
+        /// <param name="limit">Max No. of messages to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>V2MessageList</returns>
         public V2MessageList V2StreamSidMessageGet (string sid, long? since, string sessionToken, string keyManagerToken, int? offset = null, int? limit = null)
         {
@@ -1254,15 +1224,15 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Get messages from an existing stream. A caller can fetch all unseen messages by passing the timestamp of the last message seen as the since parameter and the number of messages with the same timestamp value already seen as the skip parameter. This means that every message will be seen exactly once even in the case that an additional message is processed with the same timestamp as the last message returned by the previous call, and the case where there are more than maxMessages with the same timestamp value.  This method is intended for historic queries and is generally reliable but if guaranteed delivery of every message in real time is required then the equivilent firehose method should be called. 
+        /// Get messages from an existing stream. A caller can fetch all unseen messages by passing the timestamp of\nthe last message seen as the since parameter and the number of messages\nwith the same timestamp value already seen as the skip parameter. This\nmeans that every message will be seen exactly once even in the case that\nan additional message is processed with the same timestamp as the last\nmessage returned by the previous call, and the case where there are\nmore than maxMessages with the same timestamp value.\n\nThis method is intended for historic queries and is generally reliable\nbut if guaranteed delivery of every message in real time is required\nthen the equivilent firehose method should be called.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sid">Stream ID </param>
-        /// <param name="since">Timestamp of first required message.  This is a long integer value representing milliseconds since Jan 1 1970 </param>
+        /// <param name="sid">Stream ID\n</param>
+        /// <param name="since">Timestamp of first required message.\n\nThis is a long integer value representing milliseconds since\nJan 1 1970\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="offset">No. of messages to skip.  (optional)</param>
-        /// <param name="limit">Max No. of messages to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="offset">No. of messages to skip.\n (optional)</param>
+        /// <param name="limit">Max No. of messages to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>ApiResponse of V2MessageList</returns>
         public ApiResponse< V2MessageList > V2StreamSidMessageGetWithHttpInfo (string sid, long? since, string sessionToken, string keyManagerToken, int? offset = null, int? limit = null)
         {
@@ -1318,11 +1288,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2StreamSidMessageGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V2StreamSidMessageGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V2StreamSidMessageGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<V2MessageList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -1331,15 +1300,15 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Get messages from an existing stream. A caller can fetch all unseen messages by passing the timestamp of the last message seen as the since parameter and the number of messages with the same timestamp value already seen as the skip parameter. This means that every message will be seen exactly once even in the case that an additional message is processed with the same timestamp as the last message returned by the previous call, and the case where there are more than maxMessages with the same timestamp value.  This method is intended for historic queries and is generally reliable but if guaranteed delivery of every message in real time is required then the equivilent firehose method should be called. 
+        /// Get messages from an existing stream. A caller can fetch all unseen messages by passing the timestamp of\nthe last message seen as the since parameter and the number of messages\nwith the same timestamp value already seen as the skip parameter. This\nmeans that every message will be seen exactly once even in the case that\nan additional message is processed with the same timestamp as the last\nmessage returned by the previous call, and the case where there are\nmore than maxMessages with the same timestamp value.\n\nThis method is intended for historic queries and is generally reliable\nbut if guaranteed delivery of every message in real time is required\nthen the equivilent firehose method should be called.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sid">Stream ID </param>
-        /// <param name="since">Timestamp of first required message.  This is a long integer value representing milliseconds since Jan 1 1970 </param>
+        /// <param name="sid">Stream ID\n</param>
+        /// <param name="since">Timestamp of first required message.\n\nThis is a long integer value representing milliseconds since\nJan 1 1970\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="offset">No. of messages to skip.  (optional)</param>
-        /// <param name="limit">Max No. of messages to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="offset">No. of messages to skip.\n (optional)</param>
+        /// <param name="limit">Max No. of messages to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>Task of V2MessageList</returns>
         public async System.Threading.Tasks.Task<V2MessageList> V2StreamSidMessageGetAsync (string sid, long? since, string sessionToken, string keyManagerToken, int? offset = null, int? limit = null)
         {
@@ -1349,15 +1318,15 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Get messages from an existing stream. A caller can fetch all unseen messages by passing the timestamp of the last message seen as the since parameter and the number of messages with the same timestamp value already seen as the skip parameter. This means that every message will be seen exactly once even in the case that an additional message is processed with the same timestamp as the last message returned by the previous call, and the case where there are more than maxMessages with the same timestamp value.  This method is intended for historic queries and is generally reliable but if guaranteed delivery of every message in real time is required then the equivilent firehose method should be called. 
+        /// Get messages from an existing stream. A caller can fetch all unseen messages by passing the timestamp of\nthe last message seen as the since parameter and the number of messages\nwith the same timestamp value already seen as the skip parameter. This\nmeans that every message will be seen exactly once even in the case that\nan additional message is processed with the same timestamp as the last\nmessage returned by the previous call, and the case where there are\nmore than maxMessages with the same timestamp value.\n\nThis method is intended for historic queries and is generally reliable\nbut if guaranteed delivery of every message in real time is required\nthen the equivilent firehose method should be called.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sid">Stream ID </param>
-        /// <param name="since">Timestamp of first required message.  This is a long integer value representing milliseconds since Jan 1 1970 </param>
+        /// <param name="sid">Stream ID\n</param>
+        /// <param name="since">Timestamp of first required message.\n\nThis is a long integer value representing milliseconds since\nJan 1 1970\n</param>
         /// <param name="sessionToken">Session authentication token.</param>
         /// <param name="keyManagerToken">Key Manager authentication token.</param>
-        /// <param name="offset">No. of messages to skip.  (optional)</param>
-        /// <param name="limit">Max No. of messages to return. If no value is provided, 50 is the default.  (optional)</param>
+        /// <param name="offset">No. of messages to skip.\n (optional)</param>
+        /// <param name="limit">Max No. of messages to return. If no value is provided, 50 is the default.\n (optional)</param>
         /// <returns>Task of ApiResponse (V2MessageList)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<V2MessageList>> V2StreamSidMessageGetAsyncWithHttpInfo (string sid, long? since, string sessionToken, string keyManagerToken, int? offset = null, int? limit = null)
         {
@@ -1413,11 +1382,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V2StreamSidMessageGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V2StreamSidMessageGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V2StreamSidMessageGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<V2MessageList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),

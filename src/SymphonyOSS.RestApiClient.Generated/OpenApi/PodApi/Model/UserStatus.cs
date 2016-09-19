@@ -41,16 +41,16 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         {
             
             /// <summary>
-            /// Enum ENABLED for "ENABLED"
+            /// Enum Enabled for "ENABLED"
             /// </summary>
             [EnumMember(Value = "ENABLED")]
-            ENABLED,
+            Enabled,
             
             /// <summary>
-            /// Enum DISABLED for "DISABLED"
+            /// Enum Disabled for "DISABLED"
             /// </summary>
             [EnumMember(Value = "DISABLED")]
-            DISABLED
+            Disabled
         }
 
         /// <summary>
@@ -64,7 +64,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Status">Status.</param>
         public UserStatus(StatusEnum? Status = null)
         {
-            this.Status = Status;
+            
+            
+                        this.Status = Status;
+            
         }
         
         /// <summary>

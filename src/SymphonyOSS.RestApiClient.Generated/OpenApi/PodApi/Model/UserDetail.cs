@@ -46,14 +46,24 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Avatar">Avatar.</param>
         public UserDetail(UserAttributes UserAttributes = null, UserSystemInfo UserSystemInfo = null, IntegerList Features = null, IntegerList Apps = null, IntegerList Groups = null, StringList Roles = null, IntegerList Disclaimers = null, Avatar Avatar = null)
         {
-            this.UserAttributes = UserAttributes;
-            this.UserSystemInfo = UserSystemInfo;
-            this.Features = Features;
-            this.Apps = Apps;
-            this.Groups = Groups;
-            this.Roles = Roles;
-            this.Disclaimers = Disclaimers;
-            this.Avatar = Avatar;
+            
+            
+                        this.UserAttributes = UserAttributes;
+            
+                        this.UserSystemInfo = UserSystemInfo;
+            
+                        this.Features = Features;
+            
+                        this.Apps = Apps;
+            
+                        this.Groups = Groups;
+            
+                        this.Roles = Roles;
+            
+                        this.Disclaimers = Disclaimers;
+            
+                        this.Avatar = Avatar;
+            
         }
         
         /// <summary>
@@ -105,13 +115,13 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class UserDetail {\n");
             sb.Append("  UserAttributes: ").Append(UserAttributes).Append("\n");
-            sb.Append("  UserSystemInfo: ").Append(UserSystemInfo).Append("\n");
-            sb.Append("  Features: ").Append(Features).Append("\n");
-            sb.Append("  Apps: ").Append(Apps).Append("\n");
-            sb.Append("  Groups: ").Append(Groups).Append("\n");
-            sb.Append("  Roles: ").Append(Roles).Append("\n");
-            sb.Append("  Disclaimers: ").Append(Disclaimers).Append("\n");
-            sb.Append("  Avatar: ").Append(Avatar).Append("\n");
+sb.Append("  UserSystemInfo: ").Append(UserSystemInfo).Append("\n");
+sb.Append("  Features: ").Append(Features).Append("\n");
+sb.Append("  Apps: ").Append(Apps).Append("\n");
+sb.Append("  Groups: ").Append(Groups).Append("\n");
+sb.Append("  Roles: ").Append(Roles).Append("\n");
+sb.Append("  Disclaimers: ").Append(Disclaimers).Append("\n");
+sb.Append("  Avatar: ").Append(Avatar).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

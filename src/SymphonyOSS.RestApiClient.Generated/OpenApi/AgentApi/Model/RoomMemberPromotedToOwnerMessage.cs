@@ -76,9 +76,14 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             {
                 this.StreamId = StreamId;
             }
-            this.Id = Id;
-            this.PromotedByUserId = PromotedByUserId;
-            this.PromotedUserId = PromotedUserId;
+            
+            
+                        this.Id = Id;
+            
+                        this.PromotedByUserId = PromotedByUserId;
+            
+                        this.PromotedUserId = PromotedUserId;
+            
         }
         
         /// <summary>
@@ -121,11 +126,11 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             var sb = new StringBuilder();
             sb.Append("class RoomMemberPromotedToOwnerMessage {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  V2messageType: ").Append(V2messageType).Append("\n");
-            sb.Append("  StreamId: ").Append(StreamId).Append("\n");
-            sb.Append("  PromotedByUserId: ").Append(PromotedByUserId).Append("\n");
-            sb.Append("  PromotedUserId: ").Append(PromotedUserId).Append("\n");
+sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
+sb.Append("  V2messageType: ").Append(V2messageType).Append("\n");
+sb.Append("  StreamId: ").Append(StreamId).Append("\n");
+sb.Append("  PromotedByUserId: ").Append(PromotedByUserId).Append("\n");
+sb.Append("  PromotedUserId: ").Append(PromotedUserId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

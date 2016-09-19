@@ -27,14 +27,14 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IAttachmentsApi : IApiAccessor
+    public interface IAttachmentsApi
     {
         #region Synchronous Operations
         /// <summary>
         /// Upload an attachment.
         /// </summary>
         /// <remarks>
-        /// Upload an attachment to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  Once uploaded, you can use this attachment on a message you send in that stream.  If the attachment is uploaded then 200 is returned. 
+        /// Upload an attachment to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nOnce uploaded, you can use this attachment on a message you send in that stream.\n\nIf the attachment is uploaded then 200 is returned.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -48,7 +48,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Upload an attachment.
         /// </summary>
         /// <remarks>
-        /// Upload an attachment to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  Once uploaded, you can use this attachment on a message you send in that stream.  If the attachment is uploaded then 200 is returned. 
+        /// Upload an attachment to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nOnce uploaded, you can use this attachment on a message you send in that stream.\n\nIf the attachment is uploaded then 200 is returned.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -61,7 +61,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Download an attachment.
         /// </summary>
         /// <remarks>
-        /// Downloads the attachment body by the attachment ID, stream ID, and message ID. 
+        /// Downloads the attachment body by the attachment ID, stream ID, and message ID.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -76,7 +76,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Download an attachment.
         /// </summary>
         /// <remarks>
-        /// Downloads the attachment body by the attachment ID, stream ID, and message ID. 
+        /// Downloads the attachment body by the attachment ID, stream ID, and message ID.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -92,7 +92,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Upload an attachment.
         /// </summary>
         /// <remarks>
-        /// Upload an attachment to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  Once uploaded, you can use this attachment on a message you send in that stream.  If the attachment is uploaded then 200 is returned. 
+        /// Upload an attachment to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nOnce uploaded, you can use this attachment on a message you send in that stream.\n\nIf the attachment is uploaded then 200 is returned.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -106,7 +106,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Upload an attachment.
         /// </summary>
         /// <remarks>
-        /// Upload an attachment to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  Once uploaded, you can use this attachment on a message you send in that stream.  If the attachment is uploaded then 200 is returned. 
+        /// Upload an attachment to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nOnce uploaded, you can use this attachment on a message you send in that stream.\n\nIf the attachment is uploaded then 200 is returned.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -119,7 +119,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Download an attachment.
         /// </summary>
         /// <remarks>
-        /// Downloads the attachment body by the attachment ID, stream ID, and message ID. 
+        /// Downloads the attachment body by the attachment ID, stream ID, and message ID.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -134,7 +134,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Download an attachment.
         /// </summary>
         /// <remarks>
-        /// Downloads the attachment body by the attachment ID, stream ID, and message ID. 
+        /// Downloads the attachment body by the attachment ID, stream ID, and message ID.\n
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -150,10 +150,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class AttachmentsApi : IAttachmentsApi
+    public class AttachmentsApi : IAttachmentsApi
     {
-        private SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AttachmentsApi"/> class.
         /// </summary>
@@ -161,8 +159,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         public AttachmentsApi(String basePath)
         {
             this.Configuration = new Configuration(new ApiClient(basePath));
-
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.Configuration.DefaultExceptionFactory;
 
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
@@ -184,8 +180,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
             else
                 this.Configuration = configuration;
 
-            ExceptionFactory = SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.Configuration.DefaultExceptionFactory;
-
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
             {
@@ -206,7 +200,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// Sets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
+        [Obsolete("SetBasePath is deprecated, please do 'Configuraiton.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
         public void SetBasePath(String basePath)
         {
             // do nothing
@@ -217,22 +211,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         /// </summary>
         /// <value>An instance of the Configuration</value>
         public Configuration Configuration {get; set;}
-
-        /// <summary>
-        /// Provides a factory method hook for the creation of exceptions.
-        /// </summary>
-        public SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ExceptionFactory ExceptionFactory
-        {
-            get
-            {
-                if (_exceptionFactory != null && _exceptionFactory.GetInvocationList().Length > 1)
-                {
-                    throw new InvalidOperationException("Multicast delegate for ExceptionFactory is unsupported.");
-                }
-                return _exceptionFactory;
-            }
-            set { _exceptionFactory = value; }
-        }
 
         /// <summary>
         /// Gets the default header.
@@ -257,7 +235,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Upload an attachment. Upload an attachment to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  Once uploaded, you can use this attachment on a message you send in that stream.  If the attachment is uploaded then 200 is returned. 
+        /// Upload an attachment. Upload an attachment to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nOnce uploaded, you can use this attachment on a message you send in that stream.\n\nIf the attachment is uploaded then 200 is returned.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -272,7 +250,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Upload an attachment. Upload an attachment to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  Once uploaded, you can use this attachment on a message you send in that stream.  If the attachment is uploaded then 200 is returned. 
+        /// Upload an attachment. Upload an attachment to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nOnce uploaded, you can use this attachment on a message you send in that stream.\n\nIf the attachment is uploaded then 200 is returned.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -333,11 +311,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1StreamSidAttachmentCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1StreamSidAttachmentCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1StreamSidAttachmentCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<AttachmentInfo>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -346,7 +323,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Upload an attachment. Upload an attachment to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  Once uploaded, you can use this attachment on a message you send in that stream.  If the attachment is uploaded then 200 is returned. 
+        /// Upload an attachment. Upload an attachment to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nOnce uploaded, you can use this attachment on a message you send in that stream.\n\nIf the attachment is uploaded then 200 is returned.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -362,7 +339,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Upload an attachment. Upload an attachment to the given stream. The stream can be a chatroom, an IM or a multiparty IM.  Once uploaded, you can use this attachment on a message you send in that stream.  If the attachment is uploaded then 200 is returned. 
+        /// Upload an attachment. Upload an attachment to the given stream. The stream can be a chatroom,\nan IM or a multiparty IM.\n\nOnce uploaded, you can use this attachment on a message you send in that stream.\n\nIf the attachment is uploaded then 200 is returned.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -423,11 +400,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1StreamSidAttachmentCreatePost", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1StreamSidAttachmentCreatePost: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1StreamSidAttachmentCreatePost: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<AttachmentInfo>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -436,7 +412,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Download an attachment. Downloads the attachment body by the attachment ID, stream ID, and message ID. 
+        /// Download an attachment. Downloads the attachment body by the attachment ID, stream ID, and message ID.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -452,7 +428,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Download an attachment. Downloads the attachment body by the attachment ID, stream ID, and message ID. 
+        /// Download an attachment. Downloads the attachment body by the attachment ID, stream ID, and message ID.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -518,11 +494,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1StreamSidAttachmentGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1StreamSidAttachmentGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1StreamSidAttachmentGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<byte[]>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
@@ -531,7 +506,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Download an attachment. Downloads the attachment body by the attachment ID, stream ID, and message ID. 
+        /// Download an attachment. Downloads the attachment body by the attachment ID, stream ID, and message ID.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -548,7 +523,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
         }
 
         /// <summary>
-        /// Download an attachment. Downloads the attachment body by the attachment ID, stream ID, and message ID. 
+        /// Download an attachment. Downloads the attachment body by the attachment ID, stream ID, and message ID.\n
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sid">Stream ID</param>
@@ -614,11 +589,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Api
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("V1StreamSidAttachmentGet", localVarResponse);
-                if (exception != null) throw exception;
-            }
+            if (localVarStatusCode >= 400)
+                throw new ApiException (localVarStatusCode, "Error calling V1StreamSidAttachmentGet: " + localVarResponse.Content, localVarResponse.Content);
+            else if (localVarStatusCode == 0)
+                throw new ApiException (localVarStatusCode, "Error calling V1StreamSidAttachmentGet: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
 
             return new ApiResponse<byte[]>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),

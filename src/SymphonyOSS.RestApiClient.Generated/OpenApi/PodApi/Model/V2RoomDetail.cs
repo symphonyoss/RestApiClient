@@ -40,8 +40,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="RoomSystemInfo">RoomSystemInfo.</param>
         public V2RoomDetail(V2RoomAttributes RoomAttributes = null, RoomSystemInfo RoomSystemInfo = null)
         {
-            this.RoomAttributes = RoomAttributes;
-            this.RoomSystemInfo = RoomSystemInfo;
+            
+            
+                        this.RoomAttributes = RoomAttributes;
+            
+                        this.RoomSystemInfo = RoomSystemInfo;
+            
         }
         
         /// <summary>
@@ -63,7 +67,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class V2RoomDetail {\n");
             sb.Append("  RoomAttributes: ").Append(RoomAttributes).Append("\n");
-            sb.Append("  RoomSystemInfo: ").Append(RoomSystemInfo).Append("\n");
+sb.Append("  RoomSystemInfo: ").Append(RoomSystemInfo).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

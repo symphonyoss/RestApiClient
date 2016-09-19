@@ -41,28 +41,28 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         {
             
             /// <summary>
-            /// Enum TRUSTED for "TRUSTED"
+            /// Enum Trusted for "TRUSTED"
             /// </summary>
             [EnumMember(Value = "TRUSTED")]
-            TRUSTED,
+            Trusted,
             
             /// <summary>
-            /// Enum KNOWN for "KNOWN"
+            /// Enum Known for "KNOWN"
             /// </summary>
             [EnumMember(Value = "KNOWN")]
-            KNOWN,
+            Known,
             
             /// <summary>
-            /// Enum REVOKED for "REVOKED"
+            /// Enum Revoked for "REVOKED"
             /// </summary>
             [EnumMember(Value = "REVOKED")]
-            REVOKED,
+            Revoked,
             
             /// <summary>
-            /// Enum DISABLED for "DISABLED"
+            /// Enum Disabled for "DISABLED"
             /// </summary>
             [EnumMember(Value = "DISABLED")]
-            DISABLED
+            Disabled
         }
 
         /// <summary>
@@ -76,7 +76,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Type">Type.</param>
         public CompanyCertStatus(TypeEnum? Type = null)
         {
-            this.Type = Type;
+            
+            
+                        this.Type = Type;
+            
         }
         
         /// <summary>

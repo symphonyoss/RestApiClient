@@ -41,9 +41,14 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="JoinDate">JoinDate.</param>
         public MemberInfo(long? Id = null, bool? Owner = null, long? JoinDate = null)
         {
-            this.Id = Id;
-            this.Owner = Owner;
-            this.JoinDate = JoinDate;
+            
+            
+                        this.Id = Id;
+            
+                        this.Owner = Owner;
+            
+                        this.JoinDate = JoinDate;
+            
         }
         
         /// <summary>
@@ -70,8 +75,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class MemberInfo {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Owner: ").Append(Owner).Append("\n");
-            sb.Append("  JoinDate: ").Append(JoinDate).Append("\n");
+sb.Append("  Owner: ").Append(Owner).Append("\n");
+sb.Append("  JoinDate: ").Append(JoinDate).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

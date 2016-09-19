@@ -44,12 +44,20 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="FacetedMatchCount">Detailed counts of matched rooms per search criterion..</param>
         public RoomSearchResults(long? Count = null, int? Skip = null, int? Limit = null, RoomSearchCriteria Query = null, List<V2RoomDetail> Rooms = null, List<FacetedMatchCount> FacetedMatchCount = null)
         {
-            this.Count = Count;
-            this.Skip = Skip;
-            this.Limit = Limit;
-            this.Query = Query;
-            this.Rooms = Rooms;
-            this.FacetedMatchCount = FacetedMatchCount;
+            
+            
+                        this.Count = Count;
+            
+                        this.Skip = Skip;
+            
+                        this.Limit = Limit;
+            
+                        this.Query = Query;
+            
+                        this.Rooms = Rooms;
+            
+                        this.FacetedMatchCount = FacetedMatchCount;
+            
         }
         
         /// <summary>
@@ -97,11 +105,11 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class RoomSearchResults {\n");
             sb.Append("  Count: ").Append(Count).Append("\n");
-            sb.Append("  Skip: ").Append(Skip).Append("\n");
-            sb.Append("  Limit: ").Append(Limit).Append("\n");
-            sb.Append("  Query: ").Append(Query).Append("\n");
-            sb.Append("  Rooms: ").Append(Rooms).Append("\n");
-            sb.Append("  FacetedMatchCount: ").Append(FacetedMatchCount).Append("\n");
+sb.Append("  Skip: ").Append(Skip).Append("\n");
+sb.Append("  Limit: ").Append(Limit).Append("\n");
+sb.Append("  Query: ").Append(Query).Append("\n");
+sb.Append("  Rooms: ").Append(Rooms).Append("\n");
+sb.Append("  FacetedMatchCount: ").Append(FacetedMatchCount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

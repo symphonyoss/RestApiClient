@@ -93,6 +93,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             {
                 this.Install = Install;
             }
+            
+            
         }
         
         /// <summary>
@@ -133,10 +135,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class PodAppEntitlement {\n");
             sb.Append("  AppId: ").Append(AppId).Append("\n");
-            sb.Append("  AppName: ").Append(AppName).Append("\n");
-            sb.Append("  Enable: ").Append(Enable).Append("\n");
-            sb.Append("  Listed: ").Append(Listed).Append("\n");
-            sb.Append("  Install: ").Append(Install).Append("\n");
+sb.Append("  AppName: ").Append(AppName).Append("\n");
+sb.Append("  Enable: ").Append(Enable).Append("\n");
+sb.Append("  Listed: ").Append(Listed).Append("\n");
+sb.Append("  Install: ").Append(Install).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

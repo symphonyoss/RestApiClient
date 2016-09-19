@@ -45,13 +45,22 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="ExpiryDate">Expiry date of this cert.</param>
         public CompanyCertInfo(string FingerPrint = null, string IssuerFingerPrint = null, long? LastSeen = null, long? UpdatedAt = null, long? UpdatedBy = null, string CommonName = null, long? ExpiryDate = null)
         {
-            this.FingerPrint = FingerPrint;
-            this.IssuerFingerPrint = IssuerFingerPrint;
-            this.LastSeen = LastSeen;
-            this.UpdatedAt = UpdatedAt;
-            this.UpdatedBy = UpdatedBy;
-            this.CommonName = CommonName;
-            this.ExpiryDate = ExpiryDate;
+            
+            
+                        this.FingerPrint = FingerPrint;
+            
+                        this.IssuerFingerPrint = IssuerFingerPrint;
+            
+                        this.LastSeen = LastSeen;
+            
+                        this.UpdatedAt = UpdatedAt;
+            
+                        this.UpdatedBy = UpdatedBy;
+            
+                        this.CommonName = CommonName;
+            
+                        this.ExpiryDate = ExpiryDate;
+            
         }
         
         /// <summary>
@@ -105,12 +114,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class CompanyCertInfo {\n");
             sb.Append("  FingerPrint: ").Append(FingerPrint).Append("\n");
-            sb.Append("  IssuerFingerPrint: ").Append(IssuerFingerPrint).Append("\n");
-            sb.Append("  LastSeen: ").Append(LastSeen).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  UpdatedBy: ").Append(UpdatedBy).Append("\n");
-            sb.Append("  CommonName: ").Append(CommonName).Append("\n");
-            sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
+sb.Append("  IssuerFingerPrint: ").Append(IssuerFingerPrint).Append("\n");
+sb.Append("  LastSeen: ").Append(LastSeen).Append("\n");
+sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
+sb.Append("  UpdatedBy: ").Append(UpdatedBy).Append("\n");
+sb.Append("  CommonName: ").Append(CommonName).Append("\n");
+sb.Append("  ExpiryDate: ").Append(ExpiryDate).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

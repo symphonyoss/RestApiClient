@@ -40,8 +40,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="UserSystemInfo">UserSystemInfo.</param>
         public UserInfo(UserAttributes User = null, UserSystemInfo UserSystemInfo = null)
         {
-            this.User = User;
-            this.UserSystemInfo = UserSystemInfo;
+            
+            
+                        this.User = User;
+            
+                        this.UserSystemInfo = UserSystemInfo;
+            
         }
         
         /// <summary>
@@ -63,7 +67,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             var sb = new StringBuilder();
             sb.Append("class UserInfo {\n");
             sb.Append("  User: ").Append(User).Append("\n");
-            sb.Append("  UserSystemInfo: ").Append(UserSystemInfo).Append("\n");
+sb.Append("  UserSystemInfo: ").Append(UserSystemInfo).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

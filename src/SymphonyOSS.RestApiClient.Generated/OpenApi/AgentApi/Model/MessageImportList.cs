@@ -28,7 +28,7 @@ using Newtonsoft.Json.Converters;
 namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
 {
     /// <summary>
-    /// An ordered list of historic messages to be imported. A list of import responsees will be returned in the same order. 
+    /// An ordered list of historic messages to be imported.\nA list of import responsees will be returned in the same order.\n
     /// </summary>
     [DataContract]
     public partial class MessageImportList : List<ImportedMessage>,  IEquatable<MessageImportList>
@@ -36,9 +36,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageImportList" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
         public MessageImportList()
         {
+            
+            
         }
         
         /// <summary>
@@ -49,7 +50,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
         {
             var sb = new StringBuilder();
             sb.Append("class MessageImportList {\n");
-            sb.Append("}\n");
+                        sb.Append("}\n");
             return sb.ToString();
         }
   

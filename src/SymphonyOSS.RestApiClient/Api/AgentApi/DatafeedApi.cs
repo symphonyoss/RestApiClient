@@ -21,7 +21,6 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System.Diagnostics;
     using Authentication;
-    using Generated.Json;
     using Generated.OpenApi.AgentApi.Client;
     using Generated.OpenApi.AgentApi.Model;
 
@@ -107,10 +106,6 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                 }
 
                 ProcessMessageList(messageList);
-            }
-            finally
-            {
-                Listening = false;
             }
         }
 

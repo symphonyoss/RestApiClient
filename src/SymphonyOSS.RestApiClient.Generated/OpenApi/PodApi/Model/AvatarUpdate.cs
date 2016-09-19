@@ -39,7 +39,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         /// <param name="Image">Base64 encoded image. Original image must be less than 2MB..</param>
         public AvatarUpdate(string Image = null)
         {
-            this.Image = Image;
+            
+            
+                        this.Image = Image;
+            
         }
         
         /// <summary>
