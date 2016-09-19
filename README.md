@@ -83,6 +83,12 @@ Contributions are accepted via GitHub pull requests. All contributors must be co
 
 ## Release Notes
 
+Release 0.3.1 (September 19, 2016):
+
+ * Support for on-behalf-of operations,
+ * Method to get user details by user ID,
+ * Small fixes.
+
 Release 0.3.0 (September 6, 2016):
 
  * New APIs.
