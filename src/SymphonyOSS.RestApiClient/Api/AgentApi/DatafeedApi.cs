@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System;
+
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System.Diagnostics;
@@ -34,11 +36,6 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 
         private readonly Generated.OpenApi.AgentApi.Api.IDatafeedApi _datafeedApi;
 
-        static DatafeedApi()
-        {
-            JsonSubtypeConverter.Register(typeof(V2Message));
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="DatafeedApi" /> class.
         /// See <see cref="Factories.AgentApiFactory"/> for conveniently constructing
@@ -53,8 +50,8 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         }
 
         /// <summary>
-        /// Starts listening, notifying event handlers about incoming messages. Blocks
-        /// until <see cref="AbstractDatafeedApi.Stop"/> is invoked.
+        /// Creates a datafeed and starts listening to it, notifying event handlers about
+        /// incoming messages. Blocks until <see cref="AbstractDatafeedApi.Stop"/> is invoked.
         /// </summary>
         public void Listen()
         {
@@ -66,18 +63,8 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                 }
                 Listening = true;
                 ShouldStop = false;
-                var datafeed = CreateDatafeed();
-                while (!ShouldStop)
-                {
-                    var messageList = ReadDatafeed(ref datafeed);
-                    if (ShouldStop)
-                    {
-                        // Don't process messages if the user has stopped listening.
-                        break;
-                    }
-
-                    ProcessMessageList(messageList);
-                }
+                var datafeedId = CreateDatafeed();
+                Listen(ref datafeedId, 1);
             }
             finally
             {
@@ -85,9 +72,56 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             }
         }
 
-        private Datafeed CreateDatafeed()
+        /// <summary>
+        /// Starts listening to a specified datafeed, notifying event handlers about incoming
+        /// messages. Blocks until <see cref="AbstractDatafeedApi.Stop"/> is invoked.
+        /// </summary>
+        /// <param name="datafeedId">The ID of the datafeed.</param>
+        public void Listen(string datafeedId)
         {
-            return ApiExecutor.Execute(_datafeedApi.V1DatafeedCreatePost, AuthTokens.SessionToken, AuthTokens.KeyManagerToken);
+            try
+            {
+                if (Listening)
+                {
+                    return;
+                }
+                Listening = true;
+                ShouldStop = false;
+                Listen(ref datafeedId, 0);
+            }
+            finally
+            {
+                Listening = false;
+            }
+        }
+
+        private void Listen(ref string datafeedId, int retriesAllowed)
+        {
+            while (!ShouldStop)
+            {
+                var messageList = ReadDatafeed(ref datafeedId, retriesAllowed: retriesAllowed);
+                if (ShouldStop)
+                {
+                    // Don't process messages if the user has stopped listening.
+                    break;
+                }
+
+                ProcessMessageList(messageList);
+            }
+            finally
+            {
+                Listening = false;
+            }
+        }
+
+        /// <summary>
+        /// Creates a datafeed.
+        /// </summary>
+        /// <returns>The ID of the datafeed.</returns>
+        public string CreateDatafeed()
+        {
+            var datafeed = ApiExecutor.Execute(_datafeedApi.V1DatafeedCreatePost, AuthTokens.SessionToken, AuthTokens.KeyManagerToken);
+            return datafeed.Id;
         }
 
         private V2MessageList ReadDatafeed(string id, int? maxMessages = null)
@@ -95,14 +129,14 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             return ApiExecutor.Execute(_datafeedApi.V2DatafeedIdReadGet, id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken, maxMessages);
         }
 
-        private V2MessageList ReadDatafeed(ref Datafeed datafeed, int? maxMessages = null)
+        private V2MessageList ReadDatafeed(ref string id, int? maxMessages = null, int? retriesAllowed = 1)
         {
             var countDatafeedErrors = 0;
             while (true)
             {
                 try
                 {
-                    var messageList = ReadDatafeed(datafeed.Id, maxMessages);
+                    var messageList = ReadDatafeed(id, maxMessages);
                     if (countDatafeedErrors > 0)
                     {
                         TraceSource.TraceEvent(
@@ -113,15 +147,15 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                 }
                 catch (ApiException e)
                 {
-                    ++countDatafeedErrors;
-                    if (countDatafeedErrors >= 2)
+                    if (countDatafeedErrors >= retriesAllowed)
                     {
                         throw;
                     }
+                    ++countDatafeedErrors;
                     TraceSource.TraceEvent(
                         TraceEventType.Error, 0,
                         "Unhandled API exception caught when reading data feed, retrying: {0}", e);
-                    datafeed = CreateDatafeed();
+                    id = CreateDatafeed();
                 }
             }
         }

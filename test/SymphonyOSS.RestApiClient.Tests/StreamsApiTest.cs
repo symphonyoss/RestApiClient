@@ -50,6 +50,14 @@ namespace SymphonyOSS.RestApiClient.Tests
         }
 
         [Fact]
+        public void EnsureGetStreamInfo_uses_retry_strategy()
+        {
+            var sid = "streamId";
+            _streamsApi.GetStreamInfo(sid);
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, StreamAttributes>>(), sid, "sessionToken"));
+        }
+
+        [Fact]
         public void EnsureCreateRoom_uses_retry_strategy()
         {
             var payload = new V2RoomAttributes();

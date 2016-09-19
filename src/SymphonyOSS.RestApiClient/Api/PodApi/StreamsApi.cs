@@ -65,6 +65,16 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         }
 
         /// <summary>
+        /// Get information about a particular stream.
+        /// </summary>
+        /// <param name="sid">Stream ID.</param>
+        /// <returns>The stream's attributes.</returns>
+        public StreamAttributes GetStreamInfo(string sid)
+        {
+            return _apiExecutor.Execute(_streamsApi.V1StreamsSidInfoGet, sid, _authTokens.SessionToken);
+        }
+
+        /// <summary>
         /// Create a new chatroom. If no attributes are specified, the room is created as a
         /// private chatroom.
         /// </summary>
