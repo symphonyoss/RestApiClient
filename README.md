@@ -83,6 +83,10 @@ Contributions are accepted via GitHub pull requests. All contributors must be co
 
 ## Release Notes
 
+Release 0.3.2 (September 27, 2016):
+
+ * Support for sending messages using both normal and on-behalf-of authentication.
+
 Release 0.3.1 (September 19, 2016):
 
  * Support for on-behalf-of operations,
