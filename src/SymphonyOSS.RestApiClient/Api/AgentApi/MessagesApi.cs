@@ -61,7 +61,15 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         public V2Message PostMessage(string sid, V2MessageSubmission message)
         {
             TraceSource.TraceEvent(TraceEventType.Verbose, 0, "Posting message to stream \"{0}\"", sid);
-            return _apiExecutor.Execute(_messagesApi.V3StreamSidMessageCreatePost, sid, _authTokens.SessionToken, message, _authTokens.KeyManagerToken);
+            if (_authTokens.KeyManagerToken == null)
+            {
+                // Use the endpoint that works with OBO authentication.
+                return _apiExecutor.Execute(_messagesApi.V3StreamSidMessageCreatePost, sid, _authTokens.SessionToken, message, _authTokens.KeyManagerToken);
+            }
+            else
+            {
+                return _apiExecutor.Execute(_messagesApi.V2StreamSidMessageCreatePost, sid, _authTokens.SessionToken, _authTokens.KeyManagerToken, message);
+            }
         }
 
         /// <summary>

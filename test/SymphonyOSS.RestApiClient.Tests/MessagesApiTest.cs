@@ -48,7 +48,7 @@ namespace SymphonyOSS.RestApiClient.Tests
             const string sid = "sid";
             var message = new V2MessageSubmission();
             _messagesApi.PostMessage(sid, message);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, V2MessageSubmission, string, V2Message>>(), sid, "sessionToken", message, "keyManagerToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, V2MessageSubmission, V2Message>>(), sid, "sessionToken", "keyManagerToken", message));
         }
 
         [Fact]
