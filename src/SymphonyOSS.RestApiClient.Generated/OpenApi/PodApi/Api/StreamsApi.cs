@@ -1751,7 +1751,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Api
             if (skip != null) localVarQueryParams.Add("skip", Configuration.ApiClient.ParameterToString(skip)); // query parameter
             if (limit != null) localVarQueryParams.Add("limit", Configuration.ApiClient.ParameterToString(limit)); // query parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
-            if (filter.GetType() != typeof(byte[]))
+            if (filter?.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(filter); // http body (model) parameter
             }
