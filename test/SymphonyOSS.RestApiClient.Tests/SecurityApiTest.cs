@@ -49,8 +49,8 @@ namespace SymphonyOSS.RestApiClient.Tests
                 "pem",
                 new CompanyCertAttributes(
                     "name",
-                    new CompanyCertType(CompanyCertType.TypeEnum.Operationssigning),
-                    new CompanyCertStatus(CompanyCertStatus.TypeEnum.Trusted)));
+                    new CompanyCertType(CompanyCertType.TypeEnum.OPERATIONSSIGNING),
+                    new CompanyCertStatus(CompanyCertStatus.TypeEnum.TRUSTED)));
             _securityApi.Create(cert);
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, CompanyCert, SuccessResponse>>(), "sessionToken", cert));
         }
@@ -81,8 +81,8 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var certAttributes = new CompanyCertAttributes(
                 "name",
-                new CompanyCertType(CompanyCertType.TypeEnum.Operationssigning),
-                new CompanyCertStatus(CompanyCertStatus.TypeEnum.Trusted));
+                new CompanyCertType(CompanyCertType.TypeEnum.OPERATIONSSIGNING),
+                new CompanyCertStatus(CompanyCertStatus.TypeEnum.TRUSTED));
             _securityApi.Update("fingerPrint", certAttributes);
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, CompanyCertAttributes, SuccessResponse>>(), "fingerPrint", "sessionToken", certAttributes));
         }

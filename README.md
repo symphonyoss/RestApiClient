@@ -83,6 +83,11 @@ Contributions are accepted via GitHub pull requests. All contributors must be co
 
 ## Release Notes
 
+Release 0.3.3 (October 10, 2016):
+
+ * Regenerated classes using latest swagger-codegen to fix bugs with optional parameters.
+ * Updated dependencies to latest versions.
+
 Release 0.3.2 (September 27, 2016):
 
  * Support for sending messages using both normal and on-behalf-of authentication.
