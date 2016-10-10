@@ -83,6 +83,10 @@ Contributions are accepted via GitHub pull requests. All contributors must be co
 
 ## Release Notes
 
+Release 0.3.4 (October 10, 2016):
+
+ * Added a new framework dependency to the nuspec file.
+
 Release 0.3.3 (October 10, 2016):
 
  * Regenerated classes using latest swagger-codegen to fix bugs with optional parameters.
