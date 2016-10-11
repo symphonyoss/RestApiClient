@@ -42,4 +42,7 @@
       <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework="net45" />
     </frameworkAssemblies>
   </metadata>
+  <files>
+    <file src="bin\$configuration$\SymphonyOSS.RestApiClient.Generated.dll" target="lib\net45" />
+  </files>
 </package>

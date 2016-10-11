@@ -15,4 +15,4 @@ rem  KIND, either express or implied.  See the License for the
 rem  specific language governing permissions and limitations
 rem  under the License.
 
-nuget.exe pack SymphonyOSS.RestApiClient.csproj -IncludeReferencedProjects -Prop Configuration=Release
+nuget.exe pack SymphonyOSS.RestApiClient.csproj -Prop Configuration=Release
