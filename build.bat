@@ -14,6 +14,8 @@ if "%nuget%" == "" (
   set nuget=nuget.exe
 )
 
+call %nuget% restore
+
 REM Build
 "%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" RestApiClient.sln /p:Configuration="%config%" /m /v:M /nr:false /t:Rebuild
 
