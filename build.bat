@@ -9,7 +9,6 @@ if not "%PackageVersion%" == "" (
   set version=-Version %PackageVersion%
 )
 
-set nuget=
 if "%nuget%" == "" (
   set nuget=nuget.exe
 )
