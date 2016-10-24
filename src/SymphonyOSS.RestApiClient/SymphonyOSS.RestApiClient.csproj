@@ -73,6 +73,7 @@
     <Compile Include="Authentication\ISessionManager.cs" />
     <Compile Include="Authentication\IAuthTokens.cs" />
     <Compile Include="Authentication\UserSessionManager.cs" />
+    <Compile Include="Entities\Room.cs" />
     <Compile Include="Entities\Stream.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Factories\AgentApiFactory.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Factories\MessageFactory.cs" />
     <Compile Include="Factories\PodApiFactory.cs" />
     <Compile Include="Api\IApiExecutor.cs" />
+    <Compile Include="Factories\RoomFactory.cs" />
     <Compile Include="Factories\StreamFactory.cs" />
     <Compile Include="Factories\UserFactory.cs" />
     <Compile Include="MessageML\DefaultNewLineRenderer.cs" />

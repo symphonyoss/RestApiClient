@@ -17,9 +17,11 @@
 
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Authentication;
+    using Entities;
     using Factories;
     using Generated.OpenApi.PodApi.Client;
     using Generated.OpenApi.PodApi.Model;
@@ -86,11 +88,21 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// Create a new chatroom. If no attributes are specified, the room is created as a
         /// private chatroom.
         /// </summary>
-        /// <param name="payload">Room attributes.</param>
+        /// <param name="room">Room attributes.</param>
         /// <returns>The created room.</returns>
-        public V2RoomDetail CreateRoom(V2RoomAttributes payload)
+        public Room CreateRoom(Room room)
         {
-            return _apiExecutor.Execute(_streamsApi.V2RoomCreatePost, payload, _authTokens.SessionToken);
+            var keywords = new List<RoomTag>();
+            foreach (var keyword in room.Keywords)
+            {
+                keywords.Add(new RoomTag(keyword.Item1, keyword.Item2));
+            }
+            var v2RoomAttributes = new V2RoomAttributes(
+                room.Name, keywords, room.Description,
+                room.MembersCanInvite, room.Discoverable,
+                room.Public, room.ReadOnly, room.CopyProtected);
+            var v2RoomDetail = _apiExecutor.Execute(_streamsApi.V2RoomCreatePost, v2RoomAttributes, _authTokens.SessionToken);
+            return RoomFactory.Create(v2RoomDetail);
         }
 
         /// <summary>
@@ -98,9 +110,10 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// </summary>
         /// <param name="id">The room ID.</param>
         /// <returns>The room details.</returns>
-        public V2RoomDetail GetRoomInfo(string id)
+        public Room GetRoomInfo(string id)
         {
-            return _apiExecutor.Execute(_streamsApi.V2RoomIdInfoGet, id, _authTokens.SessionToken);
+            var v2RoomDetail = _apiExecutor.Execute(_streamsApi.V2RoomIdInfoGet, id, _authTokens.SessionToken);
+            return RoomFactory.Create(v2RoomDetail);
         }
 
         /// <summary>
@@ -117,12 +130,18 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <summary>
         /// Update the attributes of an existing chatroom. 
         /// </summary>
-        /// <param name="id">Room ID.</param>
-        /// <param name="payload">Room attributes.</param>
+        /// <param name="room">The room and the attributes to update.</param>
         /// <returns>The room.</returns>
-        public V2RoomDetail UpdateRoom(string id, V2RoomAttributes payload)
+        public Room UpdateRoom(Room room)
         {
-            return _apiExecutor.Execute(_streamsApi.V2RoomIdUpdatePost, id, payload, _authTokens.SessionToken);
+            var keywords = new List<RoomTag>();
+            foreach (var keyword in room.Keywords)
+            {
+                keywords.Add(new RoomTag(keyword.Item1, keyword.Item2));
+            }
+            var v2RoomAttributes = new V2RoomAttributes(room.Name, keywords, room.Description, room.MembersCanInvite, room.Discoverable, room.Public, room.ReadOnly, room.CopyProtected);
+            var v2RoomDetail = _apiExecutor.Execute(_streamsApi.V2RoomIdUpdatePost, room.Id, v2RoomAttributes, _authTokens.SessionToken);
+            return RoomFactory.Create(v2RoomDetail)
         }
 
         /// <summary>
