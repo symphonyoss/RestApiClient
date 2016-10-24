@@ -18,8 +18,10 @@
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using Authentication;
+    using Factories;
     using Generated.OpenApi.PodApi.Client;
     using Generated.OpenApi.PodApi.Model;
+    using User = Entities.User;
 
     /// <summary>
     /// Provides a method to get user information, by encapsulating
@@ -50,17 +52,18 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         }
 
         /// <summary>
-        /// Get user information by email address (requires user provisioning permission).
+        /// Get user ID by email address (requires user provisioning permission).
         /// </summary>
         /// <param name="email">Email address of user.</param>
         /// <param name="local">If true then a local DB search will be performed and only local
         /// pod users will be returned. If absent or false then a directory search will be
         /// performed and users from other pods who are visible to the calling user will
         /// also be returned. Optional.</param>
-        /// <returns>The user information.</returns>
-        public User GetUser(string email, bool? local = null)
+        /// <returns>The user ID, or -1 if the user is not found.</returns>
+        public long GetUser(string email, bool? local = null)
         {
-            return _apiExecutor.Execute(_usersApi.V1UserGet, email, _authTokens.SessionToken, local);
+            var user = _apiExecutor.Execute(_usersApi.V1UserGet, email, _authTokens.SessionToken, local);
+            return user?.Id ?? -1;
         }
 
         /// <summary>
@@ -72,9 +75,10 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// performed and users from other pods who are visible to the calling user will
         /// also be returned. Optional.</param>
         /// <returns>The user information.</returns>
-        public UserV2 GetUser(long userId, bool? local = null)
+        public User GetUser(long userId, bool? local = null)
         {
-            return _apiExecutor.Execute(_usersApi.V2UserGet, _authTokens.SessionToken, (long?)userId, (string)null, (string)null, local);
+            var userV2 = _apiExecutor.Execute(_usersApi.V2UserGet, _authTokens.SessionToken, (long?)userId, (string)null, (string)null, local);
+            return userV2 != null ? UserFactory.Create(userV2) : null;
         }
     }
 }

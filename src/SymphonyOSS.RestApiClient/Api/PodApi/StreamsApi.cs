@@ -15,8 +15,11 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System.Linq;
+
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
+    using System.Collections.Generic;
     using Authentication;
     using Generated.OpenApi.PodApi.Client;
     using Generated.OpenApi.PodApi.Model;
@@ -57,10 +60,12 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// If there is an existing IM conversation with the same set of participants then
         /// the id of that existing stream will be returned.
         /// </summary>
-        /// <param name="uidList">List of User IDs of participants.</param>
+        /// <param name="userIdList">List of User IDs of participants.</param>
         /// <returns>The created stream.</returns>
-        public Stream CreateStream(UserIdList uidList)
+        public Stream CreateStream(List<long> userIdList)
         {
+            var uidList = new UserIdList();
+            uidList.AddRange(userIdList.Select(userId => (long?) userId));
             return _apiExecutor.Execute(_streamsApi.V1ImCreatePost, uidList, _authTokens.SessionToken);
         }
 

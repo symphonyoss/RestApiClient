@@ -18,6 +18,7 @@
 namespace SymphonyOSS.RestApiClient.Tests
 {
     using System;
+    using System.Collections.Generic;
     using Api;
     using Api.PodApi;
     using Authentication;
@@ -44,9 +45,9 @@ namespace SymphonyOSS.RestApiClient.Tests
         [Fact]
         public void EnsureCreateStream_uses_retry_strategy()
         {
-            var uidList = new UserIdList();
+            var uidList = new List<long>();
             _streamsApi.CreateStream(uidList);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<UserIdList, string, Stream>>(), uidList, "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<UserIdList, string, Stream>>(), It.IsAny<UserIdList>(), "sessionToken"));
         }
 
         [Fact]
