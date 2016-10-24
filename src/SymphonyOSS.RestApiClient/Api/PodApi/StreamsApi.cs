@@ -141,7 +141,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
             }
             var v2RoomAttributes = new V2RoomAttributes(room.Name, keywords, room.Description, room.MembersCanInvite, room.Discoverable, room.Public, room.ReadOnly, room.CopyProtected);
             var v2RoomDetail = _apiExecutor.Execute(_streamsApi.V2RoomIdUpdatePost, room.Id, v2RoomAttributes, _authTokens.SessionToken);
-            return RoomFactory.Create(v2RoomDetail)
+            return RoomFactory.Create(v2RoomDetail);
         }
 
         /// <summary>

@@ -105,9 +105,14 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureUpdateRoom_uses_retry_strategy()
         {
             const string id = "id";
-            var payload = new V2RoomAttributes();
-            _streamsApi.UpdateRoom(id, payload);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, V2RoomAttributes, string, V2RoomDetail>>(), id, payload, "sessionToken"));
+            var room = new Room("id", DateTime.UtcNow, 12345, true, "name", null, "description", true, true, true, true, true);
+            _apiExecutorMock.Setup(
+                apiExecutor => apiExecutor.Execute(It.IsAny<Func<string, V2RoomAttributes, string, V2RoomDetail>>(), id, It.IsAny<V2RoomAttributes>(), "sessionToken")).Returns(
+                new V2RoomDetail(
+                    new V2RoomAttributes("name", null, "description", true, true, true, true, true),
+                    new RoomSystemInfo("id", 0, 0, true)));
+            _streamsApi.UpdateRoom(room);
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, V2RoomAttributes, string, V2RoomDetail>>(), id, It.IsAny<V2RoomAttributes>(), "sessionToken"));
         }
 
         [Fact]
