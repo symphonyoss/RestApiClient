@@ -51,8 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AgentApi\AbstractDatafeedApi.cs" />
+    <Compile Include="Entities\Attachment.cs" />
     <Compile Include="Api\AgentApi\FirehoseApi.cs" />
     <Compile Include="Api\AgentApi\DatafeedApi.cs" />
+    <Compile Include="Entities\Message.cs" />
     <Compile Include="Api\AgentApi\MessageEventArgs.cs" />
     <Compile Include="Api\AgentApi\AttachmentsApi.cs" />
     <Compile Include="Api\AgentApi\MessagesApi.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Factories\AgentApiFactory.cs" />
     <Compile Include="Factories\ApiFactoryUtils.cs" />
     <Compile Include="Factories\AuthenticatorApiFactory.cs" />
+    <Compile Include="Factories\MessageFactory.cs" />
     <Compile Include="Factories\PodApiFactory.cs" />
     <Compile Include="Api\IApiExecutor.cs" />
     <Compile Include="MessageML\DefaultNewLineRenderer.cs" />

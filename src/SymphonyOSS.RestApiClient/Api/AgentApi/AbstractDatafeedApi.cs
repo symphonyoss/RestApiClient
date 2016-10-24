@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using SymphonyOSS.RestApiClient.Factories;
+
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System;
@@ -118,14 +120,16 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 
         private void Notify(EventHandler<MessageEventArgs> messageEventHandler, V2MessageList messageList)
         {
-            foreach (var message in messageList)
+            foreach (var baseMessage in messageList)
             {
+                var v2Message = baseMessage as V2Message;
                 TraceSource.TraceEvent(
                     TraceEventType.Verbose, 0,
                     "Notifying listener about message with ID \"{0}\" in stream \"{1}\"",
-                    (message as V2Message)?.Id, (message as V2Message)?.StreamId);
+                    v2Message?.Id, v2Message?.StreamId);
                 try
                 {
+                    var message = MessageFactory.Create(v2Message);
                     messageEventHandler.Invoke(this, new MessageEventArgs(message));
                 }
                 catch (Exception e)
@@ -133,7 +137,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                     TraceSource.TraceEvent(
                         TraceEventType.Error, 0,
                         "Unhandled exception caught when notifying listener about message with ID \"{0}\": {1}",
-                        message.Id, e);
+                        baseMessage.Id, e);
                 }
             }
         }

@@ -15,12 +15,17 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using SymphonyOSS.RestApiClient.Entities;
+
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
+    using System.Collections.Generic;
     using System.Diagnostics;
     using Authentication;
+    using Factories;
     using Generated.OpenApi.AgentApi.Client;
     using Generated.OpenApi.AgentApi.Model;
+    using Message = Entities.Message;
 
     /// <summary>
     /// Provides methods for posting to and retrieving messages from streams, by
@@ -55,21 +60,31 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <summary>
         /// Post a message to an existing stream.
         /// </summary>
-        /// <param name="sid">Stream ID.</param>
         /// <param name="message">The message.</param>
         /// <returns>The posted message.</returns>
-        public V2Message PostMessage(string sid, V2MessageSubmission message)
+        public Message PostMessage(Message message)
         {
-            TraceSource.TraceEvent(TraceEventType.Verbose, 0, "Posting message to stream \"{0}\"", sid);
+            TraceSource.TraceEvent(TraceEventType.Verbose, 0, "Posting message to stream \"{0}\"", message.StreamId);
+            var attachments = new List<AttachmentInfo>();
+            foreach (var attachment in message.Attachments)
+            {
+                attachments.Add(new AttachmentInfo(attachment.Id, attachment.Name, attachment.Size));
+            }
+            var format = message.Format == Format.MessageML
+                ? V2MessageSubmission.FormatEnum.MESSAGEML
+                : V2MessageSubmission.FormatEnum.TEXT;
+            var v2MessageSubmission = new V2MessageSubmission(format, message.Body, attachments);
+            V2Message v2Message;
             if (_authTokens.KeyManagerToken == null)
             {
                 // Use the endpoint that works with OBO authentication.
-                return _apiExecutor.Execute(_messagesApi.V3StreamSidMessageCreatePost, sid, _authTokens.SessionToken, message, _authTokens.KeyManagerToken);
+                v2Message = _apiExecutor.Execute(_messagesApi.V3StreamSidMessageCreatePost, message.StreamId, _authTokens.SessionToken, v2MessageSubmission, _authTokens.KeyManagerToken);
             }
             else
             {
-                return _apiExecutor.Execute(_messagesApi.V2StreamSidMessageCreatePost, sid, _authTokens.SessionToken, _authTokens.KeyManagerToken, message);
+                v2Message = _apiExecutor.Execute(_messagesApi.V2StreamSidMessageCreatePost, message.StreamId, _authTokens.SessionToken, _authTokens.KeyManagerToken, v2MessageSubmission);
             }
+            return MessageFactory.Create(v2Message);
         }
 
         /// <summary>
@@ -80,9 +95,18 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <param name="offset">Number of messages to skip.</param>
         /// <param name="maxMessages">Max number of messages to return. If no value is provided, 50 is the default.</param>
         /// <returns>The list of messages.</returns>
-        public V2MessageList GetMessages(string sid, long? since, int? offset = null, int? maxMessages = null)
+        public List<Message> GetMessages(string sid, long? since, int? offset = null, int? maxMessages = null)
         {
-            return _apiExecutor.Execute(_messagesApi.V2StreamSidMessageGet, sid, since, _authTokens.SessionToken, _authTokens.KeyManagerToken, offset, maxMessages);
+            var v2MessageList = _apiExecutor.Execute(_messagesApi.V2StreamSidMessageGet, sid, since, _authTokens.SessionToken, _authTokens.KeyManagerToken, offset, maxMessages);
+            var result = new List<Message>();
+            if (v2MessageList != null)
+            {
+                foreach (var v2Message in v2MessageList)
+                {
+                    result.Add(MessageFactory.Create(v2Message));
+                }
+            }
+            return result;
         }
     }
 }
