@@ -44,10 +44,25 @@ namespace SymphonyOSS.RestApiClient.Entities
 
         public List<Attachment> Attachments { get; }
 
+        /// <summary>
+        /// Constructs a message to be sent (outgoing).
+        /// </summary>
+        /// <param name="streamId">Stream ID.</param>
+        /// <param name="format">Message format.</param>
+        /// <param name="body">Contents of the message.</param>
+        /// <param name="attachments">File attachments.</param>
         public Message(string streamId, Format format, string body, List<Attachment> attachments = null)
         {
+            if (streamId == null)
+            {
+                throw new Exception("Missing required parameter 'streamId'.");
+            }
             StreamId = streamId;
             Format = format;
+            if (body == null)
+            {
+                throw new Exception("Missing required parameter 'body'.");
+            }
             Body = body;
             Attachments = new List<Attachment>();
             if (attachments != null)
@@ -59,6 +74,17 @@ namespace SymphonyOSS.RestApiClient.Entities
             }
         }
 
+        /// <summary>
+        /// Constructs a received message (incoming).
+        /// </summary>
+        /// <param name="id">Message ID.</param>
+        /// <param name="timestamp">Timestamp.</param>
+        /// <param name="type">Message type.</param>
+        /// <param name="streamId">Stream ID.</param>
+        /// <param name="format">Message format.</param>
+        /// <param name="body">Contents of the message.</param>
+        /// <param name="fromUserId">ID of the sender.</param>
+        /// <param name="attachments">File attachments.</param>
         public Message(
             string id, DateTime timestamp, string type,
             string streamId, Format format, string body, long fromUserId,
