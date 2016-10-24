@@ -25,6 +25,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     using System.IO;
     using RestSharp;
     using RestSharp.Extensions;
+    using Stream = System.IO.Stream;
 
     /// <summary>
     /// Provides methods for getting attachments from messages and uploading attachments to streams, by

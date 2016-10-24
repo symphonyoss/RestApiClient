@@ -20,7 +20,7 @@ namespace SymphonyOSS.RestApiClient.Entities
     using System;
     using System.Collections.Generic;
 
-    public enum Format
+    public enum MessageFormat
     {
         Text,
         MessageML
@@ -36,7 +36,7 @@ namespace SymphonyOSS.RestApiClient.Entities
 
         public string StreamId { get; }
 
-        public Format Format { get; } 
+        public MessageFormat Format { get; } 
 
         public string Body { get; }
 
@@ -51,7 +51,7 @@ namespace SymphonyOSS.RestApiClient.Entities
         /// <param name="format">Message format.</param>
         /// <param name="body">Contents of the message.</param>
         /// <param name="attachments">File attachments.</param>
-        public Message(string streamId, Format format, string body, List<Attachment> attachments = null)
+        public Message(string streamId, MessageFormat format, string body, List<Attachment> attachments = null)
         {
             if (streamId == null)
             {
@@ -67,10 +67,7 @@ namespace SymphonyOSS.RestApiClient.Entities
             Attachments = new List<Attachment>();
             if (attachments != null)
             {
-                foreach (var attachment in attachments)
-                {
-                    Attachments.Add(attachment);
-                }
+                Attachments.AddRange(attachments);
             }
         }
 
@@ -87,7 +84,7 @@ namespace SymphonyOSS.RestApiClient.Entities
         /// <param name="attachments">File attachments.</param>
         public Message(
             string id, DateTime timestamp, string type,
-            string streamId, Format format, string body, long fromUserId,
+            string streamId, MessageFormat format, string body, long fromUserId,
             List<Attachment> attachments = null)
         {
             Id = id;

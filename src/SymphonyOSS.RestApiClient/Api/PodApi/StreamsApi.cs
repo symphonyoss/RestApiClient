@@ -15,14 +15,15 @@
 // specific language governing permissions and limitations
 // under the License.
 
-using System.Linq;
-
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Authentication;
+    using Factories;
     using Generated.OpenApi.PodApi.Client;
     using Generated.OpenApi.PodApi.Model;
+    using Stream = Entities.Stream;
 
     /// <summary>
     /// Provides methods for creating single or multi party conversations
@@ -61,12 +62,13 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// the id of that existing stream will be returned.
         /// </summary>
         /// <param name="userIdList">List of User IDs of participants.</param>
-        /// <returns>The created stream.</returns>
-        public Stream CreateStream(List<long> userIdList)
+        /// <returns>The ID of the created stream.</returns>
+        public string CreateStream(List<long> userIdList)
         {
             var uidList = new UserIdList();
             uidList.AddRange(userIdList.Select(userId => (long?) userId));
-            return _apiExecutor.Execute(_streamsApi.V1ImCreatePost, uidList, _authTokens.SessionToken);
+            var stream = _apiExecutor.Execute(_streamsApi.V1ImCreatePost, uidList, _authTokens.SessionToken);
+            return stream.Id;
         }
 
         /// <summary>
@@ -74,9 +76,10 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// </summary>
         /// <param name="sid">Stream ID.</param>
         /// <returns>The stream's attributes.</returns>
-        public StreamAttributes GetStreamInfo(string sid)
+        public Stream GetStreamInfo(string sid)
         {
-            return _apiExecutor.Execute(_streamsApi.V1StreamsSidInfoGet, sid, _authTokens.SessionToken);
+            var streamAttributes = _apiExecutor.Execute(_streamsApi.V1StreamsSidInfoGet, sid, _authTokens.SessionToken);
+            return StreamFactory.Create(streamAttributes);
         }
 
         /// <summary>

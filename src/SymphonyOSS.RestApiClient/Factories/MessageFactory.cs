@@ -41,7 +41,7 @@ namespace SymphonyOSS.RestApiClient.Factories
             return new Message(
                 v2Message.Id, Epoch.AddMilliseconds(long.Parse(v2Message.Timestamp)), v2Message.V2messageType,
                 v2Message.StreamId,
-                Format.MessageML, v2Message.Message, v2Message.FromUserId ?? -1, attachments);
+                MessageFormat.MessageML, v2Message.Message, v2Message.FromUserId ?? -1, attachments);
         }
     }
 }

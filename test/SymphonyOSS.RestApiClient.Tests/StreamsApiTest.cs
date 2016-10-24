@@ -46,6 +46,10 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureCreateStream_uses_retry_strategy()
         {
             var uidList = new List<long>();
+            _apiExecutorMock.Setup(
+                apiExecutor =>
+                    apiExecutor.Execute(It.IsAny<Func<UserIdList, string, Stream>>(), It.IsAny<UserIdList>(),
+                        "sessionToken")).Returns(new Stream());
             _streamsApi.CreateStream(uidList);
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<UserIdList, string, Stream>>(), It.IsAny<UserIdList>(), "sessionToken"));
         }
@@ -54,6 +58,9 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureGetStreamInfo_uses_retry_strategy()
         {
             var sid = "streamId";
+            _apiExecutorMock.Setup(
+                apiExecutor => apiExecutor.Execute(It.IsAny<Func<string, string, StreamAttributes>>(), sid, "sessionToken")).Returns(
+                new StreamAttributes("id", true, true, new StreamType(StreamType.TypeEnum.IM)));
             _streamsApi.GetStreamInfo(sid);
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, StreamAttributes>>(), sid, "sessionToken"));
         }

@@ -70,7 +70,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             {
                 attachments.Add(new AttachmentInfo(attachment.Id, attachment.Name, attachment.Size));
             }
-            var format = message.Format == Format.MessageML
+            var format = message.Format == MessageFormat.MessageML
                 ? V2MessageSubmission.FormatEnum.MESSAGEML
                 : V2MessageSubmission.FormatEnum.TEXT;
             var v2MessageSubmission = new V2MessageSubmission(format, message.Body, attachments);
