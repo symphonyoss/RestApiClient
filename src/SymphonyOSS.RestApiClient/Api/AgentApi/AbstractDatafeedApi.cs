@@ -15,8 +15,6 @@
 // specific language governing permissions and limitations
 // under the License.
 
-using SymphonyOSS.RestApiClient.Factories;
-
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System;
@@ -24,6 +22,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     using System.Diagnostics;
     using System.Threading.Tasks;
     using Authentication;
+    using Factories;
     using Generated.Json;
     using Generated.OpenApi.AgentApi.Model;
 
