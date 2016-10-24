@@ -60,7 +60,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// performed and users from other pods who are visible to the calling user will
         /// also be returned. Optional.</param>
         /// <returns>The user ID, or -1 if the user is not found.</returns>
-        public long GetUser(string email, bool? local = null)
+        public long GetUserId(string email, bool? local = null)
         {
             var user = _apiExecutor.Execute(_usersApi.V1UserGet, email, _authTokens.SessionToken, local);
             return user?.Id ?? -1;
