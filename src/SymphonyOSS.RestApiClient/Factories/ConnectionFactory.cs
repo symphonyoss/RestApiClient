@@ -30,9 +30,9 @@ namespace SymphonyOSS.RestApiClient.Factories
             return new Connection(
                 userConnection.UserId.Value,
                 GetStatus(userConnection.Status.Value),
-                Epoch.AddMilliseconds(userConnection.FirstRequestedAt.Value),
-                Epoch.AddMilliseconds(userConnection.UpdatedAt.Value),
-                userConnection.RequestCounter.Value);
+                userConnection.FirstRequestedAt != null ? Epoch.AddMilliseconds(userConnection.FirstRequestedAt.Value) : DateTime.MinValue,
+                userConnection.UpdatedAt != null ? Epoch.AddMilliseconds(userConnection.UpdatedAt.Value) : DateTime.MinValue,
+                userConnection.RequestCounter?? 0);
         }
 
         private static ConnectionStatus GetStatus(UserConnection.StatusEnum status)
