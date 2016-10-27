@@ -50,12 +50,13 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         }
 
         /// <summary>
-        /// Get information about the current user's session. 
+        /// Get the ID of the current user. 
         /// </summary>
-        /// <returns>The session information.</returns>
-        public SessionInfo GetSessionInfo()
+        /// <returns>The user ID.</returns>
+        public long GetUserId()
         {
-            return _apiExecutor.Execute(_sessionApi.V1SessioninfoGet, _authTokens.SessionToken);
+            var sessionInfo = _apiExecutor.Execute(_sessionApi.V1SessioninfoGet, _authTokens.SessionToken);
+            return sessionInfo.UserId.Value;
         }
     }
 }

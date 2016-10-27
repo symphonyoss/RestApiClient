@@ -15,11 +15,16 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using SymphonyOSS.RestApiClient.Entities;
+
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using Authentication;
+    using Factories;
     using Generated.OpenApi.PodApi.Client;
     using Generated.OpenApi.PodApi.Model;
+    using System.Collections.Generic;
+    using Presence = Entities.Presence;
 
     /// <summary>
     /// Provides methods for getting and setting user presence, by encapsulating
@@ -56,9 +61,18 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// and some inactive users MAY be included. Any omitted user IS inactive.
         /// </summary>
         /// <returns>List of presences.</returns>
-        public PresenceList GetPresences()
+        public List<Presence> GetPresences()
         {
-            return _apiExecutor.Execute(_presenceApi.V1PresenceGet, _authTokens.SessionToken);
+            var presences = _apiExecutor.Execute(_presenceApi.V1PresenceGet, _authTokens.SessionToken);
+            var result = new List<Presence>();
+            if (presences != null)
+            {
+                foreach (var presence in presences)
+                {
+                    result.Add(PresenceFactory.Create(presence));
+                }
+            }
+            return result;
         }
 
         /// <summary>
@@ -68,7 +82,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The presence for the user.</returns>
         public Presence GetPresence(long uid)
         {
-            return _apiExecutor.Execute(_presenceApi.V1UserUidPresenceGet, (long?)uid, _authTokens.SessionToken);
+            var presence = _apiExecutor.Execute(_presenceApi.V1UserUidPresenceGet, (long?)uid, _authTokens.SessionToken);
+            return PresenceFactory.Create(uid, presence);
         }
 
         /// <summary>
@@ -81,9 +96,44 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="uid">User ID.</param>
         /// <param name="presence">The user's presence.</param>
         /// <returns>The user's new presence.</returns>
-        public Presence SetPresence(long uid, Presence presence)
+        public Presence SetPresence(Presence presence)
         {
-            return _apiExecutor.Execute(_presenceApi.V1UserUidPresencePost, (long?)uid, _authTokens.SessionToken, presence);
+            var symphonyPresence = CreateSymphonyPresence(presence);
+            var result = _apiExecutor.Execute(_presenceApi.V1UserUidPresencePost, (long?)presence.UserId, _authTokens.SessionToken, symphonyPresence);
+            return PresenceFactory.Create(presence.UserId, result);
+        }
+
+        private static Generated.OpenApi.PodApi.Model.Presence CreateSymphonyPresence(Presence presence)
+        {
+            Generated.OpenApi.PodApi.Model.Presence.CategoryEnum category;
+            switch (presence.Category)
+            {
+                case PresenceCategory.Available:
+                    category = Generated.OpenApi.PodApi.Model.Presence.CategoryEnum.AVAILABLE;
+                    break;
+                case PresenceCategory.Away:
+                    category = Generated.OpenApi.PodApi.Model.Presence.CategoryEnum.AWAY;
+                    break;
+                case PresenceCategory.BeRightBack:
+                    category = Generated.OpenApi.PodApi.Model.Presence.CategoryEnum.BERIGHTBACK;
+                    break;
+                case PresenceCategory.Busy:
+                    category = Generated.OpenApi.PodApi.Model.Presence.CategoryEnum.BUSY;
+                    break;
+                case PresenceCategory.DoNotDisturb:
+                    category = Generated.OpenApi.PodApi.Model.Presence.CategoryEnum.DONOTDISTURB;
+                    break;
+                case PresenceCategory.Offline:
+                    category = Generated.OpenApi.PodApi.Model.Presence.CategoryEnum.OFFLINE;
+                    break;
+                case PresenceCategory.OnThePhone:
+                    category = Generated.OpenApi.PodApi.Model.Presence.CategoryEnum.ONTHEPHONE;
+                    break;
+                default:
+                    category = Generated.OpenApi.PodApi.Model.Presence.CategoryEnum.UNDEFINED;
+                    break;
+            }
+            return new Generated.OpenApi.PodApi.Model.Presence(category);
         }
     }
 }

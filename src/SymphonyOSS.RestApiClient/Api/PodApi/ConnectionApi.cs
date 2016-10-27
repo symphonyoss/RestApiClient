@@ -25,6 +25,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     using System.Threading.Tasks;
     using AgentApi;
     using Authentication;
+    using Entities;
+    using Factories;
     using Generated.OpenApi.AgentApi.Model;
     using Generated.OpenApi.PodApi.Client;
     using Generated.OpenApi.PodApi.Model;
@@ -94,7 +96,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
                     try
                     {
                         var connectionList =
-                            List().Where(connection => connection.Status != UserConnection.StatusEnum.Accepted);
+                            List().Where(connection => connection.Status != ConnectionStatus.Accepted);
 
                         ProcessConnectionList(connectionList);
                     }
@@ -117,7 +119,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
             _connectionPollTimer = null;
         }
 
-        protected void ProcessConnectionList(IEnumerable<UserConnection> connectionList)
+        protected void ProcessConnectionList(IEnumerable<Connection> connectionList)
         {
             if (connectionList == null || _onConnectionRequest == null)
             {
@@ -135,9 +137,10 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// </summary>
         /// <param name="userId">User ID.</param>
         /// <returns>The status of the connection.</returns>
-        public UserConnection Get(long userId)
+        public Connection Get(long userId)
         {
-            return _apiExecutor.Execute(_connectionApi.V1ConnectionUserUserIdInfoGet, _authTokens.SessionToken, userId.ToString());
+            var userConnection = _apiExecutor.Execute(_connectionApi.V1ConnectionUserUserIdInfoGet, _authTokens.SessionToken, userId.ToString());
+            return ConnectionFactory.Create(userConnection);
         }
 
         /// <summary>
@@ -147,11 +150,20 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="status">Optional. Filter the connection list based on the connection status.</param>
         /// <param name="userIds">Optional. Filter connection list by user IDs. Implicit connections (users on the same pod) will not be included unless user IDs are provided.</param>
         /// <returns>The list of connections.</returns>
-        public UserConnectionList List(UserConnection.StatusEnum? status = null, List<long> userIds = null)
+        public List<Connection> List(UserConnection.StatusEnum? status = null, List<long> userIds = null)
         {
             var statusAsString = status != null ? GetStatusAsString((UserConnection.StatusEnum)status) : null;
             var userIdsString = userIds != null && userIds.Count > 0 ? string.Join(",", userIds) : null;
-            return _apiExecutor.Execute(_connectionApi.V1ConnectionListGet, _authTokens.SessionToken, statusAsString, userIdsString);
+            var userConnectionList = _apiExecutor.Execute(_connectionApi.V1ConnectionListGet, _authTokens.SessionToken, statusAsString, userIdsString);
+            var result = new List<Connection>();
+            if (userConnectionList != null)
+            {
+                foreach (var userConnection in userConnectionList)
+                {
+                    result.Add(ConnectionFactory.Create(userConnection));
+                }
+            }
+            return result;
         }
 
         /// <summary>
@@ -159,10 +171,11 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// </summary>
         /// <param name="userId">ID of user to connect to.</param>
         /// <returns>The connection request.</returns>
-        public UserConnection Create(long userId)
+        public Connection Create(long userId)
         {
             var connectionRequest = new UserConnectionRequest(userId);
-            return _apiExecutor.Execute(_connectionApi.V1ConnectionCreatePost, _authTokens.SessionToken, connectionRequest);
+            var userConnection = _apiExecutor.Execute(_connectionApi.V1ConnectionCreatePost, _authTokens.SessionToken, connectionRequest);
+            return ConnectionFactory.Create(userConnection);
         }
 
         /// <summary>
@@ -170,10 +183,11 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// </summary>
         /// <param name="userId">ID of the user.</param>
         /// <returns>The accepted connection request.</returns>
-        public UserConnection Accept(long userId)
+        public Connection Accept(long userId)
         {
             var connectionRequest = new UserConnectionRequest(userId);
-            return _apiExecutor.Execute(_connectionApi.V1ConnectionAcceptPost, _authTokens.SessionToken, connectionRequest);
+            var userConnection = _apiExecutor.Execute(_connectionApi.V1ConnectionAcceptPost, _authTokens.SessionToken, connectionRequest);
+            return ConnectionFactory.Create(userConnection);
         }
 
         /// <summary>
@@ -181,10 +195,11 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// </summary>
         /// <param name="userId">ID of the user.</param>
         /// <returns>The rejected connection request.</returns>
-        public UserConnection Reject(long userId)
+        public Connection Reject(long userId)
         {
             var connectionRequest = new UserConnectionRequest(userId);
-            return _apiExecutor.Execute(_connectionApi.V1ConnectionRejectPost, _authTokens.SessionToken, connectionRequest);
+            var userConnection = _apiExecutor.Execute(_connectionApi.V1ConnectionRejectPost, _authTokens.SessionToken, connectionRequest);
+            return ConnectionFactory.Create(userConnection);
         }
 
         private string GetStatusAsString(UserConnection.StatusEnum status)
@@ -201,7 +216,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         }
 
         protected async void NotifyAsync(EventHandler<ConnectionRequestEventArgs> connectionEventHandler,
-            IEnumerable<UserConnection> connectionList)
+            IEnumerable<Connection> connectionList)
         {
             // Notify each handler in a separate task, maintaining the order of connections in the list, and
             // get back to reading the connectio list again without waiting for listeners to process connection requests.
@@ -214,7 +229,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         }
 
         private void Notify(EventHandler<ConnectionRequestEventArgs> connectionEventHandler,
-            IEnumerable<UserConnection> connectionList)
+            IEnumerable<Connection> connectionList)
         {
             foreach (var connection in connectionList)
             {
