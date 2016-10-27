@@ -83,6 +83,14 @@ Contributions are accepted via GitHub pull requests. All contributors must be co
 
 ## Release Notes
 
+Release 0.4.0-beta (October 27, 2016):
+ * New entity classes have been introduced: Attachment, Connection, Message, Presence, User, Room, and Stream
+   replace their generated counterparts (eg V2Message, UserV2, etc).
+ * SessionApi method GetUserId replaces GetSessionInfo.
+ * StreamsApi method CreateStream returns stream ID instead of Stream object.
+ * UsersApi GetUserId method replaces GetUser method (which returned a userId wrapped in a simple class).
+ * UtilApi methods return string instead of SimpleMessage.
+
 Release 0.3.4 (October 10, 2016):
 
  * Added a new framework dependency to the nuspec file.

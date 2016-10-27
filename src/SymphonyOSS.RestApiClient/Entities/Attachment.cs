@@ -15,22 +15,21 @@
 // specific language governing permissions and limitations
 // under the License.
 
-namespace SymphonyOSS.RestApiClient.Api.AgentApi
+namespace SymphonyOSS.RestApiClient.Entities
 {
-    using System;
-    using Message= Entities.Message;
-    using Generated.OpenApi.AgentApi.Model;
-
-    /// <summary>
-    /// Event data for incoming messages.
-    /// </summary>
-    public class MessageEventArgs : EventArgs
+    public class Attachment
     {
-        public MessageEventArgs(Message message)
+        public string Id { get; set; }
+
+        public string Name { get; set; }
+
+        public long Size { get; set; }
+
+        public Attachment(string id, string name, long size)
         {
-            Message = message;
+            Id = id;
+            Name = name;
+            Size = size;
         }
-            
-        public Message Message { get; private set; }
     }
 }

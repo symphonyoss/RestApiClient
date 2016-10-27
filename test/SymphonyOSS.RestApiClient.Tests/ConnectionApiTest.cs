@@ -48,6 +48,8 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureGet_uses_api_executor()
         {
             var userId = 12345;
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, UserConnection>>(), "sessionToken", userId.ToString()))
+                .Returns(new UserConnection(userId, UserConnection.StatusEnum.Accepted, 0, 0, 0));
             _connectionApi.Get(userId);
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, UserConnection>>(), "sessionToken", userId.ToString()));
         }
@@ -76,6 +78,8 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureCreate_uses_api_executor()
         {
             var userId = 12345;
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, UserConnection>>(), "sessionToken", It.IsAny<UserConnectionRequest>()))
+                .Returns(new UserConnection(userId, UserConnection.StatusEnum.Accepted, 0, 0, 0));
             _connectionApi.Create(userId);
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, UserConnection>>(), "sessionToken", new UserConnectionRequest(userId)));
         }
@@ -84,6 +88,8 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureAccept_uses_api_executor()
         {
             var userId = 12345;
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, UserConnection>>(), "sessionToken", It.IsAny<UserConnectionRequest>()))
+                .Returns(new UserConnection(userId, UserConnection.StatusEnum.Accepted, 0, 0, 0));
             _connectionApi.Accept(userId);
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, UserConnection>>(), "sessionToken", new UserConnectionRequest(userId)));
         }
@@ -92,6 +98,8 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureReject_uses_api_executor()
         {
             var userId = 12345;
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, UserConnection>>(), "sessionToken", It.IsAny<UserConnectionRequest>()))
+                .Returns(new UserConnection(userId, UserConnection.StatusEnum.Accepted, 0, 0, 0));
             _connectionApi.Reject(userId);
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, UserConnection>>(), "sessionToken", new UserConnectionRequest(userId)));
         }

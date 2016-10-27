@@ -54,9 +54,10 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// </summary>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public SimpleMessage Echo(string msg)
+        public string Echo(string msg)
         {
-            return _apiExecutor.Execute(_datafeedApi.V1UtilEchoPost, _authTokens.SessionToken, _authTokens.KeyManagerToken, new SimpleMessage(msg));
+            var message = _apiExecutor.Execute(_datafeedApi.V1UtilEchoPost, _authTokens.SessionToken, _authTokens.KeyManagerToken, new SimpleMessage(msg));
+            return message.Message;
         }
 
         /// <summary>
@@ -64,9 +65,10 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// </summary>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public SimpleMessage Obsolete(string msg)
+        public string Obsolete(string msg)
         {
-            return _apiExecutor.Execute(_datafeedApi.V1UtilObsoletePost, _authTokens.SessionToken, _authTokens.KeyManagerToken, new SimpleMessage(msg));
+            var message = _apiExecutor.Execute(_datafeedApi.V1UtilObsoletePost, _authTokens.SessionToken, _authTokens.KeyManagerToken, new SimpleMessage(msg));
+            return message.Message;
         }
     }
 }

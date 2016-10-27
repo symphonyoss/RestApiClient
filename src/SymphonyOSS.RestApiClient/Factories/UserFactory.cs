@@ -15,22 +15,20 @@
 // specific language governing permissions and limitations
 // under the License.
 
-namespace SymphonyOSS.RestApiClient.Api.AgentApi
+namespace SymphonyOSS.RestApiClient.Factories
 {
-    using System;
-    using Message= Entities.Message;
-    using Generated.OpenApi.AgentApi.Model;
+    using Generated.OpenApi.PodApi.Model;
+    using User = Entities.User;
 
-    /// <summary>
-    /// Event data for incoming messages.
-    /// </summary>
-    public class MessageEventArgs : EventArgs
+    public abstract class UserFactory
     {
-        public MessageEventArgs(Message message)
+        public static User Create(UserV2 userV2)
         {
-            Message = message;
+            return new User(
+                userV2.Id ?? -1, userV2.EmailAddress,
+                userV2.FirstName, userV2.LastName, userV2.DisplayName,
+                userV2.Title, userV2.Company,
+                userV2.Username, userV2.Location);
         }
-            
-        public Message Message { get; private set; }
     }
 }

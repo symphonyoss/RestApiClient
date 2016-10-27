@@ -49,6 +49,10 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureEcho_uses_retry_strategy()
         {
             const string msg = "Hello!";
+            _apiExecutorMock.Setup(
+                obj =>
+                    obj.Execute(It.IsAny<Func<string, string, SimpleMessage, SimpleMessage>>(), "sessionToken",
+                        "keyManagerToken", It.IsAny<SimpleMessage>())).Returns(new SimpleMessage());
             _utilApi.Echo(msg);
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, SimpleMessage, SimpleMessage>>(), "sessionToken", "keyManagerToken", new SimpleMessage(msg)));
         }
@@ -57,6 +61,10 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureObsolete_uses_retry_strategy()
         {
             const string msg = "Obsolete!";
+            _apiExecutorMock.Setup(
+                obj =>
+                    obj.Execute(It.IsAny<Func<string, string, SimpleMessage, SimpleMessage>>(), "sessionToken",
+                        "keyManagerToken", It.IsAny<SimpleMessage>())).Returns(new SimpleMessage());
             _utilApi.Obsolete(msg);
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, SimpleMessage, SimpleMessage>>(), "sessionToken", "keyManagerToken", new SimpleMessage(msg)));
         }

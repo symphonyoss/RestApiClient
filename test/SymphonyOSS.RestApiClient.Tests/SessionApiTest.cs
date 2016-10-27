@@ -42,9 +42,11 @@ namespace SymphonyOSS.RestApiClient.Tests
         }
 
         [Fact]
-        public void EnsureGetSessionInfo_uses_retry_strategy()
+        public void EnsureGetUserId_uses_retry_strategy()
         {
-            _sessionApi.GetSessionInfo();
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, SessionInfo>>(), "sessionToken"))
+                .Returns(new SessionInfo(12345));
+            _sessionApi.GetUserId();
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, SessionInfo>>(), "sessionToken"));
         }
     }

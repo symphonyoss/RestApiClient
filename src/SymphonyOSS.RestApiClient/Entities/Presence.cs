@@ -15,22 +15,30 @@
 // specific language governing permissions and limitations
 // under the License.
 
-namespace SymphonyOSS.RestApiClient.Api.AgentApi
+namespace SymphonyOSS.RestApiClient.Entities
 {
-    using System;
-    using Message= Entities.Message;
-    using Generated.OpenApi.AgentApi.Model;
-
-    /// <summary>
-    /// Event data for incoming messages.
-    /// </summary>
-    public class MessageEventArgs : EventArgs
+    public enum PresenceCategory
     {
-        public MessageEventArgs(Message message)
+        Available,
+        Away,
+        BeRightBack,
+        Busy,
+        DoNotDisturb,
+        Offline,
+        OnThePhone,
+        Undefined
+    }
+
+    public class Presence
+    {
+        public long UserId { get; }
+
+        public PresenceCategory Category { get; }
+
+        public Presence(long userId, PresenceCategory category)
         {
-            Message = message;
+            UserId = userId;
+            Category = category;
         }
-            
-        public Message Message { get; private set; }
     }
 }
