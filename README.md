@@ -30,8 +30,8 @@ var agentApiFactory = new AgentApiFactory("https://agentapi:8446/agent");
 var datafeedApi = agentApiFactory.CreateDatafeedApi(sessionManager);
 datafeedApi.OnMessage += (sender, event) =>
 {
-    var message = e.Message as V2Message;
-    Console.WriteLine(message.Message);
+    var message = e.Message;
+    Console.WriteLine(message.Body);
     
     // Write any attachments to disk.
     foreach (var attachmentInfo in message.Attachments)
@@ -51,12 +51,8 @@ var usersApi = podApiFactory.CreateUsersApi(sessionManager);
 var streamsApi = podApiFactory.CreateStreamsApi(sessionManager);
 var user = usersApi.GetUser("jforsell@factset.com");
 var stream = streamsApi.CreateStream(new UserIdList {user.Id});
-messagesApi.PostMessage(
-    stream.Id, new V2MessageSubmission()
-    {
-        Format = V2MessageSubmission.FormatEnum.Messageml,
-        Message = new MessageBuilder().Text("hello ").Bold("world").ToString()
-    });
+var body = new MessageBuilder().Text("hello ").Bold("world").ToString();
+messagesApi.PostMessage(new Message(stream.Id, MessageFormat.MessageML, body));
 ```
 
 ## Building
@@ -83,7 +79,7 @@ Contributions are accepted via GitHub pull requests. All contributors must be co
 
 ## Release Notes
 
-Release 0.4.0-beta (October 27, 2016):
+Release 0.4.0 (TBD):
  * New entity classes have been introduced: Attachment, Connection, Message, Presence, User, Room, and Stream
    replace their generated counterparts (eg V2Message, UserV2, etc).
  * SessionApi method GetUserId replaces GetSessionInfo.
