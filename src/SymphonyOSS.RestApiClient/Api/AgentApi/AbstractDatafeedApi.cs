@@ -140,5 +140,21 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                 }
             }
         }
+
+        protected static V2MessageList ConvertV1MessageList(MessageList messageList)
+        {
+            if (messageList == null)
+            {
+                return null;
+            }
+            var result = new V2MessageList();
+            foreach (var v1Message in messageList)
+            {
+                result.Add(new V2Message(
+                    v1Message.Id, v1Message.Timestamp, v1Message.MessageType,
+                    v1Message.StreamId, v1Message._Message, v1Message.FromUserId));
+            }
+            return result;
+        }
     }
 }
