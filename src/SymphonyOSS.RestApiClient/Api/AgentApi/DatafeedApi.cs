@@ -15,8 +15,6 @@
 // specific language governing permissions and limitations
 // under the License.
 
-using System;
-
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System.Diagnostics;
@@ -34,6 +32,8 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         private static readonly TraceSource TraceSource = new TraceSource("SymphonyOSS.RestApiClient");
 
         private readonly Generated.OpenApi.AgentApi.Api.IDatafeedApi _datafeedApi;
+
+        private bool _useV2Datafeed = true;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DatafeedApi" /> class.
@@ -121,7 +121,42 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 
         private V2MessageList ReadDatafeed(string id, int? maxMessages = null)
         {
-            return ApiExecutor.Execute(_datafeedApi.V2DatafeedIdReadGet, id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken, maxMessages);
+            if (_useV2Datafeed)
+            {
+                try
+                {
+                    return ReadV2Datafeed(id, maxMessages);
+                }
+                catch (ApiException e)
+                {
+                    if (e.ErrorCode != 404)
+                    {
+                        throw;
+                    }
+                    TraceSource.TraceEvent(
+                        TraceEventType.Warning, 0,
+                        "V2 data feed not available, falling back to V1.");
+                    _useV2Datafeed = false;
+                }
+            }
+            var v1MessageList = ReadV1Datafeed(id, maxMessages);
+            return ConvertV1MessageList(v1MessageList);
+        }
+
+        private MessageList ReadV1Datafeed(string id, int? maxMessages)
+        {
+            return ApiExecutor.Execute(
+                _datafeedApi.V1DatafeedIdReadGet,
+                id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken,
+                maxMessages);
+        }
+
+        private V2MessageList ReadV2Datafeed(string id, int? maxMessages)
+        {
+            return ApiExecutor.Execute(
+                _datafeedApi.V2DatafeedIdReadGet,
+                id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken,
+                maxMessages);
         }
 
         private V2MessageList ReadDatafeed(ref string id, int? maxMessages = null, int? retriesAllowed = 1)
