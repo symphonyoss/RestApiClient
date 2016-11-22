@@ -25,7 +25,7 @@ This example shows how to subscribe to a bot user's incoming messages using the 
 
 ```
 var certificate = new X509Certificate2(@"botuser.p12", "password");
-var sessionManager = new SessionManager("https://keymanager:8444/sessionauth/", "https://keymanager:8444/keyauth/", certificate);
+var sessionManager = new UserSessionManager("https://keymanager:8444/sessionauth/", "https://keymanager:8444/keyauth/", certificate);
 var agentApiFactory = new AgentApiFactory("https://agentapi:8446/agent");
 var datafeedApi = agentApiFactory.CreateDatafeedApi(sessionManager);
 datafeedApi.OnMessage += (sender, event) =>
@@ -49,10 +49,10 @@ The following code snippet shows how to find a user by email address and send a 
 var podApiFactory = new PodApiFactory("https://agentapi:8446/pod");
 var usersApi = podApiFactory.CreateUsersApi(sessionManager);
 var streamsApi = podApiFactory.CreateStreamsApi(sessionManager);
-var user = usersApi.GetUser("jforsell@factset.com");
-var stream = streamsApi.CreateStream(new UserIdList {user.Id});
+var userId = usersApi.GetUserId("jforsell@factset.com");
+var streamId = streamsApi.CreateStream(new List<long> {userId});
 var body = new MessageBuilder().Text("hello ").Bold("world").ToString();
-messagesApi.PostMessage(new Message(stream.Id, MessageFormat.MessageML, body));
+messagesApi.PostMessage(new Message(streamId, MessageFormat.MessageML, body));
 ```
 
 ## Building
@@ -79,7 +79,7 @@ Contributions are accepted via GitHub pull requests. All contributors must be co
 
 ## Release Notes
 
-Release 0.4.0 (TBD):
+Release 0.4.0 (November 22, 2016):
  * New entity classes have been introduced: Attachment, Connection, Message, Presence, User, Room, and Stream
    replace their generated counterparts (eg V2Message, UserV2, etc).
  * SessionApi method GetUserId replaces GetSessionInfo.
