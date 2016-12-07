@@ -40,14 +40,12 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.ComponentModel.DataAnnotations;
 
 namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
 {
@@ -55,7 +53,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
     /// A historic message to be imported into the system. The importing user must have the Content Management role. Also, the importing user must be a member of the conversation it is importing into. The user that the message is intended to have come from must also be present in the conversation. The intended message timestamp must be a valid time from the past. It cannot be a future timestamp. By design, imported messages do not stream to datafeed or firehose endpoints. 
     /// </summary>
     [DataContract]
-    public partial class ImportedMessage :  IEquatable<ImportedMessage>, IValidatableObject
+    public partial class ImportedMessage :  IEquatable<ImportedMessage>
     {
         /// <summary>
         /// Gets or Sets Format
@@ -282,11 +280,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
                     hash = hash * 59 + this.StreamId.GetHashCode();
                 return hash;
             }
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
-            yield break;
         }
     }
 

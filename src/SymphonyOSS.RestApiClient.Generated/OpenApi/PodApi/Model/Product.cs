@@ -40,14 +40,12 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.ComponentModel.DataAnnotations;
 
 namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
 {
@@ -55,7 +53,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
     /// Application Product
     /// </summary>
     [DataContract]
-    public partial class Product :  IEquatable<Product>, IValidatableObject
+    public partial class Product :  IEquatable<Product>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Product" /> class.
@@ -240,35 +238,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
                     hash = hash * 59 + this.Type.GetHashCode();
                 return hash;
             }
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
-            // Name (string) maxLength
-            if(this.Name != null && this.Name.Length > 50)
-            {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 50.", new [] { "Name" });
-            }
-
-            // Name (string) minLength
-            if(this.Name != null && this.Name.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
-            }
-
-            // Sku (string) maxLength
-            if(this.Sku != null && this.Sku.Length > 100)
-            {
-                yield return new ValidationResult("Invalid value for Sku, length must be less than 100.", new [] { "Sku" });
-            }
-
-            // Sku (string) minLength
-            if(this.Sku != null && this.Sku.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for Sku, length must be greater than 1.", new [] { "Sku" });
-            }
-
-            yield break;
         }
     }
 

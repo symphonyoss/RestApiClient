@@ -16,7 +16,7 @@ rem  specific language governing permissions and limitations
 rem  under the License.
 
 java -jar swagger-codegen-cli.jar generate -i Yaml/AgentApi/1.38.0-20160812/agentAPI.yaml -l csharp -o Temp -c Config/agentApi.json
-java -jar swagger-codegen-cli.jar generate -i Yaml/AuthenticatorApi/1.0-20160812/authenticatorAPI.yaml -l csharp -o Temp -c Config/authenticatorApi.json
+java -jar swagger-codegen-cli.jar generate -i Yaml/AuthenticatorApi/1.0-20161207/authenticatorAPI.yaml -l csharp -o Temp -c Config/authenticatorApi.json
 java -jar swagger-codegen-cli.jar generate -i Yaml/PodApi/1.41.5/podAPI.yaml -l csharp -o Temp -c Config/podApi.json
 rmdir /s /q AgentApi
 rmdir /s /q AuthenticatorApi

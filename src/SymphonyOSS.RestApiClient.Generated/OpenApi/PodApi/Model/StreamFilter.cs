@@ -40,14 +40,12 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.ComponentModel.DataAnnotations;
 
 namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
 {
@@ -55,7 +53,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
     /// Stream filtering parameters.
     /// </summary>
     [DataContract]
-    public partial class StreamFilter :  IEquatable<StreamFilter>, IValidatableObject
+    public partial class StreamFilter :  IEquatable<StreamFilter>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StreamFilter" /> class.
@@ -155,11 +153,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
                     hash = hash * 59 + this.IncludeInactiveStreams.GetHashCode();
                 return hash;
             }
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
-            yield break;
         }
     }
 

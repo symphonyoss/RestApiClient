@@ -40,7 +40,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureTokens_are_returned_without_explicitly_calling_GenerateTokens()
         {
             _sessionAuthApiMock.Setup(obj => obj.V1AppAuthenticatePost()).Returns(new Token("appSessionToken", "as1"));
-            _sessionAuthApiMock.Setup(obj => obj.V1AppUsernameUsernameAuthenticatePost(null, "as1")).Returns(new Token("userSessionToken", "us1"));
+            _sessionAuthApiMock.Setup(obj => obj.V1AppUserUidAuthenticatePost(0, "as1")).Returns(new OboAuthResponse("us1", "agentUrl"));
             var appSessionManager = new AppSessionManager(_sessionAuthApiMock.Object, _certificate);
             var sessionToken = appSessionManager.SessionToken;
             var keyManagerToken = appSessionManager.KeyManagerToken;
@@ -58,10 +58,10 @@ namespace SymphonyOSS.RestApiClient.Tests
                 return new Token("appSessionToken", "as" + appSessionTokenCounter);
             });
             var userSessionTokenCounter = 0;
-            _sessionAuthApiMock.Setup(obj => obj.V1AppUsernameUsernameAuthenticatePost(It.IsAny<string>(), It.IsAny<string>())).Returns(() =>
+            _sessionAuthApiMock.Setup(obj => obj.V1AppUserUidAuthenticatePost(It.IsAny<int>(), It.IsAny<string>())).Returns(() =>
             {
                 ++userSessionTokenCounter;
-                return new Token("userSessionToken", "us" + userSessionTokenCounter);
+                return new OboAuthResponse("us" + userSessionTokenCounter, "agentUrl");
             });
             var appSessionManager = new AppSessionManager(_sessionAuthApiMock.Object, _certificate);
             Assert.Equal("us1", appSessionManager.SessionToken);

@@ -31,12 +31,12 @@ namespace SymphonyOSS.RestApiClient.Authentication
 
         private string _appSessionToken;
         private string _userSessionToken;
-        private readonly string _username;
+        private readonly int _userId;
 
-        public AppSessionManager(string sessionAuthUrl, X509Certificate2 appCertificate, string username)
+        public AppSessionManager(string sessionAuthUrl, X509Certificate2 appCertificate, int userId)
         {
             Certificate = appCertificate;
-            _username = username;
+            _userId = userId;
 
             var sessionAuthApiFactory = new AuthenticatorApiFactory(sessionAuthUrl);
             _sessionAuthApi = sessionAuthApiFactory.CreateAuthenticationApi(appCertificate);
@@ -74,7 +74,7 @@ namespace SymphonyOSS.RestApiClient.Authentication
             // only regenerating it if the call to V1AppUsernameUsernameAuthenticatePost fails.
 
             _appSessionToken = _sessionAuthApi.V1AppAuthenticatePost()._Token;
-            _userSessionToken = _sessionAuthApi.V1AppUsernameUsernameAuthenticatePost(_username, _appSessionToken)._Token;
+            _userSessionToken = _sessionAuthApi.V1AppUserUidAuthenticatePost(_userId, _appSessionToken).SessionToken;
         }
     }
 }
