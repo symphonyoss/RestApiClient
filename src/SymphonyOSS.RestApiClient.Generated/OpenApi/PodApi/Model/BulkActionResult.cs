@@ -40,14 +40,12 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.ComponentModel.DataAnnotations;
 
 namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
 {
@@ -55,7 +53,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
     /// The results of list based bulk action. The list contains the result messages in the same order as submitted. The message will be an empty string if the action was successful for item in that index. 
     /// </summary>
     [DataContract]
-    public partial class BulkActionResult :  IEquatable<BulkActionResult>, IValidatableObject
+    public partial class BulkActionResult :  IEquatable<BulkActionResult>
     {
         /// <summary>
         /// Gets or Sets OverallResult
@@ -173,11 +171,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
                     hash = hash * 59 + this.Results.GetHashCode();
                 return hash;
             }
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
-            yield break;
         }
     }
 

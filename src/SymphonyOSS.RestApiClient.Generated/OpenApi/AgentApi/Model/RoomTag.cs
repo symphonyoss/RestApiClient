@@ -40,14 +40,12 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.ComponentModel.DataAnnotations;
 
 namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
 {
@@ -55,7 +53,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
     /// Room Tag object. A key:value pair describing additional properties of the room.
     /// </summary>
     [DataContract]
-    public partial class RoomTag :  IEquatable<RoomTag>, IValidatableObject
+    public partial class RoomTag :  IEquatable<RoomTag>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomTag" /> class.
@@ -176,11 +174,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
                     hash = hash * 59 + this.Value.GetHashCode();
                 return hash;
             }
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
-            yield break;
         }
     }
 

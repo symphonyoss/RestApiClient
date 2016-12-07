@@ -40,14 +40,12 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.ComponentModel.DataAnnotations;
 
 namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
 {
@@ -55,7 +53,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
     /// Generated when a room member is promoted to owner.
     /// </summary>
     [DataContract]
-    public partial class RoomMemberPromotedToOwnerMessage : V2BaseMessage,  IEquatable<RoomMemberPromotedToOwnerMessage>, IValidatableObject
+    public partial class RoomMemberPromotedToOwnerMessage : V2BaseMessage,  IEquatable<RoomMemberPromotedToOwnerMessage>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomMemberPromotedToOwnerMessage" /> class.
@@ -243,11 +241,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
                     hash = hash * 59 + this.PromotedUserId.GetHashCode();
                 return hash;
             }
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
-            yield break;
         }
     }
 
