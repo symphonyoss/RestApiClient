@@ -81,7 +81,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// <param name="uid">user id</param>
         /// <param name="sessionToken">Authorization token obtains from app/authenicate API</param>
         /// <returns>OboAuthResponse</returns>
-        OboAuthResponse V1AppUserUidAuthenticatePost (int? uid, string sessionToken);
+        OboAuthResponse V1AppUserUidAuthenticatePost (long? uid, string sessionToken);
 
         /// <summary>
         /// PROVISIONAL - Authenicate an application in a delegated context to act on behalf of a user
@@ -93,7 +93,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// <param name="uid">user id</param>
         /// <param name="sessionToken">Authorization token obtains from app/authenicate API</param>
         /// <returns>ApiResponse of OboAuthResponse</returns>
-        ApiResponse<OboAuthResponse> V1AppUserUidAuthenticatePostWithHttpInfo (int? uid, string sessionToken);
+        ApiResponse<OboAuthResponse> V1AppUserUidAuthenticatePostWithHttpInfo (long? uid, string sessionToken);
         /// <summary>
         /// Authenticate a client-extension application
         /// </summary>
@@ -165,7 +165,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// <param name="uid">user id</param>
         /// <param name="sessionToken">Authorization token obtains from app/authenicate API</param>
         /// <returns>Task of OboAuthResponse</returns>
-        System.Threading.Tasks.Task<OboAuthResponse> V1AppUserUidAuthenticatePostAsync (int? uid, string sessionToken);
+        System.Threading.Tasks.Task<OboAuthResponse> V1AppUserUidAuthenticatePostAsync (long? uid, string sessionToken);
 
         /// <summary>
         /// PROVISIONAL - Authenicate an application in a delegated context to act on behalf of a user
@@ -177,7 +177,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// <param name="uid">user id</param>
         /// <param name="sessionToken">Authorization token obtains from app/authenicate API</param>
         /// <returns>Task of ApiResponse (OboAuthResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<OboAuthResponse>> V1AppUserUidAuthenticatePostAsyncWithHttpInfo (int? uid, string sessionToken);
+        System.Threading.Tasks.Task<ApiResponse<OboAuthResponse>> V1AppUserUidAuthenticatePostAsyncWithHttpInfo (long? uid, string sessionToken);
         /// <summary>
         /// Authenticate a client-extension application
         /// </summary>
@@ -466,7 +466,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// <param name="uid">user id</param>
         /// <param name="sessionToken">Authorization token obtains from app/authenicate API</param>
         /// <returns>OboAuthResponse</returns>
-        public OboAuthResponse V1AppUserUidAuthenticatePost (int? uid, string sessionToken)
+        public OboAuthResponse V1AppUserUidAuthenticatePost (long? uid, string sessionToken)
         {
              ApiResponse<OboAuthResponse> localVarResponse = V1AppUserUidAuthenticatePostWithHttpInfo(uid, sessionToken);
              return localVarResponse.Data;
@@ -479,7 +479,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// <param name="uid">user id</param>
         /// <param name="sessionToken">Authorization token obtains from app/authenicate API</param>
         /// <returns>ApiResponse of OboAuthResponse</returns>
-        public ApiResponse< OboAuthResponse > V1AppUserUidAuthenticatePostWithHttpInfo (int? uid, string sessionToken)
+        public ApiResponse< OboAuthResponse > V1AppUserUidAuthenticatePostWithHttpInfo (long? uid, string sessionToken)
         {
             // verify the required parameter 'uid' is set
             if (uid == null)
@@ -542,7 +542,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// <param name="uid">user id</param>
         /// <param name="sessionToken">Authorization token obtains from app/authenicate API</param>
         /// <returns>Task of OboAuthResponse</returns>
-        public async System.Threading.Tasks.Task<OboAuthResponse> V1AppUserUidAuthenticatePostAsync (int? uid, string sessionToken)
+        public async System.Threading.Tasks.Task<OboAuthResponse> V1AppUserUidAuthenticatePostAsync (long? uid, string sessionToken)
         {
              ApiResponse<OboAuthResponse> localVarResponse = await V1AppUserUidAuthenticatePostAsyncWithHttpInfo(uid, sessionToken);
              return localVarResponse.Data;
@@ -556,7 +556,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// <param name="uid">user id</param>
         /// <param name="sessionToken">Authorization token obtains from app/authenicate API</param>
         /// <returns>Task of ApiResponse (OboAuthResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<OboAuthResponse>> V1AppUserUidAuthenticatePostAsyncWithHttpInfo (int? uid, string sessionToken)
+        public async System.Threading.Tasks.Task<ApiResponse<OboAuthResponse>> V1AppUserUidAuthenticatePostAsyncWithHttpInfo (long? uid, string sessionToken)
         {
             // verify the required parameter 'uid' is set
             if (uid == null)

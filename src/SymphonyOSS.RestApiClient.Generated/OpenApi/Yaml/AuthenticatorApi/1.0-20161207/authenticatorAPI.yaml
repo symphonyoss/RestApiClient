@@ -121,6 +121,7 @@ paths:
           in: path
           required: true
           type: integer
+          format: int64
         - name: sessionToken
           description: Authorization token obtains from app/authenicate API
           in: header
@@ -161,6 +162,10 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/PodCertificate'
+        '401':
+          description: 'Client is unauthorized to access this resource'
+          schema:
+            $ref: '#/definitions/Error'
         '500':
           description: 'Server error, see response body for further details.'
           schema:

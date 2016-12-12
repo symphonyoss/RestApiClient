@@ -31,9 +31,9 @@ namespace SymphonyOSS.RestApiClient.Authentication
 
         private string _appSessionToken;
         private string _userSessionToken;
-        private readonly int _userId;
+        private readonly long _userId;
 
-        public AppSessionManager(string sessionAuthUrl, X509Certificate2 appCertificate, int userId)
+        public AppSessionManager(string sessionAuthUrl, X509Certificate2 appCertificate, long userId)
         {
             Certificate = appCertificate;
             _userId = userId;
