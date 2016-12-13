@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassExtensions\AuthenticatorExtensions.cs" />
     <Compile Include="Json\JsonSubtypeConverter.cs" />
     <Compile Include="Json\AgentApiModelExtensions.cs" />
     <Compile Include="OpenApi\AgentApi\**\*.cs" />
