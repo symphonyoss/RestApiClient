@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Symphony Software Foundation")]
 [assembly: AssemblyProduct("SymphonyOSS.RestApiClient")]
-[assembly: AssemblyCopyright("Copyright © Symphony Software Foundation 2016")]
+[assembly: AssemblyCopyright("Copyright Symphony Software Foundation 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
