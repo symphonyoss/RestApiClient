@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/symphonyoss/RestApiClient.svg)](https://travis-ci.org/symphonyoss/RestApiClient)
+![Build Status](https://www.myget.org/BuildSource/Badge/ssf-feed?identifier=b0a0940f-c25c-4070-a127-6cccf74ae5ab)
+
 [![Dependencies](https://www.versioneye.com/user/projects/57b73c371dcdc900430c0b37/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57b73c371dcdc900430c0b37?child=summary)
 
 Symphony REST API Client Library for .NET
@@ -32,7 +33,7 @@ datafeedApi.OnMessage += (sender, event) =>
 {
     var message = e.Message;
     Console.WriteLine(message.Body);
-    
+
     // Write any attachments to disk.
     foreach (var attachmentInfo in message.Attachments)
     {
@@ -66,7 +67,7 @@ The library depends on code that has been generated from Symphony's YAML spec fi
 In case there is a need to regenerate the code from Symphony's YAML specs:
 
  1. Make sure Java is installed.
- 2. Find the generate.bat script in the SymphonyOSS.RestApiClient.Generated\OpenApi folder, and if necessary, edit it to pick up a different set of YAML specs. 
+ 2. Find the generate.bat script in the SymphonyOSS.RestApiClient.Generated\OpenApi folder, and if necessary, edit it to pick up a different set of YAML specs.
  3. Put swagger-codegen-cli.jar in the same folder as the generate.bat script. The JAR file can be downloaded from [Maven Central](http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/) or built from [source](https://github.com/swagger-api/swagger-codegen).
  4. Run generate.bat.
  5. Build the solution in Visual Studio or using MSBuild.
