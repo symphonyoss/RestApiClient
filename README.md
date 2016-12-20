@@ -1,8 +1,4 @@
-[![Symphony Software Foundation - Incubating](https://cdn.rawgit.com/symphonyoss/contrib-toolbox/master/images/ssf-badge-incubating.svg)](https://symphonyoss.atlassian.net/wiki/display/FM/Incubating)
-
-![Build Status](https://www.myget.org/BuildSource/Badge/ssf-feed?identifier=b0a0940f-c25c-4070-a127-6cccf74ae5ab)
-
-[![Dependencies](https://www.versioneye.com/user/projects/57b73c371dcdc900430c0b37/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57b73c371dcdc900430c0b37?child=summary)
+[![Symphony Software Foundation - Incubating](https://cdn.rawgit.com/symphonyoss/contrib-toolbox/master/images/ssf-badge-incubating.svg)](https://symphonyoss.atlassian.net/wiki/display/FM/Incubating) ![Build Status](https://www.myget.org/BuildSource/Badge/ssf-feed?identifier=b0a0940f-c25c-4070-a127-6cccf74ae5ab) [![Dependencies](https://www.versioneye.com/user/projects/57b73c371dcdc900430c0b37/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57b73c371dcdc900430c0b37?child=summary)
 
 Symphony REST API Client Library for .NET
 =========================================
