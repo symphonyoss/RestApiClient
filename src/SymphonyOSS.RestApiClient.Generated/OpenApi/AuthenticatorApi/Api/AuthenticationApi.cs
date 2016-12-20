@@ -78,10 +78,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// 
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="username">User login name</param>
+        /// <param name="uid">user id</param>
         /// <param name="sessionToken">Authorization token obtains from app/authenicate API</param>
-        /// <returns>Token</returns>
-        Token V1AppUsernameUsernameAuthenticatePost (string username, string sessionToken);
+        /// <returns>OboAuthResponse</returns>
+        OboAuthResponse V1AppUserUidAuthenticatePost (long? uid, string sessionToken);
 
         /// <summary>
         /// PROVISIONAL - Authenicate an application in a delegated context to act on behalf of a user
@@ -90,10 +90,31 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// 
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="username">User login name</param>
+        /// <param name="uid">user id</param>
         /// <param name="sessionToken">Authorization token obtains from app/authenicate API</param>
-        /// <returns>ApiResponse of Token</returns>
-        ApiResponse<Token> V1AppUsernameUsernameAuthenticatePostWithHttpInfo (string username, string sessionToken);
+        /// <returns>ApiResponse of OboAuthResponse</returns>
+        ApiResponse<OboAuthResponse> V1AppUserUidAuthenticatePostWithHttpInfo (long? uid, string sessionToken);
+        /// <summary>
+        /// Authenticate a client-extension application
+        /// </summary>
+        /// <remarks>
+        /// Based on the application&#39;s SSL client certificate presented by the TLS layer, it authenticates the client-extension application and return a symphony verification token. 
+        /// </remarks>
+        /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authRequest">application generated token</param>
+        /// <returns>ExtensionAppTokens</returns>
+        ExtensionAppTokens V1AuthenticateExtensionAppPost (AuthenticateRequest authRequest);
+
+        /// <summary>
+        /// Authenticate a client-extension application
+        /// </summary>
+        /// <remarks>
+        /// Based on the application&#39;s SSL client certificate presented by the TLS layer, it authenticates the client-extension application and return a symphony verification token. 
+        /// </remarks>
+        /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authRequest">application generated token</param>
+        /// <returns>ApiResponse of ExtensionAppTokens</returns>
+        ApiResponse<ExtensionAppTokens> V1AuthenticateExtensionAppPostWithHttpInfo (AuthenticateRequest authRequest);
         /// <summary>
         /// Authenticate.
         /// </summary>
@@ -141,10 +162,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// 
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="username">User login name</param>
+        /// <param name="uid">user id</param>
         /// <param name="sessionToken">Authorization token obtains from app/authenicate API</param>
-        /// <returns>Task of Token</returns>
-        System.Threading.Tasks.Task<Token> V1AppUsernameUsernameAuthenticatePostAsync (string username, string sessionToken);
+        /// <returns>Task of OboAuthResponse</returns>
+        System.Threading.Tasks.Task<OboAuthResponse> V1AppUserUidAuthenticatePostAsync (long? uid, string sessionToken);
 
         /// <summary>
         /// PROVISIONAL - Authenicate an application in a delegated context to act on behalf of a user
@@ -153,10 +174,31 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// 
         /// </remarks>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="username">User login name</param>
+        /// <param name="uid">user id</param>
         /// <param name="sessionToken">Authorization token obtains from app/authenicate API</param>
-        /// <returns>Task of ApiResponse (Token)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Token>> V1AppUsernameUsernameAuthenticatePostAsyncWithHttpInfo (string username, string sessionToken);
+        /// <returns>Task of ApiResponse (OboAuthResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<OboAuthResponse>> V1AppUserUidAuthenticatePostAsyncWithHttpInfo (long? uid, string sessionToken);
+        /// <summary>
+        /// Authenticate a client-extension application
+        /// </summary>
+        /// <remarks>
+        /// Based on the application&#39;s SSL client certificate presented by the TLS layer, it authenticates the client-extension application and return a symphony verification token. 
+        /// </remarks>
+        /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authRequest">application generated token</param>
+        /// <returns>Task of ExtensionAppTokens</returns>
+        System.Threading.Tasks.Task<ExtensionAppTokens> V1AuthenticateExtensionAppPostAsync (AuthenticateRequest authRequest);
+
+        /// <summary>
+        /// Authenticate a client-extension application
+        /// </summary>
+        /// <remarks>
+        /// Based on the application&#39;s SSL client certificate presented by the TLS layer, it authenticates the client-extension application and return a symphony verification token. 
+        /// </remarks>
+        /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authRequest">application generated token</param>
+        /// <returns>Task of ApiResponse (ExtensionAppTokens)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ExtensionAppTokens>> V1AuthenticateExtensionAppPostAsyncWithHttpInfo (AuthenticateRequest authRequest);
         /// <summary>
         /// Authenticate.
         /// </summary>
@@ -421,12 +463,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// PROVISIONAL - Authenicate an application in a delegated context to act on behalf of a user 
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="username">User login name</param>
+        /// <param name="uid">user id</param>
         /// <param name="sessionToken">Authorization token obtains from app/authenicate API</param>
-        /// <returns>Token</returns>
-        public Token V1AppUsernameUsernameAuthenticatePost (string username, string sessionToken)
+        /// <returns>OboAuthResponse</returns>
+        public OboAuthResponse V1AppUserUidAuthenticatePost (long? uid, string sessionToken)
         {
-             ApiResponse<Token> localVarResponse = V1AppUsernameUsernameAuthenticatePostWithHttpInfo(username, sessionToken);
+             ApiResponse<OboAuthResponse> localVarResponse = V1AppUserUidAuthenticatePostWithHttpInfo(uid, sessionToken);
              return localVarResponse.Data;
         }
 
@@ -434,19 +476,19 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// PROVISIONAL - Authenicate an application in a delegated context to act on behalf of a user 
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="username">User login name</param>
+        /// <param name="uid">user id</param>
         /// <param name="sessionToken">Authorization token obtains from app/authenicate API</param>
-        /// <returns>ApiResponse of Token</returns>
-        public ApiResponse< Token > V1AppUsernameUsernameAuthenticatePostWithHttpInfo (string username, string sessionToken)
+        /// <returns>ApiResponse of OboAuthResponse</returns>
+        public ApiResponse< OboAuthResponse > V1AppUserUidAuthenticatePostWithHttpInfo (long? uid, string sessionToken)
         {
-            // verify the required parameter 'username' is set
-            if (username == null)
-                throw new ApiException(400, "Missing required parameter 'username' when calling AuthenticationApi->V1AppUsernameUsernameAuthenticatePost");
+            // verify the required parameter 'uid' is set
+            if (uid == null)
+                throw new ApiException(400, "Missing required parameter 'uid' when calling AuthenticationApi->V1AppUserUidAuthenticatePost");
             // verify the required parameter 'sessionToken' is set
             if (sessionToken == null)
-                throw new ApiException(400, "Missing required parameter 'sessionToken' when calling AuthenticationApi->V1AppUsernameUsernameAuthenticatePost");
+                throw new ApiException(400, "Missing required parameter 'sessionToken' when calling AuthenticationApi->V1AppUserUidAuthenticatePost");
 
-            var localVarPath = "/v1/app/username/{username}/authenticate";
+            var localVarPath = "/v1/app/user/{uid}/authenticate";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -470,7 +512,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (username != null) localVarPathParams.Add("username", Configuration.ApiClient.ParameterToString(username)); // path parameter
+            if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
 
 
@@ -483,13 +525,13 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V1AppUsernameUsernameAuthenticatePost", localVarResponse);
+                Exception exception = ExceptionFactory("V1AppUserUidAuthenticatePost", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Token>(localVarStatusCode,
+            return new ApiResponse<OboAuthResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Token) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Token)));
+                (OboAuthResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(OboAuthResponse)));
             
         }
 
@@ -497,12 +539,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// PROVISIONAL - Authenicate an application in a delegated context to act on behalf of a user 
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="username">User login name</param>
+        /// <param name="uid">user id</param>
         /// <param name="sessionToken">Authorization token obtains from app/authenicate API</param>
-        /// <returns>Task of Token</returns>
-        public async System.Threading.Tasks.Task<Token> V1AppUsernameUsernameAuthenticatePostAsync (string username, string sessionToken)
+        /// <returns>Task of OboAuthResponse</returns>
+        public async System.Threading.Tasks.Task<OboAuthResponse> V1AppUserUidAuthenticatePostAsync (long? uid, string sessionToken)
         {
-             ApiResponse<Token> localVarResponse = await V1AppUsernameUsernameAuthenticatePostAsyncWithHttpInfo(username, sessionToken);
+             ApiResponse<OboAuthResponse> localVarResponse = await V1AppUserUidAuthenticatePostAsyncWithHttpInfo(uid, sessionToken);
              return localVarResponse.Data;
 
         }
@@ -511,19 +553,19 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
         /// PROVISIONAL - Authenicate an application in a delegated context to act on behalf of a user 
         /// </summary>
         /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="username">User login name</param>
+        /// <param name="uid">user id</param>
         /// <param name="sessionToken">Authorization token obtains from app/authenicate API</param>
-        /// <returns>Task of ApiResponse (Token)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Token>> V1AppUsernameUsernameAuthenticatePostAsyncWithHttpInfo (string username, string sessionToken)
+        /// <returns>Task of ApiResponse (OboAuthResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<OboAuthResponse>> V1AppUserUidAuthenticatePostAsyncWithHttpInfo (long? uid, string sessionToken)
         {
-            // verify the required parameter 'username' is set
-            if (username == null)
-                throw new ApiException(400, "Missing required parameter 'username' when calling AuthenticationApi->V1AppUsernameUsernameAuthenticatePost");
+            // verify the required parameter 'uid' is set
+            if (uid == null)
+                throw new ApiException(400, "Missing required parameter 'uid' when calling AuthenticationApi->V1AppUserUidAuthenticatePost");
             // verify the required parameter 'sessionToken' is set
             if (sessionToken == null)
-                throw new ApiException(400, "Missing required parameter 'sessionToken' when calling AuthenticationApi->V1AppUsernameUsernameAuthenticatePost");
+                throw new ApiException(400, "Missing required parameter 'sessionToken' when calling AuthenticationApi->V1AppUserUidAuthenticatePost");
 
-            var localVarPath = "/v1/app/username/{username}/authenticate";
+            var localVarPath = "/v1/app/user/{uid}/authenticate";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -547,7 +589,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (username != null) localVarPathParams.Add("username", Configuration.ApiClient.ParameterToString(username)); // path parameter
+            if (uid != null) localVarPathParams.Add("uid", Configuration.ApiClient.ParameterToString(uid)); // path parameter
             if (sessionToken != null) localVarHeaderParams.Add("sessionToken", Configuration.ApiClient.ParameterToString(sessionToken)); // header parameter
 
 
@@ -560,13 +602,170 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V1AppUsernameUsernameAuthenticatePost", localVarResponse);
+                Exception exception = ExceptionFactory("V1AppUserUidAuthenticatePost", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Token>(localVarStatusCode,
+            return new ApiResponse<OboAuthResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Token) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Token)));
+                (OboAuthResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(OboAuthResponse)));
+            
+        }
+
+        /// <summary>
+        /// Authenticate a client-extension application Based on the application&#39;s SSL client certificate presented by the TLS layer, it authenticates the client-extension application and return a symphony verification token. 
+        /// </summary>
+        /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authRequest">application generated token</param>
+        /// <returns>ExtensionAppTokens</returns>
+        public ExtensionAppTokens V1AuthenticateExtensionAppPost (AuthenticateRequest authRequest)
+        {
+             ApiResponse<ExtensionAppTokens> localVarResponse = V1AuthenticateExtensionAppPostWithHttpInfo(authRequest);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Authenticate a client-extension application Based on the application&#39;s SSL client certificate presented by the TLS layer, it authenticates the client-extension application and return a symphony verification token. 
+        /// </summary>
+        /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authRequest">application generated token</param>
+        /// <returns>ApiResponse of ExtensionAppTokens</returns>
+        public ApiResponse< ExtensionAppTokens > V1AuthenticateExtensionAppPostWithHttpInfo (AuthenticateRequest authRequest)
+        {
+            // verify the required parameter 'authRequest' is set
+            if (authRequest == null)
+                throw new ApiException(400, "Missing required parameter 'authRequest' when calling AuthenticationApi->V1AuthenticateExtensionAppPost");
+
+            var localVarPath = "/v1/authenticate/extensionApp";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (authRequest != null && authRequest.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(authRequest); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = authRequest; // byte array
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V1AuthenticateExtensionAppPost", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ExtensionAppTokens>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ExtensionAppTokens) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ExtensionAppTokens)));
+            
+        }
+
+        /// <summary>
+        /// Authenticate a client-extension application Based on the application&#39;s SSL client certificate presented by the TLS layer, it authenticates the client-extension application and return a symphony verification token. 
+        /// </summary>
+        /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authRequest">application generated token</param>
+        /// <returns>Task of ExtensionAppTokens</returns>
+        public async System.Threading.Tasks.Task<ExtensionAppTokens> V1AuthenticateExtensionAppPostAsync (AuthenticateRequest authRequest)
+        {
+             ApiResponse<ExtensionAppTokens> localVarResponse = await V1AuthenticateExtensionAppPostAsyncWithHttpInfo(authRequest);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Authenticate a client-extension application Based on the application&#39;s SSL client certificate presented by the TLS layer, it authenticates the client-extension application and return a symphony verification token. 
+        /// </summary>
+        /// <exception cref="SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authRequest">application generated token</param>
+        /// <returns>Task of ApiResponse (ExtensionAppTokens)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ExtensionAppTokens>> V1AuthenticateExtensionAppPostAsyncWithHttpInfo (AuthenticateRequest authRequest)
+        {
+            // verify the required parameter 'authRequest' is set
+            if (authRequest == null)
+                throw new ApiException(400, "Missing required parameter 'authRequest' when calling AuthenticationApi->V1AuthenticateExtensionAppPost");
+
+            var localVarPath = "/v1/authenticate/extensionApp";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (authRequest != null && authRequest.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(authRequest); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = authRequest; // byte array
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("V1AuthenticateExtensionAppPost", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ExtensionAppTokens>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ExtensionAppTokens) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ExtensionAppTokens)));
             
         }
 

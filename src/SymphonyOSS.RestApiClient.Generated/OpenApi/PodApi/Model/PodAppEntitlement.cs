@@ -40,14 +40,12 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.ComponentModel.DataAnnotations;
 
 namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
 {
@@ -55,7 +53,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
     /// Application Entitlements for the company
     /// </summary>
     [DataContract]
-    public partial class PodAppEntitlement :  IEquatable<PodAppEntitlement>, IValidatableObject
+    public partial class PodAppEntitlement :  IEquatable<PodAppEntitlement>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PodAppEntitlement" /> class.
@@ -247,35 +245,6 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
                     hash = hash * 59 + this.Install.GetHashCode();
                 return hash;
             }
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        { 
-            // AppId (string) maxLength
-            if(this.AppId != null && this.AppId.Length > 32)
-            {
-                yield return new ValidationResult("Invalid value for AppId, length must be less than 32.", new [] { "AppId" });
-            }
-
-            // AppId (string) minLength
-            if(this.AppId != null && this.AppId.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for AppId, length must be greater than 1.", new [] { "AppId" });
-            }
-
-            // AppName (string) maxLength
-            if(this.AppName != null && this.AppName.Length > 50)
-            {
-                yield return new ValidationResult("Invalid value for AppName, length must be less than 50.", new [] { "AppName" });
-            }
-
-            // AppName (string) minLength
-            if(this.AppName != null && this.AppName.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for AppName, length must be greater than 1.", new [] { "AppName" });
-            }
-
-            yield break;
         }
     }
 
