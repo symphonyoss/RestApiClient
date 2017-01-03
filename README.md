@@ -1,4 +1,5 @@
 [![NuGet Packages Status](https://img.shields.io/nuget/v/SymphonyOSS.RestApiClient.svg?maxAge=2592000)](https://www.nuget.org/packages/SymphonyOSS.RestApiClient/)
+[![MyGet Pre Release](https://img.shields.io/myget/ssf-feed/v/SymphonyOSS.RestApiClient.svg)](https://www.myget.org/feed/ssf-feed/package/nuget/SymphonyOSS.RestApiClient)
 [![MyGet Build Status](https://www.myget.org/BuildSource/Badge/ssf-feed?identifier=b0a0940f-c25c-4070-a127-6cccf74ae5ab)](https://www.myget.org/feed/ssf-feed/package/nuget/SymphonyOSS.RestApiClient)
 [![Dependencies](https://www.versioneye.com/user/projects/57b73c371dcdc900430c0b37/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57b73c371dcdc900430c0b37?child=summary)
 [![Travis Build Status](https://travis-ci.org/symphonyoss/RestApiClient.svg)](https://travis-ci.org/symphonyoss/RestApiClient)
