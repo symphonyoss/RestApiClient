@@ -46,6 +46,16 @@ namespace SymphonyOSS.RestApiClient.Factories
         }
 
         /// <summary>
+        /// Constructs a PodApi instance using the provided client certificate for
+        /// // authentication
+        /// </summary>
+        /// <param name="certificate">Client certificate used for authentication.</param>
+        /// <returns>The PodApi.</returns>
+        public PodApi CreatePodApi(X509Certificate2 certificate)
+        {
+            return Create<PodApi>(certificate);
+        }
+        /// <summary>
         /// Constructs an AuthenticatorApi instance using the provided client certificate
         /// for authentication.
         /// </summary>

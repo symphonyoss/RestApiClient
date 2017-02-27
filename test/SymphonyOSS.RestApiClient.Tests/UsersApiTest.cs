@@ -45,8 +45,16 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureGetUser_uses_retry_strategy()
         {
             const string email = "email";
-            _usersApi.GetUser(email);
+            _usersApi.GetUserId(email);
             _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, bool?, User>>(), email, "sessionToken", (bool?) null));
+        }
+
+        [Fact]
+        public void EnsureGetUser_by_user_id_uses_retry_strategy()
+        {
+            const long userId = 12345;
+            _usersApi.GetUser(userId);
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, string, string, bool?, UserV2>>(), "sessionToken", userId, (string)null, (string)null, (bool?)null));
         }
 
     }

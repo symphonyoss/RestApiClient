@@ -1,4 +1,8 @@
-[![Build Status](https://travis-ci.org/symphonyoss/RestApiClient.svg)](https://travis-ci.org/symphonyoss/RestApiClient)
+[![NuGet Packages Status](https://img.shields.io/nuget/v/SymphonyOSS.RestApiClient.svg?maxAge=2592000)](https://www.nuget.org/packages/SymphonyOSS.RestApiClient/)
+[![MyGet Pre Release](https://img.shields.io/myget/ssf-feed/v/SymphonyOSS.RestApiClient.svg)](https://www.myget.org/feed/ssf-feed/package/nuget/SymphonyOSS.RestApiClient)
+[![MyGet Build Status](https://www.myget.org/BuildSource/Badge/ssf-feed?identifier=b0a0940f-c25c-4070-a127-6cccf74ae5ab)](https://www.myget.org/feed/ssf-feed/package/nuget/SymphonyOSS.RestApiClient)
+[![Dependencies](https://www.versioneye.com/user/projects/57b73c371dcdc900430c0b37/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57b73c371dcdc900430c0b37?child=summary)
+[![Travis Build Status](https://travis-ci.org/symphonyoss/RestApiClient.svg)](https://travis-ci.org/symphonyoss/RestApiClient)
 
 Symphony REST API Client Library for .NET
 =========================================
@@ -24,14 +28,14 @@ This example shows how to subscribe to a bot user's incoming messages using the 
 
 ```
 var certificate = new X509Certificate2(@"botuser.p12", "password");
-var sessionManager = new SessionManager("https://keymanager:8444/sessionauth/", "https://keymanager:8444/keyauth/", certificate);
+var sessionManager = new UserSessionManager("https://keymanager:8444/sessionauth/", "https://keymanager:8444/keyauth/", certificate);
 var agentApiFactory = new AgentApiFactory("https://agentapi:8446/agent");
 var datafeedApi = agentApiFactory.CreateDatafeedApi(sessionManager);
 datafeedApi.OnMessage += (sender, event) =>
 {
-    var message = e.Message as V2Message;
-    Console.WriteLine(message.Message);
-    
+    var message = e.Message;
+    Console.WriteLine(message.Body);
+
     // Write any attachments to disk.
     foreach (var attachmentInfo in message.Attachments)
     {
@@ -48,14 +52,10 @@ The following code snippet shows how to find a user by email address and send a 
 var podApiFactory = new PodApiFactory("https://agentapi:8446/pod");
 var usersApi = podApiFactory.CreateUsersApi(sessionManager);
 var streamsApi = podApiFactory.CreateStreamsApi(sessionManager);
-var user = usersApi.GetUser("jforsell@factset.com");
-var stream = streamsApi.CreateStream(new UserIdList {user.Id});
-messagesApi.PostMessage(
-    stream.Id, new V2MessageSubmission()
-    {
-        Format = V2MessageSubmission.FormatEnum.Messageml,
-        Message = new MessageBuilder().Text("hello ").Bold("world").ToString()
-    });
+var userId = usersApi.GetUserId("jforsell@factset.com");
+var streamId = streamsApi.CreateStream(new List<long> {userId});
+var body = new MessageBuilder().Text("hello ").Bold("world").ToString();
+messagesApi.PostMessage(new Message(streamId, MessageFormat.MessageML, body));
 ```
 
 ## Building
@@ -69,7 +69,7 @@ The library depends on code that has been generated from Symphony's YAML spec fi
 In case there is a need to regenerate the code from Symphony's YAML specs:
 
  1. Make sure Java is installed.
- 2. Find the generate.bat script in the SymphonyOSS.RestApiClient.Generated\OpenApi folder, and if necessary, edit it to pick up a different set of YAML specs. 
+ 2. Find the generate.bat script in the SymphonyOSS.RestApiClient.Generated\OpenApi folder, and if necessary, edit it to pick up a different set of YAML specs.
  3. Put swagger-codegen-cli.jar in the same folder as the generate.bat script. The JAR file can be downloaded from [Maven Central](http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/) or built from [source](https://github.com/swagger-api/swagger-codegen).
  4. Run generate.bat.
  5. Build the solution in Visual Studio or using MSBuild.
@@ -81,6 +81,41 @@ This project was initiated at [FactSet](https://www.factset.com) and has been de
 Contributions are accepted via GitHub pull requests. All contributors must be covered by contributor license agreements to comply with the [Code Contribution Process](https://symphonyoss.atlassian.net/wiki/display/FM/Code+Contribution+Process).
 
 ## Release Notes
+
+Release 0.4.0 (November 22, 2016):
+ * New entity classes have been introduced: Attachment, Connection, Message, Presence, User, Room, and Stream
+   replace their generated counterparts (eg V2Message, UserV2, etc).
+ * SessionApi method GetUserId replaces GetSessionInfo.
+ * StreamsApi method CreateStream returns stream ID instead of Stream object.
+ * UsersApi GetUserId method replaces GetUser method (which returned a userId wrapped in a simple class).
+ * UtilApi methods return string instead of SimpleMessage.
+
+Release 0.3.4 (October 10, 2016):
+
+ * Added a new framework dependency to the nuspec file.
+
+Release 0.3.3 (October 10, 2016):
+
+ * Regenerated classes using latest swagger-codegen to fix bugs with optional parameters.
+ * Updated dependencies to latest versions.
+
+Release 0.3.2 (September 27, 2016):
+
+ * Support for sending messages using both normal and on-behalf-of authentication.
+
+Release 0.3.1 (September 19, 2016):
+
+ * Support for on-behalf-of operations,
+ * Method to get user details by user ID,
+ * Small fixes.
+
+Release 0.3.0 (September 6, 2016):
+
+ * New APIs.
+ * New session management to support app sessions (breaking change).
+ * Improved datafeed error handling.
+ * MessageML to plain text parsing.
+ * And more...
 
 Release 0.2.0 (June 28, 2016)
 

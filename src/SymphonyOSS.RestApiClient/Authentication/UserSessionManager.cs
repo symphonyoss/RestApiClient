@@ -25,7 +25,7 @@ namespace SymphonyOSS.RestApiClient.Authentication
     /// Contains the session and key manager tokens needed for authentication, and
     /// the logic for generating these tokens using the authentication endpoints.
     /// </summary>
-    public class SessionManager : ISessionManager
+    public class UserSessionManager : ISessionManager
     {
         private readonly IAuthenticationApi _sessionAuthApi;
 
@@ -35,7 +35,7 @@ namespace SymphonyOSS.RestApiClient.Authentication
 
         private string _keyManagerToken;
 
-        public SessionManager(string sessionAuthUrl, string keyAuthUrl, X509Certificate2 certificate)
+        public UserSessionManager(string sessionAuthUrl, string keyAuthUrl, X509Certificate2 certificate)
         {
             Certificate = certificate;
             var sessionAuthApiFactory = new AuthenticatorApiFactory(sessionAuthUrl);
@@ -44,7 +44,7 @@ namespace SymphonyOSS.RestApiClient.Authentication
             _keyAuthApi = keyAuthApiFactory.CreateAuthenticationApi(certificate);
         }
 
-        public SessionManager(IAuthenticationApi sessionAuthApi, IAuthenticationApi keyAuthApi, X509Certificate2 certificate)
+        public UserSessionManager(IAuthenticationApi sessionAuthApi, IAuthenticationApi keyAuthApi, X509Certificate2 certificate)
         {
             Certificate = certificate;
             _sessionAuthApi = sessionAuthApi;

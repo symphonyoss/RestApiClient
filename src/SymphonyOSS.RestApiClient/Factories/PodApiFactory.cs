@@ -37,6 +37,19 @@ namespace SymphonyOSS.RestApiClient.Factories
         }
 
         /// <summary>
+        /// Constructs a ConnectionApi instance using the provided session manager
+        /// for authentication.
+        /// </summary>
+        /// <param name="sessionManager">Session manager used for authentication.</param>
+        /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
+        /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
+        /// <returns>The ConnectionApi instance.</returns>
+        public ConnectionApi CreateConnectionApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
+        {
+            return Create<ConnectionApi>(sessionManager, apiExecutor);
+        }
+
+        /// <summary>
         /// Constructs a MessageSuppressionApi instance using the provided session manager
         /// for authentication.
         /// </summary>
@@ -70,7 +83,7 @@ namespace SymphonyOSS.RestApiClient.Factories
         /// <param name="apiExecutor">The executor, if none is provided <see cref="RetryStrategyApiExecutor"/>
         /// with a <see cref="RefreshTokensRetryStrategy"/> will be used.</param>
         /// <returns>The SecurityApi instance.</returns>
-        public SecurityApi CreateSecurityApi(SessionManager sessionManager, IApiExecutor apiExecutor = null)
+        public SecurityApi CreateSecurityApi(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
             return Create<SecurityApi>(sessionManager, apiExecutor);
         }

@@ -58,15 +58,21 @@ namespace SymphonyOSS.RestApiClient.Tests
             _datafeedApi.OnMessage += (_, messageEventArgs) =>
             {
                 ++messagesReceived;
-                if ((messageEventArgs.Message as V2Message)?.Id == "msg2")
+                if (messageEventArgs.Message.Id == "msg2")
                 {
                     semaphore.Release(1);
                 }
             };
             var task = Task.Run(() => _datafeedApi.Listen());
-            semaphore.WaitOne();
+            if (!semaphore.WaitOne(1000))
+            {
+                Assert.True(false);
+            }
             _datafeedApi.Stop();
-            task.Wait();
+            if (!task.Wait(1000))
+            {
+                Assert.True(false);
+            }
             Assert.True(messagesReceived >= 2);
         }
 
@@ -107,9 +113,15 @@ namespace SymphonyOSS.RestApiClient.Tests
             };
             _datafeedApi.OnMessage += handler;
             var task = Task.Run(() => _datafeedApi.Listen());
-            mainSemaphore.WaitOne();
+            if (!mainSemaphore.WaitOne(1000))
+            {
+                Assert.True(false);
+            }
             _datafeedApi.Stop();
-            task.Wait();
+            if (!task.Wait(1000))
+            {
+                Assert.True(false);
+            }
             Assert.Equal(10, messagesSent);
             Assert.Equal(1, messagesReceived);
         }
@@ -137,7 +149,7 @@ namespace SymphonyOSS.RestApiClient.Tests
             var result = new V2MessageList();
             for (var i = 0; i < count; ++i)
             {
-                result.Add(new V2Message("msg" + (startId + i), "timestamp", "messageType", "streamId", "message", 1));
+                result.Add(new V2Message("msg" + (startId + i), "1477297302", "messageType", "streamId", "message", 1));
             };
             return result;
         }

@@ -15,40 +15,25 @@
 // specific language governing permissions and limitations
 // under the License.
 
-using SymphonyOSS.RestApiClient.Generated.Json;
-
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
-    using System;
     using System.Diagnostics;
-    using System.Threading.Tasks;
     using Authentication;
     using Generated.OpenApi.AgentApi.Client;
     using Generated.OpenApi.AgentApi.Model;
-    using System.Collections.Generic;
-    using System.Threading;
 
     /// <summary>
     /// Provides an event-based data feed of a user's incoming messages.
     /// Encapsulates <see cref="Generated.OpenApi.AgentApi.Api.DatafeedApi"/>,
     /// adding authentication token management and a custom execution strategy.
     /// </summary>
-    public class DatafeedApi
+    public class DatafeedApi : AbstractDatafeedApi
     {
+        private static readonly TraceSource TraceSource = new TraceSource("SymphonyOSS.RestApiClient");
+
         private readonly Generated.OpenApi.AgentApi.Api.IDatafeedApi _datafeedApi;
 
-        private readonly IAuthTokens _authTokens;
-
-        private readonly IApiExecutor _apiExecutor;
-
-        private readonly Dictionary<EventHandler<MessageEventArgs>, Task> _tasks = new Dictionary<EventHandler<MessageEventArgs>, Task>();
-
-        private volatile bool _shouldStop;
-
-        static DatafeedApi()
-        {
-            JsonSubtypeConverter.Register(typeof(V2Message));
-        }
+        private bool _useV2Datafeed = true;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DatafeedApi" /> class.
@@ -58,104 +43,151 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <param name="authTokens">Authentication tokens.</param>
         /// <param name="configuration">Api configuration.</param>
         /// <param name="apiExecutor">Execution strategy.</param>
-        public DatafeedApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
+        public DatafeedApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor) : base(authTokens, apiExecutor)
         {
             _datafeedApi = new Generated.OpenApi.AgentApi.Api.DatafeedApi(configuration);
-            _authTokens = authTokens;
-            _apiExecutor = apiExecutor;
         }
 
-        private event EventHandler<MessageEventArgs> _onMessage;
-        public event EventHandler<MessageEventArgs> OnMessage
+        /// <summary>
+        /// Creates a datafeed and starts listening to it, notifying event handlers about
+        /// incoming messages. Blocks until <see cref="AbstractDatafeedApi.Stop"/> is invoked.
+        /// </summary>
+        public void Listen()
         {
-            add
+            try
             {
-                _onMessage += value;
-            }
-            remove
-            {
-                _onMessage -= value;
-                lock (_tasks)
+                if (Listening)
                 {
-                    _tasks.Remove(value);
+                    return;
                 }
+                Listening = true;
+                ShouldStop = false;
+                var datafeedId = CreateDatafeed();
+                Listen(ref datafeedId, 1);
+            }
+            finally
+            {
+                Listening = false;
             }
         }
 
         /// <summary>
-        /// Starts listening, notifying event handlers about incoming messages. Blocks
-        /// until <see cref="Stop"/> is invoked.
+        /// Starts listening to a specified datafeed, notifying event handlers about incoming
+        /// messages. Blocks until <see cref="AbstractDatafeedApi.Stop"/> is invoked.
         /// </summary>
-        public void Listen()
+        /// <param name="datafeedId">The ID of the datafeed.</param>
+        public void Listen(string datafeedId)
         {
-            _shouldStop = false;
-            var datafeed = CreateDatafeed();
-            while (!_shouldStop)
+            try
             {
-                var messageList = ReadDatafeed(datafeed.Id);
-                if (_shouldStop)
+                if (Listening)
+                {
+                    return;
+                }
+                Listening = true;
+                ShouldStop = false;
+                Listen(ref datafeedId, 0);
+            }
+            finally
+            {
+                Listening = false;
+            }
+        }
+
+        private void Listen(ref string datafeedId, int retriesAllowed)
+        {
+            while (!ShouldStop)
+            {
+                var messageList = ReadDatafeed(ref datafeedId, retriesAllowed: retriesAllowed);
+                if (ShouldStop)
                 {
                     // Don't process messages if the user has stopped listening.
                     break;
                 }
 
-                if (messageList == null || _onMessage == null)
-                {
-                    continue;
-                }
-
-                foreach (var eventHandler in _onMessage.GetInvocationList())
-                {
-                    NotifyAsync((EventHandler<MessageEventArgs>)eventHandler, messageList);
-                }
+                ProcessMessageList(messageList);
             }
         }
 
         /// <summary>
-        /// Requests that <see cref="Listen"/> should stop blocking and return control
-        /// to the calling thread. Calling <see cref="Stop"/> will not immediately return
-        /// control, but wait for the current outstanding request to complete.
+        /// Creates a datafeed.
         /// </summary>
-        public void Stop()
+        /// <returns>The ID of the datafeed.</returns>
+        public string CreateDatafeed()
         {
-            _shouldStop = true;
-        }
-
-        private async void NotifyAsync(EventHandler<MessageEventArgs> messageEventHandler, V2MessageList messageList)
-        {
-            // Notify each handler in a separate task, maintaining the order of messages in the list, and
-            // get back to reading the data feed again without waiting for listeners to process messages.
-            Task task;
-            if (_tasks.TryGetValue(messageEventHandler, out task))
-            {
-                await task;
-            }
-            _tasks[messageEventHandler] = Task.Run(() => Notify(messageEventHandler, messageList));
-        }
-
-        private void Notify(EventHandler<MessageEventArgs> messageEventHandler, V2MessageList messageList)
-        {
-            foreach (var message in messageList)
-            {
-                try
-                {
-                    messageEventHandler.Invoke(this, new MessageEventArgs(message));
-                }
-                catch (Exception e)
-                {
-                    Trace.TraceError("Unhandled exception caught when notifying listener about message with ID \"{0}\".", message.Id, e);
-                }
-            }
-        }
-
-        private Datafeed CreateDatafeed()
-        {
-            return _apiExecutor.Execute(_datafeedApi.V1DatafeedCreatePost, _authTokens.SessionToken, _authTokens.KeyManagerToken);
+            var datafeed = ApiExecutor.Execute(_datafeedApi.V1DatafeedCreatePost, AuthTokens.SessionToken, AuthTokens.KeyManagerToken);
+            return datafeed.Id;
         }
 
         private V2MessageList ReadDatafeed(string id, int? maxMessages = null)
         {
-            return _apiExecutor.Execute(_datafeedApi.V2DatafeedIdReadGet, id, _authTokens.SessionToken, _authTokens.KeyManagerToken, maxMessages);
+            if (_useV2Datafeed)
+            {
+                try
+                {
+                    return ReadV2Datafeed(id, maxMessages);
+                }
+                catch (ApiException e)
+                {
+                    if (e.ErrorCode != 404)
+                    {
+                        throw;
+                    }
+                    TraceSource.TraceEvent(
+                        TraceEventType.Warning, 0,
+                        "V2 data feed not available, falling back to V1.");
+                    _useV2Datafeed = false;
+                }
+            }
+            var v1MessageList = ReadV1Datafeed(id, maxMessages);
+            return ConvertV1MessageList(v1MessageList);
+        }
+
+        private MessageList ReadV1Datafeed(string id, int? maxMessages)
+        {
+            return ApiExecutor.Execute(
+                _datafeedApi.V1DatafeedIdReadGet,
+                id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken,
+                maxMessages);
+        }
+
+        private V2MessageList ReadV2Datafeed(string id, int? maxMessages)
+        {
+            return ApiExecutor.Execute(
+                _datafeedApi.V2DatafeedIdReadGet,
+                id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken,
+                maxMessages);
+        }
+
+        private V2MessageList ReadDatafeed(ref string id, int? maxMessages = null, int? retriesAllowed = 1)
+        {
+            var countDatafeedErrors = 0;
+            while (true)
+            {
+                try
+                {
+                    var messageList = ReadDatafeed(id, maxMessages);
+                    if (countDatafeedErrors > 0)
+                    {
+                        TraceSource.TraceEvent(
+                            TraceEventType.Information, 0,
+                            "Data feed re-established.");
+                    }
+                    return messageList;
+                }
+                catch (ApiException e)
+                {
+                    if (countDatafeedErrors >= retriesAllowed)
+                    {
+                        throw;
+                    }
+                    ++countDatafeedErrors;
+                    TraceSource.TraceEvent(
+                        TraceEventType.Error, 0,
+                        "Unhandled API exception caught when reading data feed, retrying: {0}", e);
+                    id = CreateDatafeed();
+                }
+            }
         }
     }
 }

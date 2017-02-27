@@ -33,10 +33,16 @@
     <copyright>Copyright 2016</copyright>
     <tags>Symphony API chat bot messaging</tags>
     <dependencies> 
-     <group targetFramework="net45">
-       <dependency id="RestSharp" version="105.2.3" />
-       <dependency id="Newtonsoft.Json" version="8.0.3" />
-     </group>
+      <group targetFramework="net45">
+        <dependency id="RestSharp" version="105.2.3" />
+        <dependency id="Newtonsoft.Json" version="9.0.1" />
+      </group>
     </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework="net45" />
+    </frameworkAssemblies>
   </metadata>
+  <files>
+    <file src="bin\$configuration$\SymphonyOSS.RestApiClient.Generated.dll" target="lib\net45" />
+  </files>
 </package>

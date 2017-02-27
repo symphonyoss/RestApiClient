@@ -88,6 +88,76 @@ paths:
           description: 'Server error, see response body for further details.'
           schema:
             $ref: '#/definitions/Error'
+  '/v3/stream/{sid}/message/create':
+    post:
+      summary: PROVISIONAL - Post a message to one existing stream.
+      description: |
+        Post a new message to the given stream. The stream can be a chatroom,
+        an IM or a multiparty IM.
+
+        You may include an attachment on the message (see the V2MessageSubmission parameter).
+
+        If the message parameter type is TEXT then the message contains plain
+        text and cannot include formating, hash tags, mentions etc.
+
+        If the message parameter type is MessageML then the message contains
+        MessageML which allows for these entities.
+
+        If the message is in MessageML and fails schema validation
+        a client error results
+
+        If the message is sent then 200 is returned.
+
+        Regarding authentication, you must either use the sessionToken which was created for delegated app access
+        or both the sessionToken and keyManagerToken together.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: sid
+          description: Stream ID
+          in: path
+          required: true
+          type: string
+        - name: sessionToken
+          description: Session authentication token.
+          in: header
+          required: true
+          type: string
+        - name: keyManagerToken
+          description: Key Manager authentication token.
+          in: header
+          required: false
+          type: string
+        - name: message
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/V2MessageSubmission'
+      tags:
+        - Messages
+      responses:
+        '200':
+          description: Message sent.
+          schema:
+            $ref: '#/definitions/V2Message'
+        '400':
+          description: 'Client error, see response body for further details.'
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: 'Unauthorized: Session tokens invalid.'
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: 'Forbidden: Caller lacks necessary entitlement.'
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: 'Server error, see response body for further details.'
+          schema:
+            $ref: '#/definitions/Error'
   '/v2/stream/{sid}/message':
     get:
       summary: Get messages from an existing stream.
@@ -246,7 +316,7 @@ paths:
           required: true
           type: string
         - name: fileId
-          description: The attachment ID
+          description: The attachment ID (Base64-encoded)
           in: query
           required: true
           type: string
@@ -578,6 +648,114 @@ paths:
             $ref: '#/definitions/MessageList'
         '204':
           description: No Messages.
+        '400':
+          description: 'Client error, see response body for further details.'
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: 'Unauthorized: Session tokens invalid.'
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: 'Forbidden: Caller lacks necessary entitlement.'
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: 'Server error, see response body for further details.'
+          schema:
+            $ref: '#/definitions/Error'
+  '/v1/stream/{sid}/share':
+    post:
+      summary: Share a piece of content into Symphony
+      description: |
+        Given a 3rd party content (eg. news article), it can share to the given stream.
+        The stream can be a chatroom, an IM or a multiparty IM.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: sid
+          description: Stream ID
+          in: path
+          required: true
+          type: string
+        - name: sessionToken
+          description: Session authentication token.
+          in: header
+          required: true
+          type: string
+        - name: keyManagerToken
+          description: Key Manager authentication token.
+          in: header
+          required: true
+          type: string
+        - name: shareContent
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ShareContent'
+      tags:
+        - Share
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/V2Message'
+        '400':
+          description: 'Client error, see response body for further details.'
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: 'Unauthorized: Session tokens invalid.'
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: 'Forbidden: Caller lacks necessary entitlement.'
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: 'Server error, see response body for further details.'
+          schema:
+            $ref: '#/definitions/Error'
+  '/v3/stream/{sid}/share':
+    post:
+      summary: PROVISIONAL -  Share a piece of content into Symphony
+      description: |
+        Given a 3rd party content (eg. news article), it can share to the given stream.
+        The stream can be a chatroom, an IM or a multiparty IM.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: sid
+          description: Stream ID
+          in: path
+          required: true
+          type: string
+        - name: sessionToken
+          description: Session authentication token.
+          in: header
+          required: true
+          type: string
+        - name: keyManagerToken
+          description: Key Manager authentication token.
+          in: header
+          required: false
+          type: string
+        - name: shareContent
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ShareContent'
+      tags:
+        - Share
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/V2Message'
         '400':
           description: 'Client error, see response body for further details.'
           schema:
@@ -947,6 +1125,22 @@ paths:
           description: 'Server error, see response body for further details.'
           schema:
             $ref: '#/definitions/Error'
+  '/v1/HealthCheck':
+    get:
+      summary: Checks the health of the Agent.
+      description: |
+          Used to validate the configuration of the agent.
+          Makes a request to the HealthCheck on the Symphony cloud.
+          Makes a request to the HealthCheck on the Key Manager service.
+      produces:
+        - application/json
+      tags:
+        - System
+      responses:
+        '200':
+          description: The Agent is functioning properly.
+          schema:
+            $ref: '#/definitions/V1HealthCheckResponse'
 definitions:
   Error:
     type: object
@@ -994,6 +1188,7 @@ definitions:
       Also, the importing user must be a member of the conversation it is importing into.
       The user that the message is intended to have come from must also be present in the conversation.
       The intended message timestamp must be a valid time from the past. It cannot be a future timestamp.
+      By design, imported messages do not stream to datafeed or firehose endpoints.
     type: object
     properties:
       message:
@@ -1306,3 +1501,74 @@ definitions:
     required:
     - key
     - value
+  ShareArticle:
+    type: object
+    properties:
+      articleId:
+        type: string
+        description: An ID for this article that should be unique to the calling application.
+      title:
+        type: string
+        description: The title of the article
+      subTitle:
+        type: string
+        description: The subtitle of the article
+      message:
+        type: string
+        description: The message text that can be send along with the shared article
+      publisher:
+        type: string
+        description: Publisher of the article
+      thumbnailUrl:
+        type: string
+        description: Url to the thumbnail image
+      author:
+        type: string
+        description: Author of the article
+      articleUrl:
+        type: string
+        description: Url to the article
+      summary:
+        type: string
+        description: Preview summary of the article
+      appId:
+        type: string
+        description: App ID of the calling application
+      appName:
+        type: string
+        description: App name of the calling application
+      appIconUrl:
+          type: string
+          description: App icon url of the calling application
+    required:
+    - articleId
+    - title
+    - publisher
+    - author
+    - appId
+  ShareContent:
+    type: object
+    properties:
+      type:
+        type: string
+        description: Type of content to be shared.  Currently only support "com.symphony.sharing.article"
+      content:
+        $ref: '#/definitions/ShareArticle'
+  V1HealthCheckResponse:
+    type: object
+    properties:
+      podConnectivity:
+        type: boolean
+        description: Indicates whether the Agent server can connect to the Pod
+      podConnectivityError:
+        type: string
+        description: Error details in case of no Pod connectivity
+      keyManagerConnectivity:
+        type: boolean
+        description: Indicates whether the Agent server can connect to the Key Manager
+      keyManagerConnectivityError:
+        type: string
+        description: Error details in case of no Key Manager connectivity
+      version:
+        type: string
+        description: The version number of the Agent server

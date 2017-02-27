@@ -15,12 +15,11 @@
 // specific language governing permissions and limitations
 // under the License.
 
-using Newtonsoft.Json;
-using SymphonyOSS.RestApiClient.Generated.Json;
-using SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model;
-
 namespace SymphonyOSS.RestApiClient.Tests
 {
+    using Newtonsoft.Json;
+    using Generated.Json;
+    using Generated.OpenApi.AgentApi.Model;
     using Xunit;
 
     public class JsonSubtypeConverterTest
@@ -36,7 +35,8 @@ namespace SymphonyOSS.RestApiClient.Tests
                 "  \"v2messageType\": \"V2Message\", " +
                 "  \"streamId\": \"streamId\", " +
                 "  \"message\": \"contents\", " +
-                "  \"fromUserId\": 123}";
+                "  \"fromUserId\": 123" +
+                "}";
             var message = JsonConvert.DeserializeObject(json, typeof(V2BaseMessage)) as V2BaseMessage;
             Assert.IsType(typeof(V2Message), message);
             Assert.Equal("contents", ((V2Message)message).Message);

@@ -18,6 +18,7 @@
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System;
+    using Message= Entities.Message;
     using Generated.OpenApi.AgentApi.Model;
 
     /// <summary>
@@ -25,11 +26,11 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class MessageEventArgs : EventArgs
     {
-        public MessageEventArgs(V2BaseMessage message)
+        public MessageEventArgs(Message message)
         {
             Message = message;
         }
             
-        public V2BaseMessage Message { get; private set; }
+        public Message Message { get; private set; }
     }
 }
