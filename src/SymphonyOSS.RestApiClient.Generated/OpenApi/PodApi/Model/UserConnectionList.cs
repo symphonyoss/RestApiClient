@@ -53,7 +53,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
     /// UserConnectionList
     /// </summary>
     [DataContract]
-    public partial class UserConnectionList : List<UserConnection>,  IEquatable<UserConnectionList>
+    public partial class UserConnectionList : List<UserConnection>, IEquatable<UserConnectionList>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UserConnectionList" /> class.
@@ -62,7 +62,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         public UserConnectionList()
         {
         }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -74,12 +74,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public  new string ToJson()
+        public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

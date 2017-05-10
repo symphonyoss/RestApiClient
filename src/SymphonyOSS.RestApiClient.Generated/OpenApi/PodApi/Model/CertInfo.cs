@@ -53,7 +53,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
     /// CertInfo
     /// </summary>
     [DataContract]
-    public partial class CertInfo : List<CertInfoItem>,  IEquatable<CertInfo>
+    public partial class CertInfo : List<CertInfoItem>, IEquatable<CertInfo>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CertInfo" /> class.
@@ -62,7 +62,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
         public CertInfo()
         {
         }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -74,12 +74,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public  new string ToJson()
+        public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

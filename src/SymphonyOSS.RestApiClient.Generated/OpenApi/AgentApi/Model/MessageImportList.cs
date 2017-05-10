@@ -53,7 +53,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
     /// An ordered list of historic messages to be imported. A list of import responsees will be returned in the same order. 
     /// </summary>
     [DataContract]
-    public partial class MessageImportList : List<ImportedMessage>,  IEquatable<MessageImportList>
+    public partial class MessageImportList : List<ImportedMessage>, IEquatable<MessageImportList>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageImportList" /> class.
@@ -62,7 +62,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
         public MessageImportList()
         {
         }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -74,12 +74,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public  new string ToJson()
+        public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

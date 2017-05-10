@@ -53,7 +53,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
     /// V2MessageList
     /// </summary>
     [DataContract]
-    public partial class V2MessageList : List<V2BaseMessage>,  IEquatable<V2MessageList>
+    public partial class V2MessageList : List<V2BaseMessage>, IEquatable<V2MessageList>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="V2MessageList" /> class.
@@ -62,7 +62,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
         public V2MessageList()
         {
         }
-        
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -74,12 +74,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public  new string ToJson()
+        public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
