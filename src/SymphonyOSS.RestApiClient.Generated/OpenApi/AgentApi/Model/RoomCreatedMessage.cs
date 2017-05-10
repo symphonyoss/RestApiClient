@@ -53,7 +53,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
     /// Generated when a room is created.
     /// </summary>
     [DataContract]
-    public partial class RoomCreatedMessage : V2BaseMessage,  IEquatable<RoomCreatedMessage>
+    public partial class RoomCreatedMessage : V2BaseMessage, IEquatable<RoomCreatedMessage>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomCreatedMessage" /> class.
@@ -118,78 +118,78 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             this.MembersCanInvite = MembersCanInvite;
             this.CopyProtected = CopyProtected;
         }
-        
+
         /// <summary>
         /// The messageId is assigned by the ingestor service when a message is sent.
         /// </summary>
         /// <value>The messageId is assigned by the ingestor service when a message is sent.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public new string Id { get; set; }
         /// <summary>
         /// Gets or Sets Timestamp
         /// </summary>
-        [DataMember(Name="timestamp", EmitDefaultValue=false)]
-        public string Timestamp { get; set; }
+        [DataMember(Name = "timestamp", EmitDefaultValue = false)]
+        public new string Timestamp { get; set; }
         /// <summary>
         /// Gets or Sets V2messageType
         /// </summary>
-        [DataMember(Name="v2messageType", EmitDefaultValue=false)]
-        public string V2messageType { get; set; }
+        [DataMember(Name = "v2messageType", EmitDefaultValue = false)]
+        public new string V2messageType { get; set; }
         /// <summary>
         /// Gets or Sets StreamId
         /// </summary>
-        [DataMember(Name="streamId", EmitDefaultValue=false)]
-        public string StreamId { get; set; }
+        [DataMember(Name = "streamId", EmitDefaultValue = false)]
+        public new string StreamId { get; set; }
         /// <summary>
         /// Gets or Sets CreationDate
         /// </summary>
-        [DataMember(Name="creationDate", EmitDefaultValue=false)]
+        [DataMember(Name = "creationDate", EmitDefaultValue = false)]
         public long? CreationDate { get; set; }
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=false)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
         /// <summary>
         /// Gets or Sets Keywords
         /// </summary>
-        [DataMember(Name="keywords", EmitDefaultValue=false)]
+        [DataMember(Name = "keywords", EmitDefaultValue = false)]
         public List<RoomTag> Keywords { get; set; }
         /// <summary>
         /// Gets or Sets Description
         /// </summary>
-        [DataMember(Name="description", EmitDefaultValue=false)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
         /// <summary>
         /// The Symphony userId of the user who created the room.
         /// </summary>
         /// <value>The Symphony userId of the user who created the room.</value>
-        [DataMember(Name="createdByUserId", EmitDefaultValue=false)]
+        [DataMember(Name = "createdByUserId", EmitDefaultValue = false)]
         public long? CreatedByUserId { get; set; }
         /// <summary>
         /// Gets or Sets _ReadOnly
         /// </summary>
-        [DataMember(Name="readOnly", EmitDefaultValue=false)]
+        [DataMember(Name = "readOnly", EmitDefaultValue = false)]
         public bool? _ReadOnly { get; set; }
         /// <summary>
         /// Gets or Sets Discoverable
         /// </summary>
-        [DataMember(Name="discoverable", EmitDefaultValue=false)]
+        [DataMember(Name = "discoverable", EmitDefaultValue = false)]
         public bool? Discoverable { get; set; }
         /// <summary>
         /// Gets or Sets _Public
         /// </summary>
-        [DataMember(Name="public", EmitDefaultValue=false)]
+        [DataMember(Name = "public", EmitDefaultValue = false)]
         public bool? _Public { get; set; }
         /// <summary>
         /// Gets or Sets MembersCanInvite
         /// </summary>
-        [DataMember(Name="membersCanInvite", EmitDefaultValue=false)]
+        [DataMember(Name = "membersCanInvite", EmitDefaultValue = false)]
         public bool? MembersCanInvite { get; set; }
         /// <summary>
         /// Gets or Sets CopyProtected
         /// </summary>
-        [DataMember(Name="copyProtected", EmitDefaultValue=false)]
+        [DataMember(Name = "copyProtected", EmitDefaultValue = false)]
         public bool? CopyProtected { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -216,12 +216,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public  new string ToJson()
+        public new string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -248,72 +248,72 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             if (other == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Id == other.Id ||
                     this.Id != null &&
                     this.Id.Equals(other.Id)
-                ) && 
+                ) &&
                 (
                     this.Timestamp == other.Timestamp ||
                     this.Timestamp != null &&
                     this.Timestamp.Equals(other.Timestamp)
-                ) && 
+                ) &&
                 (
                     this.V2messageType == other.V2messageType ||
                     this.V2messageType != null &&
                     this.V2messageType.Equals(other.V2messageType)
-                ) && 
+                ) &&
                 (
                     this.StreamId == other.StreamId ||
                     this.StreamId != null &&
                     this.StreamId.Equals(other.StreamId)
-                ) && 
+                ) &&
                 (
                     this.CreationDate == other.CreationDate ||
                     this.CreationDate != null &&
                     this.CreationDate.Equals(other.CreationDate)
-                ) && 
+                ) &&
                 (
                     this.Name == other.Name ||
                     this.Name != null &&
                     this.Name.Equals(other.Name)
-                ) && 
+                ) &&
                 (
                     this.Keywords == other.Keywords ||
                     this.Keywords != null &&
                     this.Keywords.SequenceEqual(other.Keywords)
-                ) && 
+                ) &&
                 (
                     this.Description == other.Description ||
                     this.Description != null &&
                     this.Description.Equals(other.Description)
-                ) && 
+                ) &&
                 (
                     this.CreatedByUserId == other.CreatedByUserId ||
                     this.CreatedByUserId != null &&
                     this.CreatedByUserId.Equals(other.CreatedByUserId)
-                ) && 
+                ) &&
                 (
                     this._ReadOnly == other._ReadOnly ||
                     this._ReadOnly != null &&
                     this._ReadOnly.Equals(other._ReadOnly)
-                ) && 
+                ) &&
                 (
                     this.Discoverable == other.Discoverable ||
                     this.Discoverable != null &&
                     this.Discoverable.Equals(other.Discoverable)
-                ) && 
+                ) &&
                 (
                     this._Public == other._Public ||
                     this._Public != null &&
                     this._Public.Equals(other._Public)
-                ) && 
+                ) &&
                 (
                     this.MembersCanInvite == other.MembersCanInvite ||
                     this.MembersCanInvite != null &&
                     this.MembersCanInvite.Equals(other.MembersCanInvite)
-                ) && 
+                ) &&
                 (
                     this.CopyProtected == other.CopyProtected ||
                     this.CopyProtected != null &&

@@ -53,7 +53,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
     /// Generated when a room is updated.
     /// </summary>
     [DataContract]
-    public partial class RoomUpdatedMessage : V2BaseMessage,  IEquatable<RoomUpdatedMessage>
+    public partial class RoomUpdatedMessage : V2BaseMessage, IEquatable<RoomUpdatedMessage>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomUpdatedMessage" /> class.
@@ -116,72 +116,72 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             this._ReadOnly = _ReadOnly;
             this.CopyProtected = CopyProtected;
         }
-        
+
         /// <summary>
         /// The messageId is assigned by the ingestor service when a message is sent.
         /// </summary>
         /// <value>The messageId is assigned by the ingestor service when a message is sent.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public new string Id { get; set; }
         /// <summary>
         /// Gets or Sets Timestamp
         /// </summary>
-        [DataMember(Name="timestamp", EmitDefaultValue=false)]
-        public string Timestamp { get; set; }
+        [DataMember(Name = "timestamp", EmitDefaultValue = false)]
+        public new string Timestamp { get; set; }
         /// <summary>
         /// Gets or Sets V2messageType
         /// </summary>
-        [DataMember(Name="v2messageType", EmitDefaultValue=false)]
-        public string V2messageType { get; set; }
+        [DataMember(Name = "v2messageType", EmitDefaultValue = false)]
+        public new string V2messageType { get; set; }
         /// <summary>
         /// Gets or Sets StreamId
         /// </summary>
-        [DataMember(Name="streamId", EmitDefaultValue=false)]
-        public string StreamId { get; set; }
+        [DataMember(Name = "streamId", EmitDefaultValue = false)]
+        public new string StreamId { get; set; }
         /// <summary>
         /// Gets or Sets OldName
         /// </summary>
-        [DataMember(Name="oldName", EmitDefaultValue=false)]
+        [DataMember(Name = "oldName", EmitDefaultValue = false)]
         public string OldName { get; set; }
         /// <summary>
         /// Gets or Sets NewName
         /// </summary>
-        [DataMember(Name="newName", EmitDefaultValue=false)]
+        [DataMember(Name = "newName", EmitDefaultValue = false)]
         public string NewName { get; set; }
         /// <summary>
         /// Gets or Sets Keywords
         /// </summary>
-        [DataMember(Name="keywords", EmitDefaultValue=false)]
+        [DataMember(Name = "keywords", EmitDefaultValue = false)]
         public List<RoomTag> Keywords { get; set; }
         /// <summary>
         /// Gets or Sets OldDescription
         /// </summary>
-        [DataMember(Name="oldDescription", EmitDefaultValue=false)]
+        [DataMember(Name = "oldDescription", EmitDefaultValue = false)]
         public string OldDescription { get; set; }
         /// <summary>
         /// Gets or Sets NewDescription
         /// </summary>
-        [DataMember(Name="newDescription", EmitDefaultValue=false)]
+        [DataMember(Name = "newDescription", EmitDefaultValue = false)]
         public string NewDescription { get; set; }
         /// <summary>
         /// Gets or Sets MembersCanInvite
         /// </summary>
-        [DataMember(Name="membersCanInvite", EmitDefaultValue=false)]
+        [DataMember(Name = "membersCanInvite", EmitDefaultValue = false)]
         public bool? MembersCanInvite { get; set; }
         /// <summary>
         /// Gets or Sets Discoverable
         /// </summary>
-        [DataMember(Name="discoverable", EmitDefaultValue=false)]
+        [DataMember(Name = "discoverable", EmitDefaultValue = false)]
         public bool? Discoverable { get; set; }
         /// <summary>
         /// Gets or Sets _ReadOnly
         /// </summary>
-        [DataMember(Name="readOnly", EmitDefaultValue=false)]
+        [DataMember(Name = "readOnly", EmitDefaultValue = false)]
         public bool? _ReadOnly { get; set; }
         /// <summary>
         /// Gets or Sets CopyProtected
         /// </summary>
-        [DataMember(Name="copyProtected", EmitDefaultValue=false)]
+        [DataMember(Name = "copyProtected", EmitDefaultValue = false)]
         public bool? CopyProtected { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -207,12 +207,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public  new string ToJson()
+        public new string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -239,67 +239,67 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             if (other == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Id == other.Id ||
                     this.Id != null &&
                     this.Id.Equals(other.Id)
-                ) && 
+                ) &&
                 (
                     this.Timestamp == other.Timestamp ||
                     this.Timestamp != null &&
                     this.Timestamp.Equals(other.Timestamp)
-                ) && 
+                ) &&
                 (
                     this.V2messageType == other.V2messageType ||
                     this.V2messageType != null &&
                     this.V2messageType.Equals(other.V2messageType)
-                ) && 
+                ) &&
                 (
                     this.StreamId == other.StreamId ||
                     this.StreamId != null &&
                     this.StreamId.Equals(other.StreamId)
-                ) && 
+                ) &&
                 (
                     this.OldName == other.OldName ||
                     this.OldName != null &&
                     this.OldName.Equals(other.OldName)
-                ) && 
+                ) &&
                 (
                     this.NewName == other.NewName ||
                     this.NewName != null &&
                     this.NewName.Equals(other.NewName)
-                ) && 
+                ) &&
                 (
                     this.Keywords == other.Keywords ||
                     this.Keywords != null &&
                     this.Keywords.SequenceEqual(other.Keywords)
-                ) && 
+                ) &&
                 (
                     this.OldDescription == other.OldDescription ||
                     this.OldDescription != null &&
                     this.OldDescription.Equals(other.OldDescription)
-                ) && 
+                ) &&
                 (
                     this.NewDescription == other.NewDescription ||
                     this.NewDescription != null &&
                     this.NewDescription.Equals(other.NewDescription)
-                ) && 
+                ) &&
                 (
                     this.MembersCanInvite == other.MembersCanInvite ||
                     this.MembersCanInvite != null &&
                     this.MembersCanInvite.Equals(other.MembersCanInvite)
-                ) && 
+                ) &&
                 (
                     this.Discoverable == other.Discoverable ||
                     this.Discoverable != null &&
                     this.Discoverable.Equals(other.Discoverable)
-                ) && 
+                ) &&
                 (
                     this._ReadOnly == other._ReadOnly ||
                     this._ReadOnly != null &&
                     this._ReadOnly.Equals(other._ReadOnly)
-                ) && 
+                ) &&
                 (
                     this.CopyProtected == other.CopyProtected ||
                     this.CopyProtected != null &&
