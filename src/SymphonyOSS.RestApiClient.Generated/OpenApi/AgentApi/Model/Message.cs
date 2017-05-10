@@ -53,7 +53,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
     /// A representation of a message sent by a user of Symphony.
     /// </summary>
     [DataContract]
-    public partial class Message : BaseMessage,  IEquatable<Message>
+    public partial class Message : BaseMessage, IEquatable<Message>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Message" /> class.
@@ -118,39 +118,39 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             }
             this.Id = Id;
         }
-        
+
         /// <summary>
         /// The messageId is assigned by the ingestor service when a message is sent.
         /// </summary>
         /// <value>The messageId is assigned by the ingestor service when a message is sent.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public new string Id { get; set; }
         /// <summary>
         /// Gets or Sets Timestamp
         /// </summary>
-        [DataMember(Name="timestamp", EmitDefaultValue=false)]
-        public string Timestamp { get; set; }
+        [DataMember(Name = "timestamp", EmitDefaultValue = false)]
+        public new string Timestamp { get; set; }
         /// <summary>
         /// Gets or Sets MessageType
         /// </summary>
-        [DataMember(Name="messageType", EmitDefaultValue=false)]
-        public string MessageType { get; set; }
+        [DataMember(Name = "messageType", EmitDefaultValue = false)]
+        public new string MessageType { get; set; }
         /// <summary>
         /// Gets or Sets StreamId
         /// </summary>
-        [DataMember(Name="streamId", EmitDefaultValue=false)]
-        public string StreamId { get; set; }
+        [DataMember(Name = "streamId", EmitDefaultValue = false)]
+        public new string StreamId { get; set; }
         /// <summary>
         /// Message text in MessageML
         /// </summary>
         /// <value>Message text in MessageML</value>
-        [DataMember(Name="message", EmitDefaultValue=false)]
+        [DataMember(Name = "message", EmitDefaultValue = false)]
         public string _Message { get; set; }
         /// <summary>
         /// the Symphony userId of the user who sent the message. This will be populated by the server (and actually ignored if included when sending a message).
         /// </summary>
         /// <value>the Symphony userId of the user who sent the message. This will be populated by the server (and actually ignored if included when sending a message).</value>
-        [DataMember(Name="fromUserId", EmitDefaultValue=false)]
+        [DataMember(Name = "fromUserId", EmitDefaultValue = false)]
         public long? FromUserId { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -169,12 +169,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public  new string ToJson()
+        public new string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
@@ -201,32 +201,32 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
             if (other == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Id == other.Id ||
                     this.Id != null &&
                     this.Id.Equals(other.Id)
-                ) && 
+                ) &&
                 (
                     this.Timestamp == other.Timestamp ||
                     this.Timestamp != null &&
                     this.Timestamp.Equals(other.Timestamp)
-                ) && 
+                ) &&
                 (
                     this.MessageType == other.MessageType ||
                     this.MessageType != null &&
                     this.MessageType.Equals(other.MessageType)
-                ) && 
+                ) &&
                 (
                     this.StreamId == other.StreamId ||
                     this.StreamId != null &&
                     this.StreamId.Equals(other.StreamId)
-                ) && 
+                ) &&
                 (
                     this._Message == other._Message ||
                     this._Message != null &&
                     this._Message.Equals(other._Message)
-                ) && 
+                ) &&
                 (
                     this.FromUserId == other.FromUserId ||
                     this.FromUserId != null &&

@@ -108,22 +108,22 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Model
         /// </summary>
         /// <value>The messageId is assigned by the ingestor service when a message is sent.</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
+        public new string Id { get; set; }
         /// <summary>
         /// Gets or Sets Timestamp
         /// </summary>
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
-        public string Timestamp { get; set; }
+        public new string Timestamp { get; set; }
         /// <summary>
         /// Gets or Sets V2messageType
         /// </summary>
         [DataMember(Name="v2messageType", EmitDefaultValue=false)]
-        public string V2messageType { get; set; }
+        public new string V2messageType { get; set; }
         /// <summary>
         /// Gets or Sets StreamId
         /// </summary>
         [DataMember(Name="streamId", EmitDefaultValue=false)]
-        public string StreamId { get; set; }
+        public new string StreamId { get; set; }
         /// <summary>
         /// Gets or Sets AddedByUserId
         /// </summary>
