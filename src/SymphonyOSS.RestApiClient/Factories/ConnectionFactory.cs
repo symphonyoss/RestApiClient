@@ -39,13 +39,13 @@ namespace SymphonyOSS.RestApiClient.Factories
         {
             switch (status)
             {
-                case UserConnection.StatusEnum.Accepted:
+                case UserConnection.StatusEnum.ACCEPTED:
                     return ConnectionStatus.Accepted;
-                case UserConnection.StatusEnum.Pendingincoming:
+                case UserConnection.StatusEnum.PENDINGINCOMING:
                     return ConnectionStatus.PendingIncoming;
-                case UserConnection.StatusEnum.Pendingoutgoing:
+                case UserConnection.StatusEnum.PENDINGOUTGOING:
                     return ConnectionStatus.PendingOutgoing;
-                case UserConnection.StatusEnum.Rejected:
+                case UserConnection.StatusEnum.REJECTED:
                     return ConnectionStatus.Rejected;
                 default:
                     throw new Exception($"Invalid status {status}.");

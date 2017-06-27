@@ -28,7 +28,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         [Fact]
         public void EnsureCreation_sets_null_timestamps_to_min_value()
         {
-            var connection = ConnectionFactory.Create(new UserConnection(12345, UserConnection.StatusEnum.Accepted));
+            var connection = ConnectionFactory.Create(new UserConnection(12345, UserConnection.StatusEnum.ACCEPTED));
             Assert.Equal(DateTime.MinValue, connection.FirstRequestedAt);
             Assert.Equal(DateTime.MinValue, connection.UpdatedAt);
         }

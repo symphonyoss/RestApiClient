@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  version: '1.0'
+  version: 'current'
   title: Authenticator API
   description: |
     For bots and other on-premise processes to authenticate. Once
@@ -233,7 +233,3 @@ definitions:
           The token which should be passed. This should be considered opaque data by
           the client. It is not intended to conatain any data interpretable by the
           client. The format is secret and subject to change without notice.
-      agentUrl:
-        type: string
-        description: |
-          This is a fully qualified URL for 3rd party application to talk to the Agent.
