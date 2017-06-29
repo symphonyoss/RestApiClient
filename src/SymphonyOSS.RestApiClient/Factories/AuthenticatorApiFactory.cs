@@ -64,17 +64,10 @@ namespace SymphonyOSS.RestApiClient.Factories
         /// <returns>The AuthenticatorApi instance.</returns>
         private T Create<T>(X509Certificate2 certificate)
         {
-            var apiClient = new ApiClient(_baseUrl)
-            {
-                RestClient =
-                {
-                    ClientCertificates = new X509Certificate2Collection
-                    {
-                        certificate
-                    }
-                }
-            };
-            var configuration = new Configuration(apiClient);
+            var configuration = new Configuration();
+            configuration.BasePath = _baseUrl;
+            configuration.ApiClient.RestClient.HttpClientFactory = new Internal.ClientAuthHttpClientFactory(certificate);
+
             return ApiFactoryUtils.CallConstructor<T>(new object[] { configuration });
         }
     }

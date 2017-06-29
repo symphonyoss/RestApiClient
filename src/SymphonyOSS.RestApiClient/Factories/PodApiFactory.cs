@@ -167,17 +167,10 @@ namespace SymphonyOSS.RestApiClient.Factories
 
         private T Create<T>(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
-            var apiClient = new ApiClient(_baseUrl)
-            {
-                RestClient =
-                {
-                    ClientCertificates = new X509Certificate2Collection
-                    {
-                        sessionManager.Certificate
-                    }
-                }
-            };
-            var configuration = new Configuration(apiClient);
+            var configuration = new Configuration();
+            configuration.BasePath = _baseUrl;
+            configuration.ApiClient.RestClient.HttpClientFactory = new Internal.ClientAuthHttpClientFactory(sessionManager.Certificate);
+
             if (apiExecutor == null)
             {
                 var retryStrategy = new RefreshTokensRetryStrategy(sessionManager);
