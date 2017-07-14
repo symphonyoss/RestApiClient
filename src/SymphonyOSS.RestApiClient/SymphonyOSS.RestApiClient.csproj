@@ -6,8 +6,8 @@
       <Company>Symphony Software Foundation</Company>
       <Copyright>Copyright © Symphony Software Foundation 2016</Copyright>
       <Description>Symphony REST API Client Library for .NET</Description>
-      <AssemblyVersion>1.4.1.7</AssemblyVersion>
-      <FileVersion>1.4.1.7</FileVersion>
+      <AssemblyVersion>1.4.2.10</AssemblyVersion>
+      <FileVersion>1.4.2.10</FileVersion>
       <AssemblyTitle>SymphonyOSS.RestApiClient</AssemblyTitle>
       <Product>SymphonyOSS.RestApiClient</Product>
       <InformationalVersion>0.4.1-beta7</InformationalVersion>
@@ -15,6 +15,7 @@
       <VersionSuffix>beta7</VersionSuffix>
       <PackageLicenseUrl>https://github.com/symphonyoss/RestApiClient/blob/master/LICENSE.txt</PackageLicenseUrl>
       <PackageProjectUrl>https://github.com/symphonyoss/RestApiClient/</PackageProjectUrl>
+      <Version>0.4.2-beta10</Version>
    </PropertyGroup>
 
    <ItemGroup>
@@ -25,6 +26,7 @@
       <PackageReference Include="System.Net.Http" Version="4.3.2" />
       <PackageReference Include="System.Reflection" Version="4.3.0" />
       <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
+      <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
       <PackageReference Include="System.Security.Cryptography.X509Certificates" Version="4.3.0" />
    </ItemGroup>
 
