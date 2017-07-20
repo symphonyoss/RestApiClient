@@ -88,7 +88,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// Starts listening, notifying event handlers about incoming connection requests. Blocks
         /// until <see cref="ConnectionApi.Stop"/> is invoked.
         /// </summary>
-        public void Listen(long timeout)
+        public void Listen(int timeout)
         {
             _connectionPollTimer = new Timer(
                 cb =>

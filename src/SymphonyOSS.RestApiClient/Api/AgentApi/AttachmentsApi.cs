@@ -23,8 +23,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     using Generated.OpenApi.AgentApi.Client;
     using Generated.OpenApi.AgentApi.Model;
     using System.IO;
-    using RestSharp;
-    using RestSharp.Extensions;
+    using RestSharp.Portable;
     using Stream = System.IO.Stream;
 
     /// <summary>
@@ -86,11 +85,11 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             var request = new RestRequest("v1/stream/" + sid + "/attachment/create", Method.POST);
             request.AddHeader("sessionToken", _authTokens.SessionToken);
             request.AddHeader("keyManagerToken", _authTokens.KeyManagerToken);
-            request.AddFile("file", file.ReadAsBytes(), filename, "application/octet-stream");
+            request.AddFile("file", file, filename, "application/octet-stream");
 
             var apiClient = _configuration.ApiClient;
             var response = apiClient.RestClient.Execute(request);
-            var attachmentInfo = (AttachmentInfo)apiClient.Deserialize(response, typeof(AttachmentInfo));
+            var attachmentInfo = (AttachmentInfo)apiClient.Deserialize(response.Result, typeof(AttachmentInfo));
             return new Attachment(attachmentInfo.Id, attachmentInfo.Name, attachmentInfo.Size ?? -1);
         }
 
