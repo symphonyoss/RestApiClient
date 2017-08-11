@@ -15,26 +15,5 @@
 // specific language governing permissions and limitations
 // under the License.
 
-namespace SymphonyOSS.RestApiClient.Factories
-{
-    using Generated.OpenApi.PodApi.Model;
-    using User = Entities.User;
-    using Generated.OpenApi.AgentApi.Model;
-
-    public abstract class UserFactory
-    {
-        public static User Create(UserV2 userV2)
-        {
-            return new User(
-                userV2.Id ?? -1, userV2.EmailAddress,
-                userV2.FirstName, userV2.LastName, userV2.DisplayName,
-                userV2.Title, userV2.Company,
-                userV2.Username, userV2.Location);
-        }
-
-        public static User Create(V4User user)
-        {
-            return new User(user.UserId.Value, user.Email, user.FirstName, user.LastName, user.DisplayName, null, null, user.Username, null);
-        }
-    }
-}
+using System.Runtime.CompilerServices;
+[assembly: InternalsVisibleTo("SymphonyOSS.RestApiClient.Tests")]

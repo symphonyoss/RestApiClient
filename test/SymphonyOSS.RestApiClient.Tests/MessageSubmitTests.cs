@@ -15,26 +15,24 @@
 // specific language governing permissions and limitations
 // under the License.
 
-namespace SymphonyOSS.RestApiClient.Factories
+using SymphonyOSS.RestApiClient.Entities;
+
+namespace SymphonyOSS.RestApiClient.Tests
 {
-    using Generated.OpenApi.PodApi.Model;
-    using User = Entities.User;
-    using Generated.OpenApi.AgentApi.Model;
+    using System;
+    using Entities;
+    using Xunit;
+    using System.Text;
 
-    public abstract class UserFactory
+    public class MessagesSubmitTests
     {
-        public static User Create(UserV2 userV2)
+        [Fact]
+        void TestOneMaxAttachment()
         {
-            return new User(
-                userV2.Id ?? -1, userV2.EmailAddress,
-                userV2.FirstName, userV2.LastName, userV2.DisplayName,
-                userV2.Title, userV2.Company,
-                userV2.Username, userV2.Location);
-        }
-
-        public static User Create(V4User user)
-        {
-            return new User(user.UserId.Value, user.Email, user.FirstName, user.LastName, user.DisplayName, null, null, user.Username, null);
+            MessageSubmit msg = new MessageSubmit("stream", "<messageML>hello</messageML>");
+            msg.AddAttachment("foo.csv", Encoding.ASCII.GetBytes("foo"));
+            // second AddAttachment call will throw
+            Assert.Throws<InvalidOperationException>(() => msg.AddAttachment("bar.csv", Encoding.ASCII.GetBytes("bar")));
         }
     }
 }

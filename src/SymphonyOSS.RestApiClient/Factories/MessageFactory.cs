@@ -22,6 +22,7 @@ namespace SymphonyOSS.RestApiClient.Factories
     using Entities;
     using Message = Entities.Message;
     using Generated.OpenApi.AgentApi.Model;
+    using System.Linq;
 
     public abstract class MessageFactory
     {
@@ -41,7 +42,14 @@ namespace SymphonyOSS.RestApiClient.Factories
             return new Message(
                 v2Message.Id, Epoch.AddMilliseconds(long.Parse(v2Message.Timestamp)), v2Message.V2messageType,
                 v2Message.StreamId,
-                MessageFormat.MessageML, v2Message.Message, v2Message.FromUserId ?? -1, attachments);
+                v2Message.Message, v2Message.FromUserId ?? -1, attachments);
+        }
+
+        public static Message Create(V4Message v4Message)
+        {
+            var attachments = v4Message.Attachments?.Select(x => new Attachment(x.Id, x.Name, x.Size ?? -1)).ToList();
+
+            return new Message(v4Message.MessageId, Epoch.AddMilliseconds(v4Message.Timestamp.Value), "type", v4Message.Stream.StreamId, v4Message.Message, v4Message.User.UserId.Value, attachments);
         }
     }
 }

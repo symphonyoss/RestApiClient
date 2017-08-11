@@ -33,8 +33,6 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 
         private readonly Generated.OpenApi.AgentApi.Api.IDatafeedApi _datafeedApi;
 
-        private bool _useV2Datafeed = true;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="DatafeedApi" /> class.
         /// See <see cref="Factories.AgentApiFactory"/> for conveniently constructing
@@ -115,51 +113,25 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns>The ID of the datafeed.</returns>
         public string CreateDatafeed()
         {
-            var datafeed = ApiExecutor.Execute(_datafeedApi.V1DatafeedCreatePost, AuthTokens.SessionToken, AuthTokens.KeyManagerToken);
+            var datafeed = ApiExecutor.Execute(_datafeedApi.V4DatafeedCreatePost, AuthTokens.SessionToken, AuthTokens.KeyManagerToken);
             return datafeed.Id;
         }
 
-        private V2MessageList ReadDatafeed(string id, int? maxMessages = null)
+        private V4EventList ReadDatafeed(string id, int? maxMessages = null)
         {
-            if (_useV2Datafeed)
-            {
-                try
-                {
-                    return ReadV2Datafeed(id, maxMessages);
-                }
-                catch (ApiException e)
-                {
-                    if (e.ErrorCode != 404)
-                    {
-                        throw;
-                    }
-                    TraceSource.TraceEvent(
-                        TraceEventType.Warning, 0,
-                        "V2 data feed not available, falling back to V1.");
-                    _useV2Datafeed = false;
-                }
-            }
-            var v1MessageList = ReadV1Datafeed(id, maxMessages);
-            return ConvertV1MessageList(v1MessageList);
+            return ReadV4Datafeed(id, maxMessages);
         }
 
-        private MessageList ReadV1Datafeed(string id, int? maxMessages)
+        private V4EventList ReadV4Datafeed(string id, int? maxMessages)
         {
             return ApiExecutor.Execute(
-                _datafeedApi.V1DatafeedIdReadGet,
+                _datafeedApi.V4DatafeedIdReadGet,
                 id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken,
                 maxMessages);
+
         }
 
-        private V2MessageList ReadV2Datafeed(string id, int? maxMessages)
-        {
-            return ApiExecutor.Execute(
-                _datafeedApi.V2DatafeedIdReadGet,
-                id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken,
-                maxMessages);
-        }
-
-        private V2MessageList ReadDatafeed(ref string id, int? maxMessages = null, int? retriesAllowed = 1)
+        private V4EventList ReadDatafeed(ref string id, int? maxMessages = null, int? retriesAllowed = 1)
         {
             var countDatafeedErrors = 0;
             while (true)

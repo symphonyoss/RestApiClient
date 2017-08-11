@@ -26,6 +26,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     using Generated.OpenApi.AgentApi.Client;
     using Generated.OpenApi.AgentApi.Model;
     using Message = Entities.Message;
+    using System.Linq;
 
     /// <summary>
     /// Provides methods for posting to and retrieving messages from streams, by
@@ -70,10 +71,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             {
                 attachments.Add(new AttachmentInfo(attachment.Id, attachment.Name, attachment.Size));
             }
-            var format = message.Format == MessageFormat.MessageML
-                ? V2MessageSubmission.FormatEnum.MESSAGEML
-                : V2MessageSubmission.FormatEnum.TEXT;
-            var v2MessageSubmission = new V2MessageSubmission(format, message.Body, attachments);
+            var v2MessageSubmission = new V2MessageSubmission(V2MessageSubmission.FormatEnum.MESSAGEML, message.Body, attachments);
             V2Message v2Message;
             if (_authTokens.KeyManagerToken == null)
             {
@@ -87,6 +85,19 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             return MessageFactory.Create(v2Message);
         }
 
+        public Message PostMessage(MessageSubmit msg)
+        {
+            System.IO.Stream attachment = null;
+            if (msg.Attachments != null)
+            {
+                attachment = msg.Attachments.Select(x => new NamedStream(x.Key, x.Value)).FirstOrDefault();
+            }
+
+            System.Func<string, string, string, string, string, string, System.IO.Stream, V4Message> func = (string a, string b, string c, string d, string e, string f, System.IO.Stream g) =>  _messagesApi.V4StreamSidMessageCreatePost(a, b, c, d, e, f, g);
+            V4Message response = _apiExecutor.Execute(func, msg.StreamId, _authTokens.SessionToken, msg.Body, _authTokens.KeyManagerToken, msg.Data, null, attachment);
+            return MessageFactory.Create(response);
+        }
+
         /// <summary>
         /// Get messages from a stream.
         /// </summary>
@@ -97,13 +108,13 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns>The list of messages.</returns>
         public List<Message> GetMessages(string sid, long? since, int? offset = null, int? maxMessages = null)
         {
-            var v2MessageList = _apiExecutor.Execute(_messagesApi.V2StreamSidMessageGet, sid, since, _authTokens.SessionToken, _authTokens.KeyManagerToken, offset, maxMessages);
+            var v4MessageList = _apiExecutor.Execute(_messagesApi.V4StreamSidMessageGet, sid, since, _authTokens.SessionToken, _authTokens.KeyManagerToken, offset, maxMessages);
             var result = new List<Message>();
-            if (v2MessageList != null)
+            if (v4MessageList != null)
             {
-                foreach (var v2Message in v2MessageList)
+                foreach (var v4Message in v4MessageList)
                 {
-                    result.Add(MessageFactory.Create(v2Message));
+                    result.Add(MessageFactory.Create(v4Message));
                 }
             }
             return result;

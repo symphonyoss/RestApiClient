@@ -2,6 +2,7 @@
 
    <PropertyGroup>
       <TargetFramework>netstandard1.3</TargetFramework>
+      <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
       <Authors />
       <Company>Symphony Software Foundation</Company>
       <Copyright>Copyright © Symphony Software Foundation 2016</Copyright>

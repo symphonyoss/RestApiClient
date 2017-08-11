@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SymphonyOSS.RestApiClient", "src\SymphonyOSS.RestApiClient\SymphonyOSS.RestApiClient.csproj", "{8114BB9E-7E5D-45CD-BBCB-179E117500FA}"
 EndProject
@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BD061D83-B18
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BC5B07C7-3C8C-4725-9A33-D325AB71DAC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymphonyOSS.RestApiClient.Tests", "test\SymphonyOSS.RestApiClient.Tests\SymphonyOSS.RestApiClient.Tests.csproj", "{1CE12095-5813-499C-A6B1-7A3B76BE8065}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SymphonyOSS.RestApiClient.Tests", "test\SymphonyOSS.RestApiClient.Tests\SymphonyOSS.RestApiClient.Tests.csproj", "{1CE12095-5813-499C-A6B1-7A3B76BE8065}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{0C8376FB-9D8E-467F-84E1-00B0CDF7B78B}"
 	ProjectSection(SolutionItems) = preProject
@@ -37,5 +37,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8114BB9E-7E5D-45CD-BBCB-179E117500FA} = {BD061D83-B187-4A98-82AD-80E914814336}
 		{1CE12095-5813-499C-A6B1-7A3B76BE8065} = {BC5B07C7-3C8C-4725-9A33-D325AB71DAC8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4451DFB2-89AE-4B22-A353-457C53901745}
 	EndGlobalSection
 EndGlobal

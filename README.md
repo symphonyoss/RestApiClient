@@ -55,7 +55,7 @@ var streamsApi = podApiFactory.CreateStreamsApi(sessionManager);
 var userId = usersApi.GetUserId("jforsell@factset.com");
 var streamId = streamsApi.CreateStream(new List<long> {userId});
 var body = new MessageBuilder().Text("hello ").Bold("world").ToString();
-messagesApi.PostMessage(new Message(streamId, MessageFormat.MessageML, body));
+messagesApi.PostMessage(new MessageSubmit(streamId, body));
 ```
 
 ## Building
@@ -73,7 +73,8 @@ In case there is a need to regenerate the code from Symphony's YAML specs:
  3. Put swagger-codegen-cli.jar in the same folder as the generate.bat script. The JAR file can be downloaded from [Maven Central](http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/) or built from [source](https://github.com/swagger-api/swagger-codegen).
  4. Run generate.bat.
  5. Build the solution in Visual Studio or using MSBuild.
-
+ 6. There are two custom changes made to src/SymphonyOSS.RestApiClient/Generated/OpenApi/AgentApi/Client/ApiClient.cs. Search for `SymphonyOSS Edit` in the file to see the two with comments on why they are required. These two patches must be carried forward.
+ 
 ## Contribute
 
 This project was initiated at [FactSet](https://www.factset.com) and has been developed as open-source from the very beginning.
