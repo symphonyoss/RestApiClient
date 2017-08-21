@@ -17,6 +17,7 @@ rem  under the License.
 
 
 type src\SymphonyOSS.RestApiClient\SymphonyOSS.RestApiClient.csproj
+type src\SymphonyOSS.RestApiClient\Properties\AssemblyInfo.cs
 
 set config=%1
 if "%config%" == "" (
