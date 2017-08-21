@@ -15,7 +15,6 @@ rem  KIND, either express or implied.  See the License for the
 rem  specific language governing permissions and limitations
 rem  under the License.
 
-@echo Off
 
 type src\SymphonyOSS.RestApiClient\SymphonyOSS.RestApiClient.csproj
 
@@ -34,15 +33,17 @@ if "%nuget%" == "" (
 )
 
 call %nuget% restore
+if %ERRORLEVEL% NEQ 0 (exit /b %ERRORLEVEL%)
+
 
 REM lets see what's installed
 REM dir "%programfiles(x86)%\MSBuild"
 
 REM Build
 "%programfiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\bin\MSBuild.exe" RestApiClient.sln /p:Configuration="%config%" /m /v:M /nr:false /t:Rebuild
-
-echo Done building
+if %ERRORLEVEL% NEQ 0 (exit /b %ERRORLEVEL%)
 
 REM Package
 rem call %nuget% pack "src\SymphonyOSS.RestApiClient\SymphonyOSS.RestApiClient.csproj" -symbols -p Configuration=%config%
 "%programfiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\bin\MSBuild.exe" "src\SymphonyOSS.RestApiClient\SymphonyOSS.RestApiClient.csproj" /p:Configuration="%config%" /p:IncludeSymbols="true" /p:IncludeSource="true" /p:Version="%version%" /m /v:M /nr:false /t:Pack
+if %ERRORLEVEL% NEQ 0 (exit /b %ERRORLEVEL%)
