@@ -24,10 +24,10 @@ if "%config%" == "" (
   set config=Release
 )
 
-set version=
-if not "%PackageVersion%" == "" (
-  set version=-Version %PackageVersion%
-)
+REM set version=
+REM if not "%PackageVersion%" == "" (
+REM   set version=-Version %PackageVersion%
+REM )
 
 if "%nuget%" == "" (
   set nuget=nuget.exe
@@ -46,5 +46,5 @@ if %ERRORLEVEL% NEQ 0 (exit /b %ERRORLEVEL%)
 
 REM Package
 rem call %nuget% pack "src\SymphonyOSS.RestApiClient\SymphonyOSS.RestApiClient.csproj" -symbols -p Configuration=%config%
-"%programfiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\bin\MSBuild.exe" "src\SymphonyOSS.RestApiClient\SymphonyOSS.RestApiClient.csproj" /p:Configuration="%config%" /p:IncludeSymbols="true" /p:IncludeSource="true" /p:Version="%version%" /m /v:d /nr:false /t:Pack
+"%programfiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\bin\MSBuild.exe" "src\SymphonyOSS.RestApiClient\SymphonyOSS.RestApiClient.csproj" /p:Configuration="%config%" /p:IncludeSymbols="true" /p:IncludeSource="true" /p:Version="%PackageVersion%" /m /v:d /nr:false /t:Pack
 if %ERRORLEVEL% NEQ 0 (exit /b %ERRORLEVEL%)
