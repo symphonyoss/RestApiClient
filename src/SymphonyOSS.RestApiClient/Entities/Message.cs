@@ -1,4 +1,4 @@
-﻿// Licensed to the Symphony Software Foundation (SSF) under one
+﻿// Licensed to the Symhony Software Foundation (SSF) under one
 // or more contributor license agreements.  See the NOTICE file
 // distributed with this work for additional information
 // regarding copyright ownership.  The SSF licenses this file
@@ -20,12 +20,6 @@ namespace SymphonyOSS.RestApiClient.Entities
     using System;
     using System.Collections.Generic;
 
-    public enum MessageFormat
-    {
-        Text,
-        MessageML
-    }
-
     public class Message
     {
         public string Id { get; }
@@ -36,29 +30,28 @@ namespace SymphonyOSS.RestApiClient.Entities
 
         public string StreamId { get; }
 
-        public MessageFormat Format { get; } 
-
         public string Body { get; }
+
+        public string Data { get; }
 
         public long FromUserId { get; }
 
         public List<Attachment> Attachments { get; }
 
         /// <summary>
-        /// Constructs a message to be sent (outgoing).
+        /// Constructs a message.
         /// </summary>
         /// <param name="streamId">Stream ID.</param>
-        /// <param name="format">Message format.</param>
         /// <param name="body">Contents of the message.</param>
         /// <param name="attachments">File attachments.</param>
-        public Message(string streamId, MessageFormat format, string body, List<Attachment> attachments = null)
+        public Message(string streamId, string body, List<Attachment> attachments = null)
         {
             if (streamId == null)
             {
                 throw new Exception("Missing required parameter 'streamId'.");
             }
             StreamId = streamId;
-            Format = format;
+
             if (body == null)
             {
                 throw new Exception("Missing required parameter 'body'.");
@@ -78,20 +71,18 @@ namespace SymphonyOSS.RestApiClient.Entities
         /// <param name="timestamp">Timestamp.</param>
         /// <param name="type">Message type.</param>
         /// <param name="streamId">Stream ID.</param>
-        /// <param name="format">Message format.</param>
         /// <param name="body">Contents of the message.</param>
         /// <param name="fromUserId">ID of the sender.</param>
         /// <param name="attachments">File attachments.</param>
         public Message(
             string id, DateTime timestamp, string type,
-            string streamId, MessageFormat format, string body, long fromUserId,
+            string streamId, string body, long fromUserId,
             List<Attachment> attachments = null)
         {
             Id = id;
             Timestamp = timestamp;
             Type = type;
             StreamId = streamId;
-            Format = format;
             Body = body;
             FromUserId = fromUserId;
             Attachments = new List<Attachment>();

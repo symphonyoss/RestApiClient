@@ -170,6 +170,17 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client
                 }
             }
 
+            // SymphonyOSS Edit
+            // There is a bug with Swagger code gen for c# where the request's content type
+            // will only be set to multipart form-data if there is a file attachment since
+            // the default collection mode is MultiPartForFileParameters. This edit updates
+            // the collection mode to force form-data
+            if (contentType.StartsWith("multipart/form-data"))
+            {
+                request.ContentCollectionMode = ContentCollectionMode.MultiPart;
+            }
+            // End SymphonyOSS Edit
+
             return request;
         }
 
@@ -254,6 +265,14 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.Client
         /// <returns>FileParameter.</returns>
         public FileParameter ParameterToFile(string name, Stream stream)
         {
+            // SymphonyOSS Edit
+            // Allow for passing in a filename through something other than
+            // a FileStream since there could be layers of APIs that the
+            // file has passed through before getting here
+            if (stream is SymphonyOSS.RestApiClient.Entities.NamedStream)
+                return FileParameter.Create(name, ReadAsBytes(stream), ((SymphonyOSS.RestApiClient.Entities.NamedStream)stream).Name);
+            else
+            // End SymphonyOSS Edit
             if (stream is FileStream)
                 return FileParameter.Create(name, ReadAsBytes(stream), Path.GetFileName(((FileStream)stream).Name));
             else

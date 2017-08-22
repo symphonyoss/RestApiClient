@@ -18,14 +18,14 @@
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.Concurrent;
     using System.Diagnostics;
     using System.Threading.Tasks;
     using Authentication;
     using Factories;
     using Generated.Json;
     using Generated.OpenApi.AgentApi.Model;
-
+    using Entities;
     /// <summary>
     /// Abstract superclass for datafeed-type Apis, eg <see cref="Generated.OpenApi.AgentApi.Api.DatafeedApi"/>
     /// and <see cref="Generated.OpenApi.AgentApi.Api.FirehoseApi"/>.
@@ -40,7 +40,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 
         protected volatile bool ShouldStop;
 
-        private readonly Dictionary<EventHandler<MessageEventArgs>, Task> _tasks = new Dictionary<EventHandler<MessageEventArgs>, Task>();
+        private readonly ConcurrentDictionary<Delegate, Task> _inflightEvents = new ConcurrentDictionary<Delegate, Task>();
 
         static AbstractDatafeedApi()
         {
@@ -75,10 +75,38 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             remove
             {
                 _onMessage -= value;
-                lock (_tasks)
-                {
-                    _tasks.Remove(value);
-                }
+                Task t;
+                _inflightEvents.TryRemove(value, out t);
+            }
+        }
+
+        private event EventHandler<ConnectionRequestedEventArgs> _onConnectionRequested;
+        public event EventHandler<ConnectionRequestedEventArgs> OnConnectionRequested
+        {
+            add
+            {
+                _onConnectionRequested += value;
+            }
+            remove
+            {
+                _onConnectionRequested -= value;
+                Task t;
+                _inflightEvents.TryRemove(value, out t);
+            }
+        }
+
+        private event EventHandler<ConnectionAcceptedEventArgs> _onConnectionAccepted;
+        public event EventHandler<ConnectionAcceptedEventArgs> OnConnectionAccepted
+        {
+            add
+            {
+                _onConnectionAccepted += value;
+            }
+            remove
+            {
+                _onConnectionAccepted -= value;
+                Task t;
+                _inflightEvents.TryRemove(value, out t);
             }
         }
 
@@ -92,69 +120,81 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             ShouldStop = true;
         }
 
-        protected void ProcessMessageList(V2MessageList messageList)
+        protected Task CreateInvocationTask<EventHandlerArgs>(EventHandler<EventHandlerArgs> evtHandler, EventHandlerArgs args)
         {
-            if (messageList == null || _onMessage == null)
+            Task pendingTask;
+            if (_inflightEvents.TryGetValue(evtHandler, out pendingTask))
+            {
+                return Task.Run(() =>
+                {
+                    // Todo MALAY catch exceptions
+                    pendingTask.Wait();
+                    evtHandler.Invoke(this, args);
+                });
+            } else
+            {
+                return Task.Run(() => evtHandler.Invoke(this, args));
+            }
+        }
+
+        void InvokeEventHandlers<EventHandlerArgs>(EventHandler<EventHandlerArgs> evtHandler, EventHandlerArgs args)
+        {
+            if (evtHandler == null)
             {
                 return;
             }
 
-            foreach (var eventHandler in _onMessage.GetInvocationList())
+            foreach (var subhandler in evtHandler.GetInvocationList())
             {
-                NotifyAsync((EventHandler<MessageEventArgs>)eventHandler, messageList);
+                _inflightEvents[subhandler] = CreateInvocationTask(subhandler as EventHandler<EventHandlerArgs>, args);
             }
         }
 
-        protected async void NotifyAsync(EventHandler<MessageEventArgs> messageEventHandler, V2MessageList messageList)
+        protected void FireMessage(V4Message message)
         {
-            // Notify each handler in a separate task, maintaining the order of messages in the list, and
-            // get back to reading the data feed again without waiting for listeners to process messages.
-            Task task;
-            if (_tasks.TryGetValue(messageEventHandler, out task))
-            {
-                await task;
-            }
-            _tasks[messageEventHandler] = Task.Run(() => Notify(messageEventHandler, messageList));
+            var eventArgs = new MessageEventArgs(MessageFactory.Create(message));
+            InvokeEventHandlers(_onMessage, eventArgs);
         }
 
-        private void Notify(EventHandler<MessageEventArgs> messageEventHandler, V2MessageList messageList)
+        protected void FireConnectionRequested(V4Event message) {
+            User fromUser = UserFactory.Create(message.Initiator.User);
+            User toUser = UserFactory.Create(message.Payload.ConnectionRequested.ToUser);
+
+            var eventArgs = new ConnectionRequestedEventArgs(fromUser, toUser);
+            InvokeEventHandlers(_onConnectionRequested, eventArgs);
+        }
+
+        protected void FireConnectionAccepted(V4Event message)
         {
-            foreach (var baseMessage in messageList)
-            {
-                var v2Message = baseMessage as V2Message;
-                TraceSource.TraceEvent(
-                    TraceEventType.Verbose, 0,
-                    "Notifying listener about message with ID \"{0}\" in stream \"{1}\"",
-                    v2Message?.Id, v2Message?.StreamId);
-                try
-                {
-                    var message = MessageFactory.Create(v2Message);
-                    messageEventHandler.Invoke(this, new MessageEventArgs(message));
-                }
-                catch (Exception e)
-                {
-                    TraceSource.TraceEvent(
-                        TraceEventType.Error, 0,
-                        "Unhandled exception caught when notifying listener about message with ID \"{0}\": {1}",
-                        baseMessage.Id, e);
-                }
-            }
+            User toUser = UserFactory.Create(message.Initiator.User);
+            User fromUser = UserFactory.Create(message.Payload.ConnectionAccepted.FromUser);
+
+            var eventArgs = new ConnectionAcceptedEventArgs(fromUser, toUser);
+            InvokeEventHandlers(_onConnectionAccepted, eventArgs);
         }
 
-        protected static V2MessageList ConvertV1MessageList(MessageList messageList)
+        protected void ProcessMessageList(V4EventList messageList)
         {
             if (messageList == null)
             {
-                return null;
+                return;
             }
-            var result = new V2MessageList();
-            foreach (var v1Message in messageList)
+
+            foreach (var message in messageList)
             {
-                result.Add(new V2Message(
-                    v1Message.Id, v1Message.Timestamp, v1Message.MessageType,
-                    v1Message.StreamId, v1Message._Message, v1Message.FromUserId));
+                switch(message.Type)
+                {
+                    case V4Event.TypeEnum.MESSAGESENT:
+                        FireMessage(message.Payload.MessageSent.Message);
+                        break;
+                    case V4Event.TypeEnum.CONNECTIONREQUESTED:
+                        FireConnectionRequested(message);
+                        break;
+                    case V4Event.TypeEnum.CONNECTIONACCEPTED:
+                        FireConnectionAccepted(message);
+                        break;
+                }
             }
-            return result;
         }
     }
 }

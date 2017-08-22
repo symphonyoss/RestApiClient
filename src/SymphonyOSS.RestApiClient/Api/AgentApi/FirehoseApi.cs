@@ -33,8 +33,6 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 
         private readonly Generated.OpenApi.AgentApi.Api.IFirehoseApi _firehoseApi;
 
-        private bool _useV2Firehose = true;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="FirehoseApi" /> class.
         /// See <see cref="Factories.AgentApiFactory"/> for conveniently constructing
@@ -116,52 +114,20 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns>The ID of the firehose.</returns>
         public string CreateFirehose()
         {
-            var firehose = ApiExecutor.Execute(_firehoseApi.V1FirehoseCreatePost, AuthTokens.SessionToken,
+            var firehose = ApiExecutor.Execute(_firehoseApi.V4FirehoseCreatePost, AuthTokens.SessionToken,
                 AuthTokens.KeyManagerToken);
             return firehose.Id;
         }
 
-        private V2MessageList ReadFirehose(string id, int? maxMessages = null)
-        {
-            if (_useV2Firehose)
-            {
-                try
-                {
-                    return ReadV2Firehose(id, maxMessages);
-                }
-                catch (ApiException e)
-                {
-                    if (e.ErrorCode != 404)
-                    {
-                        throw;
-                    }
-                    TraceSource.TraceEvent(
-                        TraceEventType.Warning, 0,
-                        "V2 firehose not available, falling back to V1.");
-                    _useV2Firehose = false;
-                }
-            }
-            var v1MessageList = ReadV1Firehose(id, maxMessages);
-            return ConvertV1MessageList(v1MessageList);
-        }
-
-        private MessageList ReadV1Firehose(string id, int? maxMessages)
+        private V4EventList ReadFirehose(string id, int? maxMessages = null)
         {
             return ApiExecutor.Execute(
-                _firehoseApi.V1FirehoseIdReadGet,
+                _firehoseApi.V4FirehoseIdReadGet,
                 id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken,
                 maxMessages);
         }
 
-        private V2MessageList ReadV2Firehose(string id, int? maxMessages)
-        {
-            return ApiExecutor.Execute(
-                _firehoseApi.V2FirehoseIdReadGet,
-                id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken,
-                maxMessages);
-        }
-
-        private V2MessageList ReadFirehose(ref string id, int? maxMessages = null, int? retriesAllowed = 1)
+        private V4EventList ReadFirehose(ref string id, int? maxMessages = null, int? retriesAllowed = 1)
         {
             var countFirehoseErrors = 0;
             while (true)
