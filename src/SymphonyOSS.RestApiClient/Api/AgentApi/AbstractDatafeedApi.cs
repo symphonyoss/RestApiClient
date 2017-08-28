@@ -19,21 +19,19 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Diagnostics;
     using System.Threading.Tasks;
     using Authentication;
     using Factories;
     using Generated.Json;
     using Generated.OpenApi.AgentApi.Model;
     using Entities;
+
     /// <summary>
     /// Abstract superclass for datafeed-type Apis, eg <see cref="Generated.OpenApi.AgentApi.Api.DatafeedApi"/>
     /// and <see cref="Generated.OpenApi.AgentApi.Api.FirehoseApi"/>.
     /// </summary>
     public abstract class AbstractDatafeedApi
     {
-        private static readonly TraceSource TraceSource = new TraceSource("SymphonyOSS.RestApiClient");
-
         protected readonly IAuthTokens AuthTokens;
 
         protected readonly IApiExecutor ApiExecutor;

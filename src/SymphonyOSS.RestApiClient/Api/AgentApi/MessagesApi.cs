@@ -20,13 +20,14 @@ using SymphonyOSS.RestApiClient.Entities;
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System.Collections.Generic;
-    using System.Diagnostics;
     using Authentication;
     using Factories;
     using Generated.OpenApi.AgentApi.Client;
     using Generated.OpenApi.AgentApi.Model;
     using Message = Entities.Message;
     using System.Linq;
+    using Logging;
+    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// Provides methods for posting to and retrieving messages from streams, by
@@ -35,7 +36,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class MessagesApi
     {
-        private static readonly TraceSource TraceSource = new TraceSource("SymphonyOSS.RestApiClient");
+        private ILogger _log;
 
         private readonly Generated.OpenApi.AgentApi.Api.IMessagesApi _messagesApi;
 
@@ -53,6 +54,8 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <param name="apiExecutor">Execution strategy.</param>
         public MessagesApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
         {
+            _log = ApiLogging.LoggerFactory?.CreateLogger<MessagesApi>();
+
             _messagesApi = new Generated.OpenApi.AgentApi.Api.MessagesApi(configuration);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
@@ -65,7 +68,8 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns>The posted message.</returns>
         public Message PostMessage(Message message)
         {
-            TraceSource.TraceEvent(TraceEventType.Verbose, 0, "Posting message to stream \"{0}\"", message.StreamId);
+            var streamId = message.StreamId;
+            _log?.LogDebug("Posting message to {streamId}", streamId);
             var attachments = new List<AttachmentInfo>();
             foreach (var attachment in message.Attachments)
             {

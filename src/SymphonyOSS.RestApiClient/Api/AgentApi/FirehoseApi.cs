@@ -17,10 +17,11 @@
 
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
-    using System.Diagnostics;
     using Authentication;
     using Generated.OpenApi.AgentApi.Client;
     using Generated.OpenApi.AgentApi.Model;
+    using Logging;
+    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// Provides an event-based firehose of a pod's incoming messages.
@@ -29,7 +30,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class FirehoseApi : AbstractDatafeedApi
     {
-        private static readonly TraceSource TraceSource = new TraceSource("SymphonyOSS.RestApiClient");
+        private ILogger _log;
 
         private readonly Generated.OpenApi.AgentApi.Api.IFirehoseApi _firehoseApi;
 
@@ -44,6 +45,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         public FirehoseApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
             : base(authTokens, apiExecutor)
         {
+            _log = ApiLogging.LoggerFactory?.CreateLogger<FirehoseApi>();
             _firehoseApi = new Generated.OpenApi.AgentApi.Api.FirehoseApi(configuration);
         }
 
@@ -137,9 +139,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                     var messageList = ReadFirehose(id, maxMessages);
                     if (countFirehoseErrors > 0)
                     {
-                        TraceSource.TraceEvent(
-                            TraceEventType.Information, 0,
-                            "Firehose re-established.");
+                        _log?.LogInformation("Firehose re-established");
                     }
                     return messageList;
                 }
@@ -150,9 +150,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                         throw;
                     }
                     ++countFirehoseErrors;
-                    TraceSource.TraceEvent(
-                        TraceEventType.Error, 0,
-                        "Unhandled API exception caught when reading firehose, retrying: {0}", e);
+                    _log?.LogError(0, e, "Unhandled API exception caught when reading firehose, id = {id}", id);
                     id = CreateFirehose();
                 }
             }
