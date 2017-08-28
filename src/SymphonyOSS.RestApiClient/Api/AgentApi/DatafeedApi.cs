@@ -21,6 +21,8 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     using Authentication;
     using Generated.OpenApi.AgentApi.Client;
     using Generated.OpenApi.AgentApi.Model;
+    using Microsoft.Extensions.Logging;
+    using SymphonyOSS.RestApiClient.Logging;
 
     /// <summary>
     /// Provides an event-based data feed of a user's incoming messages.
@@ -29,10 +31,9 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class DatafeedApi : AbstractDatafeedApi
     {
-        private static readonly TraceSource TraceSource = new TraceSource("SymphonyOSS.RestApiClient");
-
         private readonly Generated.OpenApi.AgentApi.Api.IDatafeedApi _datafeedApi;
 
+        private ILogger _log;
         /// <summary>
         /// Initializes a new instance of the <see cref="DatafeedApi" /> class.
         /// See <see cref="Factories.AgentApiFactory"/> for conveniently constructing
@@ -44,6 +45,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         public DatafeedApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor) : base(authTokens, apiExecutor)
         {
             _datafeedApi = new Generated.OpenApi.AgentApi.Api.DatafeedApi(configuration);
+            _log = ApiLogging.LoggerFactory?.CreateLogger<DatafeedApi>();
         }
 
         /// <summary>
@@ -119,16 +121,12 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 
         private V4EventList ReadDatafeed(string id, int? maxMessages = null)
         {
-            return ReadV4Datafeed(id, maxMessages);
-        }
+            _log?.LogDebug("Waiting for messages on datafeed id = {id}", id);
 
-        private V4EventList ReadV4Datafeed(string id, int? maxMessages)
-        {
             return ApiExecutor.Execute(
                 _datafeedApi.V4DatafeedIdReadGet,
                 id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken,
                 maxMessages);
-
         }
 
         private V4EventList ReadDatafeed(ref string id, int? maxMessages = null, int? retriesAllowed = 1)
@@ -141,9 +139,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                     var messageList = ReadDatafeed(id, maxMessages);
                     if (countDatafeedErrors > 0)
                     {
-                        TraceSource.TraceEvent(
-                            TraceEventType.Information, 0,
-                            "Data feed re-established.");
+                        _log?.LogInformation("Datafeed re-established, id = {0}", id);
                     }
                     return messageList;
                 }
@@ -154,9 +150,8 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                         throw;
                     }
                     ++countDatafeedErrors;
-                    TraceSource.TraceEvent(
-                        TraceEventType.Error, 0,
-                        "Unhandled API exception caught when reading data feed, retrying: {0}", e);
+    
+                    _log?.LogWarning(0, e, "Unhandled API Exception caught when reading datafeed id {id}", id);
                     id = CreateDatafeed();
                 }
             }

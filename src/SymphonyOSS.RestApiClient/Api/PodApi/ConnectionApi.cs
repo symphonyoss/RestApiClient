@@ -19,7 +19,6 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -30,6 +29,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     using Generated.OpenApi.AgentApi.Model;
     using Generated.OpenApi.PodApi.Client;
     using Generated.OpenApi.PodApi.Model;
+    using Logging;
+    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// Provides a method to get user information, by encapsulating
@@ -38,7 +39,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     /// </summary>
     public class ConnectionApi
     {
-        private static readonly TraceSource TraceSource = new TraceSource("SymphonyOSS.RestApiClient");
+        private ILogger _log;
 
         private readonly Generated.OpenApi.PodApi.Api.IConnectionApi _connectionApi;
 
@@ -79,6 +80,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="apiExecutor">Execution strategy.</param>
         public ConnectionApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
         {
+            _log = ApiLogging.LoggerFactory?.CreateLogger<MessagesApi>();
+
             _connectionApi = new Generated.OpenApi.PodApi.Api.ConnectionApi(configuration);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
@@ -102,10 +105,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
                     }
                     catch (Exception ex)
                     {
-                        TraceSource.TraceEvent(
-                            TraceEventType.Error, 0,
-                            "Unhandled exception caught when fecthing list of connection request {1}",
-                            ex);
+                        _log?.LogError(0, ex, "Unhandled exception caught when fecthing list of connection request");
                     }
                 }, null, 0, timeout);
         }
@@ -233,20 +233,13 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         {
             foreach (var connection in connectionList)
             {
-                TraceSource.TraceEvent(
-                    TraceEventType.Verbose, 0,
-                    "Notifying listener about connection request for user with ID \"{0}\" and status \"{1}\"",
-                    connection?.UserId, connection?.Status);
                 try
                 {
                     connectionEventHandler.Invoke(this, new ConnectionRequestEventArgs(connection));
                 }
                 catch (Exception e)
                 {
-                    TraceSource.TraceEvent(
-                        TraceEventType.Error, 0,
-                        "Unhandled exception caught when notifying listener about connection request for user with ID \"{0}\": {1}",
-                        connection?.UserId, e);
+                    _log?.LogError(0, e, "Unhandled exception caught when notifying listener about connection request for user with ID \"{0}\"", connection?.UserId);
                 }
             }
         }
