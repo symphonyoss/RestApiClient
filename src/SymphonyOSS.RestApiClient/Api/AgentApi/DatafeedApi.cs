@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System;
+
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System.Diagnostics;
@@ -23,6 +25,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     using Generated.OpenApi.AgentApi.Model;
     using Microsoft.Extensions.Logging;
     using SymphonyOSS.RestApiClient.Logging;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Provides an event-based data feed of a user's incoming messages.
@@ -96,16 +99,25 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 
         private void Listen(ref string datafeedId, int retriesAllowed)
         {
-            while (!ShouldStop)
+            try
             {
-                var messageList = ReadDatafeed(ref datafeedId, retriesAllowed: retriesAllowed);
-                if (ShouldStop)
+                while (!ShouldStop)
                 {
-                    // Don't process messages if the user has stopped listening.
-                    break;
-                }
+                    var messageList = ReadDatafeed(ref datafeedId, retriesAllowed: retriesAllowed);
+                    if (ShouldStop)
+                    {
+                        // Don't process messages if the user has stopped listening.
+                        _log?.LogDebug("Stopped listening on datafeed {datafeedId}", datafeedId);
+                        break;
+                    }
 
-                ProcessMessageList(messageList);
+                    ProcessMessageList(messageList);
+                }
+            }
+            catch (Exception e)
+            {
+                _log?.LogDebug(0, e, "Datafeed Listening stopped due to exception in datafeed {datafeedId}", datafeedId);
+                throw;
             }
         }
 
@@ -123,10 +135,24 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         {
             _log?.LogDebug("Waiting for messages on datafeed id = {id}", id);
 
-            return ApiExecutor.Execute(
-                _datafeedApi.V4DatafeedIdReadGet,
-                id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken,
-                maxMessages);
+            // I suspect that when the pod is rebooted, V4DatafeedIdReadGet hangs.
+            // This shouldn't happen as the HTTP call should timeout, so something
+            // odd is going on and hopefully this will help sort things out.
+
+            var task = Task.Run(() =>
+            {
+                return ApiExecutor.Execute(
+                    _datafeedApi.V4DatafeedIdReadGet,
+                    id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken,
+                    maxMessages);
+            });
+
+            if (task.Wait(TimeSpan.FromSeconds(110)))
+            {
+                return task.Result;
+            } // this timed out
+            throw new TimeoutException($"Datafeed read call timed out waiting for {id}");
+
         }
 
         private V4EventList ReadDatafeed(ref string id, int? maxMessages = null, int? retriesAllowed = 1)
@@ -147,6 +173,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                 {
                     if (countDatafeedErrors >= retriesAllowed)
                     {
+                        _log?.LogWarning(0, e, "API Exception detected when reading datafeed id {id}", id);
                         throw;
                     }
                     ++countDatafeedErrors;
