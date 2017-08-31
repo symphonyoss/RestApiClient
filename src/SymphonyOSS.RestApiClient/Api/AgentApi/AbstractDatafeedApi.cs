@@ -25,6 +25,8 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     using Generated.Json;
     using Generated.OpenApi.AgentApi.Model;
     using Entities;
+    using Microsoft.Extensions.Logging;
+    using SymphonyOSS.RestApiClient.Logging;
 
     /// <summary>
     /// Abstract superclass for datafeed-type Apis, eg <see cref="Generated.OpenApi.AgentApi.Api.DatafeedApi"/>
@@ -32,6 +34,8 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public abstract class AbstractDatafeedApi
     {
+        private ILogger Log;
+
         protected readonly IAuthTokens AuthTokens;
 
         protected readonly IApiExecutor ApiExecutor;
@@ -54,6 +58,8 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <param name="apiExecutor">Execution strategy.</param>
         protected AbstractDatafeedApi(IAuthTokens authTokens, IApiExecutor apiExecutor)
         {
+            Log = ApiLogging.LoggerFactory?.CreateLogger<AbstractDatafeedApi>();
+
             AuthTokens = authTokens;
             ApiExecutor = apiExecutor;
         }
@@ -118,21 +124,33 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             ShouldStop = true;
         }
 
-        protected Task CreateInvocationTask<EventHandlerArgs>(EventHandler<EventHandlerArgs> evtHandler, EventHandlerArgs args)
+        protected Task CreateInvocationTask<EventHandlerArgs>(EventHandler<EventHandlerArgs> evtHandler,
+            EventHandlerArgs args)
         {
-            Task pendingTask;
-            if (_inflightEvents.TryGetValue(evtHandler, out pendingTask))
+            // we must get the pendingTask first before returning to avoid
+            // a race condition where the returned task gets added to 
+            // _inflightEvents and then in the task we call TryGetValue
+            if (!_inflightEvents.TryGetValue(evtHandler, out var pendingTask))
             {
-                return Task.Run(() =>
-                {
-                    // Todo MALAY catch exceptions
-                    pendingTask.Wait();
-                    evtHandler.Invoke(this, args);
-                });
-            } else
-            {
-                return Task.Run(() => evtHandler.Invoke(this, args));
+                pendingTask = null;
             }
+
+            return Task.Run(() =>
+            {
+                if (pendingTask != null)
+                {
+                    pendingTask.Wait();
+                }
+
+                try
+                {
+                    evtHandler.Invoke(this, args);
+                }
+                catch (Exception e)
+                {
+                    Log?.LogWarning(0, e, "Error invoking message handlers");
+                }
+            });
         }
 
         void InvokeEventHandlers<EventHandlerArgs>(EventHandler<EventHandlerArgs> evtHandler, EventHandlerArgs args)
