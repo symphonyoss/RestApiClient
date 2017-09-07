@@ -92,7 +92,12 @@ namespace SymphonyOSS.RestApiClient.Factories
         {
             var configuration = new Configuration();
             configuration.BasePath = _baseUrl;
-            configuration.ApiClient.RestClient.HttpClientFactory = new Internal.ClientAuthHttpClientFactory(sessionManager.Certificate);
+
+            if (sessionManager.Certificate != null)
+            {
+                configuration.ApiClient.RestClient.HttpClientFactory =
+                    new Internal.ClientAuthHttpClientFactory(sessionManager.Certificate);
+            }
 
             if (apiExecutor == null)
             {
