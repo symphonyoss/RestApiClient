@@ -19,7 +19,7 @@ namespace SymphonyOSS.RestApiClient.Factories
 {
     using System;
     using Entities;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
 
     public abstract class ConnectionFactory
     {
@@ -35,17 +35,17 @@ namespace SymphonyOSS.RestApiClient.Factories
                 userConnection.RequestCounter?? 0);
         }
 
-        private static ConnectionStatus GetStatus(UserConnection.StatusEnum status)
+        private static ConnectionStatus GetStatus(UserConnectionStatus status)
         {
             switch (status)
             {
-                case UserConnection.StatusEnum.ACCEPTED:
+                case UserConnectionStatus.ACCEPTED:
                     return ConnectionStatus.Accepted;
-                case UserConnection.StatusEnum.PENDINGINCOMING:
+                case UserConnectionStatus.PENDING_INCOMING:
                     return ConnectionStatus.PendingIncoming;
-                case UserConnection.StatusEnum.PENDINGOUTGOING:
+                case UserConnectionStatus.PENDING_OUTGOING:
                     return ConnectionStatus.PendingOutgoing;
-                case UserConnection.StatusEnum.REJECTED:
+                case UserConnectionStatus.REJECTED:
                     return ConnectionStatus.Rejected;
                 default:
                     throw new Exception($"Invalid status {status}.");

@@ -15,6 +15,10 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 using SymphonyOSS.RestApiClient.Entities;
 
 namespace SymphonyOSS.RestApiClient.Tests
@@ -23,8 +27,7 @@ namespace SymphonyOSS.RestApiClient.Tests
     using Api;
     using Api.AgentApi;
     using Authentication;
-    using Generated.OpenApi.AgentApi.Client;
-    using Generated.OpenApi.AgentApi.Model;
+    using Generated.OpenApi.AgentApi;
     using Message = Entities.Message;
     using Moq;
     using Xunit;
@@ -40,9 +43,8 @@ namespace SymphonyOSS.RestApiClient.Tests
             var sessionManagerMock = new Mock<IAuthTokens>();
             sessionManagerMock.Setup(obj => obj.SessionToken).Returns("sessionToken");
             sessionManagerMock.Setup(obj => obj.KeyManagerToken).Returns("keyManagerToken");
-            var configuration = new Configuration();
             _apiExecutorMock = new Mock<IApiExecutor>();
-            _messagesApi = new MessagesApi(sessionManagerMock.Object, configuration, _apiExecutorMock.Object);
+            _messagesApi = new MessagesApi(sessionManagerMock.Object, "", new HttpClient(), _apiExecutorMock.Object);
         }
 
         [Fact]
@@ -50,18 +52,19 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             const string sid = "sid";
             var message = new Message(sid, "body");
-            var v2Message = new V2Message("id", "1477297302", "type", sid, "body", 0);
-            _apiExecutorMock.Setup(apiExecutor => apiExecutor.Execute(It.IsAny<Func<string, string, string, V2MessageSubmission, V2Message>>(), sid, "sessionToken", "keyManagerToken", It.IsAny<V2MessageSubmission>())).Returns(v2Message);
+            var v2Message = new V2Message() {
+                Id = "id", Timestamp = "1477297302", StreamId = sid, Message = "body", FromUserId = 0};
+            _apiExecutorMock.Setup(apiExecutor => apiExecutor.Execute(It.IsAny<Func<string, string, string, V2MessageSubmission, CancellationToken, Task<V2Message>>>(), sid, "sessionToken", "keyManagerToken", It.IsAny<V2MessageSubmission>(), default(CancellationToken))).Returns(v2Message);
             _messagesApi.PostMessage(message);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, V2MessageSubmission, V2Message>>(), sid, "sessionToken", "keyManagerToken", It.IsAny<V2MessageSubmission>()));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, V2MessageSubmission, CancellationToken, Task<V2Message>>>(), sid, "sessionToken", "keyManagerToken", It.IsAny<V2MessageSubmission>(), default(CancellationToken)));
         }
 
         [Fact]
         public void EnsureGet_uses_retry_strategy()
         {
             const string sid = "sid";
-            _messagesApi.GetMessages(sid, null);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, string, string, int?, int?, V2MessageList>>(), sid, (long?)null, "sessionToken", "keyManagerToken", (int?)null, (int?)null));
+            _messagesApi.GetMessages(sid, 0);
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, string, string, int?, int?, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<V4Message>>>>(), sid, 0, "sessionToken", "keyManagerToken", (int?)null, (int?)null, default(CancellationToken)));
         }
     }
 }

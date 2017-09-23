@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System.Net.Http;
+
 namespace SymphonyOSS.RestApiClient.Tests
 {
     using System;
@@ -23,15 +25,14 @@ namespace SymphonyOSS.RestApiClient.Tests
     using Api;
     using Api.AgentApi;
     using Authentication;
-    using Generated.OpenApi.AgentApi.Client;
-    using Generated.OpenApi.AgentApi.Model;
+    using Generated.OpenApi.AgentApi;
     using Moq;
     using Xunit;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class FirehoseApiTest
     {
-        private readonly Configuration _configuration;
-
         private readonly FirehoseApi _firehoseApi;
 
         private readonly Mock<IApiExecutor> _apiExecutorMock;
@@ -41,9 +42,8 @@ namespace SymphonyOSS.RestApiClient.Tests
             var sessionManagerMock = new Mock<IAuthTokens>();
             sessionManagerMock.Setup(obj => obj.SessionToken).Returns("sessionToken");
             sessionManagerMock.Setup(obj => obj.KeyManagerToken).Returns("keyManagerToken");
-            _configuration = new Configuration();
             _apiExecutorMock = new Mock<IApiExecutor>();
-            _firehoseApi = new FirehoseApi(sessionManagerMock.Object, _configuration, _apiExecutorMock.Object);
+            _firehoseApi = new FirehoseApi(sessionManagerMock.Object, "", new HttpClient(), _apiExecutorMock.Object);
         }
 
         [Fact]
@@ -51,8 +51,8 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var semaphore = new Semaphore(0, int.MaxValue);
             var messageList = CreateMessageList(2);
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, Firehose>>(), "sessionToken", "keyManagerToken")).Returns(new Firehose("streamId"));
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, V2MessageList>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null))
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, CancellationToken, Task<Firehose>>>(), "sessionToken", "keyManagerToken", default(CancellationToken))).Returns(new Firehose() {Id = "streamId"});
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection < V4Event >>>> (), "streamId", "sessionToken", "keyManagerToken", (int?)null, default(CancellationToken)))
                 .Returns(messageList);
             var messagesReceived = 0;
             _firehoseApi.OnMessage += (_, messageEventArgs) =>
@@ -83,8 +83,8 @@ namespace SymphonyOSS.RestApiClient.Tests
             var sendSemaphore = new Semaphore(1, int.MaxValue);
             var mainSemaphore = new Semaphore(0, int.MaxValue);
             var messagesSent = 0;
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, Firehose>>(), "sessionToken", "keyManagerToken")).Returns(new Firehose("streamId"));
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, V2MessageList>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null))
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, CancellationToken, Task<Firehose>>>(), "sessionToken", "keyManagerToken", default(CancellationToken))).Returns(new Firehose() { Id = "streamId"});
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<V4Event>>>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null, default(CancellationToken)))
                 .Returns(() =>
                 {
                     if (messagesSent <= 1)
@@ -94,7 +94,7 @@ namespace SymphonyOSS.RestApiClient.Tests
                     if (messagesSent < 10)
                     {
                         var messageList = CreateMessageList(1, messagesSent);
-                        messagesSent += messageList.Count;
+                        messagesSent += messageList.Count();
                         return messageList;
                     }
                     else
@@ -130,9 +130,9 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureListen_can_be_stopped()
         {
             var semaphore = new Semaphore(0, int.MaxValue);
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, Firehose>>(), "sessionToken", "keyManagerToken")).Returns(new Firehose("streamId"));
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, V2MessageList>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null))
-                .Returns((V2MessageList)null)
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, CancellationToken, Task<Firehose>>>(), "sessionToken", "keyManagerToken", default(CancellationToken))).Returns(new Firehose() {Id = "streamId"});
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<V4Event>>>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null, default(CancellationToken)))
+                .Returns((System.Collections.ObjectModel.ObservableCollection<V4Event>)null)
                 .Callback(() =>
                 {
                     semaphore.Release(1);
@@ -141,15 +141,28 @@ namespace SymphonyOSS.RestApiClient.Tests
             semaphore.WaitOne();
             _firehoseApi.Stop();
             task.Wait();
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, V2MessageList>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<V4Event>>>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null, default(CancellationToken)));
         }
 
-        private V2MessageList CreateMessageList(int count, int startId = 1)
+        private System.Collections.ObjectModel.ObservableCollection<V4Event> CreateMessageList(int count, int startId = 1)
         {
-            var result = new V2MessageList();
+            var result = new System.Collections.ObjectModel.ObservableCollection<V4Event>();
             for (var i = 0; i < count; ++i)
             {
-                result.Add(new V2Message("msg" + (startId + i), "1477297302", "messageType", "streamId", "message", 1));
+                var msg = new V4Message()
+                {
+                    MessageId = "msg" + (startId + i),
+                    Timestamp = 1477297302,
+                    Stream = new V4Stream() { StreamId = "streamId" },
+                    User = new V4User() { UserId = 1 }
+                };
+
+                var evt = new V4Event()
+                {
+                    Type = V4EventType.MESSAGESENT,
+                    Payload = new V4Payload() { MessageSent = new V4MessageSent() { Message = msg } }
+                };
+                result.Add(evt);
             };
             return result;
         }

@@ -18,8 +18,9 @@
 namespace SymphonyOSS.RestApiClient.Tests
 {
     using Authentication;
-    using Generated.OpenApi.AuthenticatorApi.Api;
-    using Generated.OpenApi.AuthenticatorApi.Model;
+    using Generated.OpenApi.AuthenticatorApi;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Moq;
     using System.Security.Cryptography.X509Certificates;
     using Xunit;
@@ -28,22 +29,22 @@ namespace SymphonyOSS.RestApiClient.Tests
     {
         private readonly X509Certificate2 _certificate;
 
-        private readonly Mock<IAuthenticationApi> _sessionAuthApiMock;
+        private readonly Mock<IAuthenticateClient> _sessionAuthApiMock;
 
-        private readonly Mock<IAuthenticationApi> _keyAuthApiMock;
+        private readonly Mock<IAuthenticateClient> _keyAuthApiMock;
 
         public UserSessionManagerTest()
         {
             _certificate = new Mock<X509Certificate2>().Object;
-            _sessionAuthApiMock = new Mock<IAuthenticationApi>();
-            _keyAuthApiMock = new Mock<IAuthenticationApi>();
+            _sessionAuthApiMock = new Mock<IAuthenticateClient>();
+            _keyAuthApiMock = new Mock<IAuthenticateClient>();
         }
 
         [Fact]
         public void EnsureTokens_are_returned_without_explicitly_calling_GenerateTokens()
         {
-            _sessionAuthApiMock.Setup(obj => obj.V1AuthenticatePost()).Returns(new Token("sessionToken", "s1"));
-            _keyAuthApiMock.Setup(obj => obj.V1AuthenticatePost()).Returns(new Token("keyManagerToken", "km1"));
+            _sessionAuthApiMock.Setup(obj => obj.V1Async(default(CancellationToken))).Returns(Task.FromResult(new Token() {Name = "sessionToken",Token1 = "s1"}));
+            _keyAuthApiMock.Setup(obj => obj.V1Async(default(CancellationToken))).Returns(Task.FromResult(new Token() { Name = "keyManagerToken", Token1 = "km1" }));
             var userSessionManager = new UserSessionManager(_sessionAuthApiMock.Object, _keyAuthApiMock.Object, _certificate);
             var sessionToken = userSessionManager.SessionToken;
             var keyManagerToken = userSessionManager.KeyManagerToken;
@@ -56,15 +57,16 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var sessionTokenCounter = 0;
             var keyManagerTokenCounter = 100;
-            _sessionAuthApiMock.Setup(obj => obj.V1AuthenticatePost()).Returns(() =>
+            _sessionAuthApiMock.Setup(obj => obj.V1Async(default(CancellationToken))).Returns(() =>
             {
                 ++sessionTokenCounter;
-                return new Token("sessionToken", "s" + sessionTokenCounter.ToString());
+                return Task.FromResult(new Token() {Name = "sessionToken", Token1 = "s" + sessionTokenCounter.ToString()});
             });
-            _keyAuthApiMock.Setup(obj => obj.V1AuthenticatePost()).Returns(() =>
+            _keyAuthApiMock.Setup(obj => obj.V1Async(default(CancellationToken))).Returns(() =>
             {
                 ++keyManagerTokenCounter;
-                return new Token("keyManagerToken", "km" + keyManagerTokenCounter.ToString());
+                return Task.FromResult(new Token() { Name = "keyManagerToken", Token1 = "km" + keyManagerTokenCounter.ToString() });
+
             });
             var userSessionManager = new UserSessionManager(_sessionAuthApiMock.Object, _keyAuthApiMock.Object, _certificate);
             Assert.Equal("s1", userSessionManager.SessionToken);

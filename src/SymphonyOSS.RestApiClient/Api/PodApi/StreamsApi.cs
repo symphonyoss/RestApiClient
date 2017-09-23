@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System.Collections.ObjectModel;
+
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using System;
@@ -23,8 +25,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     using Authentication;
     using Entities;
     using Factories;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
+    using System.Net.Http;
     using Stream = Entities.Stream;
 
     /// <summary>
@@ -34,7 +36,9 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     /// </summary>
     public class StreamsApi
     {
-        private readonly Generated.OpenApi.PodApi.Api.IStreamsApi _streamsApi;
+        private readonly Generated.OpenApi.PodApi.StreamsClient _streamsApi;
+        private readonly Generated.OpenApi.PodApi.ImClient _imApi;
+        private readonly Generated.OpenApi.PodApi.RoomClient _roomApi;
 
         private readonly IAuthTokens _authTokens;
 
@@ -48,9 +52,12 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="authTokens">Authentication tokens.</param>
         /// <param name="configuration">Api configuration.</param>
         /// <param name="apiExecutor">Execution strategy.</param>
-        public StreamsApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
+        public StreamsApi(IAuthTokens authTokens, string baseUrl, HttpClient httpClient, IApiExecutor apiExecutor)
         {
-            _streamsApi = new Generated.OpenApi.PodApi.Api.StreamsApi(configuration);
+            _streamsApi = new Generated.OpenApi.PodApi.StreamsClient(baseUrl, httpClient);
+            _imApi = new Generated.OpenApi.PodApi.ImClient(baseUrl, httpClient);
+            _roomApi = new RoomClient(baseUrl, httpClient);
+
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
         }
@@ -67,9 +74,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The ID of the created stream.</returns>
         public string CreateStream(List<long> userIdList)
         {
-            var uidList = new UserIdList();
-            uidList.AddRange(userIdList.Select(userId => (long?) userId));
-            var stream = _apiExecutor.Execute(_streamsApi.V1ImCreatePost, uidList, _authTokens.SessionToken);
+            var stream = _apiExecutor.Execute(_imApi.V1CreateAsync, userIdList, _authTokens.SessionToken);
             return stream.Id;
         }
 
@@ -80,7 +85,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The stream's attributes.</returns>
         public Stream GetStreamInfo(string sid)
         {
-            var streamAttributes = _apiExecutor.Execute(_streamsApi.V1StreamsSidInfoGet, sid, _authTokens.SessionToken);
+            var streamAttributes = _apiExecutor.Execute(_streamsApi.V1InfoAsync, sid, _authTokens.SessionToken);
             return StreamFactory.Create(streamAttributes);
         }
 
@@ -92,16 +97,24 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The created room.</returns>
         public Room CreateRoom(Room room)
         {
-            var keywords = new List<RoomTag>();
+            var keywords = new ObservableCollection<RoomTag>();
             foreach (var keyword in room.Keywords)
             {
-                keywords.Add(new RoomTag(keyword.Item1, keyword.Item2));
+                keywords.Add(new RoomTag() {Key = keyword.Item1, Value = keyword.Item2});
             }
-            var v2RoomAttributes = new V2RoomAttributes(
-                room.Name, keywords, room.Description,
-                room.MembersCanInvite, room.Discoverable,
-                room.Public, room.ReadOnly, room.CopyProtected);
-            var v2RoomDetail = _apiExecutor.Execute(_streamsApi.V2RoomCreatePost, v2RoomAttributes, _authTokens.SessionToken);
+            var v2RoomAttributes = new V2RoomAttributes()
+            {
+                Name = room.Name,
+                Keywords = keywords,
+                Description = room.Description,
+                MembersCanInvite = room.MembersCanInvite,
+                Discoverable = room.Discoverable,
+                Public = room.Public,
+                ReadOnly = room.ReadOnly,
+                CopyProtected = room.CopyProtected
+            };
+            //var v2RoomDetail = _apiExecutor.Execute(_streamsApi.V2RoomCreatePost, v2RoomAttributes, _authTokens.SessionToken);
+            var v2RoomDetail = _apiExecutor.Execute(_roomApi.V2CreateAsync, v2RoomAttributes, _authTokens.SessionToken);
             return RoomFactory.Create(v2RoomDetail);
         }
 
@@ -112,7 +125,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The room details.</returns>
         public Room GetRoomInfo(string id)
         {
-            var v2RoomDetail = _apiExecutor.Execute(_streamsApi.V2RoomIdInfoGet, id, _authTokens.SessionToken);
+            var v2RoomDetail = _apiExecutor.Execute(_roomApi.V2InfoAsync, id, _authTokens.SessionToken);
             return RoomFactory.Create(v2RoomDetail);
         }
 
@@ -124,7 +137,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The room.</returns>
         public RoomDetail SetRoomActive(string id, bool active)
         {
-            return _apiExecutor.Execute(_streamsApi.V1RoomIdSetActivePost, id, (bool?)active, _authTokens.SessionToken);
+            return _apiExecutor.Execute(_roomApi.V1SetactiveAsync, id, active, _authTokens.SessionToken);
         }
 
         /// <summary>
@@ -134,13 +147,23 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The room.</returns>
         public Room UpdateRoom(Room room)
         {
-            var keywords = new List<RoomTag>();
+            var keywords = new ObservableCollection<RoomTag>();
             foreach (var keyword in room.Keywords)
             {
-                keywords.Add(new RoomTag(keyword.Item1, keyword.Item2));
+                keywords.Add(new RoomTag() { Key = keyword.Item1, Value = keyword.Item2 });
             }
-            var v2RoomAttributes = new V2RoomAttributes(room.Name, keywords, room.Description, room.MembersCanInvite, room.Discoverable, room.Public, room.ReadOnly, room.CopyProtected);
-            var v2RoomDetail = _apiExecutor.Execute(_streamsApi.V2RoomIdUpdatePost, room.Id, v2RoomAttributes, _authTokens.SessionToken);
+            var v2RoomAttributes = new V2RoomAttributes()
+            {
+                Name = room.Name,
+                Keywords = keywords,
+                Description = room.Description,
+                MembersCanInvite = room.MembersCanInvite,
+                Discoverable = room.Discoverable,
+                Public = room.Public,
+                ReadOnly = room.ReadOnly,
+                CopyProtected = room.CopyProtected
+            };
+            var v2RoomDetail = _apiExecutor.Execute(_roomApi.V2UpdateAsync, room.Id, v2RoomAttributes, _authTokens.SessionToken);
             return RoomFactory.Create(v2RoomDetail);
         }
 
@@ -153,7 +176,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The search results.</returns>
         public RoomSearchResults SearchRoom(RoomSearchCriteria query, int? skip = null, int? limit = null)
         {
-            return _apiExecutor.Execute(_streamsApi.V2RoomSearchPost, _authTokens.SessionToken, query, skip, limit);
+            return _apiExecutor.Execute(_roomApi.V2SearchAsync, _authTokens.SessionToken, query, skip, limit);
         }
     }
 }

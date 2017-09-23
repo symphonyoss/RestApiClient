@@ -20,10 +20,9 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     using System;
     using Authentication;
     using Entities;
-    using Generated.OpenApi.AgentApi.Client;
-    using Generated.OpenApi.AgentApi.Model;
+    using Generated.OpenApi.AgentApi;
+    using System.Net.Http;
     using System.IO;
-    using RestSharp.Portable;
     using Stream = System.IO.Stream;
 
     /// <summary>
@@ -33,9 +32,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class AttachmentsApi
     {
-        private readonly Generated.OpenApi.AgentApi.Api.IAttachmentsApi _attachmentsApi;
-
-        private readonly Configuration _configuration;
+        private readonly Generated.OpenApi.AgentApi.StreamClient _streamApi;
 
         private readonly IAuthTokens _authTokens;
 
@@ -49,10 +46,9 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <param name="authTokens">Authentication tokens.</param>
         /// <param name="configuration">Api configuration.</param>
         /// <param name="apiExecutor">Execution strategy.</param>
-        public AttachmentsApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
+        public AttachmentsApi(IAuthTokens authTokens, string baseUrl, HttpClient httpClient, IApiExecutor apiExecutor)
         {
-            _attachmentsApi = new Generated.OpenApi.AgentApi.Api.AttachmentsApi(configuration);
-            _configuration = configuration;
+            _streamApi = new Generated.OpenApi.AgentApi.StreamClient(baseUrl, httpClient);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
         }
@@ -68,7 +64,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         {
             using (var stream = File.OpenRead(file))
             {
-                return _apiExecutor.Execute(UploadAttachment, sid, Path.GetFileName(file), stream);
+                return UploadAttachment(sid, Path.GetFileName(file), stream);
             }
         }
 
@@ -82,15 +78,11 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns>Attachment info.</returns>
         public Attachment UploadAttachment(string sid, string filename, Stream file)
         {
-            var request = new RestRequest("v1/stream/" + sid + "/attachment/create", Method.POST);
-            request.AddHeader("sessionToken", _authTokens.SessionToken);
-            request.AddHeader("keyManagerToken", _authTokens.KeyManagerToken);
-            request.AddFile("file", file, filename, "application/octet-stream");
+            var fileParameter = new FileParameter(file, filename);
+            var attachmentInfo = _apiExecutor.Execute(_streamApi.V1AttachmentCreateAsync, sid, _authTokens.SessionToken,
+                _authTokens.KeyManagerToken, fileParameter);
 
-            var apiClient = _configuration.ApiClient;
-            var response = apiClient.RestClient.Execute(request);
-            var attachmentInfo = (AttachmentInfo)apiClient.Deserialize(response.Result, typeof(AttachmentInfo));
-            return new Attachment(attachmentInfo.Id, attachmentInfo.Name, attachmentInfo.Size ?? -1);
+            return new Attachment(attachmentInfo.Id, attachmentInfo.Name, attachmentInfo.Size);
         }
 
         /// <summary>
@@ -102,8 +94,10 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns>The contents of the attached file.</returns>
         public byte[] DownloadAttachment(string sid, string messageId, string fileId)
         {
-            var base64Bytes = _apiExecutor.Execute(_attachmentsApi.V1StreamSidAttachmentGet, sid, fileId, messageId, _authTokens.SessionToken, _authTokens.KeyManagerToken);
-            var base64String = System.Text.Encoding.UTF8.GetString(base64Bytes);
+            var fileResponse = _apiExecutor.Execute(_streamApi.V1AttachmentAsync, sid, fileId, messageId, _authTokens.SessionToken, _authTokens.KeyManagerToken);
+
+            var reader = new StreamReader(fileResponse.Stream);
+            var base64String = reader.ReadToEnd();
             return Convert.FromBase64String(base64String);
         }
     }

@@ -15,11 +15,13 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System.Collections.Generic;
+
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using Authentication;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
+    using System.Net.Http;
 
     /// <summary>
     /// Provides methods for operating over multy party chats
@@ -28,7 +30,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     /// </summary>
     public class RoomMembershipApi
     {
-        private readonly Generated.OpenApi.PodApi.Api.IRoomMembershipApi _roomMembershipApi;
+        private readonly Generated.OpenApi.PodApi.AdminClient _roomMembershipApi;
+        private readonly Generated.OpenApi.PodApi.RoomClient _roomApi;
 
         private readonly IAuthTokens _authTokens;
 
@@ -42,9 +45,10 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="authTokens">Authentication tokens.</param>
         /// <param name="configuration">Api configuration.</param>
         /// <param name="apiExecutor">Execution strategy.</param>
-        public RoomMembershipApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
+        public RoomMembershipApi(IAuthTokens authTokens, string baseUrl, HttpClient httpClient, IApiExecutor apiExecutor)
         {
-            _roomMembershipApi = new Generated.OpenApi.PodApi.Api.RoomMembershipApi(configuration);
+            _roomMembershipApi = new Generated.OpenApi.PodApi.AdminClient(baseUrl, httpClient);
+            _roomApi = new Generated.OpenApi.PodApi.RoomClient(baseUrl, httpClient);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
         }
@@ -57,7 +61,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns></returns>
         public SuccessResponse AddMemberToRoom(string roomId, long userId)
         {
-            return _apiExecutor.Execute(_roomMembershipApi.V1RoomIdMembershipAddPost, roomId, new UserId(userId), _authTokens.SessionToken);
+            return _apiExecutor.Execute(_roomMembershipApi.V1RoomMembershipAddAsync, roomId, new UserId() { Id = userId }, _authTokens.SessionToken);
         }
 
         /// <summary>
@@ -68,7 +72,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns></returns>
         public SuccessResponse RemoveMemberFromRoom(string roomId, long userId)
         {
-            return _apiExecutor.Execute(_roomMembershipApi.V1RoomIdMembershipRemovePost, roomId, new UserId(userId), _authTokens.SessionToken);
+            return _apiExecutor.Execute(_roomMembershipApi.V1RoomMembershipRemoveAsync, roomId, new UserId() { Id = userId }, _authTokens.SessionToken);
         }
 
         /// <summary>
@@ -79,7 +83,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns></returns>
         public SuccessResponse PromoteUserToRoomOwner(string roomId, long userId)
         {
-            return _apiExecutor.Execute(_roomMembershipApi.V1RoomIdMembershipPromoteOwnerPost, roomId, new UserId(userId), _authTokens.SessionToken);
+            return _apiExecutor.Execute(_roomApi.V1MembershipPromoteownerAsync, roomId, new UserId() { Id = userId }, _authTokens.SessionToken);
         }
 
         /// <summary>
@@ -90,7 +94,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns></returns>
         public SuccessResponse DemoteRoomOwner(string roomId, long userId)
         {
-            return _apiExecutor.Execute(_roomMembershipApi.V1RoomIdMembershipDemoteOwnerPost, roomId, new UserId(userId), _authTokens.SessionToken);
+            return _apiExecutor.Execute(_roomApi.V1MembershipDemoteownerAsync, roomId, new UserId() { Id = userId }, _authTokens.SessionToken);
         }
 
         /// <summary>
@@ -98,9 +102,9 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// </summary>
         /// <param name="roomId">The id of the room.</param>
         /// <returns></returns>
-        public MembershipList GetRoomMembers(string roomId)
+        public IEnumerable<MemberInfo> GetRoomMembers(string roomId)
         {
-            return _apiExecutor.Execute(_roomMembershipApi.V1RoomIdMembershipListGet, roomId, _authTokens.SessionToken);
+            return _apiExecutor.Execute(_roomApi.V2MembershipListAsync, roomId, _authTokens.SessionToken);
         }
     }
 }

@@ -22,10 +22,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography.X509Certificates;
 
-namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.Model
+namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi
 
 {
-    public partial class PodCertificate : IEquatable<PodCertificate>
+    public partial class PodCertificate 
     {
         private static X509Certificate2 CertFromPem(string pem)
         {

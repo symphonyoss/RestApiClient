@@ -15,11 +15,12 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System.Net.Http;
+
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using Authentication;
-    using Generated.OpenApi.AgentApi.Client;
-    using Generated.OpenApi.AgentApi.Model;
+    using Generated.OpenApi.AgentApi;
 
     /// <summary>
     /// Provides methods for testing endpoint, or use an example of an obsolete endpoint.
@@ -28,7 +29,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class UtilApi
     {
-        private readonly Generated.OpenApi.AgentApi.Api.IUtilApi _datafeedApi;
+        private readonly Generated.OpenApi.AgentApi.UtilClient _utilClient;
 
         private readonly IAuthTokens _authTokens;
 
@@ -42,9 +43,9 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <param name="authTokens">Authentication tokens.</param>
         /// <param name="configuration">Api configuration.</param>
         /// <param name="apiExecutor">Execution strategy.</param>
-        public UtilApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
+        public UtilApi(IAuthTokens authTokens, string baseUrl, HttpClient httpClient, IApiExecutor apiExecutor)
         {
-            _datafeedApi = new Generated.OpenApi.AgentApi.Api.UtilApi(configuration);
+            _utilClient = new Generated.OpenApi.AgentApi.UtilClient(baseUrl, httpClient);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
         }
@@ -56,7 +57,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns></returns>
         public string Echo(string msg)
         {
-            var message = _apiExecutor.Execute(_datafeedApi.V1UtilEchoPost, _authTokens.SessionToken, _authTokens.KeyManagerToken, new SimpleMessage(msg));
+            var message = _apiExecutor.Execute(_utilClient.V1EchoAsync, _authTokens.SessionToken, _authTokens.KeyManagerToken, new SimpleMessage() {Message = msg });
             return message.Message;
         }
 
@@ -67,7 +68,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns></returns>
         public string Obsolete(string msg)
         {
-            var message = _apiExecutor.Execute(_datafeedApi.V1UtilObsoletePost, _authTokens.SessionToken, _authTokens.KeyManagerToken, new SimpleMessage(msg));
+            var message = _apiExecutor.Execute(_utilClient.V1ObsoleteAsync, _authTokens.SessionToken, _authTokens.KeyManagerToken, new SimpleMessage() { Message = msg });
             return message.Message;
         }
     }

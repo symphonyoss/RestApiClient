@@ -15,29 +15,27 @@
 // specific language governing permissions and limitations
 // under the License.
 
-namespace SymphonyOSS.RestApiClient.Tests
+namespace SymphonyOSS.RestApiClient.Internal
 {
     using System.Security.Cryptography.X509Certificates;
-    using Factories;
-    using Generated.OpenApi.AuthenticatorApi;
-    using Moq;
-    using Xunit;
+    using System.Net.Http;
 
-    public class AuthenticatorApiFactoryTest
+    class HttpClientUtils
     {
-        private readonly Mock<X509Certificate2> _certificateMock;
-
-        public AuthenticatorApiFactoryTest()
+        private static HttpClient _defaultHttpClient = new HttpClient();
+        internal static HttpClient CreateClient(X509Certificate2 cert)
         {
-            _certificateMock = new Mock<X509Certificate2>();
-        }
+            if (cert == null)
+            {
+                return _defaultHttpClient;
+            }
 
-        [Fact]
-        public void EnsureConstructs_AuthenticationApi()
-        {
-            var authenticatorApiFactory = new AuthenticatorApiFactory("https://authurl");
-            var result = authenticatorApiFactory.CreateAppAuthenticationApi(_certificateMock.Object);
-            Assert.NotNull(result);
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.ClientCertificateOptions = ClientCertificateOption.Manual;
+            handler.ClientCertificates.Add(cert);
+
+            return new HttpClient(handler);
+
         }
 
     }

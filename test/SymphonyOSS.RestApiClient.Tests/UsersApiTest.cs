@@ -15,14 +15,17 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System.Net.Http;
+
 namespace SymphonyOSS.RestApiClient.Tests
 {
     using System;
     using Api;
     using Api.PodApi;
     using Authentication;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Moq;
     using Xunit;
 
@@ -36,9 +39,8 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var sessionManagerMock = new Mock<IAuthTokens>();
             sessionManagerMock.Setup(obj => obj.SessionToken).Returns("sessionToken");
-            var configuration = new Configuration();
             _apiExecutorMock = new Mock<IApiExecutor>();
-            _usersApi = new UsersApi(sessionManagerMock.Object, configuration, _apiExecutorMock.Object);
+            _usersApi = new UsersApi(sessionManagerMock.Object, "", new HttpClient(), _apiExecutorMock.Object);
         }
 
         [Fact]
@@ -46,7 +48,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             const string email = "email";
             _usersApi.GetUserId(email);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, bool?, User>>(), email, "sessionToken", (bool?) null));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, bool?, CancellationToken, Task<User>>>(), email, "sessionToken", (bool?) null, default(CancellationToken)));
         }
 
         [Fact]
@@ -54,7 +56,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             const long userId = 12345;
             _usersApi.GetUser(userId);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, string, string, bool?, UserV2>>(), "sessionToken", userId, (string)null, (string)null, (bool?)null));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, string, string, bool?, CancellationToken, Task<UserV2>>>(), "sessionToken", userId, (string)null, (string)null, (bool?)null, default(CancellationToken)));
         }
 
     }

@@ -15,16 +15,20 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+
 namespace SymphonyOSS.RestApiClient.Tests
 {
     using System;
     using Api;
     using Api.PodApi;
     using Authentication;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
     using Moq;
     using Xunit;
+    using System.Threading;
 
     public class SecurityApiTest
     {
@@ -37,76 +41,93 @@ namespace SymphonyOSS.RestApiClient.Tests
             var sessionManagerMock = new Mock<IAuthTokens>();
             sessionManagerMock.Setup(obj => obj.SessionToken).Returns("sessionToken");
             sessionManagerMock.Setup(obj => obj.KeyManagerToken).Returns("keyManagerToken");
-            var configuration = new Configuration();
             _apiExecutorMock = new Mock<IApiExecutor>();
-            _securityApi = new SecurityApi(sessionManagerMock.Object, configuration, _apiExecutorMock.Object);
+            _securityApi = new SecurityApi(sessionManagerMock.Object, "", new HttpClient(), _apiExecutorMock.Object);
         }
 
         [Fact]
         public void EnsureCreate_uses_api_executor()
         {
-            var cert = new CompanyCert(
-                "pem",
-                new CompanyCertAttributes(
-                    "name",
-                    new CompanyCertType(CompanyCertType.TypeEnum.OPERATIONSSIGNING),
-                    new CompanyCertStatus(CompanyCertStatus.TypeEnum.TRUSTED)));
+            var cert = new CompanyCert()
+            {
+                Pem = "pem",
+                Attributes = new CompanyCertAttributes()
+                {
+                    Name = "name",
+                    Type = new CompanyCertType()
+                    {
+                        Type = CompanyCertTypeType.OPERATIONSSIGNING
+                    },
+                    Status = new CompanyCertStatus()
+                    {
+                        Type = CompanyCertStatusType.TRUSTED
+                    }
+                }
+            };
             _securityApi.Create(cert);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, CompanyCert, SuccessResponse>>(), "sessionToken", cert));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, CompanyCert, CancellationToken, Task<SuccessResponse>>>(), "sessionToken", cert, default(CancellationToken)));
         }
 
         [Fact]
         public void EnsureDelete_uses_api_executor()
         {
             _securityApi.Delete("fingerPrint");
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, StringId, SuccessResponse>>(), "sessionToken", new StringId("fingerPrint")));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, StringId, CancellationToken, Task<SuccessResponse>>>(), "sessionToken", It.IsAny<StringId>(), default(CancellationToken)));
         }
 
         [Fact]
         public void EnsureGet_uses_api_executor()
         {
             _securityApi.Get("fingerPrint");
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, CompanyCertDetail>>(), "fingerPrint", "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, CancellationToken, Task<CompanyCertDetail>>>(), "fingerPrint", "sessionToken", default(CancellationToken)));
         }
 
         [Fact]
         public void EnsureGetIssued_uses_api_executor()
         {
             _securityApi.GetIssued("fingerPrint");
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, CompanyCertInfoList>>(), "fingerPrint", "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<Anonymous>>>>(), "fingerPrint", "sessionToken", default(CancellationToken)));
         }
 
         [Fact]
         public void EnsureUpdate_uses_api_executor()
         {
-            var certAttributes = new CompanyCertAttributes(
-                "name",
-                new CompanyCertType(CompanyCertType.TypeEnum.OPERATIONSSIGNING),
-                new CompanyCertStatus(CompanyCertStatus.TypeEnum.TRUSTED));
+            var certAttributes = new CompanyCertAttributes()
+            {
+                Name = "name",
+                Type = new CompanyCertType()
+                {
+                    Type = CompanyCertTypeType.OPERATIONSSIGNING
+                },
+                Status = new CompanyCertStatus()
+                {
+                    Type = CompanyCertStatusType.TRUSTED
+                }
+            };
             _securityApi.Update("fingerPrint", certAttributes);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, CompanyCertAttributes, SuccessResponse>>(), "fingerPrint", "sessionToken", certAttributes));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, CompanyCertAttributes, CancellationToken, Task<SuccessResponse>>>(), "fingerPrint", "sessionToken", certAttributes, default(CancellationToken)));
         }
 
         [Fact]
         public void EnsureGetAllTrusted_uses_api_executor()
         {
             _securityApi.GetAllTrusted(0, 10);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, int?, int?, CompanyCertInfoList>>(), "sessionToken", 0, 10));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, int?, int?, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<Anonymous>>>>(), "sessionToken", 0, 10, default(CancellationToken)));
         }
 
         [Fact]
         public void EnsureGetPodManaged_uses_api_executor()
         {
             _securityApi.GetPodManaged(0, 10);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, int?, int?, CompanyCertInfoList>>(), "sessionToken", 0, 10));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, int?, int?, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<Anonymous>>>>(), "sessionToken", 0, 10, default(CancellationToken)));
         }
 
         [Fact]
         public void EnsureGetByTypes_uses_api_executor()
         {
-            var types = new CompanyCertTypeList();
+            var types = new List<CompanyCertType>() as IEnumerable<CompanyCertType>;
             _securityApi.GetByTypes(types, 0, 10);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<CompanyCertTypeList, string, int?, int?, CompanyCertInfoList>>(), types, "sessionToken", 0, 10));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<IEnumerable<CompanyCertType>, string, int?, int?, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<Anonymous>>>>(), types, "sessionToken", 0, 10, default(CancellationToken)));
         }
     }
 }

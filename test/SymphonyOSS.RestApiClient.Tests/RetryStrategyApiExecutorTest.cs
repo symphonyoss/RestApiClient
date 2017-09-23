@@ -18,9 +18,11 @@
 namespace SymphonyOSS.RestApiClient.Tests
 {
     using Api;
-    using Generated.OpenApi.AgentApi.Client;
+    using Generated.OpenApi.AgentApi;
     using Moq;
     using System;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Xunit;
 
     public class RetryStrategyApiExecutorTest
@@ -43,94 +45,94 @@ namespace SymphonyOSS.RestApiClient.Tests
         [Fact]
         public void EnsureCounts_retries_starting_with_zero()
         {
-            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 0)).Returns(true);
-            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 1)).Returns(true);
-            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 2)).Returns(false);
+            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 0)).Returns(true);
+            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 1)).Returns(true);
+            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 2)).Returns(false);
             var func = CreateOneParameterFunc(2, 401, 100);
-            var result = _retryStrategyApiExecutor.Execute(func, 1);
+            var result = _retryStrategyApiExecutor.Execute(func, 1, default(CancellationToken));
             Assert.Equal(1, _functionParameters[0]);
             Assert.Equal(100, result);
-            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 0), Times.Once());
-            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 1), Times.Once());
+            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 0), Times.Once());
+            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 1), Times.Once());
         }
 
         [Fact]
         public void EnsureRetries_one_parameter_function_once_and_then_returns_value()
         {
-            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 0)).Returns(true);
-            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 1)).Returns(false);
+            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 0)).Returns(true);
+            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 1)).Returns(false);
             var func = CreateOneParameterFunc(1, 401, 100);
-            var result = _retryStrategyApiExecutor.Execute(func, 1);
+            var result = _retryStrategyApiExecutor.Execute(func, 1, default(CancellationToken));
             Assert.Equal(1, _functionParameters[0]);
             Assert.Equal(100, result);
-            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<ApiException>(), It.IsAny<int>()), Times.Once());
+            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), It.IsAny<int>()), Times.Once());
         }
 
         [Fact]
         public void EnsureRetries_two_parameter_function_once_and_then_returns_value()
         {
-            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 0)).Returns(true);
-            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 1)).Returns(false);
+            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 0)).Returns(true);
+            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 1)).Returns(false);
             var func = CreateTwoParameterFunc(1, 401, 100);
-            var result = _retryStrategyApiExecutor.Execute(func, 1, 2);
+            var result = _retryStrategyApiExecutor.Execute(func, 1, 2, default(CancellationToken));
             Assert.Equal(1, _functionParameters[0]);
             Assert.Equal(2, _functionParameters[1]);
             Assert.Equal(100, result);
-            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<ApiException>(), It.IsAny<int>()), Times.Once());
+            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), It.IsAny<int>()), Times.Once());
         }
 
         [Fact]
         public void EnsureRetries_three_parameter_function_once_and_then_returns_value()
         {
-            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 0)).Returns(true);
-            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 1)).Returns(false);
+            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 0)).Returns(true);
+            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 1)).Returns(false);
             var func = CreateThreeParameterFunc(1, 401, 100);
-            var result = _retryStrategyApiExecutor.Execute(func, 1, 2, 3);
+            var result = _retryStrategyApiExecutor.Execute(func, 1, 2, 3, default(CancellationToken));
             Assert.Equal(1, _functionParameters[0]);
             Assert.Equal(2, _functionParameters[1]);
             Assert.Equal(3, _functionParameters[2]);
             Assert.Equal(100, result);
-            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<ApiException>(), It.IsAny<int>()), Times.Once());
+            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), It.IsAny<int>()), Times.Once());
         }
 
         [Fact]
         public void EnsureRetries_four_parameter_function_once_and_then_returns_value()
         {
-            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 0)).Returns(true);
-            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 1)).Returns(false);
+            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 0)).Returns(true);
+            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 1)).Returns(false);
             var func = CreateFourParameterFunc(1, 401, 100);
-            var result = _retryStrategyApiExecutor.Execute(func, 1, 2, 3, 4);
+            var result = _retryStrategyApiExecutor.Execute(func, 1, 2, 3, 4, default(CancellationToken));
             Assert.Equal(1, _functionParameters[0]);
             Assert.Equal(2, _functionParameters[1]);
             Assert.Equal(3, _functionParameters[2]);
             Assert.Equal(4, _functionParameters[3]);
             Assert.Equal(100, result);
-            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<ApiException>(), It.IsAny<int>()), Times.Once());
+            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), It.IsAny<int>()), Times.Once());
         }
 
         [Fact]
         public void EnsureRetries_five_parameter_function_once_and_then_returns_value()
         {
-            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 0)).Returns(true);
-            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 1)).Returns(false);
+            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 0)).Returns(true);
+            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 1)).Returns(false);
             var func = CreateFiveParameterFunc(1, 401, 100);
-            var result = _retryStrategyApiExecutor.Execute(func, 1, 2, 3, 4, 5);
+            var result = _retryStrategyApiExecutor.Execute(func, 1, 2, 3, 4, 5, default(CancellationToken));
             Assert.Equal(1, _functionParameters[0]);
             Assert.Equal(2, _functionParameters[1]);
             Assert.Equal(3, _functionParameters[2]);
             Assert.Equal(4, _functionParameters[3]);
             Assert.Equal(5, _functionParameters[4]);
             Assert.Equal(100, result);
-            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<ApiException>(), It.IsAny<int>()), Times.Once());
+            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), It.IsAny<int>()), Times.Once());
         }
 
         [Fact]
         public void EnsureRetries_six_parameter_function_once_and_then_returns_value()
         {
-            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 0)).Returns(true);
-            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 1)).Returns(false);
+            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 0)).Returns(true);
+            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 1)).Returns(false);
             var func = CreateSixParameterFunc(1, 401, 100);
-            var result = _retryStrategyApiExecutor.Execute(func, 1, 2, 3, 4, 5, 6);
+            var result = _retryStrategyApiExecutor.Execute(func, 1, 2, 3, 4, 5, 6, default(CancellationToken));
             Assert.Equal(1, _functionParameters[0]);
             Assert.Equal(2, _functionParameters[1]);
             Assert.Equal(3, _functionParameters[2]);
@@ -138,16 +140,16 @@ namespace SymphonyOSS.RestApiClient.Tests
             Assert.Equal(5, _functionParameters[4]);
             Assert.Equal(6, _functionParameters[5]);
             Assert.Equal(100, result);
-            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<ApiException>(), It.IsAny<int>()), Times.Once());
+            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), It.IsAny<int>()), Times.Once());
         }
 
         [Fact]
         public void EnsureRetries_seven_parameter_function_once_and_then_returns_value()
         {
-            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 0)).Returns(true);
-            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<ApiException>(), 1)).Returns(false);
+            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 0)).Returns(true);
+            _retryStrategyMock.Setup(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), 1)).Returns(false);
             var func = CreateSevenParameterFunc(1, 401, 100);
-            var result = _retryStrategyApiExecutor.Execute(func, 1, 2, 3, 4, 5, 6, 7);
+            var result = _retryStrategyApiExecutor.Execute(func, 1, 2, 3, 4, 5, 6, 7, default(CancellationToken));
             Assert.Equal(1, _functionParameters[0]);
             Assert.Equal(2, _functionParameters[1]);
             Assert.Equal(3, _functionParameters[2]);
@@ -156,104 +158,104 @@ namespace SymphonyOSS.RestApiClient.Tests
             Assert.Equal(6, _functionParameters[5]);
             Assert.Equal(7, _functionParameters[6]);
             Assert.Equal(100, result);
-            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<ApiException>(), It.IsAny<int>()), Times.Once());
+            _retryStrategyMock.Verify(obj => obj.ShouldRetry(It.IsAny<SwaggerException>(), It.IsAny<int>()), Times.Once());
         }
 
-        private Func<int, int> CreateOneParameterFunc(int exceptionsThrown, int statusCode, int result)
+        private Func<int, CancellationToken, Task<int>> CreateOneParameterFunc(int exceptionsThrown, int statusCode, int result)
         {
-            return arg1 =>
+            return (arg1, token) =>
             {
                 _functionParameters = new int[] {arg1};
                 ++_countFunctionCalls;
                 if (_countFunctionCalls <= exceptionsThrown)
                 {
-                    throw new ApiException(statusCode, "");
+                    throw new SwaggerException("" ,statusCode.ToString(), "", null, null);
                 }
-                return result;
+                return Task.FromResult(result);
             };
         }
 
-        private Func<int, int, int> CreateTwoParameterFunc(int exceptionsThrown, int statusCode, int result)
+        private Func<int, int, CancellationToken, Task<int>> CreateTwoParameterFunc(int exceptionsThrown, int statusCode, int result)
         {
-            return (arg1, arg2) =>
+            return (arg1, arg2, token) =>
             {
                 _functionParameters = new int[] { arg1, arg2 };
                 ++_countFunctionCalls;
                 if (_countFunctionCalls <= exceptionsThrown)
                 {
-                    throw new ApiException(statusCode, "");
+                    throw new SwaggerException("", statusCode.ToString(), "", null, null);
                 }
-                return result;
+                return Task.FromResult(result);
             };
         }
 
-        private Func<int, int, int, int> CreateThreeParameterFunc(int exceptionsThrown, int statusCode, int result)
+        private Func<int, int, int, CancellationToken, Task<int>> CreateThreeParameterFunc(int exceptionsThrown, int statusCode, int result)
         {
-            return (arg1, arg2, arg3) =>
+            return (arg1, arg2, arg3, token) =>
             {
                 _functionParameters = new int[] { arg1, arg2, arg3 };
                 ++_countFunctionCalls;
                 if (_countFunctionCalls <= exceptionsThrown)
                 {
-                    throw new ApiException(statusCode, "");
+                    throw new SwaggerException("", statusCode.ToString(), "", null, null);
                 }
-                return result;
+                return Task.FromResult(result);
             };
         }
 
-        private Func<int, int, int, int, int> CreateFourParameterFunc(int exceptionsThrown, int statusCode, int result)
+        private Func<int, int, int, int, CancellationToken, Task<int>> CreateFourParameterFunc(int exceptionsThrown, int statusCode, int result)
         {
-            return (arg1, arg2, arg3, arg4) =>
+            return (arg1, arg2, arg3, arg4, token) =>
             {
                 _functionParameters = new int[] { arg1, arg2, arg3, arg4 };
                 ++_countFunctionCalls;
                 if (_countFunctionCalls <= exceptionsThrown)
                 {
-                    throw new ApiException(statusCode, "");
+                    throw new SwaggerException("", statusCode.ToString(), "", null, null);
                 }
-                return result;
+                return Task.FromResult(result);
             };
         }
 
-        private Func<int, int, int, int, int, int> CreateFiveParameterFunc(int exceptionsThrown, int statusCode, int result)
+        private Func<int, int, int, int, int, CancellationToken, Task<int>> CreateFiveParameterFunc(int exceptionsThrown, int statusCode, int result)
         {
-            return (arg1, arg2, arg3, arg4, arg5) =>
+            return (arg1, arg2, arg3, arg4, arg5, token) =>
             {
                 _functionParameters = new int[] { arg1, arg2, arg3, arg4, arg5 };
                 ++_countFunctionCalls;
                 if (_countFunctionCalls <= exceptionsThrown)
                 {
-                    throw new ApiException(statusCode, "");
+                    throw new SwaggerException("", statusCode.ToString(), "", null, null);
                 }
-                return result;
+                return Task.FromResult(result);
             };
         }
 
-        private Func<int, int, int, int, int, int, int> CreateSixParameterFunc(int exceptionsThrown, int statusCode, int result)
+        private Func<int, int, int, int, int, int, CancellationToken, Task<int>> CreateSixParameterFunc(int exceptionsThrown, int statusCode, int result)
         {
-            return (arg1, arg2, arg3, arg4, arg5, arg6) =>
+            return (arg1, arg2, arg3, arg4, arg5, arg6, token) =>
             {
                 _functionParameters = new int[] { arg1, arg2, arg3, arg4, arg5, arg6 };
                 ++_countFunctionCalls;
                 if (_countFunctionCalls <= exceptionsThrown)
                 {
-                    throw new ApiException(statusCode, "");
+                    throw new SwaggerException("", statusCode.ToString(), "", null, null);
                 }
-                return result;
+                return Task.FromResult(result);
             };
         }
 
-        private Func<int, int, int, int, int, int, int, int> CreateSevenParameterFunc(int exceptionsThrown, int statusCode, int result)
+        private Func<int, int, int, int, int, int, int, CancellationToken, Task<int>> CreateSevenParameterFunc(int exceptionsThrown, int statusCode, int result)
         {
-            return (arg1, arg2, arg3, arg4, arg5, arg6, arg7) =>
+            return (arg1, arg2, arg3, arg4, arg5, arg6, arg7, token) =>
             {
                 _functionParameters = new int[] { arg1, arg2, arg3, arg4, arg5, arg6, arg7 };
                 ++_countFunctionCalls;
                 if (_countFunctionCalls <= exceptionsThrown)
                 {
-                    throw new ApiException(statusCode, "");
+                    throw new SwaggerException("", statusCode.ToString(), "", null, null);
                 }
-                return result;
+                return Task.FromResult(result);
             };
         }
 

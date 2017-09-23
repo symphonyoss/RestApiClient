@@ -17,7 +17,7 @@
 
 using System;
 using SymphonyOSS.RestApiClient.Factories;
-using SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.Model;
+using SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi;
 
 namespace SymphonyOSS.RestApiClient.Tests
 {
@@ -28,7 +28,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         [Fact]
         public void EnsureCreation_sets_null_timestamps_to_min_value()
         {
-            var connection = ConnectionFactory.Create(new UserConnection(12345, UserConnection.StatusEnum.ACCEPTED));
+            var connection = ConnectionFactory.Create(new UserConnection() { UserId = 12345, Status = UserConnectionStatus.ACCEPTED});
             Assert.Equal(DateTime.MinValue, connection.FirstRequestedAt);
             Assert.Equal(DateTime.MinValue, connection.UpdatedAt);
         }

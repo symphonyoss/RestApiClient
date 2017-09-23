@@ -15,6 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System.Net.Http;
 using SymphonyOSS.RestApiClient.Entities;
 
 namespace SymphonyOSS.RestApiClient.Tests
@@ -22,10 +23,12 @@ namespace SymphonyOSS.RestApiClient.Tests
     using Api;
     using Api.PodApi;
     using Authentication;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
     using Moq;
     using System;
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Xunit;
     using Presence = Entities.Presence;
 
@@ -39,37 +42,40 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var sessionManagerMock = new Mock<IAuthTokens>();
             sessionManagerMock.Setup(obj => obj.SessionToken).Returns("sessionToken");
-            var configuration = new Configuration();
             _apiExecutorMock = new Mock<IApiExecutor>();
-            _presenceApi = new PresenceApi(sessionManagerMock.Object, configuration, _apiExecutorMock.Object);
+            _presenceApi = new PresenceApi(sessionManagerMock.Object, "", new HttpClient(), _apiExecutorMock.Object);
         }
 
         [Fact]
         public void EnsureGetPresences_uses_retry_strategy()
         {
             _presenceApi.GetPresences();
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, PresenceList>>(), "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<UserPresence>>>>(), "sessionToken", default(CancellationToken)));
         }
 
         [Fact]
         public void EnsureGetPresence_uses_retry_strategy()
         {
             const long uid = 1;
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<long?, string, Generated.OpenApi.PodApi.Model.Presence>>(), (long?)uid, "sessionToken"))
-                .Returns(new Generated.OpenApi.PodApi.Model.Presence(Generated.OpenApi.PodApi.Model.Presence.CategoryEnum.AVAILABLE));
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<long, string, CancellationToken, Task<Generated.OpenApi.PodApi.Presence>>>(), uid, "sessionToken", default(CancellationToken)))
+                .Returns(new Generated.OpenApi.PodApi.Presence() {Category  = Generated.OpenApi.PodApi.PresenceCategory.AVAILABLE});
             _presenceApi.GetPresence(uid);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<long?, string, Generated.OpenApi.PodApi.Model.Presence>>(), (long?)uid, "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<long, string, CancellationToken, Task<Generated.OpenApi.PodApi.Presence>>>(), uid, "sessionToken", default(CancellationToken)));
         }
 
         [Fact]
         public void EnsureSetPresence_uses_retry_strategy()
         {
             const long uid = 1;
-            var presence = new Presence(uid, PresenceCategory.Available);
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<long?, string, Generated.OpenApi.PodApi.Model.Presence, Generated.OpenApi.PodApi.Model.Presence>>(), (long?)uid, "sessionToken", It.IsAny<Generated.OpenApi.PodApi.Model.Presence>()))
-                .Returns(new Generated.OpenApi.PodApi.Model.Presence(Generated.OpenApi.PodApi.Model.Presence.CategoryEnum.AVAILABLE));
+            var presence = new Presence(uid, SymphonyOSS.RestApiClient.Entities.PresenceCategory.Available);
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<long, string, Generated.OpenApi.PodApi.Presence, CancellationToken, Task<Generated.OpenApi.PodApi.Presence>>>(), uid, "sessionToken", It.IsAny<Generated.OpenApi.PodApi.Presence>(), default(CancellationToken)))
+                .Returns(new Generated.OpenApi.PodApi.Presence() { Category = Generated.OpenApi.PodApi.PresenceCategory.AVAILABLE});
             _presenceApi.SetPresence(presence);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<long?, string, Generated.OpenApi.PodApi.Model.Presence, Generated.OpenApi.PodApi.Model.Presence>> (), (long?)uid, "sessionToken", It.IsAny<Generated.OpenApi.PodApi.Model.Presence>()));
+            _apiExecutorMock.Verify(obj =>
+                obj.Execute(
+                    It.IsAny<Func<long, string, Generated.OpenApi.PodApi.Presence, CancellationToken,
+                        Task<Generated.OpenApi.PodApi.Presence>>>(), uid, "sessionToken",
+                    It.IsAny<Generated.OpenApi.PodApi.Presence>(), default(CancellationToken)));
         }
 
     }

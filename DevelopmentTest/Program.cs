@@ -56,7 +56,6 @@ namespace DevelopmentTest
 
             messagesApi.PostMessage(messageSubmit);
 
-            return;
             var datafeedApi = agentApiFactory.CreateDatafeedApi(sessionManager);
 
             datafeedApi.OnMessage += (sender, e) =>

@@ -15,11 +15,13 @@
 // specific language governing permissions and limitations
 // under the License.
 
+
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using Authentication;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
+    using System.Net.Http;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Provides methods for managing the company certificates, by encapsulating
@@ -28,7 +30,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     /// </summary>
     public class SecurityApi
     {
-        private readonly Generated.OpenApi.PodApi.Api.SecurityApi _securityApi;
+        private readonly Generated.OpenApi.PodApi.CompanycertClient _securityApi;
 
         private readonly IAuthTokens _authTokens;
 
@@ -42,9 +44,9 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="authTokens">Authentication tokens.</param>
         /// <param name="configuration">Api configuration.</param>
         /// <param name="apiExecutor">Execution strategy.</param>
-        public SecurityApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
+        public SecurityApi(IAuthTokens authTokens, string baseUrl, HttpClient httpClient, IApiExecutor apiExecutor)
         {
-            _securityApi = new Generated.OpenApi.PodApi.Api.SecurityApi(configuration);
+            _securityApi = new Generated.OpenApi.PodApi.CompanycertClient(baseUrl, httpClient);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
         }
@@ -55,7 +57,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>Success response.</returns>
         public SuccessResponse Create(CompanyCert cert)
         {
-            return _apiExecutor.Execute(_securityApi.V1CompanycertCreatePost, _authTokens.SessionToken, cert);
+            return _apiExecutor.Execute(_securityApi.V1CreateAsync, _authTokens.SessionToken, cert);
         }
 
         /// <summary>
@@ -64,7 +66,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>Success response.</returns>
         public SuccessResponse Delete(string fingerPrint)
         {
-            return _apiExecutor.Execute(_securityApi.V1CompanycertDeletePost, _authTokens.SessionToken, new StringId(fingerPrint));
+            return _apiExecutor.Execute(_securityApi.V1DeleteAsync, _authTokens.SessionToken, new StringId() { Id = fingerPrint});
         }
 
         /// <summary>
@@ -73,16 +75,16 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>Company certificate details.</returns>
         public CompanyCertDetail Get(string fingerPrint)
         {
-            return _apiExecutor.Execute(_securityApi.V1CompanycertFingerPrintGetGet, fingerPrint, _authTokens.SessionToken);
+            return _apiExecutor.Execute(_securityApi.V1GetAsync, fingerPrint, _authTokens.SessionToken);
         }
 
         /// <summary>
         /// Return a list of all certificates which were verified to the cert whose fingerprint is passed.
         /// </summary>
         /// <returns>List of certificates.</returns>
-        public CompanyCertInfoList GetIssued(string fingerPrint)
+        public IEnumerable<Anonymous> GetIssued(string fingerPrint)
         {
-            return _apiExecutor.Execute(_securityApi.V1CompanycertFingerPrintIssuedByGet, fingerPrint, _authTokens.SessionToken);
+            return _apiExecutor.Execute(_securityApi.V1IssuedbyAsync, fingerPrint, _authTokens.SessionToken);
         }
 
         /// <summary>
@@ -91,34 +93,34 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>Success response.</returns>
         public SuccessResponse Update(string fingerPrint, CompanyCertAttributes certAttributes)
         {
-            return _apiExecutor.Execute(_securityApi.V1CompanycertFingerPrintUpdatePost, fingerPrint, _authTokens.SessionToken, certAttributes);
+            return _apiExecutor.Execute(_securityApi.V1UpdateAsync, fingerPrint, _authTokens.SessionToken, certAttributes);
         }
 
         /// <summary>
         /// List all trusted certs.
         /// </summary>
         /// <returns>List of certificates.</returns>
-        public CompanyCertInfoList GetAllTrusted(int? skip = null, int? limit = null)
+        public IEnumerable<Anonymous> GetAllTrusted(int? skip = null, int? limit = null)
         {
-            return _apiExecutor.Execute(_securityApi.V1CompanycertListGet, _authTokens.SessionToken, skip, limit);
+            return _apiExecutor.Execute(_securityApi.V1ListAsync, _authTokens.SessionToken, skip, limit);
         }
 
         /// <summary>
         /// List all trusted certs.
         /// </summary>
         /// <returns>List of certificates.</returns>
-        public CompanyCertInfoList GetPodManaged(int? skip = null, int? limit = null)
+        public IEnumerable<Anonymous> GetPodManaged(int? skip = null, int? limit = null)
         {
-            return _apiExecutor.Execute(_securityApi.V1CompanycertPodmanagedListGet, _authTokens.SessionToken, skip, limit);
+            return _apiExecutor.Execute(_securityApi.V1PodmanagedListAsync, _authTokens.SessionToken, skip, limit);
         }
 
         /// <summary>
         /// List all certs of the given types.
         /// </summary>
         /// <returns>List of certificates.</returns>
-        public CompanyCertInfoList GetByTypes(CompanyCertTypeList typeIdList, int? skip = null, int? limit = null)
+        public IEnumerable<Anonymous> GetByTypes(IEnumerable<CompanyCertType> typeIdList, int? skip = null, int? limit = null)
         {
-            return _apiExecutor.Execute(_securityApi.V1CompanycertTypeListPost, typeIdList, _authTokens.SessionToken, skip, limit);
+            return _apiExecutor.Execute(_securityApi.V1TypeListAsync, typeIdList, _authTokens.SessionToken, skip, limit);
         }
     }
 }

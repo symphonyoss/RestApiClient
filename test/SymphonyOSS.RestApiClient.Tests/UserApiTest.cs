@@ -16,6 +16,8 @@
 // under the License.
 
 using System.Collections.Generic;
+using System.Net.Http;
+using Newtonsoft.Json.Serialization;
 
 namespace SymphonyOSS.RestApiClient.Tests
 {
@@ -23,8 +25,9 @@ namespace SymphonyOSS.RestApiClient.Tests
     using Api;
     using Api.PodApi;
     using Authentication;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Moq;
     using Xunit;
 
@@ -38,9 +41,8 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var sessionManagerMock = new Mock<IAuthTokens>();
             sessionManagerMock.Setup(obj => obj.SessionToken).Returns("sessionToken");
-            var configuration = new Configuration();
             _apiExecutorMock = new Mock<IApiExecutor>();
-            _userApi = new UserApi(sessionManagerMock.Object, configuration, _apiExecutorMock.Object);
+            _userApi = new UserApi(sessionManagerMock.Object, "", new HttpClient(), _apiExecutorMock.Object);
         }
 
         [Fact]
@@ -48,7 +50,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var payload = new UserCreate();
             _userApi.CreateUser(payload);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserCreate, UserDetail>>(), "sessionToken", payload));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserCreate, CancellationToken, Task<UserDetail>>>(), "sessionToken", payload, default(CancellationToken)));
         }
 
         [Fact]
@@ -56,14 +58,14 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var payload = new UserFilter();
             _userApi.FindUser(payload);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserFilter, UserList>>(), "sessionToken", payload));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserFilter, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<UserInfo>>>>(), "sessionToken", payload, default(CancellationToken)));
         }
 
         [Fact]
         public void EnsureGetAllUsers_uses_retry_strategy()
         {
             _userApi.GetAllUsers();
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserIdList>>(), "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<long>>>>(), "sessionToken", default(CancellationToken)));
         }
 
         [Fact]
@@ -71,7 +73,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var uid = 12345;
             _userApi.ResetPassword(uid);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, PasswordReset, SuccessResponse>>(), "sessionToken", uid, It.IsAny<PasswordReset>()));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, PasswordReset, CancellationToken, Task<SuccessResponse>>>(), "sessionToken", uid, It.IsAny<PasswordReset>(), default(CancellationToken)));
         }
 
         [Fact]
@@ -79,7 +81,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var uid = 12345;
             _userApi.GetAvatar(uid);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, AvatarList>>(), "sessionToken", uid));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<Avatar>>>>(), "sessionToken", uid, default(CancellationToken)));
         }
 
         [Fact]
@@ -88,7 +90,7 @@ namespace SymphonyOSS.RestApiClient.Tests
             var uid = 12345;
             var image = "image";
             _userApi.UpdateAvatar(uid, image);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, AvatarUpdate, SuccessResponse>>(), "sessionToken", uid, It.IsAny<AvatarUpdate>()));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, AvatarUpdate, CancellationToken, Task<SuccessResponse>>>(), "sessionToken", uid, It.IsAny<AvatarUpdate>(), default(CancellationToken)));
         }
 
         [Fact]
@@ -96,7 +98,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var uid = 12345;
             _userApi.GetDelegates(uid);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, IntegerList>>(), "sessionToken", uid));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<long>>>>(), "sessionToken", uid, default(CancellationToken)));
         }
 
         [Fact]
@@ -105,7 +107,7 @@ namespace SymphonyOSS.RestApiClient.Tests
             var uid = 12345;
             var payload = new DelegateAction();
             _userApi.UpdateDelegates(uid, payload);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, DelegateAction, SuccessResponse>>(), "sessionToken", uid, It.IsAny<DelegateAction>()));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, DelegateAction, CancellationToken, Task<SuccessResponse>>>(), "sessionToken", uid, It.IsAny<DelegateAction>(), default(CancellationToken)));
         }
 
         [Fact]
@@ -113,7 +115,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var uid = 12345;
             _userApi.GetDisclaimer(uid);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, Disclaimer>>(), "sessionToken", uid));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, CancellationToken, Task<Disclaimer>>>(), "sessionToken", uid, default(CancellationToken)));
         }
 
         [Fact]
@@ -122,7 +124,7 @@ namespace SymphonyOSS.RestApiClient.Tests
             var uid = 12345;
             var disclaimer = "disclaimer";
             _userApi.UpdateDisclaimer(uid, disclaimer);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, StringId, SuccessResponse>>(), "sessionToken", uid, It.IsAny<StringId>()));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, StringId, CancellationToken, Task<SuccessResponse>>>(), "sessionToken", uid, It.IsAny<StringId>(), default(CancellationToken)));
         }
 
         [Fact]
@@ -130,7 +132,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var uid = 12345;
             _userApi.GetFeatures(uid);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, FeatureList>>(), "sessionToken", uid));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<Feature>>>>(), "sessionToken", uid, default(CancellationToken)));
         }
 
         [Fact]
@@ -139,7 +141,7 @@ namespace SymphonyOSS.RestApiClient.Tests
             var uid = 12345;
             var features = new List<Feature>();
             _userApi.UpdateFeatures(uid, features);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, FeatureList, SuccessResponse>>(), "sessionToken", uid, It.IsAny<FeatureList>()));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, List<Feature>, CancellationToken, Task<SuccessResponse>>>(), "sessionToken", uid, It.IsAny<List<Feature>>(), default(CancellationToken)));
         }
 
         [Fact]
@@ -147,7 +149,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var uid = 12345;
             _userApi.GetDetails(uid);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, UserDetail>>(), "sessionToken", uid));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, CancellationToken, Task<UserDetail>>>(), "sessionToken", uid, default(CancellationToken)));
         }
 
         [Fact]
@@ -155,7 +157,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var uid = 12345;
             _userApi.GetRoles(uid);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, RoleList>>(), "sessionToken", uid));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<Role>>>>(), "sessionToken", uid, default(CancellationToken)));
         }
 
         [Fact]
@@ -164,7 +166,7 @@ namespace SymphonyOSS.RestApiClient.Tests
             var uid = 12345;
             var roles = new List<string>();
             _userApi.UpdateRoles(uid, roles);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, StringList, SuccessResponse>>(), "sessionToken", uid, It.IsAny<StringList>()));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, List<string>, CancellationToken, Task<SuccessResponse>>>(), "sessionToken", uid, It.IsAny<List<string>>(), default(CancellationToken)));
         }
 
         [Fact]
@@ -172,7 +174,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var uid = 12345;
             _userApi.GetStatus(uid);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, UserStatus>>(), "sessionToken", uid));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, CancellationToken, Task<UserStatus>>>(), "sessionToken", uid, default(CancellationToken)));
         }
 
         [Fact]
@@ -181,7 +183,7 @@ namespace SymphonyOSS.RestApiClient.Tests
             var uid = 12345;
             var status = new UserStatus();
             _userApi.UpdateStatus(uid, status);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, UserStatus, SuccessResponse>>(), "sessionToken", uid, It.IsAny<UserStatus>()));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, UserStatus, CancellationToken, Task<SuccessResponse>>>(), "sessionToken", uid, It.IsAny<UserStatus>(), default(CancellationToken)));
         }
 
         [Fact]
@@ -190,7 +192,7 @@ namespace SymphonyOSS.RestApiClient.Tests
             var uid = 12345;
             var payload = new UserAttributes();
             _userApi.UpdateUser(uid, payload);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long?, UserAttributes, UserDetail>>(), "sessionToken", uid, It.IsAny<UserAttributes>()));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, UserAttributes, CancellationToken, Task<UserDetail>>>(), "sessionToken", uid, It.IsAny<UserAttributes>(), default(CancellationToken)));
         }
     }
 }

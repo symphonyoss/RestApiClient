@@ -41,15 +41,15 @@ namespace SymphonyOSS.RestApiClient.Api
                 return false;
             }
 
-            var agentApiException = e as Generated.OpenApi.AgentApi.Client.ApiException;
-            var errorCode = agentApiException?.ErrorCode;
+            var agentApiException = e as Generated.OpenApi.AgentApi.SwaggerException;
+            var errorCode = agentApiException?.StatusCode;
             if (errorCode == null)
             {
-                var podApiException = e as Generated.OpenApi.PodApi.Client.ApiException;
-                errorCode = podApiException?.ErrorCode;
+                var podApiException = e as Generated.OpenApi.PodApi.SwaggerException;
+                errorCode = podApiException?.StatusCode;
             }
 
-            if (errorCode == (int)HttpStatusCode.Unauthorized)
+            if (errorCode == ((int) HttpStatusCode.Unauthorized).ToString())
             {
                 _authTokens.GenerateTokens();
                 return true;

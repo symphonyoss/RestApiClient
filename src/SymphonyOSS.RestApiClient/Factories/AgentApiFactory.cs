@@ -17,11 +17,10 @@
 
 namespace SymphonyOSS.RestApiClient.Factories
 {
-    using System.Security.Cryptography.X509Certificates;
     using Api;
     using Api.AgentApi;
     using Authentication;
-    using Generated.OpenApi.AgentApi.Client;
+    using Internal;
 
     /// <summary>
     /// Constructs an instance of an API available in the AgentApi,
@@ -90,14 +89,7 @@ namespace SymphonyOSS.RestApiClient.Factories
 
         private T Create<T>(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
-            var configuration = new Configuration();
-            configuration.BasePath = _baseUrl;
-
-            if (sessionManager.Certificate != null)
-            {
-                configuration.ApiClient.RestClient.HttpClientFactory =
-                    new Internal.ClientAuthHttpClientFactory(sessionManager.Certificate);
-            }
+            var httpClient = HttpClientUtils.CreateClient(sessionManager.Certificate);
 
             if (apiExecutor == null)
             {
@@ -105,7 +97,7 @@ namespace SymphonyOSS.RestApiClient.Factories
                 apiExecutor = new RetryStrategyApiExecutor(retryStrategy);
             }
 
-            return ApiFactoryUtils.CallConstructor<T>(new object[] { sessionManager, configuration, apiExecutor });
+            return ApiFactoryUtils.CallConstructor<T>(new object[] { sessionManager, _baseUrl, httpClient, apiExecutor });
         }
     }
 }

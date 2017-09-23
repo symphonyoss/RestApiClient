@@ -16,13 +16,14 @@
 // under the License.
 
 using System;
+using System.Collections.Generic;
 
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System.Diagnostics;
     using Authentication;
-    using Generated.OpenApi.AgentApi.Client;
-    using Generated.OpenApi.AgentApi.Model;
+    using Generated.OpenApi.AgentApi;
+    using System.Net.Http;
     using Microsoft.Extensions.Logging;
     using SymphonyOSS.RestApiClient.Logging;
     using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class DatafeedApi : AbstractDatafeedApi
     {
-        private readonly Generated.OpenApi.AgentApi.Api.IDatafeedApi _datafeedApi;
+        private readonly Generated.OpenApi.AgentApi.DatafeedClient  _datafeedApi;
 
         private ILogger _log;
         /// <summary>
@@ -45,9 +46,9 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <param name="authTokens">Authentication tokens.</param>
         /// <param name="configuration">Api configuration.</param>
         /// <param name="apiExecutor">Execution strategy.</param>
-        public DatafeedApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor) : base(authTokens, apiExecutor)
+        public DatafeedApi(IAuthTokens authTokens, string baseUrl, HttpClient httpClient, IApiExecutor apiExecutor) : base(authTokens, apiExecutor)
         {
-            _datafeedApi = new Generated.OpenApi.AgentApi.Api.DatafeedApi(configuration);
+            _datafeedApi = new Generated.OpenApi.AgentApi.DatafeedClient(baseUrl, httpClient);
             _log = ApiLogging.LoggerFactory?.CreateLogger<DatafeedApi>();
         }
 
@@ -127,11 +128,11 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns>The ID of the datafeed.</returns>
         public string CreateDatafeed()
         {
-            var datafeed = ApiExecutor.Execute(_datafeedApi.V4DatafeedCreatePost, AuthTokens.SessionToken, AuthTokens.KeyManagerToken);
+            var datafeed = ApiExecutor.Execute(_datafeedApi.V4CreateAsync, AuthTokens.SessionToken, AuthTokens.KeyManagerToken);
             return datafeed.Id;
         }
 
-        private V4EventList ReadDatafeed(string id, int? maxMessages = null)
+        private IEnumerable<V4Event> ReadDatafeed(string id, int? maxMessages = null)
         {
             _log?.LogDebug("Waiting for messages on datafeed id = {id}", id);
 
@@ -142,7 +143,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             var task = Task.Run(() =>
             {
                 return ApiExecutor.Execute(
-                    _datafeedApi.V4DatafeedIdReadGet,
+                    _datafeedApi.V4ReadAsync,
                     id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken,
                     maxMessages);
             });
@@ -155,7 +156,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 
         }
 
-        private V4EventList ReadDatafeed(ref string id, int? maxMessages = null, int? retriesAllowed = 1)
+        private IEnumerable<V4Event> ReadDatafeed(ref string id, int? maxMessages = null, int? retriesAllowed = 1)
         {
             var countDatafeedErrors = 0;
             while (true)
@@ -169,7 +170,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                     }
                     return messageList;
                 }
-                catch (ApiException e)
+                catch (SwaggerException e)
                 {
                     if (countDatafeedErrors >= retriesAllowed)
                     {

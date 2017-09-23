@@ -18,10 +18,11 @@
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using Authentication;
-    using Generated.OpenApi.AgentApi.Client;
-    using Generated.OpenApi.AgentApi.Model;
+    using Generated.OpenApi.AgentApi;
+    using System.Net.Http;
     using Logging;
     using Microsoft.Extensions.Logging;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Provides an event-based firehose of a pod's incoming messages.
@@ -32,7 +33,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     {
         private ILogger _log;
 
-        private readonly Generated.OpenApi.AgentApi.Api.IFirehoseApi _firehoseApi;
+        private readonly Generated.OpenApi.AgentApi.FirehoseClient _firehoseApi;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FirehoseApi" /> class.
@@ -42,11 +43,11 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <param name="authTokens">Authentication tokens.</param>
         /// <param name="configuration">Api configuration.</param>
         /// <param name="apiExecutor">Execution strategy.</param>
-        public FirehoseApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
+        public FirehoseApi(IAuthTokens authTokens, string baseUrl, HttpClient httpClient, IApiExecutor apiExecutor)
             : base(authTokens, apiExecutor)
         {
             _log = ApiLogging.LoggerFactory?.CreateLogger<FirehoseApi>();
-            _firehoseApi = new Generated.OpenApi.AgentApi.Api.FirehoseApi(configuration);
+            _firehoseApi = new Generated.OpenApi.AgentApi.FirehoseClient(baseUrl, httpClient);
         }
 
         /// <summary>
@@ -116,20 +117,20 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns>The ID of the firehose.</returns>
         public string CreateFirehose()
         {
-            var firehose = ApiExecutor.Execute(_firehoseApi.V4FirehoseCreatePost, AuthTokens.SessionToken,
+            var firehose = ApiExecutor.Execute(_firehoseApi.V4CreateAsync, AuthTokens.SessionToken,
                 AuthTokens.KeyManagerToken);
             return firehose.Id;
         }
 
-        private V4EventList ReadFirehose(string id, int? maxMessages = null)
+        private IEnumerable<V4Event> ReadFirehose(string id, int? maxMessages = null)
         {
             return ApiExecutor.Execute(
-                _firehoseApi.V4FirehoseIdReadGet,
+                _firehoseApi.V4ReadAsync,
                 id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken,
                 maxMessages);
         }
 
-        private V4EventList ReadFirehose(ref string id, int? maxMessages = null, int? retriesAllowed = 1)
+        private IEnumerable<V4Event> ReadFirehose(ref string id, int? maxMessages = null, int? retriesAllowed = 1)
         {
             var countFirehoseErrors = 0;
             while (true)
@@ -143,7 +144,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                     }
                     return messageList;
                 }
-                catch (ApiException e)
+                catch (SwaggerException e)
                 {
                     if (countFirehoseErrors >= retriesAllowed)
                     {

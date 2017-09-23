@@ -16,6 +16,8 @@
 // under the License.
 
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SymphonyOSS.RestApiClient.Tests
 {
@@ -23,10 +25,10 @@ namespace SymphonyOSS.RestApiClient.Tests
     using Api;
     using Api.PodApi;
     using Authentication;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
     using Moq;
     using Xunit;
+    using System.Net.Http;
 
     public class ConnectionApiTest
     {
@@ -39,69 +41,68 @@ namespace SymphonyOSS.RestApiClient.Tests
             var sessionManagerMock = new Mock<IAuthTokens>();
             sessionManagerMock.Setup(obj => obj.SessionToken).Returns("sessionToken");
             sessionManagerMock.Setup(obj => obj.KeyManagerToken).Returns("keyManagerToken");
-            var configuration = new Configuration();
             _apiExecutorMock = new Mock<IApiExecutor>();
-            _connectionApi = new ConnectionApi(sessionManagerMock.Object, configuration, _apiExecutorMock.Object);
+            _connectionApi = new ConnectionApi(sessionManagerMock.Object, "", new HttpClient(), _apiExecutorMock.Object);
         }
 
         [Fact]
         public void EnsureGet_uses_api_executor()
         {
             var userId = 12345;
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, UserConnection>>(), "sessionToken", userId.ToString()))
-                .Returns(new UserConnection(userId, UserConnection.StatusEnum.ACCEPTED, 0, 0, 0));
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, CancellationToken, Task<UserConnection>>>(), "sessionToken", userId.ToString(), default(CancellationToken)))
+                .Returns(new UserConnection() {UserId = userId, Status = UserConnectionStatus.ACCEPTED });
             _connectionApi.Get(userId);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, UserConnection>>(), "sessionToken", userId.ToString()));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, CancellationToken, Task<UserConnection>>>(), "sessionToken", userId.ToString(), default(CancellationToken)));
         }
 
         [Fact]
         public void EnsureList_uses_api_executor_for_null_null()
         {
             _connectionApi.List(null, null);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, UserConnectionList>>(), "sessionToken", null, null));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, Status?, string, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<UserConnection>>>>(), "sessionToken", null, null, default(CancellationToken)));
         }
 
         [Fact]
         public void EnsureList_uses_api_executor_for_status_and_user_ids()
         {
             _connectionApi.List(
-                UserConnection.StatusEnum.ACCEPTED,
+                Status.ACCEPTED,
                 new List<long>()
                 {
                     12345,
                     67890
                 });
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, UserConnectionList>>(), "sessionToken", "accepted", "12345,67890"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, Status?, string, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<UserConnection>>>>(), "sessionToken", Status.ACCEPTED, "12345,67890", default(CancellationToken)));
         }
 
         [Fact]
         public void EnsureCreate_uses_api_executor()
         {
             var userId = 12345;
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, UserConnection>>(), "sessionToken", It.IsAny<UserConnectionRequest>()))
-                .Returns(new UserConnection(userId, UserConnection.StatusEnum.ACCEPTED, 0, 0, 0));
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, CancellationToken, Task<UserConnection>>>(), "sessionToken", It.IsAny<UserConnectionRequest>(), default(CancellationToken)))
+                .Returns(new UserConnection() {UserId = userId, Status = UserConnectionStatus.ACCEPTED});
             _connectionApi.Create(userId);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, UserConnection>>(), "sessionToken", new UserConnectionRequest(userId)));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, CancellationToken, Task<UserConnection>>>(), "sessionToken", It.IsAny<UserConnectionRequest>(), default(CancellationToken)));
         }
 
         [Fact]
         public void EnsureAccept_uses_api_executor()
         {
             var userId = 12345;
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, UserConnection>>(), "sessionToken", It.IsAny<UserConnectionRequest>()))
-                .Returns(new UserConnection(userId, UserConnection.StatusEnum.ACCEPTED, 0, 0, 0));
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, CancellationToken, Task<UserConnection>>>(), "sessionToken", It.IsAny<UserConnectionRequest>(), default(CancellationToken)))
+                .Returns(new UserConnection() { UserId = userId, Status = UserConnectionStatus.ACCEPTED });
             _connectionApi.Accept(userId);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, UserConnection>>(), "sessionToken", new UserConnectionRequest(userId)));
-        }
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, CancellationToken, Task<UserConnection>>>(), "sessionToken", It.IsAny<UserConnectionRequest>(), default(CancellationToken)));
+       }
 
         [Fact]
         public void EnsureReject_uses_api_executor()
         {
             var userId = 12345;
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, UserConnection>>(), "sessionToken", It.IsAny<UserConnectionRequest>()))
-                .Returns(new UserConnection(userId, UserConnection.StatusEnum.ACCEPTED, 0, 0, 0));
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, CancellationToken, Task<UserConnection>>>(), "sessionToken", It.IsAny<UserConnectionRequest>(), default(CancellationToken)))
+                .Returns(new UserConnection() { UserId = userId, Status = UserConnectionStatus.ACCEPTED });
             _connectionApi.Reject(userId);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, UserConnection>>(), "sessionToken", new UserConnectionRequest(userId)));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserConnectionRequest, CancellationToken, Task<UserConnection>>>(), "sessionToken", It.IsAny<UserConnectionRequest>(), default(CancellationToken)));
         }
     }
 }

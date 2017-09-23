@@ -17,9 +17,9 @@
 
 namespace SymphonyOSS.RestApiClient.Factories
 {
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
     using User = Entities.User;
-    using Generated.OpenApi.AgentApi.Model;
+    using Generated.OpenApi.AgentApi;
 
     public abstract class UserFactory
     {

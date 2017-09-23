@@ -19,7 +19,6 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System;
     using Message= Entities.Message;
-    using Generated.OpenApi.AgentApi.Model;
 
     /// <summary>
     /// Event data for incoming messages.

@@ -18,8 +18,8 @@
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using Authentication;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
+    using System.Net.Http;
 
     /// <summary>
     /// Provides a method for getting the current user's session information, by encapsulating
@@ -28,7 +28,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     /// </summary>
     public class SessionApi
     {
-        private readonly Generated.OpenApi.PodApi.Api.ISessionApi _sessionApi;
+        private readonly Generated.OpenApi.PodApi.SessioninfoClient _sessionApi;
 
         private readonly IAuthTokens _authTokens;
 
@@ -42,9 +42,9 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="authTokens">Authentication tokens.</param>
         /// <param name="configuration">Api configuration.</param>
         /// <param name="apiExecutor">Execution strategy.</param>
-        public SessionApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
+        public SessionApi(IAuthTokens authTokens, string baseUrl, HttpClient httpClient, IApiExecutor apiExecutor)
         {
-            _sessionApi = new Generated.OpenApi.PodApi.Api.SessionApi(configuration);
+            _sessionApi = new Generated.OpenApi.PodApi.SessioninfoClient(baseUrl, httpClient);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
         }
@@ -55,7 +55,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The user ID.</returns>
         public long GetUserId()
         {
-            var sessionInfo = _apiExecutor.Execute(_sessionApi.V1SessioninfoGet, _authTokens.SessionToken);
+            var sessionInfo = _apiExecutor.Execute(_sessionApi.V1Async, _authTokens.SessionToken);
             return sessionInfo.UserId.Value;
         }
     }

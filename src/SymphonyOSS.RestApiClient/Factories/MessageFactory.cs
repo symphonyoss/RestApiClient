@@ -21,7 +21,7 @@ namespace SymphonyOSS.RestApiClient.Factories
     using System.Collections.Generic;
     using Entities;
     using Message = Entities.Message;
-    using Generated.OpenApi.AgentApi.Model;
+    using Generated.OpenApi.AgentApi;
     using System.Linq;
 
     public abstract class MessageFactory
@@ -36,18 +36,18 @@ namespace SymphonyOSS.RestApiClient.Factories
             {
                 foreach (var attachmentInfo in v2Message.Attachments)
                 {
-                    attachments.Add(new Attachment(attachmentInfo.Id, attachmentInfo.Name, attachmentInfo.Size ?? -1));
+                    attachments.Add(new Attachment(attachmentInfo.Id, attachmentInfo.Name, attachmentInfo.Size));
                 }
             }
             return new Message(
-                v2Message.Id, Epoch.AddMilliseconds(long.Parse(v2Message.Timestamp)), v2Message.V2messageType,
+                v2Message.Id, Epoch.AddMilliseconds(long.Parse(v2Message.Timestamp)), "V2Message",
                 v2Message.StreamId,
-                v2Message.Message, v2Message.FromUserId ?? -1, attachments);
+                v2Message.Message, v2Message.FromUserId, attachments);
         }
 
         public static Message Create(V4Message v4Message)
         {
-            var attachments = v4Message.Attachments?.Select(x => new Attachment(x.Id, x.Name, x.Size ?? -1)).ToList();
+            var attachments = v4Message.Attachments?.Select(x => new Attachment(x.Id, x.Name, x.Size)).ToList();
 
             return new Message(v4Message.MessageId, Epoch.AddMilliseconds(v4Message.Timestamp.Value), "type", v4Message.Stream.StreamId, v4Message.Message, v4Message.User.UserId.Value, attachments);
         }

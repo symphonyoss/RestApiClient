@@ -19,11 +19,11 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System;
     using System.Collections.Concurrent;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Authentication;
     using Factories;
-    using Generated.Json;
-    using Generated.OpenApi.AgentApi.Model;
+    using Generated.OpenApi.AgentApi;
     using Entities;
     using Microsoft.Extensions.Logging;
     using SymphonyOSS.RestApiClient.Logging;
@@ -43,11 +43,6 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         protected volatile bool ShouldStop;
 
         private readonly ConcurrentDictionary<Delegate, Task> _inflightEvents = new ConcurrentDictionary<Delegate, Task>();
-
-        static AbstractDatafeedApi()
-        {
-            JsonSubtypeConverter.Register(typeof(V2Message));
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DatafeedApi" /> class.
@@ -189,7 +184,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             InvokeEventHandlers(_onConnectionAccepted, eventArgs);
         }
 
-        protected void ProcessMessageList(V4EventList messageList)
+        protected void ProcessMessageList(IEnumerable<V4Event> messageList)
         {
             if (messageList == null)
             {
@@ -200,13 +195,13 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             {
                 switch(message.Type)
                 {
-                    case V4Event.TypeEnum.MESSAGESENT:
+                    case V4EventType.MESSAGESENT:
                         FireMessage(message.Payload.MessageSent.Message);
                         break;
-                    case V4Event.TypeEnum.CONNECTIONREQUESTED:
+                    case V4EventType.CONNECTIONREQUESTED:
                         FireConnectionRequested(message);
                         break;
-                    case V4Event.TypeEnum.CONNECTIONACCEPTED:
+                    case V4EventType.CONNECTIONACCEPTED:
                         FireConnectionAccepted(message);
                         break;
                 }

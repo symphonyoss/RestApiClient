@@ -19,7 +19,7 @@ namespace SymphonyOSS.RestApiClient.Authentication
 {
     using System.Security.Cryptography.X509Certificates;
     using Factories;
-    using Generated.OpenApi.AuthenticatorApi.Api;
+    using Generated.OpenApi.AuthenticatorApi;
 
     /// <summary>
     /// Contains the session token needed for an application to authenticate on behalf of a user, 
@@ -27,7 +27,7 @@ namespace SymphonyOSS.RestApiClient.Authentication
     /// </summary>
     public class AppSessionManager : ISessionManager
     {
-        private readonly IAuthenticationApi _sessionAuthApi;
+        private readonly IAppClient _sessionAuthApi;
 
         private string _appSessionToken;
         private string _userSessionToken;
@@ -39,10 +39,10 @@ namespace SymphonyOSS.RestApiClient.Authentication
             _userId = userId;
 
             var sessionAuthApiFactory = new AuthenticatorApiFactory(sessionAuthUrl);
-            _sessionAuthApi = sessionAuthApiFactory.CreateAuthenticationApi(appCertificate);
+            _sessionAuthApi = sessionAuthApiFactory.CreateAppAuthenticationApi(appCertificate);
         }
 
-        public AppSessionManager(IAuthenticationApi sessionAuthApi, X509Certificate2 certificate)
+        public AppSessionManager(IAppClient sessionAuthApi, X509Certificate2 certificate)
         {
             Certificate = certificate;
             _sessionAuthApi = sessionAuthApi;
@@ -73,8 +73,8 @@ namespace SymphonyOSS.RestApiClient.Authentication
             // This could be made more efficient by reusing the cached appSessionToken and
             // only regenerating it if the call to V1AppUsernameUsernameAuthenticatePost fails.
 
-            _appSessionToken = _sessionAuthApi.V1AppAuthenticatePost()._Token;
-            _userSessionToken = _sessionAuthApi.V1AppUserUidAuthenticatePost(_userId, _appSessionToken).SessionToken;
+            _appSessionToken = _sessionAuthApi.V1AuthenticateAsync().Result.Token1;
+            _userSessionToken = _sessionAuthApi.V1UserAuthenticateAsync(_userId, _appSessionToken).Result.SessionToken;
         }
     }
 }

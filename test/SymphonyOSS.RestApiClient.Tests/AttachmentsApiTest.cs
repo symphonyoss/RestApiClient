@@ -16,6 +16,8 @@
 // under the License.
 
 using System.IO;
+using System.Net.Http;
+using System.Threading;
 
 namespace SymphonyOSS.RestApiClient.Tests
 {
@@ -23,9 +25,10 @@ namespace SymphonyOSS.RestApiClient.Tests
     using Api;
     using Api.AgentApi;
     using Authentication;
-    using Generated.OpenApi.AgentApi.Client;
+    using Generated.OpenApi.AgentApi;
     using Moq;
     using Xunit;
+    using System.Threading.Tasks;
 
     public class AttachmentsApiTest
     {
@@ -38,9 +41,8 @@ namespace SymphonyOSS.RestApiClient.Tests
             var sessionManagerMock = new Mock<IAuthTokens>();
             sessionManagerMock.Setup(obj => obj.SessionToken).Returns("sessionToken");
             sessionManagerMock.Setup(obj => obj.KeyManagerToken).Returns("keyManagerToken");
-            var configuration = new Configuration();
             _apiExecutorMock = new Mock<IApiExecutor>();
-            _attachmentsApi = new AttachmentsApi(sessionManagerMock.Object, configuration, _apiExecutorMock.Object);
+            _attachmentsApi = new AttachmentsApi(sessionManagerMock.Object, "", new HttpClient(), _apiExecutorMock.Object);
         }
 
         [Fact]
@@ -49,8 +51,15 @@ namespace SymphonyOSS.RestApiClient.Tests
             const string sid = "sid";
             const string messageId = "message";
             const string fileId = "file";
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes("hello");
+            var base64String = System.Convert.ToBase64String(plainTextBytes);
+            var base64Bytes = System.Text.Encoding.UTF8.GetBytes(base64String);
+
+            FileResponse response = new FileResponse("200", null, new MemoryStream(base64Bytes), null, null);
+
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, string, string, CancellationToken, Task<FileResponse>>>(), sid, fileId, messageId, "sessionToken", "keyManagerToken", default(CancellationToken))).Returns(response);
             _attachmentsApi.DownloadAttachment(sid, messageId, fileId);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, string, string, byte[]>>(), sid, fileId, messageId, "sessionToken", "keyManagerToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, string, string, CancellationToken, Task<FileResponse>>>(), sid, fileId, messageId, "sessionToken", "keyManagerToken", default(CancellationToken)));
         }
 
         [Fact]
@@ -63,7 +72,9 @@ namespace SymphonyOSS.RestApiClient.Tests
             var base64String = System.Convert.ToBase64String(plainTextBytes);
             var base64Bytes = System.Text.Encoding.UTF8.GetBytes(base64String);
 
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, string, string, byte[]>>(), sid, fileId, messageId, "sessionToken", "keyManagerToken")).Returns(base64Bytes);
+            FileResponse response = new FileResponse("200", null, new MemoryStream(base64Bytes), null, null);
+
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, string, string, CancellationToken, Task<FileResponse>>>(), sid, fileId, messageId, "sessionToken", "keyManagerToken", default(CancellationToken))).Returns(response);
             var result = _attachmentsApi.DownloadAttachment(sid, messageId, fileId);
             Assert.Equal(plainTextBytes, result);
         }

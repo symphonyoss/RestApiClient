@@ -19,7 +19,7 @@ namespace SymphonyOSS.RestApiClient.Factories
 {
     using System;
     using System.Collections.Generic;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
     using Stream = Entities.Stream;
     using StreamType = Entities.StreamType;
 
@@ -29,9 +29,9 @@ namespace SymphonyOSS.RestApiClient.Factories
         {
             var streamType = GetType(streamAttributes.StreamType.Type.Value);
             var members = new List<long>();
-            if (streamAttributes._StreamAttributes != null && streamAttributes._StreamAttributes.Members != null)
+            if (streamAttributes.StreamAttributes1 != null && streamAttributes.StreamAttributes1.Members != null)
             {
-                foreach (var userId in streamAttributes._StreamAttributes.Members)
+                foreach (var userId in streamAttributes.StreamAttributes1.Members)
                 {
                     members.Add((long)userId);
                 }
@@ -43,17 +43,17 @@ namespace SymphonyOSS.RestApiClient.Factories
                 streamType, members, roomName);
         }
 
-        private static StreamType GetType(Generated.OpenApi.PodApi.Model.StreamType.TypeEnum streamType)
+        private static StreamType GetType(Generated.OpenApi.PodApi.StreamTypeType streamType)
         {
             switch (streamType)
             {
-                case Generated.OpenApi.PodApi.Model.StreamType.TypeEnum.IM:
+                case Generated.OpenApi.PodApi.StreamTypeType.IM:
                     return StreamType.IM;
-                case Generated.OpenApi.PodApi.Model.StreamType.TypeEnum.MIM:
+                case Generated.OpenApi.PodApi.StreamTypeType.MIM:
                     return StreamType.MIM;
-                case Generated.OpenApi.PodApi.Model.StreamType.TypeEnum.POST:
+                case Generated.OpenApi.PodApi.StreamTypeType.POST:
                     return StreamType.Post;
-                case Generated.OpenApi.PodApi.Model.StreamType.TypeEnum.ROOM:
+                case Generated.OpenApi.PodApi.StreamTypeType.ROOM:
                     return StreamType.Room;
                 default:
                     throw new Exception($"Unknown stream type '{streamType}'.");
