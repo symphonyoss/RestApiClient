@@ -72,12 +72,13 @@ namespace SymphonyOSS.RestApiClient.Entities
         /// <param name="type">Message type.</param>
         /// <param name="streamId">Stream ID.</param>
         /// <param name="body">Contents of the message.</param>
+        /// <param name="data">JSON data representing the objects contained in the message</param>
         /// <param name="fromUserId">ID of the sender.</param>
         /// <param name="attachments">File attachments.</param>
         public Message(
             string id, DateTime timestamp, string type,
-            string streamId, string body, long fromUserId,
-            List<Attachment> attachments = null)
+            string streamId, string body, long fromUserId, 
+            List<Attachment> attachments = null, string data = null)
         {
             Id = id;
             Timestamp = timestamp;
@@ -93,6 +94,7 @@ namespace SymphonyOSS.RestApiClient.Entities
                     Attachments.Add(attachment);
                 }
             }
+            Data = data;
         }
     }
 }
