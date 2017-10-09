@@ -51,7 +51,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class AppClient : IAppClient
+    internal partial class AppClient : IAppClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
@@ -435,7 +435,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class AuthenticateClient : IAuthenticateClient
+    internal partial class AuthenticateClient : IAuthenticateClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";

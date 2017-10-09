@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using SymphonyOSS.RestApiClient.Api.AuthenticationApi;
+
 namespace SymphonyOSS.RestApiClient.Factories
 {
     using System.Security.Cryptography.X509Certificates;
@@ -35,14 +37,14 @@ namespace SymphonyOSS.RestApiClient.Factories
         }
 
         /// <summary>
-        /// Constructs an AppClient using the provided client certificate
+        /// Constructs an AppAuthenticationApi using the provided client certificate
         /// for authentication.
         /// </summary>
         /// <param name="certificate">Client certificate used for authentication.</param>
-        /// <returns>The AuthenticationApi.</returns>
-        public AppClient CreateAppAuthenticationApi(X509Certificate2 certificate)
+        /// <returns>The AppAuthenticationApi.</returns>
+        public AppAuthenticationApi CreateAppAuthenticationApi(X509Certificate2 certificate)
         {
-            return Create<AppClient>(certificate);
+            return Create<AppAuthenticationApi>(certificate);
         }
 
         /// <summary>
@@ -51,7 +53,7 @@ namespace SymphonyOSS.RestApiClient.Factories
         /// </summary>
         /// <param name="certificate">Client certificate used for authentication.</param>
         /// <returns>The AuthenticationApi.</returns>
-        public AuthenticateClient CreateAuthenticationApi(X509Certificate2 certificate)
+        internal AuthenticateClient CreateAuthenticationApi(X509Certificate2 certificate)
         {
             return Create<AuthenticateClient>(certificate);
         }

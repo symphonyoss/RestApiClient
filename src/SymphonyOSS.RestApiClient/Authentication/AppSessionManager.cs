@@ -15,11 +15,13 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using SymphonyOSS.RestApiClient.Api.AuthenticationApi;
+using SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi;
+
 namespace SymphonyOSS.RestApiClient.Authentication
 {
     using System.Security.Cryptography.X509Certificates;
     using Factories;
-    using Generated.OpenApi.AuthenticatorApi;
 
     /// <summary>
     /// Contains the session token needed for an application to authenticate on behalf of a user, 
@@ -27,7 +29,7 @@ namespace SymphonyOSS.RestApiClient.Authentication
     /// </summary>
     public class AppSessionManager : ISessionManager
     {
-        private readonly IAppClient _sessionAuthApi;
+        private readonly IAppAuthenticationApi _sessionAuthApi;
 
         private string _appSessionToken;
         private string _userSessionToken;
@@ -42,7 +44,7 @@ namespace SymphonyOSS.RestApiClient.Authentication
             _sessionAuthApi = sessionAuthApiFactory.CreateAppAuthenticationApi(appCertificate);
         }
 
-        public AppSessionManager(IAppClient sessionAuthApi, X509Certificate2 certificate)
+        public AppSessionManager(IAppAuthenticationApi sessionAuthApi, X509Certificate2 certificate)
         {
             Certificate = certificate;
             _sessionAuthApi = sessionAuthApi;
@@ -73,8 +75,8 @@ namespace SymphonyOSS.RestApiClient.Authentication
             // This could be made more efficient by reusing the cached appSessionToken and
             // only regenerating it if the call to V1AppUsernameUsernameAuthenticatePost fails.
 
-            _appSessionToken = _sessionAuthApi.V1AuthenticateAsync().Result.Token1;
-            _userSessionToken = _sessionAuthApi.V1UserAuthenticateAsync(_userId, _appSessionToken).Result.SessionToken;
+            _appSessionToken = _sessionAuthApi.Authenticate();
+            _userSessionToken = _sessionAuthApi.UserAuthenticate(_userId, _appSessionToken);
         }
     }
 }

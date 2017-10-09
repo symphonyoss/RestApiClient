@@ -21,7 +21,7 @@
       "useHttpRequestMessageCreationMethod": false,
       "useBaseUrl": true,
       "generateSyncMethods": false,
-      "clientClassAccessModifier": "public",
+      "clientClassAccessModifier": "internal",
       "generateContractsOutput": false,
       "parameterDateTimeFormat": "s",
       "generateUpdateJsonSerializerSettingsMethod": true,

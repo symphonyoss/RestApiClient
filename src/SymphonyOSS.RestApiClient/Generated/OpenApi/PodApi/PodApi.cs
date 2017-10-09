@@ -422,7 +422,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class AdminClient : IAdminClient
+    internal partial class AdminClient : IAdminClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
@@ -7158,7 +7158,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class CompanycertClient : ICompanycertClient
+    internal partial class CompanycertClient : ICompanycertClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
@@ -8540,7 +8540,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class ConfigurationClient : IConfigurationClient
+    internal partial class ConfigurationClient : IConfigurationClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
@@ -10723,7 +10723,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class ConnectionClient : IConnectionClient
+    internal partial class ConnectionClient : IConnectionClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
@@ -11496,7 +11496,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class ImClient : IImClient
+    internal partial class ImClient : IImClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
@@ -11675,7 +11675,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class IntegrationClient : IIntegrationClient
+    internal partial class IntegrationClient : IIntegrationClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
@@ -11842,7 +11842,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class PresenceClient : IPresenceClient
+    internal partial class PresenceClient : IPresenceClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
@@ -12127,7 +12127,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class RoomClient : IRoomClient
+    internal partial class RoomClient : IRoomClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
@@ -14085,7 +14085,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class SessioninfoClient : ISessioninfoClient
+    internal partial class SessioninfoClient : ISessioninfoClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
@@ -14400,7 +14400,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class StreamsClient : IStreamsClient
+    internal partial class StreamsClient : IStreamsClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
@@ -14819,7 +14819,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class UserClient : IUserClient
+    internal partial class UserClient : IUserClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";

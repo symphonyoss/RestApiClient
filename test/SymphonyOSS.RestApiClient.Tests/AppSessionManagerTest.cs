@@ -16,11 +16,11 @@
 // under the License.
 
 using System.Threading;
+using SymphonyOSS.RestApiClient.Api.AuthenticationApi;
 
 namespace SymphonyOSS.RestApiClient.Tests
 {
     using Authentication;
-    using Generated.OpenApi.AuthenticatorApi;
     using Moq;
     using System.Security.Cryptography.X509Certificates;
     using System.Threading.Tasks;
@@ -30,19 +30,19 @@ namespace SymphonyOSS.RestApiClient.Tests
     {
         private readonly X509Certificate2 _certificate;
 
-        private readonly Mock<IAppClient> _sessionAuthApiMock;
+        private readonly Mock<IAppAuthenticationApi> _sessionAuthApiMock;
 
         public AppSessionManagerTest()
         {
             _certificate = new Mock<X509Certificate2>().Object;
-            _sessionAuthApiMock = new Mock<IAppClient>();
+            _sessionAuthApiMock = new Mock<IAppAuthenticationApi>();
         }
 
         [Fact]
         public void EnsureTokens_are_returned_without_explicitly_calling_GenerateTokens()
         {
-            _sessionAuthApiMock.Setup(obj => obj.V1AuthenticateAsync(default(CancellationToken))).Returns(Task.FromResult(new Token() {Name = "appSessionToken", Token1 = "as1"}));
-            _sessionAuthApiMock.Setup(obj => obj.V1UserAuthenticateAsync(0, "as1", CancellationToken.None)).Returns(Task.FromResult(new OboAuthResponse(){SessionToken = "us1"}));
+            _sessionAuthApiMock.Setup(obj => obj.Authenticate()).Returns("as1");
+            _sessionAuthApiMock.Setup(obj => obj.UserAuthenticate(0, "as1")).Returns("us1");
             var appSessionManager = new AppSessionManager(_sessionAuthApiMock.Object, _certificate);
             var sessionToken = appSessionManager.SessionToken;
             var keyManagerToken = appSessionManager.KeyManagerToken;
@@ -54,16 +54,16 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureGenerateTokens_regenerate_tokens_every_call()
         {
             var appSessionTokenCounter = 0;
-            _sessionAuthApiMock.Setup(obj => obj.V1AuthenticateAsync(CancellationToken.None)).Returns(() =>
+            _sessionAuthApiMock.Setup(obj => obj.Authenticate()).Returns(() =>
             {
                 ++appSessionTokenCounter;
-                return Task.FromResult(new Token() {Name = "appSessionToken", Token1 = "as" + appSessionTokenCounter});
+                return "as" + appSessionTokenCounter.ToString();
             });
             var userSessionTokenCounter = 0;
-            _sessionAuthApiMock.Setup(obj => obj.V1UserAuthenticateAsync(It.IsAny<long>(), It.IsAny<string>(), It.IsAny<CancellationToken>())).Returns(() =>
+            _sessionAuthApiMock.Setup(obj => obj.UserAuthenticate(It.IsAny<long>(), It.IsAny<string>())).Returns(() =>
             {
                 ++userSessionTokenCounter;
-                return Task.FromResult( new OboAuthResponse() { SessionToken = "us" + userSessionTokenCounter});
+                return "us" + userSessionTokenCounter.ToString();
             });
             var appSessionManager = new AppSessionManager(_sessionAuthApiMock.Object, _certificate);
             Assert.Equal("us1", appSessionManager.SessionToken);

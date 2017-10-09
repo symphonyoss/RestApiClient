@@ -36,7 +36,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class HealthcheckClient : IHealthcheckClient
+    internal partial class HealthcheckClient : IHealthcheckClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
@@ -190,7 +190,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class DatafeedClient : IDatafeedClient
+    internal partial class DatafeedClient : IDatafeedClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
@@ -981,7 +981,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class FirehoseClient : IFirehoseClient
+    internal partial class FirehoseClient : IFirehoseClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
@@ -1775,7 +1775,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class MessageClient : IMessageClient
+    internal partial class MessageClient : IMessageClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
@@ -2658,7 +2658,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class StreamClient : IStreamClient
+    internal partial class StreamClient : IStreamClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
@@ -4464,7 +4464,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.7.2.0")]
-    public partial class UtilClient : IUtilClient
+    internal partial class UtilClient : IUtilClient
     {
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
         private string _baseUrl = "";
