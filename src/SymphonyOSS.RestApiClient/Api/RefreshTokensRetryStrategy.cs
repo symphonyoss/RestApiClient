@@ -41,6 +41,11 @@ namespace SymphonyOSS.RestApiClient.Api
                 return false;
             }
 
+            if (e is AggregateException)
+            {
+                e = e.InnerException;
+            }
+
             var agentApiException = e as Generated.OpenApi.AgentApi.SwaggerException;
             var errorCode = agentApiException?.StatusCode;
             if (errorCode == null)

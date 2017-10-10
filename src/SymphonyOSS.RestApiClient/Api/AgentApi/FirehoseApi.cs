@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System;
+
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using Authentication;
@@ -26,7 +28,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 
     /// <summary>
     /// Provides an event-based firehose of a pod's incoming messages.
-    /// Encapsulates <see cref="Generated.OpenApi.AgentApi.Api.FirehoseApi"/>,
+    /// Encapsulates <see cref="FirehoseApi"/>,
     /// adding authentication token management and a custom execution strategy.
     /// </summary>
     public class FirehoseApi : AbstractDatafeedApi
@@ -124,10 +126,33 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 
         private IEnumerable<V4Event> ReadFirehose(string id, int? maxMessages = null)
         {
-            return ApiExecutor.Execute(
-                _firehoseApi.V4ReadAsync,
-                id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken,
-                maxMessages);
+
+            var task = ApiExecutor.ExecuteAsync(() =>
+                _firehoseApi.V4ReadAsync(id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken, maxMessages));
+
+            try
+            {
+                return task.Result;
+            }
+            catch (AggregateException ae)
+            {
+                ae.Handle((ex) =>
+                {
+                    if (ex is SwaggerException)
+                    {
+                        var se = ex as SwaggerException;
+                        if (se.StatusCode == "204")
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+            }
+
+            // if we're still here, that means we caught a 204 error from the swagger exception
+            // this means there were no new messages so simply return an empty list
+            return new List<V4Event>();
         }
 
         private IEnumerable<V4Event> ReadFirehose(ref string id, int? maxMessages = null, int? retriesAllowed = 1)

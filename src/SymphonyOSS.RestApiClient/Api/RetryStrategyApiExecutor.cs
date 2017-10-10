@@ -47,6 +47,32 @@ namespace SymphonyOSS.RestApiClient.Api
             _retryStrategy = retryStrategy;
         }
 
+        public async Task<TResult> ExecuteAsync<TResult>(Func<Task<TResult>> action)
+        {
+            return await TryAsync(action, 0);
+        }
+
+        private async Task<TResult> TryAsync<TResult>(Func<Task<TResult>> func, int retries)
+        {
+            try
+            {
+                return await func();
+            }
+            catch (Exception e)
+            {
+                return await HandleExceptionAsync(e, func, retries);
+            }
+        }
+        private async Task<TResult> HandleExceptionAsync<TResult>(Exception e, Func<Task<TResult>> func, int retries)
+        {
+            if (_retryStrategy.ShouldRetry(e, retries))
+            {
+                return await TryAsync(func, retries + 1);
+            }
+
+            throw e;
+        }
+
         public TResult Execute<T1, TResult>(Func<T1, Task<TResult>> func, T1 arg1)
         {
             Func<TResult> tryFunc = () => func(arg1).Result;
@@ -139,7 +165,6 @@ namespace SymphonyOSS.RestApiClient.Api
             return Try(tryFunc, 0);
         }
 
-
         private TResult Try<TResult>(Func<TResult> func, int retries)
         {
             try
@@ -159,7 +184,10 @@ namespace SymphonyOSS.RestApiClient.Api
                 return Try(func, retries + 1);
             }
 
-            throw e;
+            // flatten the exception since NSwag's APIs use the async mechanism
+            // so their throwing o SwaggerException gets wrapped in an 
+            // AggregateException when .Result is called
+            throw (e is AggregateException) ? e.InnerException : e;
         }
     }
 }

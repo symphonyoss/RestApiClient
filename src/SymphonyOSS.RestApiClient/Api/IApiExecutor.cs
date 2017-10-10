@@ -26,19 +26,8 @@ namespace SymphonyOSS.RestApiClient.Api
     /// </summary>
     public interface IApiExecutor
     {
-        //TResult Execute<T1, TResult>(Func<T1, Task<TResult>> func, T1 arg1);
 
-        //TResult Execute<T1, T2, TResult>(Func<T1, T2, Task<TResult>> func, T1 arg1, T2 arg2);
-
-        //TResult Execute<T1, T2, T3, TResult>(Func<T1, T2, T3, Task<TResult>> func, T1 arg1, T2 arg2, T3 arg3);
-
-        //TResult Execute<T1, T2, T3, T4, TResult>(Func<T1, T2, T3, T4, Task<TResult>> func, T1 arg1, T2 arg2, T3 arg3, T4 arg4);
-
-        //TResult Execute<T1, T2, T3, T4, T5, TResult>(Func<T1, T2, T3, T4, T5, Task<TResult>> func, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5);
-
-        //TResult Execute<T1, T2, T3, T4, T5, T6, TResult>(Func<T1, T2, T3, T4, T5, T6, Task<TResult>> func, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6);
-
-        //TResult Execute<T1, T2, T3, T4, T5, T6, T7, TResult>(Func<T1, T2, T3, T4, T5, T6, T7, Task<TResult>> func, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7);
+        Task<TResult> ExecuteAsync<TResult>(Func<Task<TResult>> action);
 
         TResult Execute<T1, TResult>(Func<T1, CancellationToken, Task<TResult>> func, T1 arg1, CancellationToken token = default(CancellationToken));
 

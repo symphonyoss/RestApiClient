@@ -136,24 +136,32 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         {
             _log?.LogDebug("Waiting for messages on datafeed id = {id}", id);
 
-            // I suspect that when the pod is rebooted, V4DatafeedIdReadGet hangs.
-            // This shouldn't happen as the HTTP call should timeout, so something
-            // odd is going on and hopefully this will help sort things out.
+            var task = ApiExecutor.ExecuteAsync(() =>
+                _datafeedApi.V4ReadAsync(id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken, maxMessages));
 
-            var task = Task.Run(() =>
-            {
-                return ApiExecutor.Execute(
-                    _datafeedApi.V4ReadAsync,
-                    id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken,
-                    maxMessages);
-            });
-
-            if (task.Wait(TimeSpan.FromSeconds(110)))
+            try
             {
                 return task.Result;
-            } // this timed out
-            throw new TimeoutException($"Datafeed read call timed out waiting for {id}");
+            }
+            catch (AggregateException ae)
+            {
+                ae.Handle((ex) =>
+                {
+                    if (ex is SwaggerException)
+                    {
+                        var se = ex as SwaggerException;
+                        if (se.StatusCode == "204")
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+            }
 
+            // if we're still here, that means we caught a 204 error from the swagger exception
+            // this means there were no new messages so simply return an empty list
+            return new List<V4Event>();
         }
 
         private IEnumerable<V4Event> ReadDatafeed(ref string id, int? maxMessages = null, int? retriesAllowed = 1)
