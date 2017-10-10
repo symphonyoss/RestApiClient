@@ -7,8 +7,8 @@
       <Company>Symphony Software Foundation</Company>
       <Copyright>Copyright © Symphony Software Foundation 2016</Copyright>
       <Description>Symphony REST API Client Library for .NET</Description>
-      <AssemblyVersion>1.4.3.1</AssemblyVersion>
-      <FileVersion>1.4.3.1</FileVersion>
+      <AssemblyVersion>1.5.0.0</AssemblyVersion>
+      <FileVersion>1.5.0.0</FileVersion>
       <AssemblyTitle>SymphonyOSS.RestApiClient</AssemblyTitle>
       <Product>SymphonyOSS.RestApiClient</Product>
       <InformationalVersion>0.4.3-beta1</InformationalVersion>
@@ -16,6 +16,7 @@
       <VersionSuffix>beta7</VersionSuffix>
       <PackageLicenseUrl>https://github.com/symphonyoss/RestApiClient/blob/master/LICENSE.txt</PackageLicenseUrl>
       <PackageProjectUrl>https://github.com/symphonyoss/RestApiClient/</PackageProjectUrl>
+      <Version>0.5.0-beta1</Version>
    </PropertyGroup>
 
    <ItemGroup>

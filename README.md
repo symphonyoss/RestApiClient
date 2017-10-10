@@ -64,17 +64,17 @@ After cloning or downloading the source, it can be built in Visual Studio or wit
 
 ### Generated Code
 
-The library depends on code that has been generated from Symphony's YAML spec files using swagger-codegen v2.3 (this version is the first version that produces output targetting .NET Standard 1.3). The generated files live under the src/SymphonyOSS.RestClientApi/Generated folder.
+The library depends on code that has been generated from Symphony's YAML spec files using nswag. The generated files live under the src/SymphonyOSS.RestClientApi/Generated folder.
 
 In case there is a need to regenerate the code from Symphony's YAML specs:
 
- 1. Make sure Java is installed.
- 2. Find the generate.bat script in the SymphonyOSS.RestApiClient\Generated\OpenApi folder, and if necessary, edit it to pick up a different set of YAML specs.
- 3. Put swagger-codegen-cli.jar in the same folder as the generate.bat script. The JAR file can be downloaded from [Maven Central](http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/) or built from [source](https://github.com/swagger-api/swagger-codegen).
- 4. Run generate.bat.
- 5. Build the solution in Visual Studio or using MSBuild.
- 6. There are two custom changes made to src/SymphonyOSS.RestApiClient/Generated/OpenApi/AgentApi/Client/ApiClient.cs. Search for `SymphonyOSS Edit` in the file to see the two with comments on why they are required. These two patches must be carried forward.
- 
+ 1. Make sure Node Package Manager is installed
+ 2. Install nswag via command line:  `npm install nswag -g`
+ 3. Install api-spec-converter via command line: `npm install api-spec-converter -g`
+ 4. Run SymphonyOSS.RestApiClient\Generated\OpenApi\generate.bat
+
+The details of the generation process are outlined in generate.bat
+
 ## Contribute
 
 This project was initiated at [FactSet](https://www.factset.com) and has been developed as open-source from the very beginning.
@@ -82,6 +82,12 @@ This project was initiated at [FactSet](https://www.factset.com) and has been de
 Contributions are accepted via GitHub pull requests. All contributors must be covered by contributor license agreements to comply with the [Code Contribution Process](https://symphonyoss.atlassian.net/wiki/display/FM/Code+Contribution+Process).
 
 ## Release Notes
+
+Release 0.5.0 (October 2017):
+* Support for .NET Core
+* Switched to using NSwag for Swagger code generation due to direct use of System.Net.Http.HttpClient; Swagger codegen uses FubarCoder's RestSharp library which is not thread safe
+* All generated classes are no longer exposed externally
+* App Authentication APIs now available
 
 Release 0.4.0 (November 22, 2016):
  * New entity classes have been introduced: Attachment, Connection, Message, Presence, User, Room, and Stream

@@ -21,10 +21,24 @@ namespace SymphonyOSS.RestApiClient.Api.AuthenticationApi
 {
     public interface IAppAuthenticationApi
     {
+        /// <summary>
+        /// Get the certificate used to sign the JWT issued by this pod.
+        /// </summary>
+        /// <returns>the signing certificate</returns>
         PodCertificate GetPodCertificate();
 
+        /// <summary>
+        /// Generate an OBO (on-behalf-of) session token for the given user
+        /// </summary>
+        /// <param name="userId">User ID.</param>
+        /// <param name="appSessionToken">Application session token, obtained from Authenticate</param>
+        /// <returns>The session token</returns>
         string UserAuthenticate(long userId, string appSessionToken);
 
+        /// <summary>
+        /// Generate an application session token
+        /// </summary>
+        /// <returns>The session token</returns>
         string Authenticate();
     }
 }
