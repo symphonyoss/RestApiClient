@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using SymphonyOSS.RestApiClient.Api;
+
 namespace SymphonyOSS.RestApiClient.Factories
 {
     using System;
@@ -48,7 +50,7 @@ namespace SymphonyOSS.RestApiClient.Factories
                 case UserConnectionStatus.REJECTED:
                     return ConnectionStatus.Rejected;
                 default:
-                    throw new Exception($"Invalid status {status}.");
+                    throw new ApiException($"Invalid status {status}.", 0);
             }
         }
     }

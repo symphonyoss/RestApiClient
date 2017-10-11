@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using SymphonyOSS.RestApiClient.Api;
+
 namespace SymphonyOSS.RestApiClient.Factories
 {
     using System;
@@ -56,7 +58,7 @@ namespace SymphonyOSS.RestApiClient.Factories
                 case Generated.OpenApi.PodApi.StreamTypeType.ROOM:
                     return StreamType.Room;
                 default:
-                    throw new Exception($"Unknown stream type '{streamType}'.");
+                    throw new ApiException($"Unknown stream type '{streamType}'.", 0);
             }
         }
     }

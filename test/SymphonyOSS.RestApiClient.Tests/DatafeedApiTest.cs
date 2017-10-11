@@ -54,8 +54,9 @@ namespace SymphonyOSS.RestApiClient.Tests
             var semaphore = new Semaphore(0, int.MaxValue);
             var messageList = CreateMessageList(2);
             _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, CancellationToken, Task<Datafeed>>>(), "sessionToken", "keyManagerToken", default(CancellationToken))).Returns(new Datafeed() {Id = "streamId"});
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<V4Event>>>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null, default(CancellationToken)))
-                .Returns(messageList);
+
+            _apiExecutorMock.Setup(obj => obj.ExecuteAsync(It.IsAny<Func<Task<System.Collections.ObjectModel.ObservableCollection<V4Event>>>>()))
+                .ReturnsAsync(messageList);
             var messagesReceived = 0;
             _datafeedApi.OnMessage += (_, messageEventArgs) =>
             {
@@ -86,7 +87,8 @@ namespace SymphonyOSS.RestApiClient.Tests
             var mainSemaphore = new Semaphore(0, int.MaxValue);
             var messagesSent = 0;
             _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, CancellationToken, Task<Datafeed>>>(), "sessionToken", "keyManagerToken", default(CancellationToken))).Returns(new Datafeed {Id = "streamId"});
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<V4Event>>>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null, default(CancellationToken)))
+
+            _apiExecutorMock.Setup(obj => obj.ExecuteAsync(It.IsAny<Func<Task<System.Collections.ObjectModel.ObservableCollection<V4Event>>>>()))
                 .Returns(() =>
                 {
                     if (messagesSent <= 1)
@@ -97,12 +99,12 @@ namespace SymphonyOSS.RestApiClient.Tests
                     {
                         var messageList = CreateMessageList(1, messagesSent);
                         messagesSent += messageList.Count();
-                        return messageList;
+                        return Task.FromResult(messageList);
                     }
                     else
                     {
                         mainSemaphore.Release();
-                        return null;
+                        return Task.FromResult< System.Collections.ObjectModel.ObservableCollection<V4Event>>(null);
                     }
                 });
             var messagesReceived = 0;
@@ -133,8 +135,8 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var semaphore = new Semaphore(0, int.MaxValue);
             _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, CancellationToken, Task<Datafeed>>>(), "sessionToken", "keyManagerToken", default(CancellationToken))).Returns(new Datafeed(){Id = "streamId"});
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<V4Event>>>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null, default(CancellationToken)))
-                .Returns((System.Collections.ObjectModel.ObservableCollection<V4Event>) null)
+            _apiExecutorMock.Setup(obj => obj.ExecuteAsync(It.IsAny<Func<Task<System.Collections.ObjectModel.ObservableCollection<V4Event>>>>()))
+                .Returns(Task.FromResult< System.Collections.ObjectModel.ObservableCollection<V4Event>>(null))
                 .Callback(() =>
                 {
                     semaphore.Release(1);
@@ -143,7 +145,7 @@ namespace SymphonyOSS.RestApiClient.Tests
             semaphore.WaitOne();
             _datafeedApi.Stop();
             task.Wait();
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, string, int?, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<V4Event>>>>(), "streamId", "sessionToken", "keyManagerToken", (int?)null, default(CancellationToken)));
+            _apiExecutorMock.Verify(obj => obj.ExecuteAsync(It.IsAny<Func<Task<System.Collections.ObjectModel.ObservableCollection<V4Event>>>>()));
         }
 
         private System.Collections.ObjectModel.ObservableCollection<V4Event> CreateMessageList(int count, int startId = 1)
