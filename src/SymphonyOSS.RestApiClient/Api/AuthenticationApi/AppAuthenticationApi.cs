@@ -16,22 +16,38 @@
 // under the License.
 
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi;
+using System;
 
 namespace SymphonyOSS.RestApiClient.Api.AuthenticationApi
 {
     public class AppAuthenticationApi : IAppAuthenticationApi
     {
         private readonly AppClient _client;
-        public AppAuthenticationApi(string baseUrl, HttpClient httpClient)
+        private readonly IApiExecutor _executor;
+        public AppAuthenticationApi(string baseUrl, HttpClient httpClient, IApiExecutor executor)
+        {
+            _client = new AppClient(baseUrl, httpClient);
+            _executor = executor;
+        }
+
+        internal AppAuthenticationApi(string baseUrl, HttpClient httpClient)
         {
             _client = new AppClient(baseUrl, httpClient);
         }
 
         public PodCertificate GetPodCertificate()
         {
-            return _client.V1PodCertificateAsync(default(CancellationToken)).Result;
+            try
+            {
+                return _executor.ExecuteAsync(() => _client.V1PodCertificateAsync(default(CancellationToken))).Result;
+            }
+            catch (Exception e)
+            {
+                throw ApiException.CreateFromException(e);
+            }
         }
 
         public string UserAuthenticate(long userId, string appSessionToken)

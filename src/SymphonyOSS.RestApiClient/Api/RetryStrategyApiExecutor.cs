@@ -70,7 +70,7 @@ namespace SymphonyOSS.RestApiClient.Api
                 return await TryAsync(func, retries + 1);
             }
 
-            throw e;
+            throw ApiException.CreateFromException(e);
         }
 
         public TResult Execute<T1, TResult>(Func<T1, Task<TResult>> func, T1 arg1)
@@ -187,7 +187,8 @@ namespace SymphonyOSS.RestApiClient.Api
             // flatten the exception since NSwag's APIs use the async mechanism
             // so their throwing o SwaggerException gets wrapped in an 
             // AggregateException when .Result is called
-            throw (e is AggregateException) ? e.InnerException : e;
+            var coreException =  (e is AggregateException) ? e.InnerException : e;
+            throw ApiException.CreateFromException(coreException);
         }
     }
 }

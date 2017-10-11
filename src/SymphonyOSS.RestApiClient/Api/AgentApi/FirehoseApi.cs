@@ -138,10 +138,10 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             {
                 ae.Handle((ex) =>
                 {
-                    if (ex is SwaggerException)
+                    if (ex is ApiException)
                     {
-                        var se = ex as SwaggerException;
-                        if (se.StatusCode == "204")
+                        var se = ex as ApiException;
+                        if (se.HttpStatusCode == 204)
                         {
                             return true;
                         }
@@ -169,7 +169,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                     }
                     return messageList;
                 }
-                catch (SwaggerException e)
+                catch (ApiException e)
                 {
                     if (countFirehoseErrors >= retriesAllowed)
                     {
