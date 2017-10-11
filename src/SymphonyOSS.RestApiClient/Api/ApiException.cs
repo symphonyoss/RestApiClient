@@ -11,6 +11,8 @@ namespace SymphonyOSS.RestApiClient.Api
         public int? SymphonyError { get; set; }
         public string SymphonyErrorMessage { get; set; }
 
+        // may not ned to expose this so making internal for now
+        internal string RawMessage { get; set; }
         public static ApiException CreateFromException(Exception e)
         {
             if (e is ApiException)
@@ -23,31 +25,31 @@ namespace SymphonyOSS.RestApiClient.Api
                 e = e.InnerException;
             }
 
-            if (e is SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.SwaggerException)
-            {
-                return new ApiException(e as SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.SwaggerException);
-            }
             if (e is SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.SwaggerException<AgentError>)
             {
                 return new ApiException(e as SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.SwaggerException<AgentError>);
             }
-
-            if (e is SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.SwaggerException)
+            if (e is SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.SwaggerException)
             {
-                return new ApiException(e as SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.SwaggerException);
+                return new ApiException(e as SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.SwaggerException);
             }
+
             if (e is SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.SwaggerException<PodError>)
             {
                 return new ApiException(e as SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.SwaggerException<AgentError>);
             }
-
-            if (e is SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.SwaggerException)
+            if (e is SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.SwaggerException)
             {
-                return new ApiException(e as SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.SwaggerException);
+                return new ApiException(e as SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.SwaggerException);
             }
+
             if (e is SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.SwaggerException<AgentError>)
             {
                 return new ApiException(e as SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.SwaggerException<AuthError>);
+            }
+            if (e is SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.SwaggerException)
+            {
+                return new ApiException(e as SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.SwaggerException);
             }
 
             return new ApiException(e.Message, 0);
@@ -61,11 +63,13 @@ namespace SymphonyOSS.RestApiClient.Api
         internal ApiException(SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.SwaggerException ex) : base(ex.Message, ex)
         {
             HttpStatusCode = int.Parse(ex.StatusCode);
+            RawMessage = ex.Response;
         }
 
         internal ApiException(SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.SwaggerException<AgentError> ex) : base(ex.Message, ex)
         {
             HttpStatusCode = int.Parse(ex.StatusCode);
+            RawMessage = ex.Response;
             SymphonyError = ex.Result.Code;
             SymphonyErrorMessage = ex.Result.Message;
         }
@@ -73,11 +77,13 @@ namespace SymphonyOSS.RestApiClient.Api
         internal ApiException(SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.SwaggerException ex) : base(ex.Message, ex)
         {
             HttpStatusCode = int.Parse(ex.StatusCode);
+            RawMessage = ex.Response;
         }
 
         internal ApiException(SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.SwaggerException<PodError> ex) : base(ex.Message, ex)
         {
             HttpStatusCode = int.Parse(ex.StatusCode);
+            RawMessage = ex.Response;
             SymphonyError = ex.Result.Code;
             SymphonyErrorMessage = ex.Result.Message;
         }
@@ -85,11 +91,13 @@ namespace SymphonyOSS.RestApiClient.Api
         internal ApiException(SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.SwaggerException ex) : base(ex.Message, ex)
         {
             HttpStatusCode = int.Parse(ex.StatusCode);
+            RawMessage = ex.Response;
         }
 
         internal ApiException(SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.SwaggerException<AuthError> ex) : base(ex.Message, ex)
         {
             HttpStatusCode = int.Parse(ex.StatusCode);
+            RawMessage = ex.Response;
             SymphonyError = ex.Result.Code;
             SymphonyErrorMessage = ex.Result.Message;
         }
