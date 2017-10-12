@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using SymphonyOSS.RestApiClient.Api;
+
 namespace SymphonyOSS.RestApiClient.Entities
 {
     using System;
@@ -65,7 +67,7 @@ namespace SymphonyOSS.RestApiClient.Entities
         {
             if (id == null)
             {
-                throw new Exception("Missing required parameter 'id'.");
+                throw new ApiException("Missing required parameter 'id'.", 0);
             }
             Id = id;
             CrossPod = crossPod;

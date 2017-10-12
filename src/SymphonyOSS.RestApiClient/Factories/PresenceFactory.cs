@@ -22,56 +22,56 @@ namespace SymphonyOSS.RestApiClient.Factories
 
     public abstract class PresenceFactory
     {
-        public static Presence Create(long userId, Generated.OpenApi.PodApi.Model.Presence presence)
+        public static Presence Create(long userId, Generated.OpenApi.PodApi.Presence presence)
         {
             return new Presence(userId, GetCategory(presence.Category.Value));
         }
 
-        public static Presence Create(Generated.OpenApi.PodApi.Model.UserPresence userPresence)
+        public static Presence Create(Generated.OpenApi.PodApi.UserPresence userPresence)
         {
             return new Presence(userPresence.Uid.Value, GetCategory(userPresence.Category.Value));
         }
 
-        private static PresenceCategory GetCategory(Generated.OpenApi.PodApi.Model.Presence.CategoryEnum category)
+        private static PresenceCategory GetCategory(Generated.OpenApi.PodApi.PresenceCategory category)
         {
             switch (category)
             {
-                case Generated.OpenApi.PodApi.Model.Presence.CategoryEnum.AVAILABLE:
+                case Generated.OpenApi.PodApi.PresenceCategory.AVAILABLE:
                     return PresenceCategory.Available;
-                case Generated.OpenApi.PodApi.Model.Presence.CategoryEnum.AWAY:
+                case Generated.OpenApi.PodApi.PresenceCategory.AWAY:
                     return PresenceCategory.Away;
-                case Generated.OpenApi.PodApi.Model.Presence.CategoryEnum.BERIGHTBACK:
+                case Generated.OpenApi.PodApi.PresenceCategory.BE_RIGHT_BACK:
                     return PresenceCategory.BeRightBack;
-                case Generated.OpenApi.PodApi.Model.Presence.CategoryEnum.BUSY:
+                case Generated.OpenApi.PodApi.PresenceCategory.BUSY:
                     return PresenceCategory.Busy;
-                case Generated.OpenApi.PodApi.Model.Presence.CategoryEnum.DONOTDISTURB:
+                case Generated.OpenApi.PodApi.PresenceCategory.DO_NOT_DISTURB:
                     return PresenceCategory.DoNotDisturb;
-                case Generated.OpenApi.PodApi.Model.Presence.CategoryEnum.OFFLINE:
+                case Generated.OpenApi.PodApi.PresenceCategory.OFFLINE:
                     return PresenceCategory.Offline;
-                case Generated.OpenApi.PodApi.Model.Presence.CategoryEnum.ONTHEPHONE:
+                case Generated.OpenApi.PodApi.PresenceCategory.ON_THE_PHONE:
                     return PresenceCategory.OnThePhone;
                 default:
                     return PresenceCategory.Undefined;
             }
         }
 
-        private static PresenceCategory GetCategory(Generated.OpenApi.PodApi.Model.UserPresence.CategoryEnum category)
+        private static PresenceCategory GetCategory(Generated.OpenApi.PodApi.UserPresenceCategory category)
         {
             switch (category)
             {
-                case Generated.OpenApi.PodApi.Model.UserPresence.CategoryEnum.AVAILABLE:
+                case Generated.OpenApi.PodApi.UserPresenceCategory.AVAILABLE:
                     return PresenceCategory.Available;
-                case Generated.OpenApi.PodApi.Model.UserPresence.CategoryEnum.AWAY:
+                case Generated.OpenApi.PodApi.UserPresenceCategory.AWAY:
                     return PresenceCategory.Away;
-                case Generated.OpenApi.PodApi.Model.UserPresence.CategoryEnum.BERIGHTBACK:
+                case Generated.OpenApi.PodApi.UserPresenceCategory.BE_RIGHT_BACK:
                     return PresenceCategory.BeRightBack;
-                case Generated.OpenApi.PodApi.Model.UserPresence.CategoryEnum.BUSY:
+                case Generated.OpenApi.PodApi.UserPresenceCategory.BUSY:
                     return PresenceCategory.Busy;
-                case Generated.OpenApi.PodApi.Model.UserPresence.CategoryEnum.DONOTDISTURB:
+                case Generated.OpenApi.PodApi.UserPresenceCategory.DO_NOT_DISTURB:
                     return PresenceCategory.DoNotDisturb;
-                case Generated.OpenApi.PodApi.Model.UserPresence.CategoryEnum.OFFLINE:
+                case Generated.OpenApi.PodApi.UserPresenceCategory.OFFLINE:
                     return PresenceCategory.Offline;
-                case Generated.OpenApi.PodApi.Model.UserPresence.CategoryEnum.ONTHEPHONE:
+                case Generated.OpenApi.PodApi.UserPresenceCategory.ON_THE_PHONE:
                     return PresenceCategory.OnThePhone;
                 default:
                     return PresenceCategory.Undefined;

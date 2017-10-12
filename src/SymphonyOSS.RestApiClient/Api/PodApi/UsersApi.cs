@@ -19,8 +19,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using Authentication;
     using Factories;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
+    using System.Net.Http;
     using User = Entities.User;
 
     /// <summary>
@@ -30,7 +30,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     /// </summary>
     public class UsersApi
     {
-        private readonly Generated.OpenApi.PodApi.Api.IUsersApi _usersApi;
+        private readonly Generated.OpenApi.PodApi.AdminClient _usersApi;
+        private readonly Generated.OpenApi.PodApi.UserClient _userApi;
 
         private readonly IAuthTokens _authTokens;
 
@@ -44,9 +45,10 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="authTokens">Authentication tokens.</param>
         /// <param name="configuration">Api configuration.</param>
         /// <param name="apiExecutor">Execution strategy.</param>
-        public UsersApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
+        public UsersApi(IAuthTokens authTokens, string baseUrl, HttpClient httpClient, IApiExecutor apiExecutor)
         {
-            _usersApi = new Generated.OpenApi.PodApi.Api.UsersApi(configuration);
+            _usersApi = new AdminClient(baseUrl, httpClient);
+            _userApi = new UserClient(baseUrl, httpClient);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
         }
@@ -62,7 +64,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The user ID, or -1 if the user is not found.</returns>
         public long GetUserId(string email, bool? local = null)
         {
-            var user = _apiExecutor.Execute(_usersApi.V1UserGet, email, _authTokens.SessionToken, local);
+            var user = _apiExecutor.Execute(_userApi.V1Async, email, _authTokens.SessionToken, local);
             return user?.Id ?? -1;
         }
 
@@ -77,7 +79,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The user information.</returns>
         public User GetUser(long userId, bool? local = null)
         {
-            var userV2 = _apiExecutor.Execute(_usersApi.V2UserGet, _authTokens.SessionToken, (long?)userId, (string)null, (string)null, local);
+            var userV2 = _apiExecutor.Execute(_userApi.V2Async, _authTokens.SessionToken, (long?)userId, (string)null, (string)null, local);
             return userV2 != null ? UserFactory.Create(userV2) : null;
         }
     }

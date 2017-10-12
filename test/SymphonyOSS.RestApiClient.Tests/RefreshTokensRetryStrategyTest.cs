@@ -36,8 +36,8 @@ namespace SymphonyOSS.RestApiClient.Tests
 
         public void EnsureShouldRetry_returns_true_and_generates_tokens_on_agent_401_error()
         {
-            var exception = new Mock<Generated.OpenApi.AgentApi.Client.ApiException>();
-            exception.Setup(obj => obj.ErrorCode).Returns(401);
+            var exception = new Mock<Generated.OpenApi.AgentApi.SwaggerException>();
+            exception.Setup(obj => obj.StatusCode).Returns("401");
             var result = _refreshTokensRetryStrategy.ShouldRetry(exception.Object, 0);
             Assert.True(result);
             _sessionManagerMock.Verify(obj => obj.GenerateTokens());
@@ -45,8 +45,8 @@ namespace SymphonyOSS.RestApiClient.Tests
 
         public void EnsureShouldRetry_returns_true_and_generates_tokens_on_service_401_error()
         {
-            var exception = new Mock<Generated.OpenApi.PodApi.Client.ApiException>();
-            exception.Setup(obj => obj.ErrorCode).Returns(401);
+            var exception = new Mock<Generated.OpenApi.PodApi.SwaggerException>();
+            exception.Setup(obj => obj.StatusCode).Returns("401");
             var result = _refreshTokensRetryStrategy.ShouldRetry(exception.Object, 0);
             Assert.True(result);
             _sessionManagerMock.Verify(obj => obj.GenerateTokens());
@@ -54,8 +54,8 @@ namespace SymphonyOSS.RestApiClient.Tests
 
         public void EnsureShouldRetry_returns_false_on_agent_500_error()
         {
-            var exception = new Mock<Generated.OpenApi.AgentApi.Client.ApiException>();
-            exception.Setup(obj => obj.ErrorCode).Returns(500);
+            var exception = new Mock<Generated.OpenApi.AgentApi.SwaggerException>();
+            exception.Setup(obj => obj.StatusCode).Returns("500");
             var result = _refreshTokensRetryStrategy.ShouldRetry(exception.Object, 0);
             Assert.False(result);
             _sessionManagerMock.Verify(obj => obj.GenerateTokens(), Times.Never);
@@ -63,8 +63,8 @@ namespace SymphonyOSS.RestApiClient.Tests
 
         public void EnsureShouldRetry_returns_false_on_service_500_error()
         {
-            var exception = new Mock<Generated.OpenApi.PodApi.Client.ApiException>();
-            exception.Setup(obj => obj.ErrorCode).Returns(500);
+            var exception = new Mock<Generated.OpenApi.PodApi.SwaggerException>();
+            exception.Setup(obj => obj.StatusCode).Returns("500");
             var result = _refreshTokensRetryStrategy.ShouldRetry(exception.Object, 0);
             Assert.False(result);
             _sessionManagerMock.Verify(obj => obj.GenerateTokens(), Times.Never);

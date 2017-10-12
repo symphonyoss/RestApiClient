@@ -15,15 +15,18 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System.Net.Http;
+
 namespace SymphonyOSS.RestApiClient.Tests
 {
     using Api;
     using Api.PodApi;
     using Authentication;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
     using Moq;
     using System;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Xunit;
 
     public class MessageSuppressionApiTest
@@ -36,9 +39,8 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var sessionManagerMock = new Mock<IAuthTokens>();
             sessionManagerMock.Setup(obj => obj.SessionToken).Returns("sessionToken");
-            var configuration = new Configuration();
             _apiExecutorMock = new Mock<IApiExecutor>();
-            _messageSuppressionApi = new MessageSuppressionApi(sessionManagerMock.Object, configuration, _apiExecutorMock.Object);
+            _messageSuppressionApi = new MessageSuppressionApi(sessionManagerMock.Object, "", new HttpClient(), _apiExecutorMock.Object);
         }
 
         [Fact]
@@ -46,7 +48,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             const string id = "id";
             _messageSuppressionApi.SuppressMessage(id);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, MessageSuppressionResponse>>(), id, "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, CancellationToken, Task<MessageSuppressionResponse>>>(), id, "sessionToken", default(CancellationToken)));
         }
     }
 }

@@ -18,8 +18,8 @@
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using Authentication;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
+    using System.Net.Http;
 
     /// <summary>
     /// Provides methods for suppressing messages.
@@ -28,7 +28,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     /// </summary>
     public class MessageSuppressionApi
     {
-        private readonly Generated.OpenApi.PodApi.Api.IMessageSuppressionApi _messageSuppressionApi;
+        private readonly Generated.OpenApi.PodApi.AdminClient _messageSuppressionApi;
 
         private readonly IAuthTokens _authTokens;
 
@@ -43,9 +43,9 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="authTokens">Authentication tokens.</param>
         /// <param name="configuration">Api configuration.</param>
         /// <param name="apiExecutor">Execution strategy.</param>
-        public MessageSuppressionApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
+        public MessageSuppressionApi(IAuthTokens authTokens, string baseUrl, HttpClient httpClient, IApiExecutor apiExecutor)
         {
-            _messageSuppressionApi = new Generated.OpenApi.PodApi.Api.MessageSuppressionApi();
+            _messageSuppressionApi = new Generated.OpenApi.PodApi.AdminClient(baseUrl, httpClient);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
         }
@@ -57,7 +57,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The response.</returns>
         public MessageSuppressionResponse SuppressMessage(string id)
         {
-            return _apiExecutor.Execute(_messageSuppressionApi.V1AdminMessagesuppressionIdSuppressPost, id, _authTokens.SessionToken);
+            return _apiExecutor.Execute(_messageSuppressionApi.V1MessagesuppressionSuppressAsync, id, _authTokens.SessionToken);
         }
     }
 }

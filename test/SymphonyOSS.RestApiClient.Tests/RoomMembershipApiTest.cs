@@ -15,16 +15,20 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System.Collections.Generic;
+using System.Net.Http;
+
 namespace SymphonyOSS.RestApiClient.Tests
 {
     using System;
     using Api;
     using Api.PodApi;
     using Authentication;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
     using Moq;
     using Xunit;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Summary description for RoomMembershipApiTest
@@ -39,9 +43,8 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var sessionManagerMock = new Mock<IAuthTokens>();
             sessionManagerMock.Setup(obj => obj.SessionToken).Returns("sessionToken");
-            var configuration = new Configuration();
             _apiExecutorMock = new Mock<IApiExecutor>();
-            _roomMembershipApi = new RoomMembershipApi(sessionManagerMock.Object, configuration, _apiExecutorMock.Object);
+            _roomMembershipApi = new RoomMembershipApi(sessionManagerMock.Object, "", new HttpClient(), _apiExecutorMock.Object);
         }
 
         [Fact]
@@ -50,7 +53,7 @@ namespace SymphonyOSS.RestApiClient.Tests
             var roomId = "some_room";
             var userId = 123456789;
             _roomMembershipApi.AddMemberToRoom(roomId, userId);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserId, string, SuccessResponse>>(), roomId, new UserId(userId), "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserId, string, CancellationToken, Task<SuccessResponse>>>(), roomId, It.IsAny<UserId>(), "sessionToken", default(CancellationToken)));
         }
 
         [Fact]
@@ -59,7 +62,7 @@ namespace SymphonyOSS.RestApiClient.Tests
             var roomId = "some_room";
             var userId = 123456789;
             _roomMembershipApi.RemoveMemberFromRoom(roomId, userId);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserId, string, SuccessResponse>>(), roomId, new UserId(userId), "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserId, string, CancellationToken, Task<SuccessResponse>>>(), roomId, It.IsAny<UserId>(), "sessionToken", default(CancellationToken)));
         }
 
         [Fact]
@@ -68,7 +71,7 @@ namespace SymphonyOSS.RestApiClient.Tests
             var roomId = "some_room";
             var userId = 123456789;
             _roomMembershipApi.PromoteUserToRoomOwner(roomId, userId);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserId, string, SuccessResponse>>(), roomId, new UserId(userId), "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserId, string, CancellationToken, Task<SuccessResponse>>>(), roomId, It.IsAny<UserId>(), "sessionToken", default(CancellationToken)));
         }
 
         [Fact]
@@ -77,7 +80,7 @@ namespace SymphonyOSS.RestApiClient.Tests
             var roomId = "some_room";
             var userId = 123456789;
             _roomMembershipApi.DemoteRoomOwner(roomId, userId);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserId, string, SuccessResponse>>(), roomId, new UserId(userId), "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, UserId, string, CancellationToken, Task<SuccessResponse>>>(), roomId, It.IsAny<UserId>(), "sessionToken", default(CancellationToken)));
         }
 
         [Fact]
@@ -85,7 +88,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var roomId = "some_room";
             _roomMembershipApi.GetRoomMembers(roomId);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, MembershipList>>(), roomId, "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<MemberInfo>>>>(), roomId, "sessionToken", default(CancellationToken)));
         }
     }
 }

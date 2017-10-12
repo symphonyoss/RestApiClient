@@ -19,8 +19,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using System.Collections.Generic;
     using Authentication;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using System.Net.Http;
+    using Generated.OpenApi.PodApi;
 
     /// <summary>
     /// Provides methods for managing pod users, by encapsulating
@@ -29,7 +29,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     /// </summary>
     public class UserApi
     {
-        private readonly Generated.OpenApi.PodApi.Api.IUserApi _userApi;
+        private readonly Generated.OpenApi.PodApi.AdminClient _userApi;
 
         private readonly IAuthTokens _authTokens;
 
@@ -43,9 +43,9 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="authTokens">Authentication tokens.</param>
         /// <param name="configuration">Api configuration.</param>
         /// <param name="apiExecutor">Execution strategy.</param>
-        public UserApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
+        public UserApi(IAuthTokens authTokens, string baseUrl, HttpClient httpClient, IApiExecutor apiExecutor)
         {
-            _userApi = new Generated.OpenApi.PodApi.Api.UserApi(configuration);
+            _userApi = new Generated.OpenApi.PodApi.AdminClient(baseUrl, httpClient);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
         }
@@ -57,7 +57,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>User details.</returns>
         public UserDetail CreateUser(UserCreate payload)
         {
-            return _apiExecutor.Execute(_userApi.V1AdminUserCreatePost, _authTokens.SessionToken, payload);
+            return _apiExecutor.Execute(_userApi.V1UserCreateAsync, _authTokens.SessionToken, payload);
         }
 
         /// <summary>
@@ -65,18 +65,20 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// </summary>
         /// <param name="payload"></param>
         /// <returns>List of users.</returns>
-        public UserList FindUser(UserFilter payload)
+        public IEnumerable<UserInfo> FindUser(UserFilter payload)
         {
-            return _apiExecutor.Execute(_userApi.V1AdminUserFindPost, _authTokens.SessionToken, payload);
+            //return _apiExecutor.Execute(_userApi.V1AdminUserFindPost, _authTokens.SessionToken, payload);
+            return _apiExecutor.Execute(_userApi.V1UserFindAsync, _authTokens.SessionToken, payload);
         }
 
         /// <summary>
         /// Retreive a list of all users in the company (pod).
         /// </summary>
         /// <returns>The list of user IDs.</returns>
-        public UserIdList GetAllUsers()
+        public IEnumerable<long> GetAllUsers()
         {
-            return _apiExecutor.Execute(_userApi.V1AdminUserListGet, _authTokens.SessionToken);
+            //return _apiExecutor.Execute(_userApi.V1AdminUserListGet, _authTokens.SessionToken);
+            return _apiExecutor.Execute(_userApi.V1UserListAsync, _authTokens.SessionToken);
         }
 
         /// <summary>
@@ -87,10 +89,10 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         public SuccessResponse ResetPassword(long uid)
         {
             return _apiExecutor.Execute(
-                _userApi.V1AdminUserUidActionPasswordResetPost,
+                _userApi.V1UserActionPasswordResetAsync,
                 _authTokens.SessionToken,
-                (long?)uid,
-                new PasswordReset(PasswordReset.TypeEnum.EMAIL));
+                uid,
+                new PasswordReset() {Type = PasswordResetType.EMAIL});
         }
 
         /// <summary>
@@ -98,9 +100,9 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// </summary>
         /// <param name="uid">User ID.</param>
         /// <returns>List of avatars.</returns>
-        public AvatarList GetAvatar(long uid)
+        public IEnumerable<Avatar> GetAvatar(long uid)
         {
-            return _apiExecutor.Execute(_userApi.V1AdminUserUidAvatarGet, _authTokens.SessionToken, (long?)uid);
+            return _apiExecutor.Execute(_userApi.V1UserAvatarAsync, _authTokens.SessionToken, uid);
         }
 
         /// <summary>
@@ -111,7 +113,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>Success response.</returns>
         public SuccessResponse UpdateAvatar(long uid, string image)
         {
-            return _apiExecutor.Execute(_userApi.V1AdminUserUidAvatarUpdatePost, _authTokens.SessionToken, (long?)uid, new AvatarUpdate(image));
+            return _apiExecutor.Execute(_userApi.V1UserAvatarUpdateAsync, _authTokens.SessionToken, uid, new AvatarUpdate(){Image = image});
         }
 
         /// <summary>
@@ -119,9 +121,9 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// </summary>
         /// <param name="uid">User ID.</param>
         /// <returns>List of delegates.</returns>
-        public IntegerList GetDelegates(long uid)
+        public IEnumerable<long> GetDelegates(long uid)
         {
-            return _apiExecutor.Execute(_userApi.V1AdminUserUidDelegatesGet, _authTokens.SessionToken, (long?)uid);
+            return _apiExecutor.Execute(_userApi.V1UserDelegatesAsync, _authTokens.SessionToken, uid);
         }
 
         /// <summary>
@@ -132,7 +134,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>Success response.</returns>
         public SuccessResponse UpdateDelegates(long uid, DelegateAction payload)
         {
-            return _apiExecutor.Execute(_userApi.V1AdminUserUidDelegatesUpdatePost, _authTokens.SessionToken, (long?)uid, payload);
+            return _apiExecutor.Execute(_userApi.V1UserDelegatesUpdateAsync, _authTokens.SessionToken, uid, payload);
         }
 
         /// <summary>
@@ -142,7 +144,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The disclaimer.</returns>
         public Disclaimer GetDisclaimer(long uid)
         {
-            return _apiExecutor.Execute(_userApi.V1AdminUserUidDisclaimerGet, _authTokens.SessionToken, (long?)uid);
+            return _apiExecutor.Execute(_userApi.V1UserDisclaimerAsync, _authTokens.SessionToken, uid);
         }
 
         /// <summary>
@@ -153,7 +155,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>Success response.</returns>
         public SuccessResponse UpdateDisclaimer(long uid, string disclaimer)
         {
-            return _apiExecutor.Execute(_userApi.V1AdminUserUidDisclaimerUpdatePost, _authTokens.SessionToken, (long?)uid, new StringId(disclaimer));
+            return _apiExecutor.Execute(_userApi.V1UserDisclaimerUpdateAsync, _authTokens.SessionToken, uid, new StringId() { Id = disclaimer });
         }
 
         /// <summary>
@@ -161,9 +163,9 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// </summary>
         /// <param name="uid">User ID.</param>
         /// <returns>List of features.</returns>
-        public FeatureList GetFeatures(long uid)
+        public IEnumerable<Feature> GetFeatures(long uid)
         {
-            return _apiExecutor.Execute(_userApi.V1AdminUserUidFeaturesGet, _authTokens.SessionToken, (long?)uid);
+            return _apiExecutor.Execute(_userApi.V1UserFeaturesAsync, _authTokens.SessionToken, uid);
         }
 
         /// <summary>
@@ -174,9 +176,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>Success response.</returns>
         public SuccessResponse UpdateFeatures(long uid, List<Feature> features)
         {
-            var payload = new FeatureList();
-            payload.AddRange(features);
-            return _apiExecutor.Execute(_userApi.V1AdminUserUidFeaturesUpdatePost, _authTokens.SessionToken, (long?)uid, payload);
+            return _apiExecutor.Execute(_userApi.V1UserFeaturesUpdateAsync, _authTokens.SessionToken, uid, features);
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>User details.</returns>
         public UserDetail GetDetails(long uid)
         {
-            return _apiExecutor.Execute(_userApi.V1AdminUserUidGet, _authTokens.SessionToken, (long?)uid);
+            return _apiExecutor.Execute(_userApi.V1UserAsync, _authTokens.SessionToken, uid);
         }
 
         /// <summary>
@@ -194,9 +194,9 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// </summary>
         /// <param name="uid">User ID.</param>
         /// <returns>List of roles.</returns>
-        public RoleList GetRoles(long uid)
+        public IEnumerable<Role> GetRoles(long uid)
         {
-            return _apiExecutor.Execute(_userApi.V1AdminUserUidRolesGet, _authTokens.SessionToken, (long?)uid);
+            return _apiExecutor.Execute(_userApi.V1UserRolesAsync, _authTokens.SessionToken, uid);
         }
 
         /// <summary>
@@ -207,9 +207,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>Success response.</returns>
         public SuccessResponse UpdateRoles(long uid, List<string> roles)
         {
-            var payload = new StringList();
-            payload.AddRange(roles);
-            return _apiExecutor.Execute(_userApi.V1AdminUserUidRolesUpdatePost, _authTokens.SessionToken, (long?)uid, payload);
+            return _apiExecutor.Execute(_userApi.V1UserRolesUpdateAsync, _authTokens.SessionToken, uid, roles);
         }
 
         /// <summary>
@@ -219,7 +217,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>User status.</returns>
         public UserStatus GetStatus(long uid)
         {
-            return _apiExecutor.Execute(_userApi.V1AdminUserUidStatusGet, _authTokens.SessionToken, (long?)uid);
+            return _apiExecutor.Execute(_userApi.V1UserStatusAsync, _authTokens.SessionToken, uid);
         }
 
         /// <summary>
@@ -230,7 +228,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>Success response.</returns>
         public SuccessResponse UpdateStatus(long uid, UserStatus payload)
         {
-            return _apiExecutor.Execute(_userApi.V1AdminUserUidStatusUpdatePost, _authTokens.SessionToken, (long?)uid, payload);
+            return _apiExecutor.Execute(_userApi.V1UserStatusUpdateAsync, _authTokens.SessionToken, uid, payload);
         }
 
         /// <summary>
@@ -241,7 +239,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>User details.</returns>
         public UserDetail UpdateUser(long uid, UserAttributes payload)
         {
-            return _apiExecutor.Execute(_userApi.V1AdminUserUidUpdatePost, _authTokens.SessionToken, (long?)uid, payload);
+            return _apiExecutor.Execute(_userApi.V1UserUpdateAsync, _authTokens.SessionToken, uid, payload);
         }
     }
 }

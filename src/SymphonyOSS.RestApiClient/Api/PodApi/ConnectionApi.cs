@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System.Net.Http;
+
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using System;
@@ -26,11 +28,10 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     using Authentication;
     using Entities;
     using Factories;
-    using Generated.OpenApi.AgentApi.Model;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
     using Logging;
     using Microsoft.Extensions.Logging;
+    using System.Net.Http;
 
     /// <summary>
     /// Provides a method to get user information, by encapsulating
@@ -41,7 +42,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     {
         private ILogger _log;
 
-        private readonly Generated.OpenApi.PodApi.Api.IConnectionApi _connectionApi;
+        private readonly Generated.OpenApi.PodApi.ConnectionClient _connectionApi;
 
         private readonly IAuthTokens _authTokens;
 
@@ -78,11 +79,11 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="authTokens">Authentication tokens.</param>
         /// <param name="configuration">Api configuration.</param>
         /// <param name="apiExecutor">Execution strategy.</param>
-        public ConnectionApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
+        public ConnectionApi(IAuthTokens authTokens, string baseUrl, HttpClient httpClient, IApiExecutor apiExecutor)
         {
             _log = ApiLogging.LoggerFactory?.CreateLogger<MessagesApi>();
 
-            _connectionApi = new Generated.OpenApi.PodApi.Api.ConnectionApi(configuration);
+            _connectionApi = new Generated.OpenApi.PodApi.ConnectionClient(baseUrl, httpClient);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
         }
@@ -139,7 +140,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The status of the connection.</returns>
         public Connection Get(long userId)
         {
-            var userConnection = _apiExecutor.Execute(_connectionApi.V1ConnectionUserUserIdInfoGet, _authTokens.SessionToken, userId.ToString());
+            var userConnection = _apiExecutor.Execute(_connectionApi.V1UserInfoAsync, _authTokens.SessionToken, userId.ToString());
             return ConnectionFactory.Create(userConnection);
         }
 
@@ -150,11 +151,10 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="status">Optional. Filter the connection list based on the connection status.</param>
         /// <param name="userIds">Optional. Filter connection list by user IDs. Implicit connections (users on the same pod) will not be included unless user IDs are provided.</param>
         /// <returns>The list of connections.</returns>
-        public List<Connection> List(UserConnection.StatusEnum? status = null, List<long> userIds = null)
+        public List<Connection> List(Status? status = null, List<long> userIds = null)
         {
-            var statusAsString = status != null ? GetStatusAsString((UserConnection.StatusEnum)status) : null;
             var userIdsString = userIds != null && userIds.Count > 0 ? string.Join(",", userIds) : null;
-            var userConnectionList = _apiExecutor.Execute(_connectionApi.V1ConnectionListGet, _authTokens.SessionToken, statusAsString, userIdsString);
+            var userConnectionList = _apiExecutor.Execute(_connectionApi.V1ListAsync, _authTokens.SessionToken, status, userIdsString);
             var result = new List<Connection>();
             if (userConnectionList != null)
             {
@@ -173,8 +173,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The connection request.</returns>
         public Connection Create(long userId)
         {
-            var connectionRequest = new UserConnectionRequest(userId);
-            var userConnection = _apiExecutor.Execute(_connectionApi.V1ConnectionCreatePost, _authTokens.SessionToken, connectionRequest);
+            var connectionRequest = new UserConnectionRequest() {UserId = userId};
+            var userConnection = _apiExecutor.Execute(_connectionApi.V1CreateAsync, _authTokens.SessionToken, connectionRequest);
             return ConnectionFactory.Create(userConnection);
         }
 
@@ -185,8 +185,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The accepted connection request.</returns>
         public Connection Accept(long userId)
         {
-            var connectionRequest = new UserConnectionRequest(userId);
-            var userConnection = _apiExecutor.Execute(_connectionApi.V1ConnectionAcceptPost, _authTokens.SessionToken, connectionRequest);
+            var connectionRequest = new UserConnectionRequest() { UserId = userId };
+            var userConnection = _apiExecutor.Execute(_connectionApi.V1AcceptAsync, _authTokens.SessionToken, connectionRequest);
             return ConnectionFactory.Create(userConnection);
         }
 
@@ -197,22 +197,9 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The rejected connection request.</returns>
         public Connection Reject(long userId)
         {
-            var connectionRequest = new UserConnectionRequest(userId);
-            var userConnection = _apiExecutor.Execute(_connectionApi.V1ConnectionRejectPost, _authTokens.SessionToken, connectionRequest);
+            var connectionRequest = new UserConnectionRequest() { UserId = userId };
+            var userConnection = _apiExecutor.Execute(_connectionApi.V1RejectAsync, _authTokens.SessionToken, connectionRequest, default(System.Threading.CancellationToken));
             return ConnectionFactory.Create(userConnection);
-        }
-
-        private string GetStatusAsString(UserConnection.StatusEnum status)
-        {
-            switch (status)
-            {
-                case UserConnection.StatusEnum.PENDINGINCOMING:
-                    return "pending_incoming";
-                case UserConnection.StatusEnum.PENDINGOUTGOING:
-                    return "pending_outgoing";
-                default:
-                    return status.ToString().ToLower();
-            }
         }
 
         protected async void NotifyAsync(EventHandler<ConnectionRequestEventArgs> connectionEventHandler,

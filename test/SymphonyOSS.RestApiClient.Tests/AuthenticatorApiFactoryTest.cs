@@ -19,7 +19,7 @@ namespace SymphonyOSS.RestApiClient.Tests
 {
     using System.Security.Cryptography.X509Certificates;
     using Factories;
-    using Generated.OpenApi.AuthenticatorApi.Api;
+    using Generated.OpenApi.AuthenticatorApi;
     using Moq;
     using Xunit;
 
@@ -36,7 +36,7 @@ namespace SymphonyOSS.RestApiClient.Tests
         public void EnsureConstructs_AuthenticationApi()
         {
             var authenticatorApiFactory = new AuthenticatorApiFactory("https://authurl");
-            var result = authenticatorApiFactory.CreateAuthenticationApi(_certificateMock.Object);
+            var result = authenticatorApiFactory.CreateAppAuthenticationApi(_certificateMock.Object);
             Assert.NotNull(result);
         }
 

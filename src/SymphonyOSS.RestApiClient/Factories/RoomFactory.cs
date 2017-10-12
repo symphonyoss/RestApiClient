@@ -20,7 +20,7 @@ namespace SymphonyOSS.RestApiClient.Factories
     using System;
     using System.Collections.Generic;
     using Entities;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
 
     public abstract class RoomFactory
     {
@@ -48,8 +48,8 @@ namespace SymphonyOSS.RestApiClient.Factories
                 roomAttributes.Description,
                 roomAttributes.MembersCanInvite.Value,
                 roomAttributes.Discoverable.Value,
-                roomAttributes._Public.Value,
-                roomAttributes._ReadOnly.Value,
+                roomAttributes.Public.Value,
+                roomAttributes.ReadOnly.Value,
                 roomAttributes.CopyProtected.Value);
         }
     }

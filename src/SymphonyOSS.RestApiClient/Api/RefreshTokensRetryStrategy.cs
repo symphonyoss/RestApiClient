@@ -41,15 +41,8 @@ namespace SymphonyOSS.RestApiClient.Api
                 return false;
             }
 
-            var agentApiException = e as Generated.OpenApi.AgentApi.Client.ApiException;
-            var errorCode = agentApiException?.ErrorCode;
-            if (errorCode == null)
-            {
-                var podApiException = e as Generated.OpenApi.PodApi.Client.ApiException;
-                errorCode = podApiException?.ErrorCode;
-            }
-
-            if (errorCode == (int)HttpStatusCode.Unauthorized)
+            var apiException = ApiException.CreateFromException(e);
+            if (apiException.HttpStatusCode == (int) HttpStatusCode.Unauthorized)
             {
                 _authTokens.GenerateTokens();
                 return true;

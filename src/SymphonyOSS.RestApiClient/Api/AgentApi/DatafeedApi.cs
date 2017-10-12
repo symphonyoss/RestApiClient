@@ -16,13 +16,14 @@
 // under the License.
 
 using System;
+using System.Collections.Generic;
 
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System.Diagnostics;
     using Authentication;
-    using Generated.OpenApi.AgentApi.Client;
-    using Generated.OpenApi.AgentApi.Model;
+    using Generated.OpenApi.AgentApi;
+    using System.Net.Http;
     using Microsoft.Extensions.Logging;
     using SymphonyOSS.RestApiClient.Logging;
     using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class DatafeedApi : AbstractDatafeedApi
     {
-        private readonly Generated.OpenApi.AgentApi.Api.IDatafeedApi _datafeedApi;
+        private readonly Generated.OpenApi.AgentApi.DatafeedClient  _datafeedApi;
 
         private ILogger _log;
         /// <summary>
@@ -45,9 +46,9 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <param name="authTokens">Authentication tokens.</param>
         /// <param name="configuration">Api configuration.</param>
         /// <param name="apiExecutor">Execution strategy.</param>
-        public DatafeedApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor) : base(authTokens, apiExecutor)
+        public DatafeedApi(IAuthTokens authTokens, string baseUrl, HttpClient httpClient, IApiExecutor apiExecutor) : base(authTokens, apiExecutor)
         {
-            _datafeedApi = new Generated.OpenApi.AgentApi.Api.DatafeedApi(configuration);
+            _datafeedApi = new Generated.OpenApi.AgentApi.DatafeedClient(baseUrl, httpClient);
             _log = ApiLogging.LoggerFactory?.CreateLogger<DatafeedApi>();
         }
 
@@ -127,35 +128,43 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns>The ID of the datafeed.</returns>
         public string CreateDatafeed()
         {
-            var datafeed = ApiExecutor.Execute(_datafeedApi.V4DatafeedCreatePost, AuthTokens.SessionToken, AuthTokens.KeyManagerToken);
+            var datafeed = ApiExecutor.Execute(_datafeedApi.V4CreateAsync, AuthTokens.SessionToken, AuthTokens.KeyManagerToken);
             return datafeed.Id;
         }
 
-        private V4EventList ReadDatafeed(string id, int? maxMessages = null)
+        private IEnumerable<V4Event> ReadDatafeed(string id, int? maxMessages = null)
         {
             _log?.LogDebug("Waiting for messages on datafeed id = {id}", id);
 
-            // I suspect that when the pod is rebooted, V4DatafeedIdReadGet hangs.
-            // This shouldn't happen as the HTTP call should timeout, so something
-            // odd is going on and hopefully this will help sort things out.
+            var task = ApiExecutor.ExecuteAsync(() =>
+                _datafeedApi.V4ReadAsync(id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken, maxMessages));
 
-            var task = Task.Run(() =>
-            {
-                return ApiExecutor.Execute(
-                    _datafeedApi.V4DatafeedIdReadGet,
-                    id, AuthTokens.SessionToken, AuthTokens.KeyManagerToken,
-                    maxMessages);
-            });
-
-            if (task.Wait(TimeSpan.FromSeconds(110)))
+            try
             {
                 return task.Result;
-            } // this timed out
-            throw new TimeoutException($"Datafeed read call timed out waiting for {id}");
+            }
+            catch (AggregateException ae)
+            {
+                ae.Handle((ex) =>
+                {
+                    if (ex is ApiException)
+                    {
+                        var se = ex as ApiException;
+                        if (se.HttpStatusCode == 204)
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+            }
 
+            // if we're still here, that means we caught a 204 error from the swagger exception
+            // this means there were no new messages so simply return an empty list
+            return new List<V4Event>();
         }
 
-        private V4EventList ReadDatafeed(ref string id, int? maxMessages = null, int? retriesAllowed = 1)
+        private IEnumerable<V4Event> ReadDatafeed(ref string id, int? maxMessages = null, int? retriesAllowed = 1)
         {
             var countDatafeedErrors = 0;
             while (true)

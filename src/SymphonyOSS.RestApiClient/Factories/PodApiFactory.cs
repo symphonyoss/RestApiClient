@@ -21,7 +21,7 @@ namespace SymphonyOSS.RestApiClient.Factories
     using Api;
     using Api.PodApi;
     using Authentication;
-    using Generated.OpenApi.PodApi.Client;
+    using Internal;
 
     /// <summary>
     /// Constructs an instance of an Api available in the PodApi,
@@ -167,17 +167,14 @@ namespace SymphonyOSS.RestApiClient.Factories
 
         private T Create<T>(ISessionManager sessionManager, IApiExecutor apiExecutor = null)
         {
-            var configuration = new Configuration();
-            configuration.BasePath = _baseUrl;
-            configuration.ApiClient.RestClient.HttpClientFactory = new Internal.ClientAuthHttpClientFactory(sessionManager.Certificate);
-
             if (apiExecutor == null)
             {
                 var retryStrategy = new RefreshTokensRetryStrategy(sessionManager);
                 apiExecutor = new RetryStrategyApiExecutor(retryStrategy);
             }
 
-            return ApiFactoryUtils.CallConstructor<T>(new object[] { sessionManager, configuration, apiExecutor });
+            var httpClient = HttpClientUtils.CreateClient(sessionManager.Certificate);
+            return ApiFactoryUtils.CallConstructor<T>(new object[] { sessionManager, _baseUrl, httpClient, apiExecutor });
         }
     }
 }

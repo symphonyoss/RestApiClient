@@ -15,11 +15,14 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using SymphonyOSS.RestApiClient.Api;
+using SymphonyOSS.RestApiClient.Api.AuthenticationApi;
+
 namespace SymphonyOSS.RestApiClient.Factories
 {
     using System.Security.Cryptography.X509Certificates;
-    using Generated.OpenApi.AuthenticatorApi.Api;
-    using Generated.OpenApi.AuthenticatorApi.Client;
+    using Generated.OpenApi.AuthenticatorApi;
+    using SymphonyOSS.RestApiClient.Internal;
 
     /// <summary>
     /// Constructs an instance of an Api available in the AuthenticatorApi,
@@ -35,26 +38,27 @@ namespace SymphonyOSS.RestApiClient.Factories
         }
 
         /// <summary>
-        /// Constructs an AuthenticationApi using the provided client certificate
+        /// Constructs an AppAuthenticationApi using the provided client certificate
+        /// for authentication.
+        /// </summary>
+        /// <param name="certificate">Client certificate used for authentication.</param>
+        /// <returns>The AppAuthenticationApi.</returns>
+        public AppAuthenticationApi CreateAppAuthenticationApi(X509Certificate2 certificate)
+        {
+            return Create<AppAuthenticationApi>(certificate);
+        }
+
+        /// <summary>
+        /// Constructs an AuthenticateClient using the provided client certificate
         /// for authentication.
         /// </summary>
         /// <param name="certificate">Client certificate used for authentication.</param>
         /// <returns>The AuthenticationApi.</returns>
-        public AuthenticationApi CreateAuthenticationApi(X509Certificate2 certificate)
+        internal AuthenticateClient CreateAuthenticationApi(X509Certificate2 certificate)
         {
-            return Create<AuthenticationApi>(certificate);
+            return Create<AuthenticateClient>(certificate);
         }
 
-        /// <summary>
-        /// Constructs a PodApi instance using the provided client certificate for
-        /// // authentication
-        /// </summary>
-        /// <param name="certificate">Client certificate used for authentication.</param>
-        /// <returns>The PodApi.</returns>
-        public PodApi CreatePodApi(X509Certificate2 certificate)
-        {
-            return Create<PodApi>(certificate);
-        }
         /// <summary>
         /// Constructs an AuthenticatorApi instance using the provided client certificate
         /// for authentication.
@@ -64,11 +68,9 @@ namespace SymphonyOSS.RestApiClient.Factories
         /// <returns>The AuthenticatorApi instance.</returns>
         private T Create<T>(X509Certificate2 certificate)
         {
-            var configuration = new Configuration();
-            configuration.BasePath = _baseUrl;
-            configuration.ApiClient.RestClient.HttpClientFactory = new Internal.ClientAuthHttpClientFactory(certificate);
+            var httpClient = HttpClientUtils.CreateClient(certificate);
 
-            return ApiFactoryUtils.CallConstructor<T>(new object[] { configuration });
+            return ApiFactoryUtils.CallConstructor<T>(new object[] { _baseUrl, httpClient });
         }
     }
 }

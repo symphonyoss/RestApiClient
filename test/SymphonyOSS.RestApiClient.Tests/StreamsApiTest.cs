@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System.Net.Http;
+
 namespace SymphonyOSS.RestApiClient.Tests
 {
     using System;
@@ -23,8 +25,9 @@ namespace SymphonyOSS.RestApiClient.Tests
     using Api.PodApi;
     using Authentication;
     using Entities;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
+    using System.Threading.Tasks;
+    using System.Threading;
     using Moq;
     using Xunit;
     using Stream = Entities.Stream;
@@ -40,9 +43,8 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var sessionManagerMock = new Mock<IAuthTokens>();
             sessionManagerMock.Setup(obj => obj.SessionToken).Returns("sessionToken");
-            var configuration = new Configuration();
             _apiExecutorMock = new Mock<IApiExecutor>();
-            _streamsApi = new StreamsApi(sessionManagerMock.Object, configuration, _apiExecutorMock.Object);
+            _streamsApi = new StreamsApi(sessionManagerMock.Object, "", new HttpClient(), _apiExecutorMock.Object);
         }
 
         [Fact]
@@ -51,10 +53,10 @@ namespace SymphonyOSS.RestApiClient.Tests
             var uidList = new List<long>();
             _apiExecutorMock.Setup(
                 apiExecutor =>
-                    apiExecutor.Execute(It.IsAny<Func<UserIdList, string, Generated.OpenApi.PodApi.Model.Stream>>(), It.IsAny<UserIdList>(),
-                        "sessionToken")).Returns(new Generated.OpenApi.PodApi.Model.Stream("sid"));
+                    apiExecutor.Execute(It.IsAny<Func<List<long>, string, CancellationToken, Task<Generated.OpenApi.PodApi.Stream>>>(), It.IsAny<List<long>>(),
+                        "sessionToken", default(CancellationToken))).Returns(new Generated.OpenApi.PodApi.Stream() {Id = "sid"});
             _streamsApi.CreateStream(uidList);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<UserIdList, string, Generated.OpenApi.PodApi.Model.Stream>>(), It.IsAny<UserIdList>(), "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<List<long>, string, CancellationToken, Task<Generated.OpenApi.PodApi.Stream>>>(), It.IsAny<List<long>>(), "sessionToken", default(CancellationToken)));
         }
 
         [Fact]
@@ -62,10 +64,10 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var sid = "streamId";
             _apiExecutorMock.Setup(
-                apiExecutor => apiExecutor.Execute(It.IsAny<Func<string, string, StreamAttributes>>(), sid, "sessionToken")).Returns(
-                new StreamAttributes("id", true, true, new Generated.OpenApi.PodApi.Model.StreamType(Generated.OpenApi.PodApi.Model.StreamType.TypeEnum.IM)));
+                apiExecutor => apiExecutor.Execute(It.IsAny<Func<string, string, CancellationToken, Task<StreamAttributes>>>(), sid, "sessionToken", default(CancellationToken))).Returns(
+                new StreamAttributes() {Id = "id", Active = true, CrossPod = true, StreamType = new Generated.OpenApi.PodApi.StreamType() { Type = Generated.OpenApi.PodApi.StreamTypeType.IM}});
             _streamsApi.GetStreamInfo(sid);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, StreamAttributes>>(), sid, "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, CancellationToken, Task<StreamAttributes>>>(), sid, "sessionToken", default(CancellationToken)));
         }
 
         [Fact]
@@ -73,10 +75,12 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var room = new Room("id", DateTime.UtcNow, 12345, true, "name", null, "description", true, true, true, true, true);
             _apiExecutorMock.Setup(
-                apiExecutor => apiExecutor.Execute(It.IsAny<Func<V2RoomAttributes, string, V2RoomDetail>>(), It.IsAny<V2RoomAttributes>(), "sessionToken")).Returns(
-                new V2RoomDetail(new V2RoomAttributes("name", null, "description", true, true, true, true, true), new RoomSystemInfo("id", 0, 12345, true)));
+                apiExecutor => apiExecutor.Execute(It.IsAny<Func<V2RoomAttributes, string, CancellationToken, Task<V2RoomDetail>>>(), It.IsAny<V2RoomAttributes>(), "sessionToken", default(CancellationToken))).Returns(
+                new V2RoomDetail() {
+                    RoomAttributes = new V2RoomAttributes() {Name = "name", Description = "description", CopyProtected = true, Discoverable = true, MembersCanInvite = true, Public=true, ReadOnly = true},
+                    RoomSystemInfo = new RoomSystemInfo() {Id =  "id", CreationDate = 12345678, CreatedByUserId =  12345, Active = true}});
             _streamsApi.CreateRoom(room);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<V2RoomAttributes, string, V2RoomDetail>>(), It.IsAny<V2RoomAttributes>(), "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<V2RoomAttributes, string, CancellationToken, Task<V2RoomDetail>>>(), It.IsAny<V2RoomAttributes>(), "sessionToken", default(CancellationToken)));
         }
 
         [Fact]
@@ -84,12 +88,14 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             const string id = "id";
             _apiExecutorMock.Setup(
-                apiExecutor => apiExecutor.Execute(It.IsAny<Func<string, string, V2RoomDetail>>(), id, "sessionToken")).Returns(
-                new V2RoomDetail(
-                    new V2RoomAttributes("name", null, "description", true, true, true, true, true),
-                    new RoomSystemInfo("id", 0, 0, true)));
+                apiExecutor => apiExecutor.Execute(It.IsAny<Func<string, string, CancellationToken, Task<V2RoomDetail>>>(), "id", "sessionToken", default(CancellationToken))).Returns(
+                new V2RoomDetail()
+                {
+                    RoomAttributes = new V2RoomAttributes() { Name = "name", Description = "description", CopyProtected = true, Discoverable = true, MembersCanInvite = true, Public = true, ReadOnly = true },
+                    RoomSystemInfo = new RoomSystemInfo() { Id = "id", CreationDate = 12345678, CreatedByUserId = 12345, Active = true }
+                });
             _streamsApi.GetRoomInfo(id);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, V2RoomDetail>>(), id, "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, CancellationToken, Task<V2RoomDetail>>>(), "id", "sessionToken", default(CancellationToken)));
         }
 
         [Fact]
@@ -98,7 +104,7 @@ namespace SymphonyOSS.RestApiClient.Tests
             const string id = "id";
             const bool active = true;
             _streamsApi.SetRoomActive(id, active);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, bool?, string, RoomDetail>>(), id, active, "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, bool, string, CancellationToken, Task<RoomDetail>>>(), id, active, "sessionToken", default(CancellationToken)));
         }
 
         [Fact]
@@ -107,22 +113,24 @@ namespace SymphonyOSS.RestApiClient.Tests
             const string id = "id";
             var room = new Room("id", DateTime.UtcNow, 12345, true, "name", null, "description", true, true, true, true, true);
             _apiExecutorMock.Setup(
-                apiExecutor => apiExecutor.Execute(It.IsAny<Func<string, V2RoomAttributes, string, V2RoomDetail>>(), id, It.IsAny<V2RoomAttributes>(), "sessionToken")).Returns(
-                new V2RoomDetail(
-                    new V2RoomAttributes("name", null, "description", true, true, true, true, true),
-                    new RoomSystemInfo("id", 0, 0, true)));
+                apiExecutor => apiExecutor.Execute(It.IsAny<Func<string, V2RoomAttributes, string, CancellationToken, Task<V2RoomDetail>>>(), id, It.IsAny<V2RoomAttributes>(), "sessionToken", default(CancellationToken))).Returns(
+                new V2RoomDetail()
+                {
+                    RoomAttributes = new V2RoomAttributes() { Name = "name", Description = "description", CopyProtected = true, Discoverable = true, MembersCanInvite = true, Public = true, ReadOnly = true },
+                    RoomSystemInfo = new RoomSystemInfo() { Id = "id", CreationDate = 12345678, CreatedByUserId = 12345, Active = true }
+                });
             _streamsApi.UpdateRoom(room);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, V2RoomAttributes, string, V2RoomDetail>>(), id, It.IsAny<V2RoomAttributes>(), "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, V2RoomAttributes, string, CancellationToken, Task<V2RoomDetail>>>(), id, It.IsAny<V2RoomAttributes>(), "sessionToken", default(CancellationToken)));
         }
 
         [Fact]
         public void EnsureSearchRoom_uses_retry_strategy()
         {
-            var searchCriteria = new RoomSearchCriteria(Query: "some_room");
+            var searchCriteria = new RoomSearchCriteria() {Query = "some_room"};
             int? skip = 0;
             int? limit = 1;
             _streamsApi.SearchRoom(searchCriteria, skip, limit);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, RoomSearchCriteria, int?, int?, RoomSearchResults>>(), "sessionToken", searchCriteria, skip, limit));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, RoomSearchCriteria, int?, int?, CancellationToken, Task<RoomSearchResults>>>(), "sessionToken", searchCriteria, skip, limit, default(CancellationToken)));
         }
 
     }

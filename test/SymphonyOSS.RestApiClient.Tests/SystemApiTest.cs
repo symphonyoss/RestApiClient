@@ -15,14 +15,18 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System.Collections.Generic;
+using System.Net.Http;
+
 namespace SymphonyOSS.RestApiClient.Tests
 {
     using System;
     using Api;
     using Api.PodApi;
     using Authentication;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Moq;
     using Xunit;
 
@@ -36,16 +40,15 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var sessionManagerMock = new Mock<IAuthTokens>();
             sessionManagerMock.Setup(obj => obj.SessionToken).Returns("sessionToken");
-            var configuration = new Configuration();
             _apiExecutorMock = new Mock<IApiExecutor>();
-            _systemApi = new SystemApi(sessionManagerMock.Object, configuration, _apiExecutorMock.Object);
+            _systemApi = new SystemApi(sessionManagerMock.Object, "", new HttpClient(), _apiExecutorMock.Object);
         }
 
         [Fact]
         public void EnsureGetFeatures_uses_retry_strategy()
         {
             _systemApi.GetFeatures();
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, StringList>>(), "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<string>>>>(), "sessionToken", default(CancellationToken)));
         }
     }
 }

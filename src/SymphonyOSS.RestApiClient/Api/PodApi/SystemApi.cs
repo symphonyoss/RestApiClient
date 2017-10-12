@@ -18,8 +18,9 @@
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using Authentication;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
+    using System.Net.Http;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Provides methods for getting the available Symphony features on the pod.
@@ -28,7 +29,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     /// </summary>
     public class SystemApi
     {
-        private readonly Generated.OpenApi.PodApi.Api.ISystemApi _systemApi;
+        private readonly Generated.OpenApi.PodApi.AdminClient _systemApi;
 
         private readonly IAuthTokens _authTokens;
 
@@ -43,9 +44,9 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="authTokens">Authentication tokens.</param>
         /// <param name="configuration">Api configuration.</param>
         /// <param name="apiExecutor">Execution strategy.</param>
-        public SystemApi(IAuthTokens authTokens, Configuration configuration, IApiExecutor apiExecutor)
+        public SystemApi(IAuthTokens authTokens, string baseUrl, HttpClient httpClient, IApiExecutor apiExecutor)
         {
-            _systemApi = new Generated.OpenApi.PodApi.Api.SystemApi(configuration);
+            _systemApi = new Generated.OpenApi.PodApi.AdminClient(baseUrl, httpClient);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
         }
@@ -54,9 +55,10 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// Get the full set of Symphony features available for this pod.
         /// </summary>
         /// <returns>The list of features.</returns>
-        public StringList GetFeatures()
+        public IEnumerable<string> GetFeatures()
         {
-            return _apiExecutor.Execute(_systemApi.V1AdminSystemFeaturesListGet, _authTokens.SessionToken);
+            //return _apiExecutor.Execute(_systemApi.V1AdminSystemFeaturesListGet, _authTokens.SessionToken);
+            return _apiExecutor.Execute(_systemApi.V1SystemFeaturesListAsync, _authTokens.SessionToken);
         }
     }
 }

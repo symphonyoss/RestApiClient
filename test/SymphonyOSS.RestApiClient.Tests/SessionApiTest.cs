@@ -15,14 +15,17 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System.Net.Http;
+
 namespace SymphonyOSS.RestApiClient.Tests
 {
     using System;
     using Api;
     using Api.PodApi;
     using Authentication;
-    using Generated.OpenApi.PodApi.Client;
-    using Generated.OpenApi.PodApi.Model;
+    using Generated.OpenApi.PodApi;
+    using System.Threading.Tasks;
+    using System.Threading;
     using Moq;
     using Xunit;
 
@@ -36,18 +39,17 @@ namespace SymphonyOSS.RestApiClient.Tests
         {
             var sessionManagerMock = new Mock<IAuthTokens>();
             sessionManagerMock.Setup(obj => obj.SessionToken).Returns("sessionToken");
-            var configuration = new Configuration();
             _apiExecutorMock = new Mock<IApiExecutor>();
-            _sessionApi = new SessionApi(sessionManagerMock.Object, configuration, _apiExecutorMock.Object);
+            _sessionApi = new SessionApi(sessionManagerMock.Object, "", new HttpClient(), _apiExecutorMock.Object);
         }
 
         [Fact]
         public void EnsureGetUserId_uses_retry_strategy()
         {
-            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, SessionInfo>>(), "sessionToken"))
-                .Returns(new SessionInfo(12345));
+            _apiExecutorMock.Setup(obj => obj.Execute(It.IsAny<Func<string, CancellationToken, Task<SessionInfo>>>(), "sessionToken", default(CancellationToken)))
+                .Returns(new SessionInfo() {UserId = 12345});
             _sessionApi.GetUserId();
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, SessionInfo>>(), "sessionToken"));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, CancellationToken, Task<SessionInfo>>>(), "sessionToken", default(CancellationToken)));
         }
     }
 }

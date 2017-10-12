@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using SymphonyOSS.RestApiClient.Api;
+
 namespace SymphonyOSS.RestApiClient.Entities
 {
     using System;
@@ -48,13 +50,13 @@ namespace SymphonyOSS.RestApiClient.Entities
         {
             if (streamId == null)
             {
-                throw new Exception("Missing required parameter 'streamId'.");
+                throw new ApiException("Missing required parameter 'streamId'.", 0);
             }
             StreamId = streamId;
 
             if (body == null)
             {
-                throw new Exception("Missing required parameter 'body'.");
+                throw new ApiException("Missing required parameter 'body'.", 0);
             }
             Body = body;
             Attachments = new List<Attachment>();

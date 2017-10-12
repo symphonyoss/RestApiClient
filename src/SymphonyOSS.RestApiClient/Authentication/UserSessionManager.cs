@@ -19,7 +19,7 @@ namespace SymphonyOSS.RestApiClient.Authentication
 {
     using System.Security.Cryptography.X509Certificates;
     using Factories;
-    using Generated.OpenApi.AuthenticatorApi.Api;
+    using Generated.OpenApi.AuthenticatorApi;
 
     /// <summary>
     /// Contains the session and key manager tokens needed for authentication, and
@@ -27,9 +27,9 @@ namespace SymphonyOSS.RestApiClient.Authentication
     /// </summary>
     public class UserSessionManager : ISessionManager
     {
-        private readonly IAuthenticationApi _sessionAuthApi;
+        private readonly IAuthenticateClient _sessionAuthApi;
 
-        private readonly IAuthenticationApi _keyAuthApi;
+        private readonly IAuthenticateClient _keyAuthApi;
 
         private string _sessionToken;
 
@@ -44,7 +44,7 @@ namespace SymphonyOSS.RestApiClient.Authentication
             _keyAuthApi = keyAuthApiFactory.CreateAuthenticationApi(certificate);
         }
 
-        public UserSessionManager(IAuthenticationApi sessionAuthApi, IAuthenticationApi keyAuthApi, X509Certificate2 certificate)
+        public UserSessionManager(IAuthenticateClient sessionAuthApi, IAuthenticateClient keyAuthApi, X509Certificate2 certificate)
         {
             Certificate = certificate;
             _sessionAuthApi = sessionAuthApi;
@@ -93,7 +93,7 @@ namespace SymphonyOSS.RestApiClient.Authentication
         /// </summary>
         public void GenerateSessionToken()
         {
-            _sessionToken = _sessionAuthApi.V1AuthenticatePost()._Token;
+            _sessionToken = _sessionAuthApi.V1Async().Result.Token1;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace SymphonyOSS.RestApiClient.Authentication
         /// </summary>
         public void GenerateKeyManagerToken()
         {
-            _keyManagerToken = _keyAuthApi.V1AuthenticatePost()._Token;
+            _keyManagerToken = _keyAuthApi.V1Async().Result.Token1;
         }
     }
 }

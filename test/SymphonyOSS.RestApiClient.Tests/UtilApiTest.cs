@@ -15,14 +15,17 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System.Net.Http;
+
 namespace SymphonyOSS.RestApiClient.Tests
 {
     using System;
     using Api;
     using Api.AgentApi;
     using Authentication;
-    using Generated.OpenApi.AgentApi.Client;
-    using Generated.OpenApi.AgentApi.Model;
+    using Generated.OpenApi.AgentApi;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Moq;
     using Xunit;
 
@@ -40,9 +43,8 @@ namespace SymphonyOSS.RestApiClient.Tests
             var sessionManagerMock = new Mock<IAuthTokens>();
             sessionManagerMock.Setup(obj => obj.SessionToken).Returns("sessionToken");
             sessionManagerMock.Setup(obj => obj.KeyManagerToken).Returns("keyManagerToken");
-            var configuration = new Configuration();
             _apiExecutorMock = new Mock<IApiExecutor>();
-            _utilApi = new UtilApi(sessionManagerMock.Object, configuration, _apiExecutorMock.Object);
+            _utilApi = new UtilApi(sessionManagerMock.Object, "", new HttpClient(), _apiExecutorMock.Object);
         }
         
         [Fact]
@@ -51,10 +53,10 @@ namespace SymphonyOSS.RestApiClient.Tests
             const string msg = "Hello!";
             _apiExecutorMock.Setup(
                 obj =>
-                    obj.Execute(It.IsAny<Func<string, string, SimpleMessage, SimpleMessage>>(), "sessionToken",
-                        "keyManagerToken", It.IsAny<SimpleMessage>())).Returns(new SimpleMessage());
+                    obj.Execute(It.IsAny<Func<string, string, SimpleMessage, CancellationToken, Task<SimpleMessage>>>(), "sessionToken",
+                        "keyManagerToken", It.IsAny<SimpleMessage>(), default(CancellationToken))).Returns(new SimpleMessage());
             _utilApi.Echo(msg);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, SimpleMessage, SimpleMessage>>(), "sessionToken", "keyManagerToken", new SimpleMessage(msg)));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, SimpleMessage, CancellationToken, Task<SimpleMessage>>>(), "sessionToken", "keyManagerToken", It.IsAny<SimpleMessage>(), default(CancellationToken)));
         }
 
         [Fact]
@@ -63,10 +65,10 @@ namespace SymphonyOSS.RestApiClient.Tests
             const string msg = "Obsolete!";
             _apiExecutorMock.Setup(
                 obj =>
-                    obj.Execute(It.IsAny<Func<string, string, SimpleMessage, SimpleMessage>>(), "sessionToken",
-                        "keyManagerToken", It.IsAny<SimpleMessage>())).Returns(new SimpleMessage());
+                    obj.Execute(It.IsAny<Func<string, string, SimpleMessage, CancellationToken, Task<SimpleMessage>>>(), "sessionToken",
+                        "keyManagerToken", It.IsAny<SimpleMessage>(), default(CancellationToken))).Returns(new SimpleMessage());
             _utilApi.Obsolete(msg);
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, SimpleMessage, SimpleMessage>>(), "sessionToken", "keyManagerToken", new SimpleMessage(msg)));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, string, SimpleMessage, CancellationToken, Task<SimpleMessage>>>(), "sessionToken", "keyManagerToken", It.IsAny<SimpleMessage>(), default(CancellationToken)));
         }
     }
 }
