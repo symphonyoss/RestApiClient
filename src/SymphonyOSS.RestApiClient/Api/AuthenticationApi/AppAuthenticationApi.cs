@@ -19,6 +19,7 @@ using System.Net.Http;
 using System.Threading;
 using SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace SymphonyOSS.RestApiClient.Api.AuthenticationApi
 {
@@ -30,11 +31,11 @@ namespace SymphonyOSS.RestApiClient.Api.AuthenticationApi
             _client = new AppClient(baseUrl, httpClient);
         }
 
-        public PodCertificate GetPodCertificate()
+        public X509Certificate2 GetPodCertificate()
         {
             try
             {
-                return _client.V1PodCertificateAsync(default(CancellationToken)).Result;
+                return _client.V1PodCertificateAsync(default(CancellationToken)).Result.ToX509Certificate();
             }
             catch (Exception e)
             {

@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-using SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi;
+using System.Security.Cryptography.X509Certificates;
 
 namespace SymphonyOSS.RestApiClient.Api.AuthenticationApi
 {
@@ -25,7 +25,7 @@ namespace SymphonyOSS.RestApiClient.Api.AuthenticationApi
         /// Get the certificate used to sign the JWT issued by this pod.
         /// </summary>
         /// <returns>the signing certificate</returns>
-        PodCertificate GetPodCertificate();
+        X509Certificate2 GetPodCertificate();
 
         /// <summary>
         /// Generate an OBO (on-behalf-of) session token for the given user
