@@ -49,6 +49,17 @@ namespace SymphonyOSS.RestApiClient.Factories
         }
 
         /// <summary>
+        /// Constructs an ExtensionAuthenticationApi using the provided client certificate
+        /// for authenticating a Symphony Extension Application
+        /// </summary>
+        /// <param name="certificate">Client certificate used for authentication.</param>
+        /// <returns>The ExtensionAuthenticationApi.</returns>
+        public ExtensionAuthenticationApi CreateExtensionAuthenticationApi(X509Certificate2 certificate)
+        {
+            return Create<ExtensionAuthenticationApi>(certificate);
+        }
+
+        /// <summary>
         /// Constructs an AuthenticateClient using the provided client certificate
         /// for authentication.
         /// </summary>
