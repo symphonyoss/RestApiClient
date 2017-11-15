@@ -20,15 +20,20 @@ using System.Threading;
 using SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi;
 using System;
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.Extensions.Logging;
+using SymphonyOSS.RestApiClient.Logging;
 
 namespace SymphonyOSS.RestApiClient.Api.AuthenticationApi
 {
     public class AppAuthenticationApi : IAppAuthenticationApi
     {
         private readonly AppClient _client;
+        private readonly ILogger _log;
+
         public AppAuthenticationApi(string baseUrl, HttpClient httpClient)
         {
             _client = new AppClient(baseUrl, httpClient);
+            _log = ApiLogging.LoggerFactory?.CreateLogger<AppAuthenticationApi>();
         }
 
         public X509Certificate2 GetPodCertificate()
@@ -39,18 +44,35 @@ namespace SymphonyOSS.RestApiClient.Api.AuthenticationApi
             }
             catch (Exception e)
             {
+                _log?.LogError(0, e, "An error has occured while trying to retrieve the pod certificate.");
                 throw ApiException.CreateFromException(e);
             }
         }
 
         public string UserAuthenticate(long userId, string appSessionToken)
         {
-            return _client.V1UserAuthenticateAsync(userId, appSessionToken).Result.SessionToken;
+            try
+            {
+                return _client.V1UserAuthenticateAsync(userId, appSessionToken).Result.SessionToken;
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to generate an OBO (on-behalf-of) session token for the given user {userId}.", userId);
+                throw;
+            }
         }
 
         public string Authenticate()
         {
-            return _client.V1AuthenticateAsync().Result.Token1;
+            try
+            {
+                return _client.V1AuthenticateAsync().Result.Token1;
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to generate an application session token.");
+                throw;
+            }
         }
     }
 }

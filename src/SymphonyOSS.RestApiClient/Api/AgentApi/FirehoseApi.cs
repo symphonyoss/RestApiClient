@@ -100,16 +100,25 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 
         private void Listen(ref string firehoseId, int retriesAllowed)
         {
-            while (!ShouldStop)
+            try
             {
-                var messageList = ReadFirehose(ref firehoseId, retriesAllowed: retriesAllowed);
-                if (ShouldStop)
+                while (!ShouldStop)
                 {
-                    // Don't process messages if the user has stopped listening.
-                    break;
-                }
+                    var messageList = ReadFirehose(ref firehoseId, retriesAllowed: retriesAllowed);
+                    if (ShouldStop)
+                    {
+                        // Don't process messages if the user has stopped listening.
+                        _log?.LogDebug("Stopped listening on firehose {firehoseId}", firehoseId);
+                        break;
+                    }
 
-                ProcessMessageList(messageList);
+                    ProcessMessageList(messageList);
+                }
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "Firehose Listening stopped due to exception in firehose {firehoseId}", firehoseId);
+                throw;
             }
         }
 
@@ -119,9 +128,17 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns>The ID of the firehose.</returns>
         public string CreateFirehose()
         {
-            var firehose = ApiExecutor.Execute(_firehoseApi.V4CreateAsync, AuthTokens.SessionToken,
-                AuthTokens.KeyManagerToken);
-            return firehose.Id;
+            try
+            {
+                var firehose = ApiExecutor.Execute(_firehoseApi.V4CreateAsync, AuthTokens.SessionToken,
+                    AuthTokens.KeyManagerToken);
+                return firehose.Id;
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to create a firehose.");
+                throw;
+            }
         }
 
         private IEnumerable<V4Event> ReadFirehose(string id, int? maxMessages = null)

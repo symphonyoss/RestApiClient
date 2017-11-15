@@ -16,6 +16,10 @@
 // under the License.
 
 
+using System;
+using Microsoft.Extensions.Logging;
+using SymphonyOSS.RestApiClient.Logging;
+
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using Authentication;
@@ -25,7 +29,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
 
     /// <summary>
     /// Provides methods for managing the company certificates, by encapsulating
-    /// <see cref="Generated.OpenApi.PodApi.Api.SecurityApi"/>,
+    /// <see cref="SecurityApi"/>,
     /// adding authentication token management and a custom execution strategy.
     /// </summary>
     public class SecurityApi
@@ -35,6 +39,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         private readonly IAuthTokens _authTokens;
 
         private readonly IApiExecutor _apiExecutor;
+
+        private readonly ILogger _log;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SecurityApi" /> class.
@@ -49,6 +55,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
             _securityApi = new Generated.OpenApi.PodApi.CompanycertClient(baseUrl, httpClient);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
+            _log = ApiLogging.LoggerFactory?.CreateLogger<SecurityApi>();
         }
 
         /// <summary>
@@ -57,7 +64,15 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>Success response.</returns>
         public SuccessResponse Create(CompanyCert cert)
         {
-            return _apiExecutor.Execute(_securityApi.V1CreateAsync, _authTokens.SessionToken, cert);
+            try
+            {
+                return _apiExecutor.Execute(_securityApi.V1CreateAsync, _authTokens.SessionToken, cert);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to create a company trusted or untrusted certificate.");
+                throw;
+            }
         }
 
         /// <summary>
@@ -66,7 +81,15 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>Success response.</returns>
         public SuccessResponse Delete(string fingerPrint)
         {
-            return _apiExecutor.Execute(_securityApi.V1DeleteAsync, _authTokens.SessionToken, new StringId() { Id = fingerPrint});
+            try
+            {
+                return _apiExecutor.Execute(_securityApi.V1DeleteAsync, _authTokens.SessionToken, new StringId() { Id = fingerPrint});
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to delete a company certificate.");
+                throw;
+            }
         }
 
         /// <summary>
@@ -75,7 +98,15 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>Company certificate details.</returns>
         public CompanyCertDetail Get(string fingerPrint)
         {
-            return _apiExecutor.Execute(_securityApi.V1GetAsync, fingerPrint, _authTokens.SessionToken);
+            try
+            {
+                return _apiExecutor.Execute(_securityApi.V1GetAsync, fingerPrint, _authTokens.SessionToken);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to get details of a company certificate.");
+                throw;
+            }
         }
 
         /// <summary>
@@ -84,7 +115,15 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>List of certificates.</returns>
         public IEnumerable<Anonymous> GetIssued(string fingerPrint)
         {
-            return _apiExecutor.Execute(_securityApi.V1IssuedbyAsync, fingerPrint, _authTokens.SessionToken);
+            try
+            {
+                return _apiExecutor.Execute(_securityApi.V1IssuedbyAsync, fingerPrint, _authTokens.SessionToken);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to get a list of all certificates which were verified to the certificate passed.");
+                throw;
+            }
         }
 
         /// <summary>
@@ -93,7 +132,15 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>Success response.</returns>
         public SuccessResponse Update(string fingerPrint, CompanyCertAttributes certAttributes)
         {
-            return _apiExecutor.Execute(_securityApi.V1UpdateAsync, fingerPrint, _authTokens.SessionToken, certAttributes);
+            try
+            {
+                return _apiExecutor.Execute(_securityApi.V1UpdateAsync, fingerPrint, _authTokens.SessionToken, certAttributes);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying update a company certificate.");
+                throw;
+            }
         }
 
         /// <summary>

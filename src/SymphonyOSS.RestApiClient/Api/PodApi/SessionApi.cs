@@ -18,7 +18,6 @@
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using Authentication;
-    using Generated.OpenApi.PodApi;
     using System.Net.Http;
 
     /// <summary>

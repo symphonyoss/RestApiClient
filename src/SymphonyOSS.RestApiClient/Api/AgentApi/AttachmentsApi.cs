@@ -15,6 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using Microsoft.Extensions.Logging;
+using SymphonyOSS.RestApiClient.Logging;
+
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
     using System;
@@ -38,6 +41,8 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 
         private readonly IApiExecutor _apiExecutor;
 
+        private readonly ILogger _log;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AttachmentsApi" /> class.
         /// See <see cref="Factories.AgentApiFactory"/> for conveniently constructing
@@ -51,6 +56,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             _streamApi = new Generated.OpenApi.AgentApi.StreamClient(baseUrl, httpClient);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
+            _log = ApiLogging.LoggerFactory?.CreateLogger<AttachmentsApi>();
         }
 
         /// <summary>
@@ -78,11 +84,20 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns>Attachment info.</returns>
         public Attachment UploadAttachment(string sid, string filename, Stream file)
         {
-            var fileParameter = new FileParameter(file, filename);
-            var attachmentInfo = _apiExecutor.Execute(_streamApi.V1AttachmentCreateAsync, sid, _authTokens.SessionToken,
-                _authTokens.KeyManagerToken, fileParameter);
+            try
+            {
+                var fileParameter = new FileParameter(file, filename);
+                var attachmentInfo = _apiExecutor.Execute(_streamApi.V1AttachmentCreateAsync, sid,
+                    _authTokens.SessionToken,
+                    _authTokens.KeyManagerToken, fileParameter);
 
-            return new Attachment(attachmentInfo.Id, attachmentInfo.Name, attachmentInfo.Size);
+                return new Attachment(attachmentInfo.Id, attachmentInfo.Name, attachmentInfo.Size);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while attempting to upload an attachment to stream {sid}.", sid);
+                throw;
+            }
         }
 
         /// <summary>
@@ -94,11 +109,19 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns>The contents of the attached file.</returns>
         public byte[] DownloadAttachment(string sid, string messageId, string fileId)
         {
-            var fileResponse = _apiExecutor.Execute(_streamApi.V1AttachmentAsync, sid, fileId, messageId, _authTokens.SessionToken, _authTokens.KeyManagerToken);
+            try
+            {
+                var fileResponse = _apiExecutor.Execute(_streamApi.V1AttachmentAsync, sid, fileId, messageId, _authTokens.SessionToken, _authTokens.KeyManagerToken);
 
-            var reader = new StreamReader(fileResponse.Stream);
-            var base64String = reader.ReadToEnd();
-            return Convert.FromBase64String(base64String);
+                var reader = new StreamReader(fileResponse.Stream);
+                var base64String = reader.ReadToEnd();
+                return Convert.FromBase64String(base64String);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while attempting to download an attachment from stream {sid}.", sid);
+                throw;
+            }
         }
     }
 }

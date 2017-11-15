@@ -15,7 +15,10 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
+using SymphonyOSS.RestApiClient.Logging;
 
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
@@ -25,7 +28,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
 
     /// <summary>
     /// Provides methods for operating over multy party chats
-    /// and chat rooms, by encapsulating <see cref="Generated.OpenApi.PodApi.Api.RoomMembershipApi"/>,
+    /// and chat rooms, by encapsulating <see cref="RoomMembershipApi"/>,
     /// adding authentication token management and a custom execution strategy.
     /// </summary>
     public class RoomMembershipApi
@@ -36,6 +39,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         private readonly IAuthTokens _authTokens;
 
         private readonly IApiExecutor _apiExecutor;
+
+        private readonly ILogger _log;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomMembershipApi" /> class.
@@ -51,6 +56,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
             _roomApi = new Generated.OpenApi.PodApi.RoomClient(baseUrl, httpClient);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
+            _log = ApiLogging.LoggerFactory?.CreateLogger<RoomMembershipApi>();
+
         }
 
         /// <summary>
@@ -61,7 +68,15 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns></returns>
         public SuccessResponse AddMemberToRoom(string roomId, long userId)
         {
-            return _apiExecutor.Execute(_roomMembershipApi.V1RoomMembershipAddAsync, roomId, new UserId() { Id = userId }, _authTokens.SessionToken);
+            try
+            {
+                return _apiExecutor.Execute(_roomMembershipApi.V1RoomMembershipAddAsync, roomId, new UserId() { Id = userId }, _authTokens.SessionToken);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to add user {userId} to room {roomId}", userId, roomId);
+                throw;
+            }
         }
 
         /// <summary>
@@ -72,7 +87,15 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns></returns>
         public SuccessResponse RemoveMemberFromRoom(string roomId, long userId)
         {
-            return _apiExecutor.Execute(_roomMembershipApi.V1RoomMembershipRemoveAsync, roomId, new UserId() { Id = userId }, _authTokens.SessionToken);
+            try
+            {
+                return _apiExecutor.Execute(_roomMembershipApi.V1RoomMembershipRemoveAsync, roomId, new UserId() { Id = userId }, _authTokens.SessionToken);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to remove user {userId} from room {roomId}", userId, roomId);
+                throw;
+            }
         }
 
         /// <summary>
@@ -83,7 +106,15 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns></returns>
         public SuccessResponse PromoteUserToRoomOwner(string roomId, long userId)
         {
-            return _apiExecutor.Execute(_roomApi.V1MembershipPromoteownerAsync, roomId, new UserId() { Id = userId }, _authTokens.SessionToken);
+            try
+            {
+                return _apiExecutor.Execute(_roomApi.V1MembershipPromoteownerAsync, roomId, new UserId() { Id = userId }, _authTokens.SessionToken);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to promote user {userId} from room {roomId}", userId, roomId);
+                throw;
+            }
         }
 
         /// <summary>
@@ -94,7 +125,15 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns></returns>
         public SuccessResponse DemoteRoomOwner(string roomId, long userId)
         {
-            return _apiExecutor.Execute(_roomApi.V1MembershipDemoteownerAsync, roomId, new UserId() { Id = userId }, _authTokens.SessionToken);
+            try
+            {
+                return _apiExecutor.Execute(_roomApi.V1MembershipDemoteownerAsync, roomId, new UserId() { Id = userId }, _authTokens.SessionToken);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to demote user {userId} from room {roomId}", userId, roomId);
+                throw;
+            }
         }
 
         /// <summary>
@@ -104,7 +143,15 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns></returns>
         public IEnumerable<MemberInfo> GetRoomMembers(string roomId)
         {
-            return _apiExecutor.Execute(_roomApi.V2MembershipListAsync, roomId, _authTokens.SessionToken);
+            try
+            {
+                return _apiExecutor.Execute(_roomApi.V2MembershipListAsync, roomId, _authTokens.SessionToken);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to retrieve all the members of room {roomId}", roomId);
+                throw;
+            }
         }
     }
 }

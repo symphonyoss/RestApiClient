@@ -24,7 +24,6 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using AgentApi;
     using Authentication;
     using Entities;
     using Factories;
@@ -40,7 +39,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
     /// </summary>
     public class ConnectionApi
     {
-        private ILogger _log;
+        private readonly ILogger _log;
 
         private readonly Generated.OpenApi.PodApi.ConnectionClient _connectionApi;
 
@@ -81,7 +80,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <param name="apiExecutor">Execution strategy.</param>
         public ConnectionApi(IAuthTokens authTokens, string baseUrl, HttpClient httpClient, IApiExecutor apiExecutor)
         {
-            _log = ApiLogging.LoggerFactory?.CreateLogger<MessagesApi>();
+            _log = ApiLogging.LoggerFactory?.CreateLogger<ConnectionApi>();
 
             _connectionApi = new Generated.OpenApi.PodApi.ConnectionClient(baseUrl, httpClient);
             _authTokens = authTokens;
@@ -154,16 +153,24 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         public List<Connection> List(Status? status = null, List<long> userIds = null)
         {
             var userIdsString = userIds != null && userIds.Count > 0 ? string.Join(",", userIds) : null;
-            var userConnectionList = _apiExecutor.Execute(_connectionApi.V1ListAsync, _authTokens.SessionToken, status, userIdsString);
             var result = new List<Connection>();
-            if (userConnectionList != null)
+            try
             {
-                foreach (var userConnection in userConnectionList)
+                var userConnectionList = _apiExecutor.Execute(_connectionApi.V1ListAsync, _authTokens.SessionToken, status, userIdsString);
+                if (userConnectionList != null)
                 {
-                    result.Add(ConnectionFactory.Create(userConnection));
+                    foreach (var userConnection in userConnectionList)
+                    {
+                        result.Add(ConnectionFactory.Create(userConnection));
+                    }
                 }
+                return result;
             }
-            return result;
+            catch (Exception)
+            {
+                _log?.LogError("An error has occured while trying to retrieve all connections from the requesting user");
+                return result;
+            }
         }
 
         /// <summary>
