@@ -49,7 +49,7 @@ namespace SymphonyOSS.RestApiClient.Factories
         {
             var attachments = v4Message.Attachments?.Select(x => new Attachment(x.Id, x.Name, x.Size)).ToList();
 
-            return new Message(v4Message.MessageId, Epoch.AddMilliseconds(v4Message.Timestamp.Value), "type", v4Message.Stream.StreamId, v4Message.Message, v4Message.User.UserId.Value, attachments, v4Message.Data);
+            return new Message(v4Message.MessageId, Epoch.AddMilliseconds(v4Message.Timestamp.Value), v4Message.Stream.StreamType.ToString(), v4Message.Stream.StreamId, v4Message.Message, v4Message.User.UserId.Value, attachments, v4Message.Data);
         }
     }
 }
