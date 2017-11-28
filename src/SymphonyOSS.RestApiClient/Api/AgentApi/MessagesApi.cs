@@ -15,6 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System;
 using System.IO;
 using System.Net.Http;
 using System.Threading;
@@ -40,7 +41,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
     /// </summary>
     public class MessagesApi
     {
-        private ILogger _log;
+        private readonly ILogger _log;
 
         private readonly Generated.OpenApi.AgentApi.StreamClient _streamClient;
 
@@ -73,24 +74,33 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         public Message PostMessage(Message message)
         {
             var streamId = message.StreamId;
-            _log?.LogDebug("Posting message to {streamId}", streamId);
+            _log?.LogDebug("Posting message to stream {streamId}", streamId);
             var attachments = new System.Collections.ObjectModel.ObservableCollection<AttachmentInfo>();
             foreach (var attachment in message.Attachments)
             {
                 attachments.Add(new AttachmentInfo() { Id = attachment.Id, Name = attachment.Name, Size = attachment.Size});
             }
             var v2MessageSubmission = new V2MessageSubmission() { Format = V2MessageSubmissionFormat.MESSAGEML,  Message = message.Body, Attachments = attachments};
-            V2Message v2Message;
-            if (_authTokens.KeyManagerToken == null)
+
+            try
             {
-                // Use the endpoint that works with OBO authentication.
-                v2Message = _apiExecutor.Execute(_streamClient.V3MessageCreateAsync, message.StreamId, _authTokens.SessionToken, v2MessageSubmission, _authTokens.KeyManagerToken);
+                V2Message v2Message;
+                if (_authTokens.KeyManagerToken == null)
+                {
+                    // Use the endpoint that works with OBO authentication.
+                    v2Message = _apiExecutor.Execute(_streamClient.V3MessageCreateAsync, message.StreamId, _authTokens.SessionToken, v2MessageSubmission, _authTokens.KeyManagerToken);
+                }
+                else
+                {
+                    v2Message = _apiExecutor.Execute(_streamClient.V2MessageCreateAsync, message.StreamId, _authTokens.SessionToken, _authTokens.KeyManagerToken, v2MessageSubmission);
+                }
+                return MessageFactory.Create(v2Message);
             }
-            else
+            catch (Exception e)
             {
-                v2Message = _apiExecutor.Execute(_streamClient.V2MessageCreateAsync, message.StreamId, _authTokens.SessionToken, _authTokens.KeyManagerToken, v2MessageSubmission);
+                _log?.LogError(0, e, "An error has occured while trying to post a message to stream {streamId}", streamId);
+                throw;
             }
-            return MessageFactory.Create(v2Message);
         }
 
         public Message PostMessage(MessageSubmit msg)
@@ -101,9 +111,18 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                 attachment = msg.Attachments.Select(x => new FileParameter(new MemoryStream(x.Value), x.Key)).FirstOrDefault();
             }
 
-            System.Func<string, string, string, string, string, string, FileParameter, CancellationToken, Task<V4Message>> func = (string a, string b, string c, string d, string e, string f, FileParameter g, CancellationToken token) =>  _streamClient.V4MessageCreateAsync(a, b, c, d, e, f, g, token);
-            V4Message response = _apiExecutor.Execute(func, msg.StreamId, _authTokens.SessionToken, msg.Body, _authTokens.KeyManagerToken, msg.Data, null, attachment);
-            return MessageFactory.Create(response);
+            try
+            {
+                System.Func<string, string, string, string, string, string, FileParameter, CancellationToken, Task<V4Message>> func = (string a, string b, string c, string d, string e, string f, FileParameter g, CancellationToken token) =>  _streamClient.V4MessageCreateAsync(a, b, c, d, e, f, g, token);
+                V4Message response = _apiExecutor.Execute(func, msg.StreamId, _authTokens.SessionToken, msg.Body, _authTokens.KeyManagerToken, msg.Data, null, attachment);
+                return MessageFactory.Create(response);
+            }
+            catch (Exception e)
+            {
+                var streamId = msg.StreamId;
+                _log?.LogError(0, e, "An error has occured while trying to post a message to stream {streamId}", streamId);
+                throw;
+            }
         }
 
         /// <summary>
@@ -116,16 +135,24 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns>The list of messages.</returns>
         public List<Message> GetMessages(string sid, long since, int? offset = null, int? maxMessages = null)
         {
-            var v4MessageList = _apiExecutor.Execute<string, long, string, string, int?, int?, System.Collections.ObjectModel.ObservableCollection<V4Message>>(_streamClient.V4MessageAsync, sid, since, _authTokens.SessionToken, _authTokens.KeyManagerToken, offset, maxMessages);
-            var result = new List<Message>();
-            if (v4MessageList != null)
+            try
             {
-                foreach (var v4Message in v4MessageList)
+                var v4MessageList = _apiExecutor.Execute<string, long, string, string, int?, int?, System.Collections.ObjectModel.ObservableCollection<V4Message>>(_streamClient.V4MessageAsync, sid, since, _authTokens.SessionToken, _authTokens.KeyManagerToken, offset, maxMessages);
+                var result = new List<Message>();
+                if (v4MessageList != null)
                 {
-                    result.Add(MessageFactory.Create(v4Message));
+                    foreach (var v4Message in v4MessageList)
+                    {
+                        result.Add(MessageFactory.Create(v4Message));
+                    }
                 }
+                return result;
             }
-            return result;
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to retrieve a message from stream {sid}", sid);
+                throw;
+            }
         }
     }
 }

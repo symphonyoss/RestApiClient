@@ -15,21 +15,21 @@
 // specific language governing permissions and limitations
 // under the License.
 
-using System.Threading;
-using SymphonyOSS.RestApiClient.Entities;
+using System;
+using Microsoft.Extensions.Logging;
+using SymphonyOSS.RestApiClient.Logging;
 
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using Authentication;
     using Factories;
-    using Generated.OpenApi.PodApi;
     using System.Net.Http;
     using System.Collections.Generic;
     using Presence = Entities.Presence;
 
     /// <summary>
     /// Provides methods for getting and setting user presence, by encapsulating
-    /// <see cref="Generated.OpenApi.PodApi.Api.PresenceApi"/>,
+    /// <see cref="PresenceApi"/>,
     /// adding authentication token management and a custom execution strategy.
     /// </summary>
     public class PresenceApi
@@ -40,6 +40,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         private readonly IAuthTokens _authTokens;
 
         private readonly IApiExecutor _apiExecutor;
+
+        private readonly ILogger _log;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PresenceApi" /> class.
@@ -55,6 +57,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
             _userApi = new Generated.OpenApi.PodApi.UserClient(baseUrl, httpClient);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
+            _log = ApiLogging.LoggerFactory?.CreateLogger<PresenceApi>();
+
         }
 
         /// <summary>
@@ -85,8 +89,16 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The presence for the user.</returns>
         public Presence GetPresence(long uid)
         {
-            var presence = _apiExecutor.Execute(_userApi.V1PresenceGet2Async, uid, _authTokens.SessionToken);
-            return PresenceFactory.Create(uid, presence);
+            try
+            {
+                var presence = _apiExecutor.Execute(_userApi.V1PresenceGet2Async, uid, _authTokens.SessionToken);
+                return PresenceFactory.Create(uid, presence);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to retrieve presence information from user {uid}", uid);
+                throw;
+            }
         }
 
         /// <summary>
@@ -101,10 +113,20 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The user's new presence.</returns>
         public Presence SetPresence(Presence presence)
         {
-            var symphonyPresence = CreateSymphonyPresence(presence);
-            //var result = _apiExecutor.Execute(_presenceApi.V1UserUidPresencePost, (long?)presence.UserId, _authTokens.SessionToken, symphonyPresence);
-            var result = _apiExecutor.Execute(_userApi.V1PresencePost2Async, presence.UserId, _authTokens.SessionToken, symphonyPresence);
-            return PresenceFactory.Create(presence.UserId, result);
+            try
+            {
+                var symphonyPresence = CreateSymphonyPresence(presence);
+                //var result = _apiExecutor.Execute(_presenceApi.V1UserUidPresencePost, (long?)presence.UserId, _authTokens.SessionToken, symphonyPresence);
+                var result = _apiExecutor.Execute(_userApi.V1PresencePost2Async, presence.UserId,
+                    _authTokens.SessionToken, symphonyPresence);
+                return PresenceFactory.Create(presence.UserId, result);
+            }
+            catch (Exception e)
+            {
+                var userId = presence.UserId;
+                _log?.LogError(0, e, "An error has occured while trying to set the presence of user {userId}", userId);
+                throw;
+            }
         }
 
         private static Generated.OpenApi.PodApi.Presence CreateSymphonyPresence(Presence presence)

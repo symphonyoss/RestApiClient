@@ -15,6 +15,10 @@
 // specific language governing permissions and limitations
 // under the License.
 
+using System;
+using Microsoft.Extensions.Logging;
+using SymphonyOSS.RestApiClient.Logging;
+
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using Authentication;
@@ -25,7 +29,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
 
     /// <summary>
     /// Provides a method to get user information, by encapsulating
-    /// <see cref="Generated.OpenApi.PodApi.Api.UsersApi"/>,
+    /// <see cref="UsersApi"/>,
     /// adding authentication token management and a custom execution strategy.
     /// </summary>
     public class UsersApi
@@ -36,6 +40,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         private readonly IAuthTokens _authTokens;
 
         private readonly IApiExecutor _apiExecutor;
+
+        private readonly ILogger _log;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UsersApi" /> class.
@@ -51,6 +57,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
             _userApi = new UserClient(baseUrl, httpClient);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
+            _log = ApiLogging.LoggerFactory?.CreateLogger<UsersApi>();
+
         }
 
         /// <summary>
@@ -64,8 +72,16 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The user ID, or -1 if the user is not found.</returns>
         public long GetUserId(string email, bool? local = null)
         {
-            var user = _apiExecutor.Execute(_userApi.V1Async, email, _authTokens.SessionToken, local);
-            return user?.Id ?? -1;
+            try
+            {
+                var user = _apiExecutor.Execute(_userApi.V1Async, email, _authTokens.SessionToken, local);
+                return user?.Id ?? -1;
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to get a user ID by the email address {email}.", email);
+                throw;
+            }
         }
 
         /// <summary>
@@ -79,8 +95,16 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The user information.</returns>
         public User GetUser(long userId, bool? local = null)
         {
-            var userV2 = _apiExecutor.Execute(_userApi.V2Async, _authTokens.SessionToken, (long?)userId, (string)null, (string)null, local);
-            return userV2 != null ? UserFactory.Create(userV2) : null;
+            try
+            {
+                var userV2 = _apiExecutor.Execute(_userApi.V2Async, _authTokens.SessionToken, (long?)userId, (string)null, (string)null, local);
+                return userV2 != null ? UserFactory.Create(userV2) : null;
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to get a user ID by the user ID {userId}.", userId);
+                throw;
+            }
         }
     }
 }

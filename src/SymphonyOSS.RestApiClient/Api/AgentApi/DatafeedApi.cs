@@ -20,13 +20,11 @@ using System.Collections.Generic;
 
 namespace SymphonyOSS.RestApiClient.Api.AgentApi
 {
-    using System.Diagnostics;
     using Authentication;
     using Generated.OpenApi.AgentApi;
     using System.Net.Http;
     using Microsoft.Extensions.Logging;
-    using SymphonyOSS.RestApiClient.Logging;
-    using System.Threading.Tasks;
+    using Logging;
 
     /// <summary>
     /// Provides an event-based data feed of a user's incoming messages.
@@ -117,7 +115,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
             }
             catch (Exception e)
             {
-                _log?.LogDebug(0, e, "Datafeed Listening stopped due to exception in datafeed {datafeedId}", datafeedId);
+                _log?.LogError(0, e, "Datafeed Listening stopped due to exception in datafeed {datafeedId}", datafeedId);
                 throw;
             }
         }
@@ -128,8 +126,16 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
         /// <returns>The ID of the datafeed.</returns>
         public string CreateDatafeed()
         {
-            var datafeed = ApiExecutor.Execute(_datafeedApi.V4CreateAsync, AuthTokens.SessionToken, AuthTokens.KeyManagerToken);
-            return datafeed.Id;
+            try
+            {
+                var datafeed = ApiExecutor.Execute(_datafeedApi.V4CreateAsync, AuthTokens.SessionToken, AuthTokens.KeyManagerToken);
+                return datafeed.Id;
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to create a datafeed.");
+                throw;
+            }
         }
 
         private IEnumerable<V4Event> ReadDatafeed(string id, int? maxMessages = null)
@@ -186,7 +192,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
                         throw;
                     }
                     ++countDatafeedErrors;
-    
+
                     _log?.LogWarning(0, e, "Unhandled API Exception caught when reading datafeed id {id}", id);
                     id = CreateDatafeed();
                 }

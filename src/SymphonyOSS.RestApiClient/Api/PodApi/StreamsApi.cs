@@ -16,12 +16,13 @@
 // under the License.
 
 using System.Collections.ObjectModel;
+using Microsoft.Extensions.Logging;
+using SymphonyOSS.RestApiClient.Logging;
 
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Authentication;
     using Entities;
     using Factories;
@@ -31,7 +32,7 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
 
     /// <summary>
     /// Provides methods for creating single or multi party conversations
-    /// and chat rooms, by encapsulating <see cref="Generated.OpenApi.PodApi.Api.StreamsApi"/>,
+    /// and chat rooms, by encapsulating <see cref="StreamsApi"/>,
     /// adding authentication token management and a custom execution strategy.
     /// </summary>
     public class StreamsApi
@@ -43,6 +44,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         private readonly IAuthTokens _authTokens;
 
         private readonly IApiExecutor _apiExecutor;
+
+        private readonly ILogger _log;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StreamsApi" /> class.
@@ -60,6 +63,8 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
 
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
+
+            _log = ApiLogging.LoggerFactory?.CreateLogger<StreamsApi>();
         }
 
         /// <summary>
@@ -74,8 +79,16 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The ID of the created stream.</returns>
         public string CreateStream(List<long> userIdList)
         {
-            var stream = _apiExecutor.Execute(_imApi.V1CreateAsync, userIdList, _authTokens.SessionToken);
-            return stream.Id;
+            try
+            {
+                var stream = _apiExecutor.Execute(_imApi.V1CreateAsync, userIdList, _authTokens.SessionToken);
+                return stream.Id;
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to create a stream.");
+                throw;
+            }
         }
 
         /// <summary>
@@ -85,8 +98,16 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The stream's attributes.</returns>
         public Stream GetStreamInfo(string sid)
         {
-            var streamAttributes = _apiExecutor.Execute(_streamsApi.V1InfoAsync, sid, _authTokens.SessionToken);
-            return StreamFactory.Create(streamAttributes);
+            try
+            {
+                var streamAttributes = _apiExecutor.Execute(_streamsApi.V1InfoAsync, sid, _authTokens.SessionToken);
+                return StreamFactory.Create(streamAttributes);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to get information about stream {sid}.", sid);
+                throw;
+            }
         }
 
         /// <summary>
@@ -113,9 +134,18 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
                 ReadOnly = room.ReadOnly,
                 CopyProtected = room.CopyProtected
             };
+
+            try
+            {
+                var v2RoomDetail = _apiExecutor.Execute(_roomApi.V2CreateAsync, v2RoomAttributes, _authTokens.SessionToken);
+                return RoomFactory.Create(v2RoomDetail);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to create a room.");
+                throw;
+            }
             //var v2RoomDetail = _apiExecutor.Execute(_streamsApi.V2RoomCreatePost, v2RoomAttributes, _authTokens.SessionToken);
-            var v2RoomDetail = _apiExecutor.Execute(_roomApi.V2CreateAsync, v2RoomAttributes, _authTokens.SessionToken);
-            return RoomFactory.Create(v2RoomDetail);
         }
 
         /// <summary>
@@ -125,8 +155,16 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The room details.</returns>
         public Room GetRoomInfo(string id)
         {
-            var v2RoomDetail = _apiExecutor.Execute(_roomApi.V2InfoAsync, id, _authTokens.SessionToken);
-            return RoomFactory.Create(v2RoomDetail);
+            try
+            {
+                var v2RoomDetail = _apiExecutor.Execute(_roomApi.V2InfoAsync, id, _authTokens.SessionToken);
+                return RoomFactory.Create(v2RoomDetail);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to get information about the chatroom {id}.", id);
+                throw;
+            }
         }
 
         /// <summary>
@@ -137,7 +175,15 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
         /// <returns>The room.</returns>
         public RoomDetail SetRoomActive(string id, bool active)
         {
-            return _apiExecutor.Execute(_roomApi.V1SetactiveAsync, id, active, _authTokens.SessionToken);
+            try
+            {
+                return _apiExecutor.Execute(_roomApi.V1SetactiveAsync, id, active, _authTokens.SessionToken);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to deactivate or reactivate the chatroom {id}.", id);
+                throw;
+            }
         }
 
         /// <summary>
@@ -163,8 +209,17 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
                 ReadOnly = room.ReadOnly,
                 CopyProtected = room.CopyProtected
             };
-            var v2RoomDetail = _apiExecutor.Execute(_roomApi.V2UpdateAsync, room.Id, v2RoomAttributes, _authTokens.SessionToken);
-            return RoomFactory.Create(v2RoomDetail);
+
+            try
+            {
+                var v2RoomDetail = _apiExecutor.Execute(_roomApi.V2UpdateAsync, room.Id, v2RoomAttributes, _authTokens.SessionToken);
+                return RoomFactory.Create(v2RoomDetail);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to update a chatroom.");
+                throw;
+            }
         }
 
         /// <summary>
