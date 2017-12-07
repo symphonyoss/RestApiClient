@@ -52,10 +52,10 @@ namespace SymphonyOSS.RestApiClient.Api
                 return new ApiException(e as SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.SwaggerException);
             }
 
-            return new ApiException(e.Message, 0);
+            return new ApiException(e.Message, e, 0);
         }
 
-        public ApiException(string message, int httpStatusCode) : base(message)
+        public ApiException(string message, Exception innerException, int httpStatusCode) : base(message, innerException)
         {
             HttpStatusCode = httpStatusCode;
         }

@@ -58,7 +58,7 @@ namespace SymphonyOSS.RestApiClient.Factories
                 case Generated.OpenApi.PodApi.StreamTypeType.ROOM:
                     return StreamType.Room;
                 default:
-                    throw new ApiException($"Unknown stream type '{streamType}'.", 0);
+                    throw new ApiException($"Unknown stream type '{streamType}'.", null, 0);
             }
         }
     }
