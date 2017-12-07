@@ -15,15 +15,10 @@
 // specific language governing permissions and limitations
 // under the License.
 
-using System.Net.Http;
-
 namespace SymphonyOSS.RestApiClient.Api.PodApi
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Authentication;
     using Entities;
     using Factories;
@@ -47,29 +42,6 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
 
         private readonly IApiExecutor _apiExecutor;
 
-        private readonly Dictionary<EventHandler<ConnectionRequestEventArgs>, Task> _tasks =
-            new Dictionary<EventHandler<ConnectionRequestEventArgs>, Task>();
-
-        private Timer _connectionPollTimer;
-
-        private event EventHandler<ConnectionRequestEventArgs> _onConnectionRequest;
-
-        public event EventHandler<ConnectionRequestEventArgs> OnConnectionRequest
-        {
-            add
-            {
-                _onConnectionRequest += value;
-            }
-            remove
-            {
-                _onConnectionRequest -= value;
-                lock (_tasks)
-                {
-                    _tasks.Remove(value);
-                }
-            }
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="UsersApi" /> class.
         /// See <see cref="Factories.PodApiFactory"/> for conveniently constructing
@@ -85,51 +57,6 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
             _connectionApi = new Generated.OpenApi.PodApi.ConnectionClient(baseUrl, httpClient);
             _authTokens = authTokens;
             _apiExecutor = apiExecutor;
-        }
-
-        /// <summary>
-        /// Starts listening, notifying event handlers about incoming connection requests. Blocks
-        /// until <see cref="ConnectionApi.Stop"/> is invoked.
-        /// </summary>
-        public void Listen(int timeout)
-        {
-            _connectionPollTimer = new Timer(
-                cb =>
-                {
-                    try
-                    {
-                        var connectionList =
-                            List().Where(connection => connection.Status != ConnectionStatus.Accepted);
-
-                        ProcessConnectionList(connectionList);
-                    }
-                    catch (Exception ex)
-                    {
-                        _log?.LogError(0, ex, "Unhandled exception caught when fecthing list of connection request");
-                    }
-                }, null, 0, timeout);
-        }
-
-        /// <summary>
-        /// Requests that <see cref="Listen"/> should stop.
-        /// </summary>
-        public void Stop()
-        {
-            _connectionPollTimer.Dispose();
-            _connectionPollTimer = null;
-        }
-
-        protected void ProcessConnectionList(IEnumerable<Connection> connectionList)
-        {
-            if (connectionList == null || _onConnectionRequest == null)
-            {
-                return;
-            }
-
-            foreach (var eventHandler in _onConnectionRequest.GetInvocationList())
-            {
-                NotifyAsync((EventHandler<ConnectionRequestEventArgs>)eventHandler, connectionList);
-            }
         }
 
         /// <summary>
@@ -207,35 +134,6 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
             var connectionRequest = new UserConnectionRequest() { UserId = userId };
             var userConnection = _apiExecutor.Execute(_connectionApi.V1RejectAsync, _authTokens.SessionToken, connectionRequest, default(System.Threading.CancellationToken));
             return ConnectionFactory.Create(userConnection);
-        }
-
-        protected async void NotifyAsync(EventHandler<ConnectionRequestEventArgs> connectionEventHandler,
-            IEnumerable<Connection> connectionList)
-        {
-            // Notify each handler in a separate task, maintaining the order of connections in the list, and
-            // get back to reading the connectio list again without waiting for listeners to process connection requests.
-            Task task;
-            if (_tasks.TryGetValue(connectionEventHandler, out task))
-            {
-                await task;
-            }
-            _tasks[connectionEventHandler] = Task.Run(() => Notify(connectionEventHandler, connectionList));
-        }
-
-        private void Notify(EventHandler<ConnectionRequestEventArgs> connectionEventHandler,
-            IEnumerable<Connection> connectionList)
-        {
-            foreach (var connection in connectionList)
-            {
-                try
-                {
-                    connectionEventHandler.Invoke(this, new ConnectionRequestEventArgs(connection));
-                }
-                catch (Exception e)
-                {
-                    _log?.LogError(0, e, "Unhandled exception caught when notifying listener about connection request for user with ID \"{0}\"", connection?.UserId);
-                }
-            }
         }
     }
 }
