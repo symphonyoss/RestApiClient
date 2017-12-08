@@ -50,13 +50,13 @@ namespace SymphonyOSS.RestApiClient.Entities
         {
             if (streamId == null)
             {
-                throw new ApiException("Missing required parameter 'streamId'.", 0);
+                throw new ApiException("Missing required parameter 'streamId'.", null, 0);
             }
             StreamId = streamId;
 
             if (body == null)
             {
-                throw new ApiException("Missing required parameter 'body'.", 0);
+                throw new ApiException("Missing required parameter 'body'.", null, 0);
             }
             Body = body;
             Attachments = new List<Attachment>();

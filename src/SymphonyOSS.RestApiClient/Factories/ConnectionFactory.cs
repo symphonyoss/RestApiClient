@@ -50,7 +50,7 @@ namespace SymphonyOSS.RestApiClient.Factories
                 case UserConnectionStatus.REJECTED:
                     return ConnectionStatus.Rejected;
                 default:
-                    throw new ApiException($"Invalid status {status}.", 0);
+                    throw new ApiException($"Invalid status {status}.", null, 0);
             }
         }
     }

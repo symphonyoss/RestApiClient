@@ -67,7 +67,7 @@ namespace SymphonyOSS.RestApiClient.Entities
         {
             if (id == null)
             {
-                throw new ApiException("Missing required parameter 'id'.", 0);
+                throw new ApiException("Missing required parameter 'id'.", null, 0);
             }
             Id = id;
             CrossPod = crossPod;
