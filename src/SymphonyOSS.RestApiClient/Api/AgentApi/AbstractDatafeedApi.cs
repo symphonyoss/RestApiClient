@@ -193,7 +193,7 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 
             foreach (var message in messageList)
             {
-                switch(message.Type)
+                switch(message?.Type)
                 {
                     case V4EventType.MESSAGESENT:
                         FireMessage(message.Payload.MessageSent.Message);
