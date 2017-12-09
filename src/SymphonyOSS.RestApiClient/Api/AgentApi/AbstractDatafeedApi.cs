@@ -193,6 +193,11 @@ namespace SymphonyOSS.RestApiClient.Api.AgentApi
 
             foreach (var message in messageList)
             {
+                if (message == null)
+                {
+                    continue;
+                }
+
                 switch(message.Type)
                 {
                     case V4EventType.MESSAGESENT:
