@@ -62,13 +62,13 @@ namespace SymphonyOSS.RestApiClient.Api
 
         internal ApiException(SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.SwaggerException ex) : base(ex.Message, ex)
         {
-            HttpStatusCode = int.Parse(ex.StatusCode);
+            HttpStatusCode = ParseStatusCode(ex.StatusCode);
             RawMessage = ex.Response;
         }
 
         internal ApiException(SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi.SwaggerException<AgentError> ex) : base(ex.Message, ex)
         {
-            HttpStatusCode = int.Parse(ex.StatusCode);
+            HttpStatusCode = ParseStatusCode(ex.StatusCode);
             RawMessage = ex.Response;
             SymphonyError = ex.Result.Code;
             SymphonyErrorMessage = ex.Result.Message;
@@ -76,13 +76,13 @@ namespace SymphonyOSS.RestApiClient.Api
 
         internal ApiException(SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.SwaggerException ex) : base(ex.Message, ex)
         {
-            HttpStatusCode = int.Parse(ex.StatusCode);
+            HttpStatusCode = ParseStatusCode(ex.StatusCode);
             RawMessage = ex.Response;
         }
 
         internal ApiException(SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi.SwaggerException<PodError> ex) : base(ex.Message, ex)
         {
-            HttpStatusCode = int.Parse(ex.StatusCode);
+            HttpStatusCode = ParseStatusCode(ex.StatusCode);
             RawMessage = ex.Response;
             SymphonyError = ex.Result.Code;
             SymphonyErrorMessage = ex.Result.Message;
@@ -90,17 +90,21 @@ namespace SymphonyOSS.RestApiClient.Api
 
         internal ApiException(SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.SwaggerException ex) : base(ex.Message, ex)
         {
-            HttpStatusCode = int.Parse(ex.StatusCode);
+            HttpStatusCode = ParseStatusCode(ex.StatusCode);
             RawMessage = ex.Response;
         }
 
         internal ApiException(SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi.SwaggerException<AuthError> ex) : base(ex.Message, ex)
         {
-            HttpStatusCode = int.Parse(ex.StatusCode);
+            HttpStatusCode = ParseStatusCode(ex.StatusCode);
             RawMessage = ex.Response;
             SymphonyError = ex.Result.Code;
             SymphonyErrorMessage = ex.Result.Message;
         }
 
+        private static int ParseStatusCode(string statusCode)
+        {
+            return int.TryParse(statusCode, out var retval) ? retval : 0;
+        }
     }
 }

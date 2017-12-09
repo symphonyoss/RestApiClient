@@ -56,3 +56,9 @@ powershell -Command "(gc AuthenticatorApi/AuthenticatorApi.cs) -replace 'System.
 rmdir /s /q Temp
 
 call prepend_license.bat
+
+@rem apply patch to support content-type header for attachments
+@rem the delay here is to allow something from above to release
+@ rem the write lock on AgentApi.cs
+timeout 5
+git apply patches\attachment.patch
