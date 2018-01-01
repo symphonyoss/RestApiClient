@@ -16,7 +16,6 @@
 // under the License.
 
 using System.Net.Http;
-using SymphonyOSS.RestApiClient.Entities;
 
 namespace SymphonyOSS.RestApiClient.Tests
 {
@@ -26,7 +25,6 @@ namespace SymphonyOSS.RestApiClient.Tests
     using Generated.OpenApi.PodApi;
     using Moq;
     using System;
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Xunit;
