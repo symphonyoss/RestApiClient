@@ -1,11 +1,11 @@
 diff --git a/src/SymphonyOSS.RestApiClient/Generated/OpenApi/AgentApi/AgentApi.cs b/src/SymphonyOSS.RestApiClient/Generated/OpenApi/AgentApi/AgentApi.cs
-index aa0eae5..e587287 100644
+index 375b1b8..52dec4d 100644
 --- a/src/SymphonyOSS.RestApiClient/Generated/OpenApi/AgentApi/AgentApi.cs
 +++ b/src/SymphonyOSS.RestApiClient/Generated/OpenApi/AgentApi/AgentApi.cs
-@@ -4312,8 +4312,18 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
-                         content_.Add(new System.Net.Http.StringContent(System.Convert.ToString(data, System.Globalization.CultureInfo.InvariantCulture)), "data");
+@@ -4454,8 +4454,18 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
+                         content_.Add(new System.Net.Http.StringContent(ConvertToString(data, System.Globalization.CultureInfo.InvariantCulture)), "data");
                      if (version != null)
-                         content_.Add(new System.Net.Http.StringContent(System.Convert.ToString(version, System.Globalization.CultureInfo.InvariantCulture)), "version");
+                         content_.Add(new System.Net.Http.StringContent(ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture)), "version");
 -                    if (attachment != null)
 -                        content_.Add(new System.Net.Http.StreamContent(attachment.Data), "attachment", attachment.FileName ?? "attachment");
 +                    // SymphonyOSS Modification Begin

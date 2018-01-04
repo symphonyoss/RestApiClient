@@ -60,5 +60,3 @@ call prepend_license.bat
 @rem the write lock on AgentApi.cs
 timeout 5
 git apply patches\attachment.patch
-
-pause
