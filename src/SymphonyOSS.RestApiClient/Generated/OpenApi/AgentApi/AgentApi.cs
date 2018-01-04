@@ -4454,8 +4454,18 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                         content_.Add(new System.Net.Http.StringContent(ConvertToString(data, System.Globalization.CultureInfo.InvariantCulture)), "data");
                     if (version != null)
                         content_.Add(new System.Net.Http.StringContent(ConvertToString(version, System.Globalization.CultureInfo.InvariantCulture)), "version");
-                    if (attachment != null)
-                        content_.Add(new System.Net.Http.StreamContent(attachment.Data), "attachment", attachment.FileName ?? "attachment");
+                    // SymphonyOSS Modification Begin
+                    // Symphony requires the content-type header for file attachment parts
+                    // However this header is suggested but not required:
+                    // https://tools.ietf.org/html/rfc7578#section-4.4
+                    // The nswag generator does not include this header so this patch forces
+                    // that in.
+                    if (attachment != null) {
+                        var attachmentContent = new System.Net.Http.StreamContent(attachment.Data);
+                        attachmentContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+                        content_.Add(attachmentContent, "attachment", attachment.FileName ?? "attachment");
+                    }
+                    // SymphonyOSS Modification End
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
