@@ -466,8 +466,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -596,8 +597,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -740,8 +742,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -886,8 +889,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -1027,8 +1031,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -1168,8 +1173,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -1308,8 +1314,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(configurationInstance, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -1441,8 +1448,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -1574,8 +1582,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -1709,8 +1718,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -1844,8 +1854,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -1982,8 +1993,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -2112,8 +2124,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -2247,8 +2260,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(users, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -2385,8 +2399,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -2520,8 +2535,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(users, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -2654,8 +2670,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(uidList, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -2792,8 +2809,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -2923,8 +2941,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -3058,8 +3077,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -3196,8 +3216,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -3337,8 +3358,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -3472,8 +3494,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -3610,8 +3633,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -3753,8 +3777,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -3889,8 +3914,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(filter, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -4022,8 +4048,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -4152,8 +4179,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -4282,8 +4310,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -4412,8 +4441,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -4545,8 +4575,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -4678,8 +4709,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -4813,8 +4845,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -4948,8 +4981,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -5086,8 +5120,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -5221,8 +5256,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -5359,8 +5395,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -5494,8 +5531,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -5632,8 +5670,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -5767,8 +5806,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -5905,8 +5945,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -6046,8 +6087,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -6184,8 +6226,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -6319,8 +6362,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -6457,8 +6501,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -6592,8 +6637,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -6730,8 +6776,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -6865,8 +6912,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -7003,8 +7051,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -7269,8 +7318,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(cert, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -7402,8 +7452,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(fingerPrint, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -7540,8 +7591,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -7675,8 +7727,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -7811,8 +7864,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(typeIdList, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -7949,8 +8003,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -8085,8 +8140,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -8220,8 +8276,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(certAttributes, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -8353,8 +8410,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(cert, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -8681,8 +8739,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(configuration, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -8820,8 +8879,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -8961,8 +9021,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -9096,8 +9157,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -9232,8 +9294,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -9368,8 +9431,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -9503,8 +9567,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(configurationInstance, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -9647,8 +9712,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -9778,8 +9844,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -9919,8 +9986,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -10045,8 +10113,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -10170,8 +10239,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(configurationInstance, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -10293,8 +10363,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -10419,8 +10490,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -10540,8 +10612,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(token, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -10663,8 +10736,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(configuration, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -10896,8 +10970,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(connectionRequest, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -11044,8 +11119,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(connectionRequest, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -11200,8 +11276,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -11345,8 +11422,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(connectionRequest, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -11483,8 +11561,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -11696,8 +11775,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(uidList, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -11897,8 +11977,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -12086,8 +12167,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -12393,8 +12475,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -12532,8 +12615,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -12667,8 +12751,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -12805,8 +12890,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -12944,8 +13030,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -13079,8 +13166,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -13217,8 +13305,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -13360,8 +13449,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -13497,8 +13587,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -13630,8 +13721,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -13770,8 +13862,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(query, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -13908,8 +14001,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -14043,8 +14137,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -14178,8 +14273,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -14384,8 +14480,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -14514,8 +14611,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -14729,8 +14827,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(filter, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -14873,8 +14972,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -15174,8 +15274,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -15315,8 +15416,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -15451,8 +15553,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -15566,8 +15669,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(presence, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -15685,8 +15789,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(uidList, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -15843,8 +15948,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(searchRequest, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -15988,8 +16094,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -16139,8 +16246,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(presence, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -16299,8 +16407,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -16450,8 +16559,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.PodApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     

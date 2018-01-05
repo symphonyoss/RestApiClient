@@ -257,10 +257,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -400,10 +402,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -548,10 +552,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -687,10 +693,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -829,10 +837,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -1077,10 +1087,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -1220,10 +1232,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -1368,10 +1382,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -1507,10 +1523,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -1649,10 +1667,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -1900,10 +1920,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(messageList, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -2049,10 +2071,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -2197,10 +2221,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(query, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -2340,10 +2366,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(messageList, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -2476,10 +2504,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(messageList, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -2829,10 +2859,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/octet-stream"));
     
@@ -2926,10 +2958,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     var boundary_ = System.Guid.NewGuid().ToString();
                     var content_ = new System.Net.Http.MultipartFormDataContent(boundary_);
                     content_.Headers.Remove("Content-Type");
@@ -3102,10 +3136,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -3247,10 +3283,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(message, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -3389,10 +3427,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(shareContent, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -3544,10 +3584,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -3689,10 +3731,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(message, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -3832,8 +3876,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     if (keyManagerToken != null)
                         request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     var boundary_ = System.Guid.NewGuid().ToString();
@@ -3995,8 +4040,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     if (keyManagerToken != null)
                         request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(message, _settings.Value));
@@ -4136,8 +4182,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     if (keyManagerToken != null)
                         request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(shareContent, _settings.Value));
@@ -4290,10 +4337,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     
@@ -4438,8 +4487,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     if (keyManagerToken != null)
                         request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     var boundary_ = System.Guid.NewGuid().ToString();
@@ -4675,10 +4725,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(echoInput, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
@@ -4813,10 +4865,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
-                    if (keyManagerToken != null)
-                        request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (keyManagerToken == null)
+                        throw new System.ArgumentNullException("keyManagerToken");
+                    request_.Headers.TryAddWithoutValidation("keyManagerToken", ConvertToString(keyManagerToken, System.Globalization.CultureInfo.InvariantCulture));
                     var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(echoInput, _settings.Value));
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;

@@ -311,8 +311,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AuthenticatorApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    if (sessionToken != null)
-                        request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
+                    if (sessionToken == null)
+                        throw new System.ArgumentNullException("sessionToken");
+                    request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
