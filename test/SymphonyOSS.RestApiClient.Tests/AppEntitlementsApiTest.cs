@@ -25,6 +25,8 @@ namespace SymphonyOSS.RestApiClient.Tests
     using Generated.OpenApi.PodApi;
     using Moq;
     using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Threading;
     using System.Threading.Tasks;
     using Xunit;
@@ -32,7 +34,7 @@ namespace SymphonyOSS.RestApiClient.Tests
 
     public class AppEntitlementsApiTest
     {
-        private readonly AppEntitlementsApi _presenceApi;
+        private readonly AppEntitlementsApi _appEntitlementsApi;
 
         private readonly Mock<IApiExecutor> _apiExecutorMock;
 
@@ -41,14 +43,21 @@ namespace SymphonyOSS.RestApiClient.Tests
             var sessionManagerMock = new Mock<IAuthTokens>();
             sessionManagerMock.Setup(obj => obj.SessionToken).Returns("sessionToken");
             _apiExecutorMock = new Mock<IApiExecutor>();
-            _presenceApi = new AppEntitlementsApi(sessionManagerMock.Object, "", new HttpClient(), _apiExecutorMock.Object);
+            _appEntitlementsApi = new AppEntitlementsApi(sessionManagerMock.Object, "", new HttpClient(), _apiExecutorMock.Object);
         }
 
         [Fact]
         public void EnsureGetAllAppEntitlements_uses_retry_strategy()
         {
-            _presenceApi.GetAllAppEntitlements();
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, CancellationToken, Task<System.Collections.ObjectModel.ObservableCollection<UserPresence>>>>(), "sessionToken", default(CancellationToken)));
+            _appEntitlementsApi.GetAllAppEntitlements();
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, CancellationToken, Task<ObservableCollection<PodAppEntitlement>>>>(), "sessionToken", default(CancellationToken)));
+        }
+
+        [Fact]
+        public void EnsureUpdateAppEntitlements_uses_retry_strategy()
+        {
+            _appEntitlementsApi.UpdateAppEntitlements(new List<PodAppEntitlement>());
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, IEnumerable<PodAppEntitlement>, CancellationToken, Task<ObservableCollection<PodAppEntitlement>>>>(), "sessionToken",It.IsAny<IEnumerable< PodAppEntitlement>>(), default(CancellationToken)));
         }
     }
 }

@@ -56,6 +56,17 @@ namespace SymphonyOSS.RestApiClient.Api.PodApi
                 throw;
             }
         }
-
+        public IEnumerable<PodAppEntitlement >UpdateAppEntitlements(IEnumerable<PodAppEntitlement> appEntitlements)
+        {
+            try
+            {
+                return _apiExecutor.Execute(_appEntitlementsApi.V1AppEntitlementListPostAsync, _authTokens.SessionToken, appEntitlements);
+            }
+            catch (Exception e)
+            {
+                _log?.LogError(0, e, "An error has occured while trying to update application entitlements");
+                throw;
+            }
+        }
     }
 }
