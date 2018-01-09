@@ -37,13 +37,15 @@ dotnet ..\..\..\..\tools\SwaggerOperationIdGenerator\SwaggerOperationIdGenerator
 dotnet ..\..\..\..\tools\SwaggerOperationIdGenerator\SwaggerOperationIdGenerator\bin\Debug\netcoreapp1.1\SwaggerOperationIdGenerator.dll temp\authenticatorAPI.json >temp\authenticatorAPI.operations.json
 dotnet ..\..\..\..\tools\SwaggerOperationIdGenerator\SwaggerOperationIdGenerator\bin\Debug\netcoreapp1.1\SwaggerOperationIdGenerator.dll temp\podAPI.json >temp\podAPI.operations.json
 
+
+
 rmdir /s /q AgentApi
 rmdir /s /q AuthenticatorApi
 rmdir /s /q PodApi
 
-call ..\..\..\..\..\NSwagBinary\net461\NSwag.exe run Config\agentAPI.nswag
-call ..\..\..\..\..\NSwagBinary\net461\NSwag.exe run Config\authenticatorAPI.nswag
-call ..\..\..\..\..\NSwagBinary\net461\NSwag.exe run Config\podAPI.nswag
+call nswag run Config\agentAPI.nswag
+call nswag run Config\authenticatorAPI.nswag
+call nswag run Config\podAPI.nswag
 
 @rem When a request has an empty post body, nswag sets the content-type to text/plain, but Symphony
 @rem still enforces that it be application/json. Here, we simply add the mimetype to the StringContent
@@ -57,6 +59,6 @@ call prepend_license.bat
 
 @rem apply patch to support content-type header for attachments
 @rem the delay here is to allow something from above to release
-@rem the write lock on AgentApi.cs
+@ rem the write lock on AgentApi.cs
 timeout 5
 git apply patches\attachment.patch

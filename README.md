@@ -68,12 +68,10 @@ The library depends on code that has been generated from Symphony's YAML spec fi
 
 In case there is a need to regenerate the code from Symphony's YAML specs:
 
- 1. Clone [this](https://github.com/mvu02/NSwag) repo to get a local copy of the NSwag code
- 2. Open NSwag.sln located inside NSwag\src\ and build the project
- 3. After the project has been successfully built, navigate to NSwag\src\NSwag.Console\bin\Debug\ and copy the whole net461 directory
- 4. Navigate to the root directory where your RestApiClient project is located and create a directory called "NSwagBinary" and paste the directory, net461, into this newly created directory. For example if your RestApiClient project is inside a directory called root, you should have root\NSwagBinary\net461 and root\RestApiclient
- 5. Install api-spec-converter via command line: `npm install api-spec-converter -g`
- 6. Run SymphonyOSS.RestApiClient\Generated\OpenApi\generate.bat
+ 1. Make sure Node Package Manager is installed
+ 2. Install nswag via command line:  `npm install nswag -g`
+ 3. Install api-spec-converter via command line: `npm install api-spec-converter -g`
+ 4. Run SymphonyOSS.RestApiClient\Generated\OpenApi\generate.bat
 
 The details of the generation process are outlined in generate.bat
 
