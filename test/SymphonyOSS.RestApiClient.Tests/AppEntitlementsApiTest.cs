@@ -22,15 +22,16 @@ namespace SymphonyOSS.RestApiClient.Tests
     using Api;
     using Api.PodApi;
     using Authentication;
-    using Generated.OpenApi.PodApi;
+
     using Moq;
+    using SymphonyOSS.RestApiClient.Entities;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Threading;
     using System.Threading.Tasks;
     using Xunit;
-    
+
 
     public class AppEntitlementsApiTest
     {
@@ -49,15 +50,30 @@ namespace SymphonyOSS.RestApiClient.Tests
         [Fact]
         public void EnsureGetAllAppEntitlements_uses_retry_strategy()
         {
-            _appEntitlementsApi.GetAllAppEntitlements();
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, CancellationToken, Task<ObservableCollection<PodAppEntitlement>>>>(), "sessionToken", default(CancellationToken)));
+            _appEntitlementsApi.GetAppEntitlements();
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, CancellationToken, Task<ObservableCollection<Generated.OpenApi.PodApi.PodAppEntitlement>>>>(), "sessionToken", default(CancellationToken)));
         }
 
         [Fact]
         public void EnsureUpdateAppEntitlements_uses_retry_strategy()
         {
             _appEntitlementsApi.UpdateAppEntitlements(new List<PodAppEntitlement>());
-            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, IEnumerable<PodAppEntitlement>, CancellationToken, Task<ObservableCollection<PodAppEntitlement>>>>(), "sessionToken",It.IsAny<IEnumerable< PodAppEntitlement>>(), default(CancellationToken)));
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, IEnumerable<Generated.OpenApi.PodApi.PodAppEntitlement>, CancellationToken, Task<ObservableCollection<Generated.OpenApi.PodApi.PodAppEntitlement>>>>(), "sessionToken", It.IsAny<IEnumerable<Generated.OpenApi.PodApi.PodAppEntitlement>>(), default(CancellationToken)));
+        }
+        [Fact]
+        public void EnsureGetUserAppEntitlements_uses_retry_strategy()
+        {
+            var uid = 12345;
+            _appEntitlementsApi.GetUserAppEntitlements(uid);
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, CancellationToken, Task<ObservableCollection<Generated.OpenApi.PodApi.UserAppEntitlement>>>>(), "sessionToken", uid, default(CancellationToken)));
+        }
+
+        [Fact]
+        public void EnsureUpdateUserAppEntitlements_uses_retry_strategy()
+        {
+            var uid = 12345;
+            _appEntitlementsApi.UpdateUserAppEntitlements(uid, new List<UserAppEntitlement>());
+            _apiExecutorMock.Verify(obj => obj.Execute(It.IsAny<Func<string, long, IEnumerable<Generated.OpenApi.PodApi.UserAppEntitlement>, CancellationToken, Task<ObservableCollection<Generated.OpenApi.PodApi.UserAppEntitlement>>>>(), "sessionToken", 12345, It.IsAny<IEnumerable<Generated.OpenApi.PodApi.UserAppEntitlement>>(), default(CancellationToken)));
         }
     }
 }
