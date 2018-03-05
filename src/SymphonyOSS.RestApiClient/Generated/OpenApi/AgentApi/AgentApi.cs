@@ -20,6 +20,12 @@
 // </auto-generated>
 //----------------------
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Extensions.Logging;
+using SymphonyOSS.RestApiClient.Logging;
+
 namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
 {
     #pragma warning disable // Disable all warnings
@@ -2803,9 +2809,11 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
         private string _baseUrl = "";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
-    
+        private readonly ILogger _log;
+
         public StreamClient(string baseUrl, System.Net.Http.HttpClient httpClient)
         {
+            _log = ApiLogging.LoggerFactory?.CreateLogger<StreamClient>();
             BaseUrl = baseUrl; 
             _httpClient = httpClient; 
     		_settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() => 
@@ -4487,6 +4495,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
+                    _log.LogDebug("Attempting to create the V4MessageCreate Http Request to send to symphony.");
                     if (sessionToken == null)
                         throw new System.ArgumentNullException("sessionToken");
                     request_.Headers.TryAddWithoutValidation("sessionToken", ConvertToString(sessionToken, System.Globalization.CultureInfo.InvariantCulture));
@@ -4510,7 +4519,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                     // https://tools.ietf.org/html/rfc7578#section-4.4
                     // The nswag generator does not include this header so this patch forces
                     // that in.
-                    if (attachment != null) {
+                    if (attachment != null)
+                    {
                         var attachmentContent = new System.Net.Http.StreamContent(attachment.Data);
                         attachmentContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
                         content_.Add(attachmentContent, "attachment", attachment.FileName ?? "attachment");
@@ -4519,32 +4529,60 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
+                    var requestDetails = new Dictionary<string, string>()
+                    {
+                        {"url", url_}
+                    };
+                    _log.LogDebug("Attempting to send the request to symphony.", requestDetails);
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+
+                    _log.LogDebug("Request successfully sent to symphony and a response was received.");
+
                     try
                     {
+                        _log.LogDebug("Attempting to process the response from symphony.");
                         var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
                         foreach (var item_ in response_.Content.Headers)
                             headers_[item_.Key] = item_.Value;
-    
+
                         ProcessResponse(client_, response_);
-    
-                        var status_ = ((int)response_.StatusCode).ToString();
+
+                        _log.LogDebug("Successfully processed the response from symphony.");
+
+                        var status_ = ((int) response_.StatusCode).ToString();
+
+                        var statusDetails = new Dictionary<string, string>()
+                        {
+                            {"status", status_}
+                        };
+
+                        var responseDataDetails = new Dictionary<string, string>()
+                        {
+                            {"responseData", ""}
+                        };
+
                         if (status_ == "200") 
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(V4Message); 
+                            _log.LogDebug("Attempting to parse response data from the response.", statusDetails);
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                            responseDataDetails["responseData"] = responseData_;
+                            _log.LogDebug("Logging response data.", responseDataDetails);
+
+                            var result_ = default(V4Message);
                             try
                             {
                                 result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<V4Message>(responseData_, _settings.Value);
-                                return result_; 
-                            } 
-                            catch (System.Exception exception_) 
+                                return result_;
+                            }
+                            catch (System.Exception exception_)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
                             }
@@ -4552,13 +4590,18 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                         else
                         if (status_ == "400") 
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(Error); 
+                            _log.LogDebug("Attempting to parse response data from the response.", statusDetails);
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                            responseDataDetails["responseData"] = responseData_;
+                            _log.LogDebug("Logging response data.", responseDataDetails);
+
+                            var result_ = default(Error);
                             try
                             {
                                 result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
-                            } 
-                            catch (System.Exception exception_) 
+                            }
+                            catch (System.Exception exception_)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
                             }
@@ -4567,13 +4610,18 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                         else
                         if (status_ == "401") 
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(Error); 
+                            _log.LogDebug("Attempting to parse response data from the response.", statusDetails);
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                            responseDataDetails["responseData"] = responseData_;
+                            _log.LogDebug("Logging response data.", responseDataDetails);
+
+                            var result_ = default(Error);
                             try
                             {
                                 result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
-                            } 
-                            catch (System.Exception exception_) 
+                            }
+                            catch (System.Exception exception_)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
                             }
@@ -4582,13 +4630,18 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                         else
                         if (status_ == "403") 
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(Error); 
+                            _log.LogDebug("Attempting to parse response data from the response.", statusDetails);
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                            responseDataDetails["responseData"] = responseData_;
+                            _log.LogDebug("Logging response data.", responseDataDetails);
+
+                            var result_ = default(Error);
                             try
                             {
                                 result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
-                            } 
-                            catch (System.Exception exception_) 
+                            }
+                            catch (System.Exception exception_)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
                             }
@@ -4597,13 +4650,18 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                         else
                         if (status_ == "500") 
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(Error); 
+                            _log.LogDebug("Attempting to parse response data from the response.", statusDetails);
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                            responseDataDetails["responseData"] = responseData_;
+                            _log.LogDebug("Logging response data.", responseDataDetails);
+
+                            var result_ = default(Error);
                             try
                             {
                                 result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
-                            } 
-                            catch (System.Exception exception_) 
+                            }
+                            catch (System.Exception exception_)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
                             }
@@ -4612,8 +4670,13 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            throw new SwaggerException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", status_, responseData_, headers_, null);
+                            _log.LogDebug("Attempting to parse response data from the response.", statusDetails);
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                            responseDataDetails["responseData"] = responseData_;
+                            _log.LogDebug("Logging response data.", responseDataDetails);
+
+                            throw new SwaggerException("The HTTP status code of the response was not expected (" + (int) response_.StatusCode + ").", status_, responseData_, headers_, null);
                         }
             
                         return default(V4Message);
@@ -4624,6 +4687,11 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                             response_.Dispose();
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                _log.LogError(0, e, "An error occured while trying to send the request to symphony.");
+                throw;
             }
             finally
             {
