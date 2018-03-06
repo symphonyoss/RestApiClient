@@ -4519,8 +4519,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                     // https://tools.ietf.org/html/rfc7578#section-4.4
                     // The nswag generator does not include this header so this patch forces
                     // that in.
-                    if (attachment != null)
-                    {
+                    if (attachment != null) {
                         var attachmentContent = new System.Net.Http.StreamContent(attachment.Data);
                         attachmentContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
                         content_.Add(attachmentContent, "attachment", attachment.FileName ?? "attachment");
@@ -4529,7 +4528,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
+    
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
@@ -4551,7 +4550,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                         var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
                         foreach (var item_ in response_.Content.Headers)
                             headers_[item_.Key] = item_.Value;
-
+    
                         ProcessResponse(client_, response_);
 
                         _log.LogDebug("Successfully processed the response from symphony.");
@@ -4580,9 +4579,9 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                             try
                             {
                                 result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<V4Message>(responseData_, _settings.Value);
-                                return result_;
-                            }
-                            catch (System.Exception exception_)
+                                return result_; 
+                            } 
+                            catch (System.Exception exception_) 
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
                             }
@@ -4600,8 +4599,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                             try
                             {
                                 result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
-                            }
-                            catch (System.Exception exception_)
+                            } 
+                            catch (System.Exception exception_) 
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
                             }
@@ -4620,8 +4619,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                             try
                             {
                                 result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
-                            }
-                            catch (System.Exception exception_)
+                            } 
+                            catch (System.Exception exception_) 
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
                             }
@@ -4640,8 +4639,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                             try
                             {
                                 result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
-                            }
-                            catch (System.Exception exception_)
+                            } 
+                            catch (System.Exception exception_) 
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
                             }
@@ -4660,8 +4659,8 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                             try
                             {
                                 result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(responseData_, _settings.Value);
-                            }
-                            catch (System.Exception exception_)
+                            } 
+                            catch (System.Exception exception_) 
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status_, responseData_, headers_, exception_);
                             }
