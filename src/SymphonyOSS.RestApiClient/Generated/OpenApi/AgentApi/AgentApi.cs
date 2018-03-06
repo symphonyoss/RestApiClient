@@ -4534,11 +4534,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
 
-                    var requestDetails = new Dictionary<string, string>()
-                    {
-                        {"url", url_}
-                    };
-                    _log.LogDebug("Attempting to send the request to symphony.", requestDetails);
+                    _log.LogDebug("Attempting to send the request to symphony. Url = {url_}", url_);
 
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
 
@@ -4557,23 +4553,12 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
 
                         var status_ = ((int) response_.StatusCode).ToString();
 
-                        var statusDetails = new Dictionary<string, string>()
-                        {
-                            {"status", status_}
-                        };
-
-                        var responseDataDetails = new Dictionary<string, string>()
-                        {
-                            {"responseData", ""}
-                        };
-
                         if (status_ == "200") 
                         {
-                            _log.LogDebug("Attempting to parse response data from the response.", statusDetails);
+                            _log.LogDebug("Attempting to parse response data from the response. Status = {status_}", status_);
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-                            responseDataDetails["responseData"] = responseData_;
-                            _log.LogDebug("Logging response data.", responseDataDetails);
+                            _log.LogDebug("Logging response data. ResponseData = {responseData_}", responseData_);
 
                             var result_ = default(V4Message);
                             try
@@ -4589,11 +4574,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                         else
                         if (status_ == "400") 
                         {
-                            _log.LogDebug("Attempting to parse response data from the response.", statusDetails);
+                            _log.LogDebug("Attempting to parse response data from the response.", status_);
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-                            responseDataDetails["responseData"] = responseData_;
-                            _log.LogDebug("Logging response data.", responseDataDetails);
+                            _log.LogDebug("Logging response data. ResponseData = {responseData_}", responseData_);
 
                             var result_ = default(Error);
                             try
@@ -4609,11 +4593,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                         else
                         if (status_ == "401") 
                         {
-                            _log.LogDebug("Attempting to parse response data from the response.", statusDetails);
+                            _log.LogDebug("Attempting to parse response data from the response.", status_);
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-                            responseDataDetails["responseData"] = responseData_;
-                            _log.LogDebug("Logging response data.", responseDataDetails);
+                            _log.LogDebug("Logging response data. ResponseData = {responseData_}", responseData_);
 
                             var result_ = default(Error);
                             try
@@ -4629,11 +4612,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                         else
                         if (status_ == "403") 
                         {
-                            _log.LogDebug("Attempting to parse response data from the response.", statusDetails);
+                            _log.LogDebug("Attempting to parse response data from the response.", status_);
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-                            responseDataDetails["responseData"] = responseData_;
-                            _log.LogDebug("Logging response data.", responseDataDetails);
+                            _log.LogDebug("Logging response data. ResponseData = {responseData_}", responseData_);
 
                             var result_ = default(Error);
                             try
@@ -4649,11 +4631,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                         else
                         if (status_ == "500") 
                         {
-                            _log.LogDebug("Attempting to parse response data from the response.", statusDetails);
+                            _log.LogDebug("Attempting to parse response data from the response.", status_);
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-                            responseDataDetails["responseData"] = responseData_;
-                            _log.LogDebug("Logging response data.", responseDataDetails);
+                            _log.LogDebug("Logging response data. ResponseData = {responseData_}", responseData_);
 
                             var result_ = default(Error);
                             try
@@ -4669,11 +4650,10 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            _log.LogDebug("Attempting to parse response data from the response.", statusDetails);
+                            _log.LogDebug("Attempting to parse response data from the response.", status_);
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-                            responseDataDetails["responseData"] = responseData_;
-                            _log.LogDebug("Logging response data.", responseDataDetails);
+                            _log.LogDebug("Logging response data. ResponseData = {responseData_}", responseData_);
 
                             throw new SwaggerException("The HTTP status code of the response was not expected (" + (int) response_.StatusCode + ").", status_, responseData_, headers_, null);
                         }
