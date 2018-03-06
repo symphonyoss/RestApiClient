@@ -4669,7 +4669,7 @@ namespace SymphonyOSS.RestApiClient.Generated.OpenApi.AgentApi
             }
             catch (Exception e)
             {
-                _log.LogError(0, e, "An error occured while trying to send the request to symphony.");
+                _log.LogError(0, e, "An error occured while trying to send the request to symphony. Ex = {e}", e.ToString());
                 throw;
             }
             finally
