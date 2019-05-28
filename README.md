@@ -79,6 +79,13 @@ The details of the generation process are outlined in generate.bat
 
 This project was initiated at [FactSet](https://www.factset.com) and has been developed as open-source from the very beginning.
 
+1. Fork it (<https://github.com/symphonyoss/SFE-DesktopClient-pgx/fork>)
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Read our [contribution guidelines](.github/CONTRIBUTING.md) and [Community Code of Conduct](https://www.finos.org/code-of-conduct)
+4. Commit your changes (`git commit -am 'Add some fooBar'`)
+5. Push to the branch (`git push origin feature/fooBar`)
+6. Create a new Pull Request
+
 Contributions are accepted via GitHub pull requests. All contributors must be covered by contributor license agreements to comply with the [Code Contribution Process](https://symphonyoss.atlassian.net/wiki/display/FM/Code+Contribution+Process).
 
 ## Release Notes
@@ -132,3 +139,10 @@ Release 0.2.0 (June 28, 2016)
 Release 0.1.0 (June 6, 2016)
 
  * Initial release. Code generated from agentAPI v1.38.0, authenticatorAPI v1.0, and podAPI v1.38.0, found in agent-sdk-1.38.0-2016-05-27.tar.gz.
+
+## License
+
+Copyright 2016-2019 Symphony LLC
+
+The code in this repository is distributed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
