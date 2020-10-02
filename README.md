@@ -3,6 +3,7 @@
 [![MyGet Build Status](https://www.myget.org/BuildSource/Badge/symphonyoss?identifier=5ec51fa6-f346-402c-af7f-3f30c9f40a28)](https://www.myget.org/feed/symphonyoss/package/nuget/SymphonyOSS.RestApiClient)
 [![Dependencies](https://www.versioneye.com/user/projects/57b73c371dcdc900430c0b37/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57b73c371dcdc900430c0b37?child=summary)
 [![Travis Build Status](https://travis-ci.org/symphonyoss/RestApiClient.svg)](https://travis-ci.org/symphonyoss/RestApiClient)
+[![FINOS - Archived](https://github.com/finos/contrib-toolbox/raw/master/images/badge-archived.png)](https://finosfoundation.atlassian.net/wiki/spaces/FINOS/pages/75530367/Archived)
 
 Symphony REST API Client Library for .NET
 =========================================
