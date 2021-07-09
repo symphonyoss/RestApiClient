@@ -51,6 +51,8 @@ The following code snippet shows how to find a user by email address and send a 
 
 ```
 var podApiFactory = new PodApiFactory("https://agentapi:8446/pod");
+var agentApiFactory = new AgentApiFactory("https://agentapi:8446/agent");
+var messagesApi = agentApiFactory.CreateMessagesApi(sessionManager);
 var usersApi = podApiFactory.CreateUsersApi(sessionManager);
 var streamsApi = podApiFactory.CreateStreamsApi(sessionManager);
 var userId = usersApi.GetUserId("jforsell@factset.com");
