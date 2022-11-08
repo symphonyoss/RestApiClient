@@ -1,5 +1,5 @@
-Symphony REST API Client Library for .NET
-Copyright 2016 The Symphony Software Foundation
+Symphony REST API Client Library for .NET - FINOS
+Copyright 2016-2019 Symphony LLC
 
 This product includes software developed at
 The Symphony Software Foundation (http://symphony.foundation).
